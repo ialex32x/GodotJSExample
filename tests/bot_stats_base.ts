@@ -1,7 +1,10 @@
 import { Resource, Variant } from "godot";
-import { export_ } from "godot.annotations";
+import { createClassBinder } from "godot.annotations";
 
+const bind = createClassBinder();
+
+@bind()
 export default class BotStatsBase extends Resource {
-    @export_(Variant.Type.TYPE_INT)
-    legs = 0
+  @bind.export(Variant.Type.TYPE_INT)
+  accessor legs = 0;
 }

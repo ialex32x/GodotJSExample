@@ -1,7 +1,8 @@
-import { tool } from "godot.annotations";
+import { createClassBinder } from "godot.annotations";
 import FooBase from "./foo_base";
 
-@tool()
-export default class Foo extends FooBase {
+const bind = createClassBinder();
 
-}
+@bind()
+@bind.tool()
+export default class Foo extends FooBase {}

@@ -8,12 +8,12 @@ import { CyclicClass2 } from "./cyclic_import_2";
 
 // OK: references at runtime if OK
 export class CyclicClass1 {
-    static call1() {
-        console.log("call1");
-        CyclicClass2.call2();
-    }
+  static call1() {
+    console.log("call1");
+    CyclicClass2.call2();
+  }
 
-    static call3() {
-        console.log("call3");
-    }
+  static call3() {
+    console.log("call3");
+  }
 }

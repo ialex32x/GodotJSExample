@@ -1,33 +1,35 @@
 import { EditorPlugin, Engine, Node2D, Variant, Vector2 } from "godot";
-import { export_, tool } from "godot.annotations";
+import { createClassBinder } from "godot.annotations";
 import Test01Inspector from "./test_01_inspector";
 import * as jsb from "godot-jsb";
 
+const bind = createClassBinder();
+
 let inspector: EditorPlugin;
 
-@tool()
+@bind()
+@bind.tool()
 export default class Test01 extends Node2D {
+  @bind.export(Variant.Type.TYPE_FLOAT)
+  accessor num = 0;
 
-	@export_(Variant.Type.TYPE_FLOAT)
-	num = 0;
-	
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	_process(delta: number): void {
-		for (let i = 0; i < 100; ++i) {
-			let v = new Vector2();
-			v.x = 1;
-			v.y = v.x * 2;
-		}
-	}
+  // Called every frame. 'delta' is the elapsed time since the previous frame.
+  _process(delta: number): void {
+    for (let i = 0; i < 100; ++i) {
+      let v = new Vector2();
+      v.x = 1;
+      v.y = v.x * 2;
+    }
+  }
 
-	_enter_tree(): void {
-		console.log("test01 enter tree")
-		if (jsb.TOOLS_ENABLED && Engine.is_editor_hint()) {
-			if (!inspector) {
-				inspector = new EditorPlugin();
-				inspector.add_inspector_plugin(new Test01Inspector());
-				console.log("add_inspector_plugin");
-			}
-		}
-	}
+  _enter_tree(): void {
+    console.log("test01 enter tree");
+    if (jsb.TOOLS_ENABLED && Engine.is_editor_hint()) {
+      if (!inspector) {
+        inspector = new EditorPlugin();
+        inspector.add_inspector_plugin(new Test01Inspector());
+        console.log("add_inspector_plugin");
+      }
+    }
+  }
 }

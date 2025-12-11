@@ -1,6 +1,5 @@
-
-console.log("... loaded 2 ...")
+console.log("... loaded 2 ...");
 
 export function hi() {
-    console.log("hi 11");
+  console.log("hi 11");
 }
