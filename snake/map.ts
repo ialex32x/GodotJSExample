@@ -1,11 +1,12 @@
 import { Node2D } from "godot";
-import { export_ } from "godot.annotations";
+import { createClassBinder } from "godot.annotations";
 
+const bind = createClassBinder();
+
+@bind()
 export default class Map extends Node2D {
-    width: number = 0;
-    height: number = 0;
+  width: number = 0;
+  height: number = 0;
 
-    _ready() {
-
-    }
+  _ready() {}
 }

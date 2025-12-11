@@ -1,189 +1,475 @@
-/// <reference no-default-lib="true"/>
 declare module "godot" {
-    export const IntegerType: unique symbol;
-    export const FloatType: unique symbol;
+  const IntegerType: unique symbol;
+  const FloatType: unique symbol;
+  /**
+   * Proxy objects are typically transparent by design, allowing a proxy to impersonate a type. However, GodotJS also
+   * makes use of proxies to wrap existing objects in order to provide a more convenient API. In such cases, it is
+   * convenient to be able to unwrap the object i.e. obtain access to the target object. In order to achieve this,
+   * GodotJS exposes a property with the key ProxyTarget. You can access this to, for example, obtain direct access
+   * to the original GDictionary wrapped via a call to .proxy(). Additionally, GodotJS uses this property internally
+   * to unwrap proxies, thus allowing you to pass a proxy wrapped GArray/GDictionary as an argument to any function
+   * expecting a GArray/GDictionary parameter.
+   */
+  const ProxyTarget: unique symbol;
 
-    /** A built-in type representing a method or a standalone function.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_callable.html  
+  /**
+   * FOR BACKWARD COMPATIBILITY ONLY
+   * @deprecated [WARNING] Use Callable/Callable<T>.
+   */
+  type AnyCallable = Callable;
+
+  /**
+   * FOR BACKWARD COMPATIBILITY ONLY
+   * @deprecated [WARNING] Use Signal/Signal<T>.
+   */
+  type AnySignal = Signal;
+
+  /**
+   * FOR BACKWARD COMPATIBILITY ONLY
+   * @deprecated [WARNING] Use Callable<T>.
+   */
+  type Callable0<R = void> = Callable<() => R>;
+
+  /**
+   * FOR BACKWARD COMPATIBILITY ONLY
+   * @deprecated [WARNING] Use Callable<T>.
+   */
+  type Callable1<T1, R = void> = Callable<(v1: T1) => R>;
+
+  /**
+   * FOR BACKWARD COMPATIBILITY ONLY
+   * @deprecated [WARNING] Use Callable<T>.
+   */
+  type Callable2<T1, T2, R = void> = Callable<(v1: T1, v2: T2) => R>;
+
+  /**
+   * FOR BACKWARD COMPATIBILITY ONLY
+   * @deprecated [WARNING] Use Callable<T>.
+   */
+  type Callable3<T1, T2, T3, R = void> = Callable<
+    (v1: T1, v2: T2, v3: T3) => R
+  >;
+
+  /**
+   * FOR BACKWARD COMPATIBILITY ONLY
+   * @deprecated [WARNING] Use Callable<T>.
+   */
+  type Callable4<T1, T2, T3, T4, R = void> = Callable<
+    (v1: T1, v2: T2, v3: T3, v4: T4) => R
+  >;
+
+  /**
+   * FOR BACKWARD COMPATIBILITY ONLY
+   * @deprecated [WARNING] Use Callable<T>.
+   */
+  type Callable5<T1, T2, T3, T4, T5, R = void> = Callable<
+    (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5) => R
+  >;
+
+  /**
+   * FOR BACKWARD COMPATIBILITY ONLY
+   * @deprecated [WARNING] Use Signal<T>.
+   */
+  type Signal0 = Signal<() => void>;
+
+  /**
+   * FOR BACKWARD COMPATIBILITY ONLY
+   * @deprecated [WARNING] Use Signal<T>.
+   */
+  type Signal1<T1> = Signal<(v1: T1) => void>;
+
+  /**
+   * FOR BACKWARD COMPATIBILITY ONLY
+   * @deprecated [WARNING] Use Signal<T>.
+   */
+  type Signal2<T1, T2> = Signal<(v1: T1, v2: T2) => void>;
+
+  /**
+   * FOR BACKWARD COMPATIBILITY ONLY
+   * @deprecated [WARNING] Use Signal<T>.
+   */
+  type Signal3<T1, T2, T3> = Signal<(v1: T1, v2: T2, v3: T3) => void>;
+
+  /**
+   * FOR BACKWARD COMPATIBILITY ONLY
+   * @deprecated [WARNING] Use Signal<T>.
+   */
+  type Signal4<T1, T2, T3, T4> = Signal<
+    (v1: T1, v2: T2, v3: T3, v4: T4) => void
+  >;
+
+  /**
+   * FOR BACKWARD COMPATIBILITY ONLY
+   * @deprecated [WARNING] Use Signal<T>.
+   */
+  type Signal5<T1, T2, T3, T4, T5> = Signal<
+    (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5) => void
+  >;
+
+  type ExtractValueKeys<T, V> = {
+    [K in keyof T]: T[K] extends V ? K : never;
+  }[keyof T];
+  type IfAny<T, Y, N> = 0 extends 1 & T ? Y : N;
+
+  type UndefinedToNull<T> = T extends undefined ? null : T;
+
+  // A bit convoluted, but written this way to mitigate type definitions circularly depending on themselves.
+  type GodotNames<T> = "__godotNameMap" extends keyof T
+    ?
+        | keyof T["__godotNameMap"]
+        | Exclude<keyof T, T["__godotNameMap"][keyof T["__godotNameMap"]]>
+    : keyof T;
+  type ResolveGodotName<T, Name> = Name extends keyof T
+    ? Name
+    : "__godotNameMap" extends keyof T
+      ? Name extends keyof T["__godotNameMap"]
+        ? T["__godotNameMap"][Name]
+        : never
+      : never;
+  type ResolveGodotNameValue<T, Name> = Name extends keyof T
+    ? T[Name]
+    : "__godotNameMap" extends keyof T
+      ? Name extends keyof T["__godotNameMap"]
+        ? T["__godotNameMap"][Name] extends keyof T
+          ? T[T["__godotNameMap"][Name]]
+          : never
+        : never
+      : never;
+  type ResolveGodotNameParameters<T, Name> =
+    Name extends GodotDynamicDispatchName
+      ? GAny[]
+      : ResolveGodotName<T, Name> extends keyof T
+        ? T[ResolveGodotName<T, Name>] extends {
+            bivarianceHack(...args: infer P extends GAny[]): void | GAny;
+          }["bivarianceHack"]
+          ? P
+          : never
+        : never;
+  type ResolveGodotReturnType<T, Name> = Name extends GodotDynamicDispatchName
+    ? void | GAny
+    : ResolveGodotName<T, Name> extends keyof T
+      ? T[ResolveGodotName<T, Name>] extends (...args: any[]) => infer R
+        ? R
+        : never
+      : never;
+
+  /**
+   * Godot has many APIs that are a form of dynamic dispatch, i.e., they take the name of a function or property and
+   * then operate on the value matching the name. TypeScript is powerful enough to allow us to type these APIs.
+   * However, since these APIs can be used to call each other, the type checker can get hung up trying to infinitely
+   * recurse on these types. What follows is an interface with the built-in dynamic dispatch names. GodotJS' types
+   * will not recurse through methods matching these names. If you want to build your own dynamic dispatch APIs, you
+   * can use interface merging to insert additional method names.
+   */
+  interface GodotDynamicDispatchNames {
+    call: "call";
+    callv: "callv";
+    call_deferred: "call_deferred";
+    add_do_method: "add_do_method";
+    add_undo_method: "add_undo_method";
+  }
+
+  type GodotDynamicDispatchName =
+    GodotDynamicDispatchNames[keyof GodotDynamicDispatchNames];
+
+  /**
+   * This namespace and the values within do not exist at runtime. They're declared here, for internal use only, as a
+   * work-around for limitations of TypeScript's type system.
+   */
+  namespace __PathMappableDummyKeys {}
+
+  type PathMappable<DummyKey extends symbol, Map extends PathMap = PathMap> = {
+    [K in DummyKey]: Map;
+  };
+
+  type PathMap<T = unknown> = Record<string, T>;
+
+  type StaticPath<
+    Map extends PathMap,
+    Permitted = any,
+    DefaultKey extends string = never,
+    DummyKey extends
+      symbol = (typeof __PathMappableDummyKeys)[keyof typeof __PathMappableDummyKeys],
+  > = IfAny<
+    Map,
+    string,
+    | (ExtractValueKeys<Map, Permitted> & string)
+    | (DummyKey extends any
+        ?
+            | (Map[DefaultKey] extends never
+                ? never
+                : Map[DefaultKey] extends PathMappable<DummyKey, infer ChildMap>
+                  ? StaticPath<ChildMap, Permitted, DefaultKey>
+                  : never)
+            | {
+                [K in Exclude<keyof Map, DefaultKey> &
+                  string]: Map[K] extends PathMappable<DummyKey, infer ChildMap>
+                  ? `${K}/${StaticPath<ChildMap, Permitted, DefaultKey>}`
+                  : never;
+              }[Exclude<keyof Map, DefaultKey> & string]
+        : never)
+  >;
+
+  type ResolvePath<
+    Map extends PathMap,
+    Path extends string,
+    Default,
+    Permitted,
+    DefaultKey extends string = never,
+    DummyKey extends
+      symbol = (typeof __PathMappableDummyKeys)[keyof typeof __PathMappableDummyKeys],
+  > = IfAny<
+    Map,
+    Permitted,
+    DummyKey extends any
+      ? Path extends keyof Map
+        ? [Map[Path]] extends [Permitted]
+          ? [undefined] extends [Map[Path]]
+            ? null | Exclude<Map[Path], undefined>
+            : Map[Path]
+          : Default
+        : Path extends `${infer Key extends Exclude<keyof Map, DefaultKey> & string}/${infer SubPath}`
+          ? Map[Key] extends PathMappable<DummyKey, infer ChildMap>
+            ? ResolvePath<ChildMap, SubPath, Default, Permitted>
+            : Default
+          : Map[DefaultKey] extends PathMappable<DummyKey, infer ChildMap>
+            ? ResolvePath<ChildMap, Path, Default, Permitted>
+            : never
+      : never
+  >;
+
+  type PathMapChild<Map extends NodePathMap, Permitted, Default> = IfAny<
+    Map,
+    Permitted,
+    Map[keyof Map] extends undefined | Permitted
+      ? Exclude<Map[keyof Map], undefined>
+      : Default
+  >;
+
+  type NodePathMap = PathMap<undefined | Node>;
+  type StaticNodePath<Map extends NodePathMap, Permitted = Node> = StaticPath<
+    Map,
+    Permitted,
+    never,
+    typeof __PathMappableDummyKeys.Node
+  >;
+  type ResolveNodePath<
+    Map extends NodePathMap,
+    Path extends string,
+    Default = never,
+    Permitted = Node,
+  > = ResolvePath<
+    Map,
+    Path,
+    Default,
+    Permitted,
+    never,
+    typeof __PathMappableDummyKeys.Node
+  >;
+  type ResolveNodePathMap<
+    Map extends NodePathMap,
+    Path extends string,
+    Default = never,
+  > = Path extends keyof Map
+    ? Map[Path] extends Node<infer ChildMap>
+      ? ChildMap
+      : Default
+    : Path extends `${infer Key extends keyof Map & string}/${infer SubPath}`
+      ? Map[Key] extends Node<infer ChildMap>
+        ? ResolveNodePathMap<ChildMap, SubPath, Default>
+        : Default
+      : Default;
+  type NodePathMapChild<Map extends NodePathMap> = PathMapChild<
+    Map,
+    Node,
+    Node
+  >;
+
+  type AnimationMixerPathMap = PathMap<AnimationLibrary>;
+  type StaticAnimationMixerPath<Map extends AnimationMixerPathMap> = StaticPath<
+    Map,
+    Animation,
+    "",
+    (typeof __PathMappableDummyKeys)["AnimationLibrary" | "AnimationMixer"]
+  >;
+  type ResolveAnimationMixerPath<
+    Map extends AnimationMixerPathMap,
+    Path extends string,
+    Default = never,
+  > = ResolvePath<
+    Map,
+    Path,
+    Default,
+    Animation,
+    "",
+    (typeof __PathMappableDummyKeys)["AnimationLibrary" | "AnimationMixer"]
+  >;
+
+  type GArrayElement<
+    T extends GAny | GAny[],
+    I extends int64 = int64,
+  > = T extends any[] ? T[I] : T;
+
+  /**
+   * GArray elements are exposed with a subset of JavaScript's standard Array API. Array indexes are exposed as
+   * enumerable properties, thus if you want to perform more complex operations you can convert to a regular
+   * JavaScript array with [...g_array.proxy()].
+   */
+  class GArrayProxy<T> {
+    [Symbol.iterator](): IteratorObject<GProxyValueWrap<T>>;
+
+    /**
+     * Gets the length of the array. This is a number one higher than the highest index in the array.
      */
-    interface AnyCallable {
-        /** Returns `true` if this [Callable] has no target to call the method on. */
-        is_null(): boolean
+    get length(): number;
 
-        /** Returns `true` if this [Callable] is a custom callable. Custom callables are created from [method bind] or [method unbind]. In GDScript, lambda functions are also custom callables. */
-        is_custom(): boolean
-
-        /** Returns `true` if this [Callable] is a standard callable. This method is the opposite of [method is_custom]. Returns `false` if this callable is a lambda function. */
-        is_standard(): boolean
-
-        /** Returns `true` if the callable's object exists and has a valid method name assigned, or is a custom callable. */
-        is_valid(): boolean
-
-        /** Returns the object on which this [Callable] is called. */
-        get_object(): Object
-
-        /** Returns the ID of this [Callable]'s object (see [method Object.get_instance_id]). */
-        get_object_id(): int64
-
-        /** Returns the name of the method represented by this [Callable]. If the callable is a GDScript lambda function, returns the function's name or `"<anonymous lambda>"`. */
-        get_method(): StringName
-
-        /** Returns the total amount of arguments bound (or unbound) via successive [method bind] or [method unbind] calls. If the amount of arguments unbound is greater than the ones bound, this function returns a value less than zero. */
-        get_bound_arguments_count(): int64
-
-        /** Return the bound arguments (as long as [method get_bound_arguments_count] is greater than zero), or empty (if [method get_bound_arguments_count] is less than or equal to zero). */
-        get_bound_arguments(): Array
-
-        /** Returns the 32-bit hash value of this [Callable]'s object.  
-         *      
-         *  **Note:** [Callable]s with equal content will always produce identical hash values. However, the reverse is not true. Returning identical hash values does  *not*  imply the callables are equal, because different callables can have identical hash values due to hash collisions. The engine uses a 32-bit hash algorithm for [method hash].  
-         */
-        hash(): int64
-
-        /** Returns a copy of this [Callable] with one or more arguments bound. When called, the bound arguments are passed  *after*  the arguments supplied by [method call]. See also [method unbind].  
-         *      
-         *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
-         */
-        bind(...vargargs: any[]): AnyCallable
-
-        /** Returns a copy of this [Callable] with one or more arguments bound, reading them from an array. When called, the bound arguments are passed  *after*  the arguments supplied by [method call]. See also [method unbind].  
-         *      
-         *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
-         */
-        bindv(arguments_: GArray): AnyCallable
-
-        /** Returns a copy of this [Callable] with a number of arguments unbound. In other words, when the new callable is called the last few arguments supplied by the user are ignored, according to [param argcount]. The remaining arguments are passed to the callable. This allows to use the original callable in a context that attempts to pass more arguments than this callable can handle, e.g. a signal with a fixed number of arguments. See also [method bind].  
-         *      
-         *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
-         *    
-         */
-        unbind(argcount: int64): AnyCallable
-        
-        /** Calls the method represented by this [Callable]. Arguments can be passed and should match the method's signature. */
-        call(...vargargs: any[]): any
-        
-        /** Calls the method represented by this [Callable]. Unlike [method call], this method expects all arguments to be contained inside the [param arguments] [Array]. */
-        callv(arguments_: GArray): any
-        
-        /** Calls the method represented by this [Callable] in deferred mode, i.e. at the end of the current frame. Arguments can be passed and should match the method's signature.  
-         *    
-         *      
-         *  **Note:** Deferred calls are processed at idle time. Idle time happens mainly at the end of process and physics frames. In it, deferred calls will be run until there are none left, which means you can defer calls from other deferred calls and they'll still be run in the current idle time cycle. This means you should not call a method deferred from itself (or from a method called by it), as this causes infinite recursion the same way as if you had called the method directly.  
-         *  See also [method Object.call_deferred].  
-         */
-        call_deferred(...vargargs: any[]): void
-    }
-
-    /** A built-in type representing a signal of an [Object].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.2/classes/class_signal.html  
+    /**
+     * Performs the specified action for each element in an array.
+     * @param callback A function that accepts up to three arguments. forEach calls the callback function one time for each element in the array.
+     * @param thisArg An object to which the this keyword can refer in the callback function. If thisArg is omitted, undefined is used as the this value.
      */
-    interface AnySignal {
-        /** Returns `true` if the signal's name does not exist in its object, or the object is not valid. */
-        is_null(): boolean
+    forEach<S = GArrayProxy<T>>(
+      callback: (
+        this: GArrayProxy<T>,
+        value: GProxyValueWrap<T>,
+        index: number,
+      ) => void,
+      thisArg?: S,
+    ): void;
 
-        /** Returns the object emitting this signal. */
-        get_object(): Object
+    /**
+     * Removes the last element from an array and returns it.
+     * If the array is empty, undefined is returned and the array is not modified.
+     */
+    pop(): GProxyValueWrap<T> | undefined;
 
-        /** Returns the ID of the object emitting this signal (see [method Object.get_instance_id]). */
-        get_object_id(): int64
+    /**
+     * Appends new elements to the end of an array, and returns the new length of the array.
+     * @param item New element to add to the array.
+     * @param additionalItems Additional new elements to add to the array.
+     */
+    push(
+      item: T | GProxyValueWrap<T>,
+      ...additionalItems: Array<T | GProxyValueWrap<T>>
+    ): number;
 
-        /** Returns the name of this signal. */
-        get_name(): StringName
+    /**
+     * Returns the index of the first occurrence of a value in an array, or -1 if it is not present.
+     * @param searchElement The value to locate in the array.
+     * @param fromIndex The array index at which to begin the search. If fromIndex is omitted, the search starts at index 0.
+     */
+    indexOf(searchElement: T | GProxyValueWrap<T>, fromIndex?: number): number;
 
-        /** Returns `true` if the specified [Callable] is connected to this signal. */
-        is_connected(callable: AnyCallable): boolean
+    /**
+     * Determines whether an array includes a certain element, returning true or false as appropriate.
+     * @param searchElement The element to search for.
+     */
+    includes(searchElement: T | GProxyValueWrap<T>): boolean;
 
-        /** Returns an [Array] of connections for this signal. Each connection is represented as a [Dictionary] that contains three entries:  
-         *  - `signal` is a reference to this signal;  
-         *  - `callable` is a reference to the connected [Callable];  
-         *  - `flags` is a combination of [enum Object.ConnectFlags].  
-         */
-        get_connections(): Array
-    }
+    toJSON(key?: any): any;
 
-    interface Callable0<R = void> extends AnyCallable {
-        call(): R;
-    }
+    toString(): string;
 
-    interface Callable1<T1, R = void> extends AnyCallable {
-        call(v1: T1): R;
-    }
+    [n: number]: T | GProxyValueWrap<T>; // More accurate get type blocked by https://github.com/microsoft/TypeScript/issues/43826
+  }
 
-    interface Callable2<T1, T2, R = void> extends AnyCallable {
-        call(v1: T1, v2, T2): R;
-    }
+  // Ideally this would be a class, but TS currently doesn't provide a way to type a class with mapped properties.
+  /**
+   * GObject entries are exposed as enumerable properties, so Object.keys(), GObject.entries() etc. will work.
+   */
+  type GDictionaryProxy<T> = {
+    [K in keyof T]: T[K] | GProxyValueWrap<T[K]>; // More accurate get type blocked by https://github.com/microsoft/TypeScript/issues/43826
+  };
 
-    interface Callable3<T1, T2, T3, R = void> extends AnyCallable {
-        call(v1: T1, v2: T2, v3: T3): R;
-    }
+  type GProxyValueWrap<V> =
+    V extends GArray<infer T>
+      ? GArrayProxy<GArrayElement<T>>
+      : V extends GDictionary<infer T>
+        ? GDictionaryProxy<T>
+        : V;
 
-    interface Callable4<T1, T2, T3, T4, R = void> extends AnyCallable {
-        call(v1: T1, v2: T2, v3: T3, v4: T4): R;
-    }
+  type GProxyValueUnwrap<V> =
+    V extends GArrayProxy<infer E>
+      ? E
+      : V extends GDictionaryProxy<infer T>
+        ? T
+        : V;
 
-    interface Callable5<T1, T2, T3, T4, T5, R = void> extends AnyCallable {
-        call(v1: T1, v2: T2, v3: T3, v4: T4, v5: T5): R;
-    }
+  type GWrappableValue =
+    | GAny
+    | GWrappableValue[]
+    | { [key: number | string]: GWrappableValue };
+  type GValueWrapUnchecked<V> = V extends any[]
+    ? number extends V["length"]
+      ? GArray<GValueWrapUnchecked<V[number]>>
+      : GArray<{ [I in keyof V]: GValueWrapUnchecked<V[I]> }>
+    : V extends GAny
+      ? V
+      : GDictionary<{ [K in keyof V]: GValueWrapUnchecked<V[K]> }>;
+  type GValueWrap<V> = [keyof V] extends [never]
+    ? GDictionary<{}>
+    : [V] extends [GWrappableValue]
+      ? GValueWrapUnchecked<V>
+      : never;
 
-    interface Signal0 extends AnySignal {
-        connect(callable: Callable0, flags: int64 = 0): void;
-        disconnect(callable: Callable0): void;
-        is_connected(callable: Callable0): boolean;
-        emit(): void;
+  type GValueUnwrap<V> =
+    V extends GArray<infer T>
+      ? T extends any[]
+        ? { [I in keyof T]: GValueUnwrap<T[I]> }
+        : Array<GValueUnwrap<T>>
+      : V extends GDictionary<infer T>
+        ? { [K in keyof T]: GValueUnwrap<T[K]> }
+        : V;
 
-        as_promise(): Promise<void>;
-    }
+  /**
+   * Semi-workaround for https://github.com/microsoft/TypeScript/issues/43826.
+   * @see GReadProxyValueWrap
+   */
+  type GArrayReadProxy<T> = Omit<GArrayProxy<T>, "forEach"> & {
+    [Symbol.iterator](): IteratorObject<GReadProxyValueWrap<T>>;
+    forEach<S = GArrayReadProxy<T>>(
+      callback: (
+        this: GArrayReadProxy<T>,
+        value: GReadProxyValueWrap<T>,
+        index: number,
+      ) => void,
+      thisArg?: S,
+    ): void;
+    [n: number]: GReadProxyValueWrap<T>;
+  };
 
-    interface Signal1<T1> extends AnySignal {
-        connect(callable: Callable1<T1>, flags: int64 = 0): void;
-        disconnect(callable: Callable1<T1>): void;
-        is_connected(callable: Callable1<T1>): boolean;
-        emit(v1: T1): void;
+  /**
+   * Semi-workaround for https://github.com/microsoft/TypeScript/issues/43826.
+   * @see GReadProxyValueWrap
+   */
+  type GDictionaryReadProxy<T> = {
+    [K in keyof T]: GReadProxyValueWrap<T[K]>;
+  };
 
-        // the first argument is used as the resolved value
-        as_promise(): Promise<T1>;
-    }
+  // At runtime we only have the one kind of dictionary proxy and one kind of array proxy. The read interfaces have
+  // indexers typed correctly for access i.e. return proxied types. The non-read interfaces have indexers accurate for
+  // assignment and will accept both GArray/GDictionary and proxies. The read interfaces exist for convenience only,
+  // you can safely cast between the two interfaces types as desired.
+  type GReadProxyValueWrap<V> =
+    V extends GArray<infer E>
+      ? GArrayReadProxy<E>
+      : V extends GDictionary<infer T>
+        ? GDictionaryReadProxy<T>
+        : V;
 
-    interface Signal2<T1, T2> extends AnySignal {
-        connect(callable: Callable2<T1, T2>, flags: int64 = 0): void;
-        disconnect(callable: Callable2<T1, T2>): void;
-        is_connected(callable: Callable2<T1, T2>): boolean;
-        emit(v1: T1, v2: T2): void;
+  interface PropertyInfo {
+    name: string;
+    type: Variant.Type;
+    class_name: string;
+    hint: PropertyHint;
+    hint_string: string;
+    usage: PropertyUsageFlags;
+  }
 
-        // the first argument is used as the resolved value
-        as_promise(): Promise<T1>;
-    }
-
-    interface Signal3<T1, T2, T3> extends AnySignal {
-        connect(callable: Callable3<T1, T2, T3>, flags: int64 = 0): void;
-        disconnect(callable: Callable3<T1, T2, T3>): void;
-        is_connected(callable: Callable3<T1, T2, T3>): boolean;
-        emit(v1: T1, v2: T2, v3: T3): void;
-
-        // the first argument is used as the resolved value
-        as_promise(): Promise<T1>;
-    }
-
-    interface Signal4<T1, T2, T3, T4> extends AnySignal {
-        connect(callable: Callable4<T1, T2, T3, T4>, flags: int64 = 0): void;
-        disconnect(callable: Callable4<T1, T2, T3, T4>): void;
-        is_connected(callable: Callable4<T1, T2, T3, T4>): boolean;
-        emit(v1: T1, v2: T2, v3: T3, v4: T4): void;
-
-        // the first argument is used as the resolved value
-        as_promise(): Promise<T1>;
-    }
-
-    interface Signal5<T1, T2, T3, T4, T5> extends AnySignal {
-        connect(callable: Callable5<T1, T2, T3, T4, T5>, flags: int64 = 0): void;
-        disconnect(callable: Callable5<T1, T2, T3, T4, T5>): void;
-        is_connected(callable: Callable5<T1, T2, T3, T4, T5>): boolean;
-        emit(v1: T1, v2: T2, v3: T3, v4: T4, v5: T5): void;
-
-        // the first argument is used as the resolved value
-        as_promise(): Promise<T1>;
-    }
-
+  type BindRight<F extends Function, B extends any[]> = F extends (
+    this: infer T,
+    ...args: [...infer A, ...B]
+  ) => infer R
+    ? (this: T, ...args: A) => R
+    : never;
 }

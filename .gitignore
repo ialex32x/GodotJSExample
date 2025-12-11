@@ -8,3 +8,10 @@
 
 node_modules/
 android/
+/.idea/.gitignore
+/.idea/aws.xml
+/.idea/editor.xml
+/.idea/GodotJSExample.iml
+/.idea/modules.xml
+/.idea/prettier.xml
+/.idea/vcs.xml

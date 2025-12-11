@@ -1,7362 +1,10729 @@
 // AUTO-GENERATED
-/// <reference no-default-lib="true"/>
 declare module "godot" {
-    namespace XRHandModifier3D {
-        enum BoneUpdate {
-            /** The skeleton's bones are fully updated (both position and rotation) to match the tracked bones. */
-            BONE_UPDATE_FULL = 0,
-            
-            /** The skeleton's bones are only rotated to align with the tracked bones, preserving bone length. */
-            BONE_UPDATE_ROTATION_ONLY = 1,
-            
-            /** Represents the size of the [enum BoneUpdate] enum. */
-            BONE_UPDATE_MAX = 2,
-        }
-    }
-    /** A node for driving hand meshes from [XRHandTracker] data.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrhandmodifier3d.html  
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapSprite2D extends __NameMapNode2D {}
+  /** General-purpose sprite node.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_sprite2d.html
+   */
+  class Sprite2D<Map extends NodePathMap = any> extends Node2D<Map> {
+    constructor(identifier?: any);
+    /** Returns `true`, if the pixel at the given position is opaque and `false` in other case. The position is in local coordinates.
+     *
+     *  **Note:** It also returns `false`, if the sprite's texture is `null` or if the given position is invalid.
      */
-    class XRHandModifier3D extends SkeletonModifier3D {
-        constructor(identifier?: any)
-        /** The name of the [XRHandTracker] registered with [XRServer] to obtain the hand tracking data from. */
-        get hand_tracker(): string
-        set hand_tracker(value: string)
-        
-        /** Specifies the type of updates to perform on the bones. */
-        get bone_update(): int64
-        set bone_update(value: int64)
-    }
-    namespace XRHandTracker {
-        enum HandTrackingSource {
-            /** The source of hand tracking data is unknown. */
-            HAND_TRACKING_SOURCE_UNKNOWN = 0,
-            
-            /** The source of hand tracking data is unobstructed, meaning that an accurate method of hand tracking is used. These include optical hand tracking, data gloves, etc. */
-            HAND_TRACKING_SOURCE_UNOBSTRUCTED = 1,
-            
-            /** The source of hand tracking data is a controller, meaning that joint positions are inferred from controller inputs. */
-            HAND_TRACKING_SOURCE_CONTROLLER = 2,
-            
-            /** Represents the size of the [enum HandTrackingSource] enum. */
-            HAND_TRACKING_SOURCE_MAX = 3,
-        }
-        enum HandJoint {
-            /** Palm joint. */
-            HAND_JOINT_PALM = 0,
-            
-            /** Wrist joint. */
-            HAND_JOINT_WRIST = 1,
-            
-            /** Thumb metacarpal joint. */
-            HAND_JOINT_THUMB_METACARPAL = 2,
-            
-            /** Thumb phalanx proximal joint. */
-            HAND_JOINT_THUMB_PHALANX_PROXIMAL = 3,
-            
-            /** Thumb phalanx distal joint. */
-            HAND_JOINT_THUMB_PHALANX_DISTAL = 4,
-            
-            /** Thumb tip joint. */
-            HAND_JOINT_THUMB_TIP = 5,
-            
-            /** Index finger metacarpal joint. */
-            HAND_JOINT_INDEX_FINGER_METACARPAL = 6,
-            
-            /** Index finger phalanx proximal joint. */
-            HAND_JOINT_INDEX_FINGER_PHALANX_PROXIMAL = 7,
-            
-            /** Index finger phalanx intermediate joint. */
-            HAND_JOINT_INDEX_FINGER_PHALANX_INTERMEDIATE = 8,
-            
-            /** Index finger phalanx distal joint. */
-            HAND_JOINT_INDEX_FINGER_PHALANX_DISTAL = 9,
-            
-            /** Index finger tip joint. */
-            HAND_JOINT_INDEX_FINGER_TIP = 10,
-            
-            /** Middle finger metacarpal joint. */
-            HAND_JOINT_MIDDLE_FINGER_METACARPAL = 11,
-            
-            /** Middle finger phalanx proximal joint. */
-            HAND_JOINT_MIDDLE_FINGER_PHALANX_PROXIMAL = 12,
-            
-            /** Middle finger phalanx intermediate joint. */
-            HAND_JOINT_MIDDLE_FINGER_PHALANX_INTERMEDIATE = 13,
-            
-            /** Middle finger phalanx distal joint. */
-            HAND_JOINT_MIDDLE_FINGER_PHALANX_DISTAL = 14,
-            
-            /** Middle finger tip joint. */
-            HAND_JOINT_MIDDLE_FINGER_TIP = 15,
-            
-            /** Ring finger metacarpal joint. */
-            HAND_JOINT_RING_FINGER_METACARPAL = 16,
-            
-            /** Ring finger phalanx proximal joint. */
-            HAND_JOINT_RING_FINGER_PHALANX_PROXIMAL = 17,
-            
-            /** Ring finger phalanx intermediate joint. */
-            HAND_JOINT_RING_FINGER_PHALANX_INTERMEDIATE = 18,
-            
-            /** Ring finger phalanx distal joint. */
-            HAND_JOINT_RING_FINGER_PHALANX_DISTAL = 19,
-            
-            /** Ring finger tip joint. */
-            HAND_JOINT_RING_FINGER_TIP = 20,
-            
-            /** Pinky finger metacarpal joint. */
-            HAND_JOINT_PINKY_FINGER_METACARPAL = 21,
-            
-            /** Pinky finger phalanx proximal joint. */
-            HAND_JOINT_PINKY_FINGER_PHALANX_PROXIMAL = 22,
-            
-            /** Pinky finger phalanx intermediate joint. */
-            HAND_JOINT_PINKY_FINGER_PHALANX_INTERMEDIATE = 23,
-            
-            /** Pinky finger phalanx distal joint. */
-            HAND_JOINT_PINKY_FINGER_PHALANX_DISTAL = 24,
-            
-            /** Pinky finger tip joint. */
-            HAND_JOINT_PINKY_FINGER_TIP = 25,
-            
-            /** Represents the size of the [enum HandJoint] enum. */
-            HAND_JOINT_MAX = 26,
-        }
-        enum HandJointFlags {
-            /** The hand joint's orientation data is valid. */
-            HAND_JOINT_FLAG_ORIENTATION_VALID = 1,
-            
-            /** The hand joint's orientation is actively tracked. May not be set if tracking has been temporarily lost. */
-            HAND_JOINT_FLAG_ORIENTATION_TRACKED = 2,
-            
-            /** The hand joint's position data is valid. */
-            HAND_JOINT_FLAG_POSITION_VALID = 4,
-            
-            /** The hand joint's position is actively tracked. May not be set if tracking has been temporarily lost. */
-            HAND_JOINT_FLAG_POSITION_TRACKED = 8,
-            
-            /** The hand joint's linear velocity data is valid. */
-            HAND_JOINT_FLAG_LINEAR_VELOCITY_VALID = 16,
-            
-            /** The hand joint's angular velocity data is valid. */
-            HAND_JOINT_FLAG_ANGULAR_VELOCITY_VALID = 32,
-        }
-    }
-    /** A tracked hand in XR.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrhandtracker.html  
+    is_pixel_opaque(pos: Vector2): boolean;
+
+    /** Returns a [Rect2] representing the Sprite2D's boundary in local coordinates.
+     *  **Example:** Detect if the Sprite2D was clicked:
+     *
      */
-    class XRHandTracker extends XRPositionalTracker {
-        constructor(identifier?: any)
-        /** Sets flags about the validity of the tracking data for the given hand joint. */
-        set_hand_joint_flags(joint: XRHandTracker.HandJoint, flags: XRHandTracker.HandJointFlags): void
-        
-        /** Returns flags about the validity of the tracking data for the given hand joint (see [enum XRHandTracker.HandJointFlags]). */
-        get_hand_joint_flags(joint: XRHandTracker.HandJoint): XRHandTracker.HandJointFlags
-        
-        /** Sets the transform for the given hand joint. */
-        set_hand_joint_transform(joint: XRHandTracker.HandJoint, transform: Transform3D): void
-        
-        /** Returns the transform for the given hand joint. */
-        get_hand_joint_transform(joint: XRHandTracker.HandJoint): Transform3D
-        
-        /** Sets the radius of the given hand joint. */
-        set_hand_joint_radius(joint: XRHandTracker.HandJoint, radius: float64): void
-        
-        /** Returns the radius of the given hand joint. */
-        get_hand_joint_radius(joint: XRHandTracker.HandJoint): float64
-        
-        /** Sets the linear velocity for the given hand joint. */
-        set_hand_joint_linear_velocity(joint: XRHandTracker.HandJoint, linear_velocity: Vector3): void
-        
-        /** Returns the linear velocity for the given hand joint. */
-        get_hand_joint_linear_velocity(joint: XRHandTracker.HandJoint): Vector3
-        
-        /** Sets the angular velocity for the given hand joint. */
-        set_hand_joint_angular_velocity(joint: XRHandTracker.HandJoint, angular_velocity: Vector3): void
-        
-        /** Returns the angular velocity for the given hand joint. */
-        get_hand_joint_angular_velocity(joint: XRHandTracker.HandJoint): Vector3
-        
-        /** If `true`, the hand tracking data is valid. */
-        get has_tracking_data(): boolean
-        set has_tracking_data(value: boolean)
-        
-        /** The source of the hand tracking data. */
-        get hand_tracking_source(): int64
-        set hand_tracking_source(value: int64)
-    }
-    namespace XRInterface {
-        enum Capabilities {
-            /** No XR capabilities. */
-            XR_NONE = 0,
-            
-            /** This interface can work with normal rendering output (non-HMD based AR). */
-            XR_MONO = 1,
-            
-            /** This interface supports stereoscopic rendering. */
-            XR_STEREO = 2,
-            
-            /** This interface supports quad rendering (not yet supported by Godot). */
-            XR_QUAD = 4,
-            
-            /** This interface supports VR. */
-            XR_VR = 8,
-            
-            /** This interface supports AR (video background and real world tracking). */
-            XR_AR = 16,
-            
-            /** This interface outputs to an external device. If the main viewport is used, the on screen output is an unmodified buffer of either the left or right eye (stretched if the viewport size is not changed to the same aspect ratio of [method get_render_target_size]). Using a separate viewport node frees up the main viewport for other purposes. */
-            XR_EXTERNAL = 32,
-        }
-        enum TrackingStatus {
-            /** Tracking is behaving as expected. */
-            XR_NORMAL_TRACKING = 0,
-            
-            /** Tracking is hindered by excessive motion (the player is moving faster than tracking can keep up). */
-            XR_EXCESSIVE_MOTION = 1,
-            
-            /** Tracking is hindered by insufficient features, it's too dark (for camera-based tracking), player is blocked, etc. */
-            XR_INSUFFICIENT_FEATURES = 2,
-            
-            /** We don't know the status of the tracking or this interface does not provide feedback. */
-            XR_UNKNOWN_TRACKING = 3,
-            
-            /** Tracking is not functional (camera not plugged in or obscured, lighthouses turned off, etc.). */
-            XR_NOT_TRACKING = 4,
-        }
-        enum PlayAreaMode {
-            /** Play area mode not set or not available. */
-            XR_PLAY_AREA_UNKNOWN = 0,
-            
-            /** Play area only supports orientation tracking, no positional tracking, area will center around player. */
-            XR_PLAY_AREA_3DOF = 1,
-            
-            /** Player is in seated position, limited positional tracking, fixed guardian around player. */
-            XR_PLAY_AREA_SITTING = 2,
-            
-            /** Player is free to move around, full positional tracking. */
-            XR_PLAY_AREA_ROOMSCALE = 3,
-            
-            /** Same as [constant XR_PLAY_AREA_ROOMSCALE] but origin point is fixed to the center of the physical space. In this mode, system-level recentering may be disabled, requiring the use of [method XRServer.center_on_hmd]. */
-            XR_PLAY_AREA_STAGE = 4,
-        }
-        enum EnvironmentBlendMode {
-            /** Opaque blend mode. This is typically used for VR devices. */
-            XR_ENV_BLEND_MODE_OPAQUE = 0,
-            
-            /** Additive blend mode. This is typically used for AR devices or VR devices with passthrough. */
-            XR_ENV_BLEND_MODE_ADDITIVE = 1,
-            
-            /** Alpha blend mode. This is typically used for AR or VR devices with passthrough capabilities. The alpha channel controls how much of the passthrough is visible. Alpha of 0.0 means the passthrough is visible and this pixel works in ADDITIVE mode. Alpha of 1.0 means that the passthrough is not visible and this pixel works in OPAQUE mode. */
-            XR_ENV_BLEND_MODE_ALPHA_BLEND = 2,
-        }
-    }
-    /** Base class for an XR interface implementation.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrinterface.html  
+    get_rect(): Rect2;
+
+    /** [Texture2D] object to draw. */
+    get texture(): null | Texture2D;
+    set texture(value: null | Texture2D);
+
+    /** If `true`, texture is centered.
+     *
+     *  **Note:** For games with a pixel art aesthetic, textures may appear deformed when centered. This is caused by their position being between pixels. To prevent this, set this property to `false`, or consider enabling [member ProjectSettings.rendering/2d/snap/snap_2d_vertices_to_pixel] and [member ProjectSettings.rendering/2d/snap/snap_2d_transforms_to_pixel].
      */
-    class XRInterface extends RefCounted {
-        constructor(identifier?: any)
-        /** Returns the name of this interface (`"OpenXR"`, `"OpenVR"`, `"OpenHMD"`, `"ARKit"`, etc.). */
-        get_name(): StringName
-        
-        /** Returns a combination of [enum Capabilities] flags providing information about the capabilities of this interface. */
-        get_capabilities(): int64
-        
-        /** Returns `true` if this interface has been initialized. */
-        is_initialized(): boolean
-        
-        /** Call this to initialize this interface. The first interface that is initialized is identified as the primary interface and it will be used for rendering output.  
-         *  After initializing the interface you want to use you then need to enable the AR/VR mode of a viewport and rendering should commence.  
-         *      
-         *  **Note:** You must enable the XR mode on the main viewport for any device that uses the main output of Godot, such as for mobile VR.  
-         *  If you do this for a platform that handles its own output (such as OpenVR) Godot will show just one eye without distortion on screen. Alternatively, you can add a separate viewport node to your scene and enable AR/VR on that viewport. It will be used to output to the HMD, leaving you free to do anything you like in the main window, such as using a separate camera as a spectator camera or rendering something completely different.  
-         *  While currently not used, you can activate additional interfaces. You may wish to do this if you want to track controllers from other platforms. However, at this point in time only one interface can render to an HMD.  
-         */
-        initialize(): boolean
-        
-        /** Turns the interface off. */
-        uninitialize(): void
-        
-        /** Returns a [Dictionary] with extra system info. Interfaces are expected to return `XRRuntimeName` and `XRRuntimeVersion` providing info about the used XR runtime. Additional entries may be provided specific to an interface.  
-         *      
-         *  **Note:**This information may only be available after [method initialize] was successfully called.  
-         */
-        get_system_info(): GDictionary
-        
-        /** If supported, returns the status of our tracking. This will allow you to provide feedback to the user whether there are issues with positional tracking. */
-        get_tracking_status(): XRInterface.TrackingStatus
-        
-        /** Returns the resolution at which we should render our intermediate results before things like lens distortion are applied by the VR platform. */
-        get_render_target_size(): Vector2
-        
-        /** Returns the number of views that need to be rendered for this device. 1 for Monoscopic, 2 for Stereoscopic. */
-        get_view_count(): int64
-        
-        /** Triggers a haptic pulse on a device associated with this interface.  
-         *  [param action_name] is the name of the action for this pulse.  
-         *  [param tracker_name] is optional and can be used to direct the pulse to a specific device provided that device is bound to this haptic.  
-         *  [param frequency] is the frequency of the pulse, set to `0.0` to have the system use a default frequency.  
-         *  [param amplitude] is the amplitude of the pulse between `0.0` and `1.0`.  
-         *  [param duration_sec] is the duration of the pulse in seconds.  
-         *  [param delay_sec] is a delay in seconds before the pulse is given.  
-         */
-        trigger_haptic_pulse(action_name: string, tracker_name: StringName, frequency: float64, amplitude: float64, duration_sec: float64, delay_sec: float64): void
-        
-        /** Call this to find out if a given play area mode is supported by this interface. */
-        supports_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
-        
-        /** Returns an array of vectors that represent the physical play area mapped to the virtual space around the [XROrigin3D] point. The points form a convex polygon that can be used to react to or visualize the play area. This returns an empty array if this feature is not supported or if the information is not yet available. */
-        get_play_area(): PackedVector3Array
-        
-        /** If this is an AR interface that requires displaying a camera feed as the background, this method returns the feed ID in the [CameraServer] for this interface. */
-        get_camera_feed_id(): int64
-        
-        /** Returns `true` if this interface supports passthrough. */
-        is_passthrough_supported(): boolean
-        
-        /** Returns `true` if passthrough is enabled. */
-        is_passthrough_enabled(): boolean
-        
-        /** Starts passthrough, will return `false` if passthrough couldn't be started.  
-         *      
-         *  **Note:** The viewport used for XR must have a transparent background, otherwise passthrough may not properly render.  
-         */
-        start_passthrough(): boolean
-        
-        /** Stops passthrough. */
-        stop_passthrough(): void
-        
-        /** Returns the transform for a view/eye.  
-         *  [param view] is the view/eye index.  
-         *  [param cam_transform] is the transform that maps device coordinates to scene coordinates, typically the [member Node3D.global_transform] of the current XROrigin3D.  
-         */
-        get_transform_for_view(view: int64, cam_transform: Transform3D): Transform3D
-        
-        /** Returns the projection matrix for a view/eye. */
-        get_projection_for_view(view: int64, aspect: float64, near: float64, far: float64): Projection
-        
-        /** Returns the an array of supported environment blend modes, see [enum XRInterface.EnvironmentBlendMode]. */
-        get_supported_environment_blend_modes(): GArray
-        
-        /** `true` if this is the primary interface. */
-        get interface_is_primary(): boolean
-        set interface_is_primary(value: boolean)
-        
-        /** The play area mode for this interface. */
-        get xr_play_area_mode(): int64
-        set xr_play_area_mode(value: int64)
-        
-        /** Specify how XR should blend in the environment. This is specific to certain AR and passthrough devices where camera images are blended in by the XR compositor. */
-        get environment_blend_mode(): int64
-        set environment_blend_mode(value: int64)
-        
-        /** On an AR interface, `true` if anchor detection is enabled. */
-        get ar_is_anchor_detection_enabled(): boolean
-        set ar_is_anchor_detection_enabled(value: boolean)
-        
-        /** Emitted when the play area is changed. This can be a result of the player resetting the boundary or entering a new play area, the player changing the play area mode, the world scale changing or the player resetting their headset orientation. */
-        readonly play_area_changed: Signal1<int64>
-    }
-    /** Base class for XR interface extensions (plugins).  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrinterfaceextension.html  
+    get centered(): boolean;
+    set centered(value: boolean);
+
+    /** The texture's drawing offset.
+     *
+     *  **Note:** When you increase [member offset].y in Sprite2D, the sprite moves downward on screen (i.e., +Y is down).
      */
-    class XRInterfaceExtension extends XRInterface {
-        constructor(identifier?: any)
-        /** Returns the name of this interface. */
-        /* gdvirtual */ _get_name(): StringName
-        
-        /** Returns the capabilities of this interface. */
-        /* gdvirtual */ _get_capabilities(): int64
-        
-        /** Returns `true` if this interface has been initialized. */
-        /* gdvirtual */ _is_initialized(): boolean
-        
-        /** Initializes the interface, returns `true` on success. */
-        /* gdvirtual */ _initialize(): boolean
-        
-        /** Uninitialize the interface. */
-        /* gdvirtual */ _uninitialize(): void
-        
-        /** Returns a [Dictionary] with system information related to this interface. */
-        /* gdvirtual */ _get_system_info(): GDictionary
-        
-        /** Returns `true` if this interface supports this play area mode. */
-        /* gdvirtual */ _supports_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
-        
-        /** Returns the play area mode that sets up our play area. */
-        /* gdvirtual */ _get_play_area_mode(): XRInterface.PlayAreaMode
-        
-        /** Set the play area mode for this interface. */
-        /* gdvirtual */ _set_play_area_mode(mode: XRInterface.PlayAreaMode): boolean
-        
-        /** Returns a [PackedVector3Array] that represents the play areas boundaries (if applicable). */
-        /* gdvirtual */ _get_play_area(): PackedVector3Array
-        
-        /** Returns the size of our render target for this interface, this overrides the size of the [Viewport] marked as the xr viewport. */
-        /* gdvirtual */ _get_render_target_size(): Vector2
-        
-        /** Returns the number of views this interface requires, 1 for mono, 2 for stereoscopic. */
-        /* gdvirtual */ _get_view_count(): int64
-        
-        /** Returns the [Transform3D] that positions the [XRCamera3D] in the world. */
-        /* gdvirtual */ _get_camera_transform(): Transform3D
-        
-        /** Returns a [Transform3D] for a given view. */
-        /* gdvirtual */ _get_transform_for_view(view: int64, cam_transform: Transform3D): Transform3D
-        
-        /** Returns the projection matrix for the given view as a [PackedFloat64Array]. */
-        /* gdvirtual */ _get_projection_for_view(view: int64, aspect: float64, z_near: float64, z_far: float64): PackedFloat64Array
-        /* gdvirtual */ _get_vrs_texture(): RID
-        
-        /** Called if this [XRInterfaceExtension] is active before our physics and game process is called. Most XR interfaces will update its [XRPositionalTracker]s at this point in time. */
-        /* gdvirtual */ _process(): void
-        
-        /** Called if this [XRInterfaceExtension] is active before rendering starts. Most XR interfaces will sync tracking at this point in time. */
-        /* gdvirtual */ _pre_render(): void
-        
-        /** Called if this is our primary [XRInterfaceExtension] before we start processing a [Viewport] for every active XR [Viewport], returns `true` if that viewport should be rendered. An XR interface may return `false` if the user has taken off their headset and we can pause rendering. */
-        /* gdvirtual */ _pre_draw_viewport(render_target: RID): boolean
-        
-        /** Called after the XR [Viewport] draw logic has completed. */
-        /* gdvirtual */ _post_draw_viewport(render_target: RID, screen_rect: Rect2): void
-        
-        /** Called if interface is active and queues have been submitted. */
-        /* gdvirtual */ _end_frame(): void
-        
-        /** Returns a [PackedStringArray] with tracker names configured by this interface. Note that user configuration can override this list. */
-        /* gdvirtual */ _get_suggested_tracker_names(): PackedStringArray
-        
-        /** Returns a [PackedStringArray] with pose names configured by this interface. Note that user configuration can override this list. */
-        /* gdvirtual */ _get_suggested_pose_names(tracker_name: StringName): PackedStringArray
-        
-        /** Returns a [enum XRInterface.TrackingStatus] specifying the current status of our tracking. */
-        /* gdvirtual */ _get_tracking_status(): XRInterface.TrackingStatus
-        
-        /** Triggers a haptic pulse to be emitted on the specified tracker. */
-        /* gdvirtual */ _trigger_haptic_pulse(action_name: string, tracker_name: StringName, frequency: float64, amplitude: float64, duration_sec: float64, delay_sec: float64): void
-        
-        /** Return `true` if anchor detection is enabled for this interface. */
-        /* gdvirtual */ _get_anchor_detection_is_enabled(): boolean
-        
-        /** Enables anchor detection on this interface if supported. */
-        /* gdvirtual */ _set_anchor_detection_is_enabled(enabled: boolean): void
-        
-        /** Returns the camera feed ID for the [CameraFeed] registered with the [CameraServer] that should be presented as the background on an AR capable device (if applicable). */
-        /* gdvirtual */ _get_camera_feed_id(): int64
-        
-        /** Return color texture into which to render (if applicable). */
-        /* gdvirtual */ _get_color_texture(): RID
-        
-        /** Return depth texture into which to render (if applicable). */
-        /* gdvirtual */ _get_depth_texture(): RID
-        
-        /** Return velocity texture into which to render (if applicable). */
-        /* gdvirtual */ _get_velocity_texture(): RID
-        get_color_texture(): RID
-        get_depth_texture(): RID
-        get_velocity_texture(): RID
-        
-        /** Blits our render results to screen optionally applying lens distortion. This can only be called while processing `_commit_views`. */
-        add_blit(render_target: RID, src_rect: Rect2, dst_rect: Rect2i, use_layer: boolean, layer: int64, apply_lens_distortion: boolean, eye_center: Vector2, k1: float64, k2: float64, upscale: float64, aspect_ratio: float64): void
-        
-        /** Returns a valid [RID] for a texture to which we should render the current frame if supported by the interface. */
-        get_render_target_texture(render_target: RID): RID
-    }
-    /** A spatial node that has its position automatically updated by the [XRServer].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrnode3d.html  
+    get offset(): Vector2;
+    set offset(value: Vector2);
+
+    /** If `true`, texture is flipped horizontally. */
+    get flip_h(): boolean;
+    set flip_h(value: boolean);
+
+    /** If `true`, texture is flipped vertically. */
+    get flip_v(): boolean;
+    set flip_v(value: boolean);
+
+    /** The number of columns in the sprite sheet. When this property is changed, [member frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [member frame] is reset to `0`. */
+    get hframes(): int64;
+    set hframes(value: int64);
+
+    /** The number of rows in the sprite sheet. When this property is changed, [member frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [member frame] is reset to `0`. */
+    get vframes(): int64;
+    set vframes(value: int64);
+
+    /** Current frame to display from sprite sheet. [member hframes] or [member vframes] must be greater than 1. This property is automatically adjusted when [member hframes] or [member vframes] are changed to keep pointing to the same visual frame (same column and row). If that's impossible, this value is reset to `0`. */
+    get frame(): int64;
+    set frame(value: int64);
+
+    /** Coordinates of the frame to display from sprite sheet. This is as an alias for the [member frame] property. [member hframes] or [member vframes] must be greater than 1. */
+    get frame_coords(): Vector2i;
+    set frame_coords(value: Vector2i);
+
+    /** If `true`, texture is cut from a larger atlas texture. See [member region_rect].
+     *
+     *  **Note:** When using a custom [Shader] on a [Sprite2D], the `UV` shader built-in will refer to the entire texture space. Use the `REGION_RECT` built-in to get the currently visible region defined in [member region_rect] instead. See [url=https://docs.godotengine.org/en/4.5/tutorials/shaders/shader_reference/canvas_item_shader.html]CanvasItem shaders[/url] for details.
      */
-    class XRNode3D extends Node3D {
-        constructor(identifier?: any)
-        /** Returns `true` if the [member tracker] has been registered and the [member pose] is being tracked. */
-        get_is_active(): boolean
-        
-        /** Returns `true` if the [member tracker] has current tracking data for the [member pose] being tracked. */
-        get_has_tracking_data(): boolean
-        
-        /** Returns the [XRPose] containing the current state of the pose being tracked. This gives access to additional properties of this pose. */
-        get_pose(): XRPose
-        
-        /** Triggers a haptic pulse on a device associated with this interface.  
-         *  [param action_name] is the name of the action for this pulse.  
-         *  [param frequency] is the frequency of the pulse, set to `0.0` to have the system use a default frequency.  
-         *  [param amplitude] is the amplitude of the pulse between `0.0` and `1.0`.  
-         *  [param duration_sec] is the duration of the pulse in seconds.  
-         *  [param delay_sec] is a delay in seconds before the pulse is given.  
-         */
-        trigger_haptic_pulse(action_name: string, frequency: float64, amplitude: float64, duration_sec: float64, delay_sec: float64): void
-        
-        /** The name of the tracker we're bound to. Which trackers are available is not known during design time.  
-         *  Godot defines a number of standard trackers such as `left_hand` and `right_hand` but others may be configured within a given [XRInterface].  
-         */
-        get tracker(): string
-        set tracker(value: string)
-        
-        /** The name of the pose we're bound to. Which poses a tracker supports is not known during design time.  
-         *  Godot defines number of standard pose names such as `aim` and `grip` but other may be configured within a given [XRInterface].  
-         */
-        get pose(): string
-        set pose(value: string)
-        
-        /** Enables showing the node when tracking starts, and hiding the node when tracking is lost. */
-        get show_when_tracked(): boolean
-        set show_when_tracked(value: boolean)
-        
-        /** Emitted when the [member tracker] starts or stops receiving updated tracking data for the [member pose] being tracked. The [param tracking] argument indicates whether the tracker is getting updated tracking data. */
-        readonly tracking_changed: Signal1<boolean>
+    get region_enabled(): boolean;
+    set region_enabled(value: boolean);
+
+    /** The region of the atlas texture to display. [member region_enabled] must be `true`. */
+    get region_rect(): Rect2;
+    set region_rect(value: Rect2);
+
+    /** If `true`, the area outside of the [member region_rect] is clipped to avoid bleeding of the surrounding texture pixels. [member region_enabled] must be `true`. */
+    get region_filter_clip_enabled(): boolean;
+    set region_filter_clip_enabled(value: boolean);
+
+    /** Emitted when the [member frame] changes. */
+    readonly frame_changed: Signal<() => void>;
+
+    /** Emitted when the [member texture] changes. */
+    readonly texture_changed: Signal<() => void>;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapSprite2D;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapSprite3D extends __NameMapSpriteBase3D {}
+  /** 2D sprite node in a 3D world.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_sprite3d.html
+   */
+  class Sprite3D<Map extends NodePathMap = any> extends SpriteBase3D<Map> {
+    constructor(identifier?: any);
+    /** [Texture2D] object to draw. If [member GeometryInstance3D.material_override] is used, this will be overridden. The size information is still used. */
+    get texture(): null | Texture2D;
+    set texture(value: null | Texture2D);
+
+    /** The number of columns in the sprite sheet. When this property is changed, [member frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [member frame] is reset to `0`. */
+    get hframes(): int64;
+    set hframes(value: int64);
+
+    /** The number of rows in the sprite sheet. When this property is changed, [member frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [member frame] is reset to `0`. */
+    get vframes(): int64;
+    set vframes(value: int64);
+
+    /** Current frame to display from sprite sheet. [member hframes] or [member vframes] must be greater than 1. This property is automatically adjusted when [member hframes] or [member vframes] are changed to keep pointing to the same visual frame (same column and row). If that's impossible, this value is reset to `0`. */
+    get frame(): int64;
+    set frame(value: int64);
+
+    /** Coordinates of the frame to display from sprite sheet. This is as an alias for the [member frame] property. [member hframes] or [member vframes] must be greater than 1. */
+    get frame_coords(): Vector2i;
+    set frame_coords(value: Vector2i);
+
+    /** If `true`, the sprite will use [member region_rect] and display only the specified part of its texture. */
+    get region_enabled(): boolean;
+    set region_enabled(value: boolean);
+
+    /** The region of the atlas texture to display. [member region_enabled] must be `true`. */
+    get region_rect(): Rect2;
+    set region_rect(value: Rect2);
+
+    /** Emitted when the [member frame] changes. */
+    readonly frame_changed: Signal<() => void>;
+
+    /** Emitted when the [member texture] changes. */
+    readonly texture_changed: Signal<() => void>;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapSprite3D;
+  }
+  namespace SpriteBase3D {
+    enum DrawFlags {
+      /** If set, the texture's transparency and the opacity are used to make those parts of the sprite invisible. */
+      FLAG_TRANSPARENT = 0,
+
+      /** If set, lights in the environment affect the sprite. */
+      FLAG_SHADED = 1,
+
+      /** If set, texture can be seen from the back as well. If not, the texture is invisible when looking at it from behind. */
+      FLAG_DOUBLE_SIDED = 2,
+
+      /** Disables the depth test, so this object is drawn on top of all others. However, objects drawn after it in the draw order may cover it. */
+      FLAG_DISABLE_DEPTH_TEST = 3,
+
+      /** Label is scaled by depth so that it always appears the same size on screen. */
+      FLAG_FIXED_SIZE = 4,
+
+      /** Represents the size of the [enum DrawFlags] enum. */
+      FLAG_MAX = 5,
     }
-    /** The origin point in AR/VR.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrorigin3d.html  
+    enum AlphaCutMode {
+      /** This mode performs standard alpha blending. It can display translucent areas, but transparency sorting issues may be visible when multiple transparent materials are overlapping. */
+      ALPHA_CUT_DISABLED = 0,
+
+      /** This mode only allows fully transparent or fully opaque pixels. Harsh edges will be visible unless some form of screen-space antialiasing is enabled (see [member ProjectSettings.rendering/anti_aliasing/quality/screen_space_aa]). On the bright side, this mode doesn't suffer from transparency sorting issues when multiple transparent materials are overlapping. This mode is also known as  *alpha testing*  or  *1-bit transparency* . */
+      ALPHA_CUT_DISCARD = 1,
+
+      /** This mode draws fully opaque pixels in the depth prepass. This is slower than [constant ALPHA_CUT_DISABLED] or [constant ALPHA_CUT_DISCARD], but it allows displaying translucent areas and smooth edges while using proper sorting. */
+      ALPHA_CUT_OPAQUE_PREPASS = 2,
+
+      /** This mode draws cuts off all values below a spatially-deterministic threshold, the rest will remain opaque. */
+      ALPHA_CUT_HASH = 3,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapSpriteBase3D extends __NameMapGeometryInstance3D {}
+  /** 2D sprite node in 3D environment.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_spritebase3d.html
+   */
+  class SpriteBase3D<
+    Map extends NodePathMap = any,
+  > extends GeometryInstance3D<Map> {
+    constructor(identifier?: any);
+    /** If `true`, the specified flag will be enabled. */
+    set_draw_flag(flag: SpriteBase3D.DrawFlags, enabled: boolean): void;
+
+    /** Returns the value of the specified flag. */
+    get_draw_flag(flag: SpriteBase3D.DrawFlags): boolean;
+
+    /** Returns the rectangle representing this sprite. */
+    get_item_rect(): Rect2;
+
+    /** Returns a [TriangleMesh] with the sprite's vertices following its current configuration (such as its [member axis] and [member pixel_size]). */
+    generate_triangle_mesh(): null | TriangleMesh;
+
+    /** If `true`, texture will be centered. */
+    get centered(): boolean;
+    set centered(value: boolean);
+
+    /** The texture's drawing offset.
+     *
+     *  **Note:** When you increase [member offset].y in Sprite3D, the sprite moves upward in world space (i.e., +Y is up).
      */
-    class XROrigin3D extends Node3D {
-        constructor(identifier?: any)
-        /** The scale of the game world compared to the real world. This is the same as [member XRServer.world_scale]. By default, most AR/VR platforms assume that 1 game unit corresponds to 1 real world meter. */
-        get world_scale(): float64
-        set world_scale(value: float64)
-        
-        /** If `true`, this origin node is currently being used by the [XRServer]. Only one origin point can be used at a time. */
-        get current(): boolean
-        set current(value: boolean)
-    }
-    namespace XRPose {
-        enum TrackingConfidence {
-            /** No tracking information is available for this pose. */
-            XR_TRACKING_CONFIDENCE_NONE = 0,
-            
-            /** Tracking information may be inaccurate or estimated. For example, with inside out tracking this would indicate a controller may be (partially) obscured. */
-            XR_TRACKING_CONFIDENCE_LOW = 1,
-            
-            /** Tracking information is considered accurate and up to date. */
-            XR_TRACKING_CONFIDENCE_HIGH = 2,
-        }
-    }
-    /** This object contains all data related to a pose on a tracked object.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrpose.html  
+    get offset(): Vector2;
+    set offset(value: Vector2);
+
+    /** If `true`, texture is flipped horizontally. */
+    get flip_h(): boolean;
+    set flip_h(value: boolean);
+
+    /** If `true`, texture is flipped vertically. */
+    get flip_v(): boolean;
+    set flip_v(value: boolean);
+
+    /** A color value used to  *multiply*  the texture's colors. Can be used for mood-coloring or to simulate the color of ambient light.
+     *
+     *  **Note:** Unlike [member CanvasItem.modulate] for 2D, colors with values above `1.0` (overbright) are not supported.
+     *
+     *  **Note:** If a [member GeometryInstance3D.material_override] is defined on the [SpriteBase3D], the material override must be configured to take vertex colors into account for albedo. Otherwise, the color defined in [member modulate] will be ignored. For a [BaseMaterial3D], [member BaseMaterial3D.vertex_color_use_as_albedo] must be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
      */
-    class XRPose extends RefCounted {
-        constructor(identifier?: any)
-        set_name(name: StringName): void
-        get_name(): StringName
-        
-        /** Returns the [member transform] with world scale and our reference frame applied. This is the transform used to position [XRNode3D] objects. */
-        get_adjusted_transform(): Transform3D
-        
-        /** If `true` our tracking data is up to date. If `false` we're no longer receiving new tracking data and our state is whatever that last valid state was. */
-        get has_tracking_data(): boolean
-        set has_tracking_data(value: boolean)
-        
-        /** The transform containing the original and transform as reported by the XR runtime. */
-        get transform(): string
-        set transform(value: string)
-        
-        /** The linear velocity of this pose. */
-        get linear_velocity(): string
-        set linear_velocity(value: string)
-        
-        /** The angular velocity for this pose. */
-        get angular_velocity(): string
-        set angular_velocity(value: string)
-        
-        /** The tracking confidence for this pose, provides insight on how accurate the spatial positioning of this record is. */
-        get tracking_confidence(): int64
-        set tracking_confidence(value: int64)
-    }
-    namespace XRPositionalTracker {
-        enum TrackerHand {
-            /** The hand this tracker is held in is unknown or not applicable. */
-            TRACKER_HAND_UNKNOWN = 0,
-            
-            /** This tracker is the left hand controller. */
-            TRACKER_HAND_LEFT = 1,
-            
-            /** This tracker is the right hand controller. */
-            TRACKER_HAND_RIGHT = 2,
-            
-            /** Represents the size of the [enum TrackerHand] enum. */
-            TRACKER_HAND_MAX = 3,
-        }
-    }
-    /** A tracked object.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrpositionaltracker.html  
+    get modulate(): Color;
+    set modulate(value: Color);
+
+    /** The size of one pixel's width on the sprite to scale it in 3D. */
+    get pixel_size(): float64;
+    set pixel_size(value: float64);
+
+    /** The direction in which the front of the texture faces. */
+    get axis(): int64;
+    set axis(value: int64);
+
+    /** The billboard mode to use for the sprite.
+     *
+     *  **Note:** When billboarding is enabled and the material also casts shadows, billboards will face **the** camera in the scene when rendering shadows. In scenes with multiple cameras, the intended shadow cannot be determined and this will result in undefined behavior. See [url=https://github.com/godotengine/godot/pull/72638]GitHub Pull Request #72638[/url] for details.
      */
-    class XRPositionalTracker extends XRTracker {
-        constructor(identifier?: any)
-        /** Returns `true` if the tracker is available and is currently tracking the bound [param name] pose. */
-        has_pose(name: StringName): boolean
-        
-        /** Returns the current [XRPose] state object for the bound [param name] pose. */
-        get_pose(name: StringName): XRPose
-        
-        /** Marks this pose as invalid, we don't clear the last reported state but it allows users to decide if trackers need to be hidden if we lose tracking or just remain at their last known position. */
-        invalidate_pose(name: StringName): void
-        
-        /** Sets the transform, linear velocity, angular velocity and tracking confidence for the given pose. This method is called by a [XRInterface] implementation and should not be used directly. */
-        set_pose(name: StringName, transform: Transform3D, linear_velocity: Vector3, angular_velocity: Vector3, tracking_confidence: XRPose.TrackingConfidence): void
-        
-        /** Returns an input for this tracker. It can return a boolean, float or [Vector2] value depending on whether the input is a button, trigger or thumbstick/thumbpad. */
-        get_input(name: StringName): any
-        
-        /** Changes the value for the given input. This method is called by a [XRInterface] implementation and should not be used directly. */
-        set_input(name: StringName, value: any): void
-        
-        /** The profile associated with this tracker, interface dependent but will indicate the type of controller being tracked. */
-        get profile(): string
-        set profile(value: string)
-        
-        /** Defines which hand this tracker relates to. */
-        get hand(): int64
-        set hand(value: int64)
-        
-        /** Emitted when the state of a pose tracked by this tracker changes. */
-        readonly pose_changed: Signal1<XRPose>
-        
-        /** Emitted when a pose tracked by this tracker stops getting updated tracking data. */
-        readonly pose_lost_tracking: Signal1<XRPose>
-        
-        /** Emitted when a button on this tracker is pressed. Note that many XR runtimes allow other inputs to be mapped to buttons. */
-        readonly button_pressed: Signal1<string>
-        
-        /** Emitted when a button on this tracker is released. */
-        readonly button_released: Signal1<string>
-        
-        /** Emitted when a trigger or similar input on this tracker changes value. */
-        readonly input_float_changed: Signal2<string, float64>
-        
-        /** Emitted when a thumbstick or thumbpad on this tracker moves. */
-        readonly input_vector2_changed: Signal2<string, Vector2>
-        
-        /** Emitted when the profile of our tracker changes. */
-        readonly profile_changed: Signal1<string>
-    }
-    /** A tracked object.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrtracker.html  
+    get billboard(): int64;
+    set billboard(value: int64);
+
+    /** If `true`, the texture's transparency and the opacity are used to make those parts of the sprite invisible. */
+    get transparent(): boolean;
+    set transparent(value: boolean);
+
+    /** If `true`, the [Light3D] in the [Environment] has effects on the sprite. */
+    get shaded(): boolean;
+    set shaded(value: boolean);
+
+    /** If `true`, texture can be seen from the back as well, if `false`, it is invisible when looking at it from behind. */
+    get double_sided(): boolean;
+    set double_sided(value: boolean);
+
+    /** If `true`, depth testing is disabled and the object will be drawn in render order. */
+    get no_depth_test(): boolean;
+    set no_depth_test(value: boolean);
+
+    /** If `true`, the texture is rendered at the same size regardless of distance. The texture's size on screen is the same as if the camera was `1.0` units away from the texture's origin, regardless of the actual distance from the camera. The [Camera3D]'s field of view (or [member Camera3D.size] when in orthogonal/frustum mode) still affects the size the sprite is drawn at. */
+    get fixed_size(): boolean;
+    set fixed_size(value: boolean);
+
+    /** The alpha cutting mode to use for the sprite. */
+    get alpha_cut(): int64;
+    set alpha_cut(value: int64);
+
+    /** Threshold at which the alpha scissor will discard values. */
+    get alpha_scissor_threshold(): float64;
+    set alpha_scissor_threshold(value: float64);
+
+    /** The hashing scale for Alpha Hash. Recommended values between `0` and `2`. */
+    get alpha_hash_scale(): float64;
+    set alpha_hash_scale(value: float64);
+
+    /** The type of alpha antialiasing to apply. */
+    get alpha_antialiasing_mode(): int64;
+    set alpha_antialiasing_mode(value: int64);
+
+    /** Threshold at which antialiasing will be applied on the alpha channel. */
+    get alpha_antialiasing_edge(): float64;
+    set alpha_antialiasing_edge(value: float64);
+
+    /** Filter flags for the texture.
+     *
+     *  **Note:** Linear filtering may cause artifacts around the edges, which are especially noticeable on opaque textures. To prevent this, use textures with transparent or identical colors around the edges.
      */
-    class XRTracker extends RefCounted {
-        constructor(identifier?: any)
-        get_tracker_name(): StringName
-        set_tracker_name(name: StringName): void
-        
-        /** The type of tracker. */
-        get type(): int64
-        set type(value: int64)
-        
-        /** The description of this tracker. */
-        get description(): string
-        set description(value: string)
-    }
-    /** Helper class for XR interfaces that generates VRS images.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_xrvrs.html  
+    get texture_filter(): int64;
+    set texture_filter(value: int64);
+
+    /** Sets the render priority for the sprite. Higher priority objects will be sorted in front of lower priority objects.
+     *
+     *  **Note:** This only applies if [member alpha_cut] is set to [constant ALPHA_CUT_DISABLED] (default value).
+     *
+     *  **Note:** This only applies to sorting of transparent objects. This will not impact how transparent objects are sorted relative to opaque objects. This is because opaque objects are not sorted, while transparent objects are sorted from back to front (subject to priority).
      */
-    class XRVRS extends Object {
-        constructor(identifier?: any)
-        /** Generates the VRS texture based on a render [param target_size] adjusted by our VRS tile size. For each eyes focal point passed in [param eye_foci] a layer is created. Focal point should be in NDC.  
-         *  The result will be cached, requesting a VRS texture with unchanged parameters and settings will return the cached RID.  
-         */
-        make_vrs_texture(target_size: Vector2, eye_foci: PackedVector2Array | Vector2[]): RID
-        
-        /** The minimum radius around the focal point where full quality is guaranteed if VRS is used as a percentage of screen size. */
-        get vrs_min_radius(): float64
-        set vrs_min_radius(value: float64)
-        
-        /** The strength used to calculate the VRS density map. The greater this value, the more noticeable VRS is. */
-        get vrs_strength(): float64
-        set vrs_strength(value: float64)
-    }
-    namespace ZIPPacker {
-        enum ZipAppend {
-            /** Create a new zip archive at the given path. */
-            APPEND_CREATE = 0,
-            
-            /** Append a new zip archive to the end of the already existing file at the given path. */
-            APPEND_CREATEAFTER = 1,
-            
-            /** Add new files to the existing zip archive at the given path. */
-            APPEND_ADDINZIP = 2,
-        }
-    }
-    /** Allows the creation of zip files.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_zippacker.html  
+    get render_priority(): int64;
+    set render_priority(value: int64);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapSpriteBase3D;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapSpriteFrames extends __NameMapResource {}
+  /** Sprite frame library for AnimatedSprite2D and AnimatedSprite3D.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_spriteframes.html
+   */
+  class SpriteFrames extends Resource {
+    constructor(identifier?: any);
+    /** Adds a new [param anim] animation to the library. */
+    add_animation(anim: StringName): void;
+
+    /** Returns `true` if the [param anim] animation exists. */
+    has_animation(anim: StringName): boolean;
+
+    /** Duplicates the animation [param anim_from] to a new animation named [param anim_to]. Fails if [param anim_to] already exists, or if [param anim_from] does not exist. */
+    duplicate_animation(anim_from: StringName, anim_to: StringName): void;
+
+    /** Removes the [param anim] animation. */
+    remove_animation(anim: StringName): void;
+
+    /** Changes the [param anim] animation's name to [param newname]. */
+    rename_animation(anim: StringName, newname: StringName): void;
+
+    /** Returns an array containing the names associated to each animation. Values are placed in alphabetical order. */
+    get_animation_names(): PackedStringArray;
+
+    /** Sets the speed for the [param anim] animation in frames per second. */
+    set_animation_speed(anim: StringName, fps: float64): void;
+
+    /** Returns the speed in frames per second for the [param anim] animation. */
+    get_animation_speed(anim: StringName): float64;
+
+    /** If [param loop] is `true`, the [param anim] animation will loop when it reaches the end, or the start if it is played in reverse. */
+    set_animation_loop(anim: StringName, loop: boolean): void;
+
+    /** Returns `true` if the given animation is configured to loop when it finishes playing. Otherwise, returns `false`. */
+    get_animation_loop(anim: StringName): boolean;
+
+    /** Adds a frame to the [param anim] animation. If [param at_position] is `-1`, the frame will be added to the end of the animation. [param duration] specifies the relative duration, see [method get_frame_duration] for details. */
+    add_frame(
+      anim: StringName,
+      texture: Texture2D,
+      duration?: float64 /* = 1 */,
+      at_position?: int64 /* = -1 */,
+    ): void;
+
+    /** Sets the [param texture] and the [param duration] of the frame [param idx] in the [param anim] animation. [param duration] specifies the relative duration, see [method get_frame_duration] for details. */
+    set_frame(
+      anim: StringName,
+      idx: int64,
+      texture: Texture2D,
+      duration?: float64 /* = 1 */,
+    ): void;
+
+    /** Removes the [param anim] animation's frame [param idx]. */
+    remove_frame(anim: StringName, idx: int64): void;
+
+    /** Returns the number of frames for the [param anim] animation. */
+    get_frame_count(anim: StringName): int64;
+
+    /** Returns the texture of the frame [param idx] in the [param anim] animation. */
+    get_frame_texture(anim: StringName, idx: int64): null | Texture2D;
+
+    /** Returns a relative duration of the frame [param idx] in the [param anim] animation (defaults to `1.0`). For example, a frame with a duration of `2.0` is displayed twice as long as a frame with a duration of `1.0`. You can calculate the absolute duration (in seconds) of a frame using the following formula:
+     *
+     *  In this example, `playing_speed` refers to either [method AnimatedSprite2D.get_playing_speed] or [method AnimatedSprite3D.get_playing_speed].
      */
-    class ZIPPacker extends RefCounted {
-        constructor(identifier?: any)
-        /** Opens a zip file for writing at the given path using the specified write mode.  
-         *  This must be called before everything else.  
-         */
-        open(path: string, append: ZIPPacker.ZipAppend = 0): GError
-        
-        /** Starts writing to a file within the archive. Only one file can be written at the same time.  
-         *  Must be called after [method open].  
-         */
-        start_file(path: string): GError
-        
-        /** Write the given [param data] to the file.  
-         *  Needs to be called after [method start_file].  
-         */
-        write_file(data: PackedByteArray | byte[] | ArrayBuffer): GError
-        
-        /** Stops writing to a file within the archive.  
-         *  It will fail if there is no open file.  
-         */
-        close_file(): GError
-        
-        /** Closes the underlying resources used by this instance. */
-        close(): GError
-    }
-    /** Allows reading the content of a zip file.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_zipreader.html  
+    get_frame_duration(anim: StringName, idx: int64): float64;
+
+    /** Removes all frames from the [param anim] animation. */
+    clear(anim: StringName): void;
+
+    /** Removes all animations. An empty `default` animation will be created. */
+    clear_all(): void;
+    get animations(): GArray;
+    set animations(value: GArray);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapSpriteFrames;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapStandardMaterial3D extends __NameMapBaseMaterial3D {}
+  /** A PBR (Physically Based Rendering) material to be used on 3D objects.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_standardmaterial3d.html
+   */
+  class StandardMaterial3D extends BaseMaterial3D {
+    constructor(identifier?: any);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapStandardMaterial3D;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapStaticBody2D extends __NameMapPhysicsBody2D {}
+  /** A 2D physics body that can't be moved by external forces. When moved manually, it doesn't affect other bodies in its path.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_staticbody2d.html
+   */
+  class StaticBody2D<Map extends NodePathMap = any> extends PhysicsBody2D<Map> {
+    constructor(identifier?: any);
+    /** The physics material override for the body.
+     *  If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
      */
-    class ZIPReader extends RefCounted {
-        constructor(identifier?: any)
-        /** Opens the zip archive at the given [param path] and reads its file index. */
-        open(path: string): GError
-        
-        /** Closes the underlying resources used by this instance. */
-        close(): GError
-        
-        /** Returns the list of names of all files in the loaded archive.  
-         *  Must be called after [method open].  
-         */
-        get_files(): PackedStringArray
-        
-        /** Loads the whole content of a file in the loaded zip archive into memory and returns it.  
-         *  Must be called after [method open].  
-         */
-        read_file(path: string, case_sensitive: boolean = true): PackedByteArray
-        
-        /** Returns `true` if the file exists in the loaded zip archive.  
-         *  Must be called after [method open].  
-         */
-        file_exists(path: string, case_sensitive: boolean = true): boolean
-    }
-    namespace Vector2 {
-        enum Axis {
-            /** Enumerated value for the X axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_X = 0,
-            
-            /** Enumerated value for the Y axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Y = 1,
-        }
-    }
-    /** A 2D vector using floating-point coordinates.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_vector2.html  
+    get physics_material_override(): null | PhysicsMaterial;
+    set physics_material_override(value: null | PhysicsMaterial);
+
+    /** The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving. */
+    get constant_linear_velocity(): Vector2;
+    set constant_linear_velocity(value: Vector2);
+
+    /** The body's constant angular velocity. This does not rotate the body, but affects touching bodies, as if it were rotating. */
+    get constant_angular_velocity(): float64;
+    set constant_angular_velocity(value: float64);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapStaticBody2D;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapStaticBody3D extends __NameMapPhysicsBody3D {}
+  /** A 3D physics body that can't be moved by external forces. When moved manually, it doesn't affect other bodies in its path.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_staticbody3d.html
+   */
+  class StaticBody3D<Map extends NodePathMap = any> extends PhysicsBody3D<Map> {
+    constructor(identifier?: any);
+    /** The physics material override for the body.
+     *  If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
      */
-    class Vector2 {
-        /** Zero vector, a vector with all components set to `0`. */
-        static readonly ZERO: Vector2
-        
-        /** One vector, a vector with all components set to `1`. */
-        static readonly ONE: Vector2
-        
-        /** Infinity vector, a vector with all components set to [constant @GDScript.INF]. */
-        static readonly INF: Vector2
-        
-        /** Left unit vector. Represents the direction of left. */
-        static readonly LEFT: Vector2
-        
-        /** Right unit vector. Represents the direction of right. */
-        static readonly RIGHT: Vector2
-        
-        /** Up unit vector. Y is down in 2D, so this vector points -Y. */
-        static readonly UP: Vector2
-        
-        /** Down unit vector. Y is down in 2D, so this vector points +Y. */
-        static readonly DOWN: Vector2
-        constructor()
-        constructor(from: Vector2)
-        constructor(from: Vector2i)
-        constructor(x: float64, y: float64)
-        set_indexed(index: number, value: float64)
-        get_indexed(index: number): float64
-        
-        /** Returns this vector's angle with respect to the positive X axis, or `(1, 0)` vector, in radians.  
-         *  For example, `Vector2.RIGHT.angle()` will return zero, `Vector2.DOWN.angle()` will return `PI / 2` (a quarter turn, or 90 degrees), and `Vector2(1, -1).angle()` will return `-PI / 4` (a negative eighth turn, or -45 degrees).  
-         *  [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/vector2_angle.png]Illustration of the returned angle.[/url]  
-         *  Equivalent to the result of [method @GlobalScope.atan2] when called with the vector's [member y] and [member x] as parameters: `atan2(y, x)`.  
-         */
-        angle(): float64
-        
-        /** Returns the angle to the given vector, in radians.  
-         *  [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/vector2_angle_to.png]Illustration of the returned angle.[/url]  
-         */
-        angle_to(to: Vector2): float64
-        
-        /** Returns the angle between the line connecting the two points and the X axis, in radians.  
-         *  `a.angle_to_point(b)` is equivalent of doing `(b - a).angle()`.  
-         *  [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/vector2_angle_to_point.png]Illustration of the returned angle.[/url]  
-         */
-        angle_to_point(to: Vector2): float64
-        
-        /** Returns the normalized vector pointing from this vector to [param to]. This is equivalent to using `(b - a).normalized()`. */
-        direction_to(to: Vector2): Vector2
-        
-        /** Returns the distance between this vector and [param to]. */
-        distance_to(to: Vector2): float64
-        
-        /** Returns the squared distance between this vector and [param to].  
-         *  This method runs faster than [method distance_to], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        distance_squared_to(to: Vector2): float64
-        
-        /** Returns the length (magnitude) of this vector. */
-        length(): float64
-        
-        /** Returns the squared length (squared magnitude) of this vector.  
-         *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        length_squared(): float64
-        
-        /** Returns the vector with a maximum length by limiting its length to [param length]. */
-        limit_length(length: float64 = 1): Vector2
-        
-        /** Returns the result of scaling the vector to unit length. Equivalent to `v / v.length()`. Returns `(0, 0)` if `v.length() == 0`. See also [method is_normalized].  
-         *      
-         *  **Note:** This function may return incorrect values if the input vector length is near zero.  
-         */
-        normalized(): Vector2
-        
-        /** Returns `true` if the vector is normalized, i.e. its length is approximately equal to 1. */
-        is_normalized(): boolean
-        
-        /** Returns `true` if this vector and [param to] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
-        is_equal_approx(to: Vector2): boolean
-        
-        /** Returns `true` if this vector's values are approximately zero, by running [method @GlobalScope.is_zero_approx] on each component.  
-         *  This method is faster than using [method is_equal_approx] with one value as a zero vector.  
-         */
-        is_zero_approx(): boolean
-        
-        /** Returns `true` if this vector is finite, by calling [method @GlobalScope.is_finite] on each component. */
-        is_finite(): boolean
-        
-        /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param mod]. */
-        posmod(mod: float64): Vector2
-        
-        /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param modv]'s components. */
-        posmodv(modv: Vector2): Vector2
-        
-        /** Returns a new vector resulting from projecting this vector onto the given vector [param b]. The resulting new vector is parallel to [param b]. See also [method slide].  
-         *      
-         *  **Note:** If the vector [param b] is a zero vector, the components of the resulting new vector will be [constant @GDScript.NAN].  
-         */
-        project(b: Vector2): Vector2
-        
-        /** Returns the result of the linear interpolation between this vector and [param to] by amount [param weight]. [param weight] is on the range of `0.0` to `1.0`, representing the amount of interpolation. */
-        lerp(to: Vector2, weight: float64): Vector2
-        
-        /** Returns the result of spherical linear interpolation between this vector and [param to], by amount [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation.  
-         *  This method also handles interpolating the lengths if the input vectors have different lengths. For the special case of one or both input vectors having zero length, this method behaves like [method lerp].  
-         */
-        slerp(to: Vector2, weight: float64): Vector2
-        
-        /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation. */
-        cubic_interpolate(b: Vector2, pre_a: Vector2, post_b: Vector2, weight: float64): Vector2
-        
-        /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation.  
-         *  It can perform smoother interpolation than [method cubic_interpolate] by the time values.  
-         */
-        cubic_interpolate_in_time(b: Vector2, pre_a: Vector2, post_b: Vector2, weight: float64, b_t: float64, pre_a_t: float64, post_b_t: float64): Vector2
-        
-        /** Returns the point at the given [param t] on the [url=https://en.wikipedia.org/wiki/B%C3%A9zier_curve]Bézier curve[/url] defined by this vector and the given [param control_1], [param control_2], and [param end] points. */
-        bezier_interpolate(control_1: Vector2, control_2: Vector2, end: Vector2, t: float64): Vector2
-        
-        /** Returns the derivative at the given [param t] on the [url=https://en.wikipedia.org/wiki/B%C3%A9zier_curve]Bézier curve[/url] defined by this vector and the given [param control_1], [param control_2], and [param end] points. */
-        bezier_derivative(control_1: Vector2, control_2: Vector2, end: Vector2, t: float64): Vector2
-        
-        /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): int64
-        
-        /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_Y]. */
-        min_axis_index(): int64
-        
-        /** Returns a new vector moved toward [param to] by the fixed [param delta] amount. Will not go past the final value. */
-        move_toward(to: Vector2, delta: float64): Vector2
-        
-        /** Returns the result of rotating this vector by [param angle] (in radians). See also [method @GlobalScope.deg_to_rad]. */
-        rotated(angle: float64): Vector2
-        
-        /** Returns a perpendicular vector rotated 90 degrees counter-clockwise compared to the original, with the same length. */
-        orthogonal(): Vector2
-        
-        /** Returns a new vector with all components rounded down (towards negative infinity). */
-        floor(): Vector2
-        
-        /** Returns a new vector with all components rounded up (towards positive infinity). */
-        ceil(): Vector2
-        
-        /** Returns a new vector with all components rounded to the nearest integer, with halfway cases rounded away from zero. */
-        round(): Vector2
-        
-        /** Returns the aspect ratio of this vector, the ratio of [member x] to [member y]. */
-        aspect(): float64
-        
-        /** Returns the dot product of this vector and [param with]. This can be used to compare the angle between two vectors. For example, this can be used to determine whether an enemy is facing the player.  
-         *  The dot product will be `0` for a right angle (90 degrees), greater than 0 for angles narrower than 90 degrees and lower than 0 for angles wider than 90 degrees.  
-         *  When using unit (normalized) vectors, the result will always be between `-1.0` (180 degree angle) when the vectors are facing opposite directions, and `1.0` (0 degree angle) when the vectors are aligned.  
-         *      
-         *  **Note:** `a.dot(b)` is equivalent to `b.dot(a)`.  
-         */
-        dot(with_: Vector2): float64
-        
-        /** Returns a new vector resulting from sliding this vector along a line with normal [param n]. The resulting new vector is perpendicular to [param n], and is equivalent to this vector minus its projection on [param n]. See also [method project].  
-         *      
-         *  **Note:** The vector [param n] must be normalized. See also [method normalized].  
-         */
-        slide(n: Vector2): Vector2
-        
-        /** Returns the vector "bounced off" from a line defined by the given normal [param n] perpendicular to the line.  
-         *      
-         *  **Note:** [method bounce] performs the operation that most engines and frameworks call [code skip-lint]reflect()`.  
-         */
-        bounce(n: Vector2): Vector2
-        
-        /** Returns the result of reflecting the vector from a line defined by the given direction vector [param line].  
-         *      
-         *  **Note:** [method reflect] differs from what other engines and frameworks call [code skip-lint]reflect()`. In other engines, [code skip-lint]reflect()` takes a normal direction which is a direction perpendicular to the line. In Godot, you specify the direction of the line directly. See also [method bounce] which does what most engines call [code skip-lint]reflect()`.  
-         */
-        reflect(line: Vector2): Vector2
-        
-        /** Returns the 2D analog of the cross product for this vector and [param with].  
-         *  This is the signed area of the parallelogram formed by the two vectors. If the second vector is clockwise from the first vector, then the cross product is the positive area. If counter-clockwise, the cross product is the negative area. If the two vectors are parallel this returns zero, making it useful for testing if two vectors are parallel.  
-         *      
-         *  **Note:** Cross product is not defined in 2D mathematically. This method embeds the 2D vectors in the XY plane of 3D space and uses their cross product's Z component as the analog.  
-         */
-        cross(with_: Vector2): float64
-        
-        /** Returns a new vector with all components in absolute values (i.e. positive). */
-        abs(): Vector2
-        
-        /** Returns a new vector with each component set to `1.0` if it's positive, `-1.0` if it's negative, and `0.0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
-        sign(): Vector2
-        
-        /** Returns a new vector with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clamp(min: Vector2, max: Vector2): Vector2
-        
-        /** Returns a new vector with all components clamped between [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clampf(min: float64, max: float64): Vector2
-        
-        /** Returns a new vector with each component snapped to the nearest multiple of the corresponding component in [param step]. This can also be used to round the components to an arbitrary number of decimals. */
-        snapped(step: Vector2): Vector2
-        
-        /** Returns a new vector with each component snapped to the nearest multiple of [param step]. This can also be used to round the components to an arbitrary number of decimals. */
-        snappedf(step: float64): Vector2
-        
-        /** Returns the component-wise minimum of this and [param with], equivalent to `Vector2(minf(x, with.x), minf(y, with.y))`. */
-        min(with_: Vector2): Vector2
-        
-        /** Returns the component-wise minimum of this and [param with], equivalent to `Vector2(minf(x, with), minf(y, with))`. */
-        minf(with_: float64): Vector2
-        
-        /** Returns the component-wise maximum of this and [param with], equivalent to `Vector2(maxf(x, with.x), maxf(y, with.y))`. */
-        max(with_: Vector2): Vector2
-        
-        /** Returns the component-wise maximum of this and [param with], equivalent to `Vector2(maxf(x, with), maxf(y, with))`. */
-        maxf(with_: float64): Vector2
-        
-        /** Creates a unit [Vector2] rotated to the given [param angle] in radians. This is equivalent to doing `Vector2(cos(angle), sin(angle))` or `Vector2.RIGHT.rotated(angle)`.  
-         *    
-         */
-        static from_angle(angle: float64): Vector2
-        static ADD(left: Vector2, right: Vector2): Vector2
-        static SUBTRACT(left: Vector2, right: Vector2): Vector2
-        static MULTIPLY(left: float64, right: Vector2): Vector2
-        static MULTIPLY(left: Vector2, right: Vector2): Vector2
-        static MULTIPLY(left: Vector2, right: float64): Vector2
-        static DIVIDE(left: Vector2, right: Vector2): Vector2
-        static DIVIDE(left: Vector2, right: float64): Vector2
-        static NEGATE(left: Vector2): Vector2
-        static EQUAL(left: Vector2, right: Vector2): boolean
-        static NOT_EQUAL(left: Vector2, right: Vector2): boolean
-        static LESS(left: Vector2, right: Vector2): boolean
-        static LESS_EQUAL(left: Vector2, right: Vector2): boolean
-        static GREATER(left: Vector2, right: Vector2): boolean
-        static GREATER_EQUAL(left: Vector2, right: Vector2): boolean
-        get x(): float64
-        set x(value: float64)
-        get y(): float64
-        set y(value: float64)
-    }
-    namespace Vector2i {
-        enum Axis {
-            /** Enumerated value for the X axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_X = 0,
-            
-            /** Enumerated value for the Y axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Y = 1,
-        }
-    }
-    /** A 2D vector using integer coordinates.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_vector2i.html  
+    get physics_material_override(): null | PhysicsMaterial;
+    set physics_material_override(value: null | PhysicsMaterial);
+
+    /** The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving. */
+    get constant_linear_velocity(): Vector3;
+    set constant_linear_velocity(value: Vector3);
+
+    /** The body's constant angular velocity. This does not rotate the body, but affects touching bodies, as if it were rotating. */
+    get constant_angular_velocity(): Vector3;
+    set constant_angular_velocity(value: Vector3);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapStaticBody3D;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapStatusIndicator extends __NameMapNode {}
+  /** Application status indicator (aka notification area icon).
+   *
+   *  **Note:** Status indicator is implemented on macOS and Windows.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_statusindicator.html
+   */
+  class StatusIndicator<Map extends NodePathMap = any> extends Node<Map> {
+    constructor(identifier?: any);
+    /** Returns the status indicator rectangle in screen coordinates. If this status indicator is not visible, returns an empty [Rect2]. */
+    get_rect(): Rect2;
+
+    /** Status indicator tooltip. */
+    get tooltip(): string;
+    set tooltip(value: string);
+
+    /** Status indicator icon. */
+    get icon(): null | Texture2D;
+    set icon(value: null | Texture2D);
+
+    /** Status indicator native popup menu. If this is set, the [signal pressed] signal is not emitted.
+     *
+     *  **Note:** Native popup is only supported if [NativeMenu] supports [constant NativeMenu.FEATURE_POPUP_MENU] feature.
      */
-    class Vector2i {
-        /** Zero vector, a vector with all components set to `0`. */
-        static readonly ZERO: Vector2i
-        
-        /** One vector, a vector with all components set to `1`. */
-        static readonly ONE: Vector2i
-        
-        /** Min vector, a vector with all components equal to `INT32_MIN`. Can be used as a negative integer equivalent of [constant Vector2.INF]. */
-        static readonly MIN: Vector2i
-        
-        /** Max vector, a vector with all components equal to `INT32_MAX`. Can be used as an integer equivalent of [constant Vector2.INF]. */
-        static readonly MAX: Vector2i
-        
-        /** Left unit vector. Represents the direction of left. */
-        static readonly LEFT: Vector2i
-        
-        /** Right unit vector. Represents the direction of right. */
-        static readonly RIGHT: Vector2i
-        
-        /** Up unit vector. Y is down in 2D, so this vector points -Y. */
-        static readonly UP: Vector2i
-        
-        /** Down unit vector. Y is down in 2D, so this vector points +Y. */
-        static readonly DOWN: Vector2i
-        constructor()
-        constructor(from: Vector2i)
-        constructor(from: Vector2)
-        constructor(x: int64, y: int64)
-        set_indexed(index: number, value: int64)
-        get_indexed(index: number): int64
-        
-        /** Returns the aspect ratio of this vector, the ratio of [member x] to [member y]. */
-        aspect(): float64
-        
-        /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): int64
-        
-        /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_Y]. */
-        min_axis_index(): int64
-        
-        /** Returns the distance between this vector and [param to]. */
-        distance_to(to: Vector2i): float64
-        
-        /** Returns the squared distance between this vector and [param to].  
-         *  This method runs faster than [method distance_to], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        distance_squared_to(to: Vector2i): int64
-        
-        /** Returns the length (magnitude) of this vector. */
-        length(): float64
-        
-        /** Returns the squared length (squared magnitude) of this vector.  
-         *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        length_squared(): int64
-        
-        /** Returns a new vector with each component set to `1` if it's positive, `-1` if it's negative, and `0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
-        sign(): Vector2i
-        
-        /** Returns a new vector with all components in absolute values (i.e. positive). */
-        abs(): Vector2i
-        
-        /** Returns a new vector with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clamp(min: Vector2i, max: Vector2i): Vector2i
-        
-        /** Returns a new vector with all components clamped between [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clampi(min: int64, max: int64): Vector2i
-        
-        /** Returns a new vector with each component snapped to the closest multiple of the corresponding component in [param step]. */
-        snapped(step: Vector2i): Vector2i
-        
-        /** Returns a new vector with each component snapped to the closest multiple of [param step]. */
-        snappedi(step: int64): Vector2i
-        
-        /** Returns the component-wise minimum of this and [param with], equivalent to `Vector2i(mini(x, with.x), mini(y, with.y))`. */
-        min(with_: Vector2i): Vector2i
-        
-        /** Returns the component-wise minimum of this and [param with], equivalent to `Vector2i(mini(x, with), mini(y, with))`. */
-        mini(with_: int64): Vector2i
-        
-        /** Returns the component-wise maximum of this and [param with], equivalent to `Vector2i(maxi(x, with.x), maxi(y, with.y))`. */
-        max(with_: Vector2i): Vector2i
-        
-        /** Returns the component-wise maximum of this and [param with], equivalent to `Vector2i(maxi(x, with), maxi(y, with))`. */
-        maxi(with_: int64): Vector2i
-        static ADD(left: Vector2i, right: Vector2i): Vector2i
-        static SUBTRACT(left: Vector2i, right: Vector2i): Vector2i
-        static MULTIPLY(left: float64, right: Vector2i): Vector2i
-        static MULTIPLY(left: Vector2i, right: Vector2i): Vector2i
-        static MULTIPLY(left: Vector2i, right: float64): Vector2i
-        static DIVIDE(left: Vector2i, right: Vector2i): Vector2i
-        static DIVIDE(left: Vector2i, right: float64): Vector2i
-        static NEGATE(left: Vector2i): Vector2i
-        static EQUAL(left: Vector2i, right: Vector2i): boolean
-        static NOT_EQUAL(left: Vector2i, right: Vector2i): boolean
-        static LESS(left: Vector2i, right: Vector2i): boolean
-        static LESS_EQUAL(left: Vector2i, right: Vector2i): boolean
-        static GREATER(left: Vector2i, right: Vector2i): boolean
-        static GREATER_EQUAL(left: Vector2i, right: Vector2i): boolean
-        get x(): int64
-        set x(value: int64)
-        get y(): int64
-        set y(value: int64)
-    }
-    /** A 2D axis-aligned bounding box using floating-point coordinates.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_rect2.html  
+    get menu(): NodePath;
+    set menu(value: NodePath | string);
+
+    /** If `true`, the status indicator is visible. */
+    get visible(): boolean;
+    set visible(value: boolean);
+
+    /** Emitted when the status indicator is pressed. */
+    readonly pressed: Signal<
+      (mouse_button: int64, mouse_position: Vector2i) => void
+    >;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapStatusIndicator;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapStreamPeer extends __NameMapRefCounted {}
+  /** Abstract base class for interacting with streams.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_streampeer.html
+   */
+  class StreamPeer extends RefCounted {
+    constructor(identifier?: any);
+    /** Sends a chunk of data through the connection, blocking if necessary until the data is done sending. This function returns an [enum Error] code. */
+    put_data(data: PackedByteArray | byte[] | ArrayBuffer): Error;
+
+    /** Sends a chunk of data through the connection. If all the data could not be sent at once, only part of it will. This function returns two values, an [enum Error] code and an integer, describing how much data was actually sent. */
+    put_partial_data(data: PackedByteArray | byte[] | ArrayBuffer): GArray;
+
+    /** Returns a chunk data with the received bytes. The number of bytes to be received can be requested in the [param bytes] argument. If not enough bytes are available, the function will block until the desired amount is received. This function returns two values, an [enum Error] code and a data array. */
+    get_data(bytes: int64): GArray;
+
+    /** Returns a chunk data with the received bytes. The number of bytes to be received can be requested in the [param bytes] argument. If not enough bytes are available, the function will return how many were actually received. This function returns two values: an [enum Error] code and a data array. */
+    get_partial_data(bytes: int64): GArray;
+
+    /** Returns the number of bytes this [StreamPeer] has available. */
+    get_available_bytes(): int64;
+
+    /** Puts a signed byte into the stream. */
+    put_8(value: int64): void;
+
+    /** Puts an unsigned byte into the stream. */
+    put_u8(value: int64): void;
+
+    /** Puts a signed 16-bit value into the stream. */
+    put_16(value: int64): void;
+
+    /** Puts an unsigned 16-bit value into the stream. */
+    put_u16(value: int64): void;
+
+    /** Puts a signed 32-bit value into the stream. */
+    put_32(value: int64): void;
+
+    /** Puts an unsigned 32-bit value into the stream. */
+    put_u32(value: int64): void;
+
+    /** Puts a signed 64-bit value into the stream. */
+    put_64(value: int64): void;
+
+    /** Puts an unsigned 64-bit value into the stream. */
+    put_u64(value: int64): void;
+
+    /** Puts a half-precision float into the stream. */
+    put_half(value: float64): void;
+
+    /** Puts a single-precision float into the stream. */
+    put_float(value: float64): void;
+
+    /** Puts a double-precision float into the stream. */
+    put_double(value: float64): void;
+
+    /** Puts a zero-terminated ASCII string into the stream prepended by a 32-bit unsigned integer representing its size.
+     *
+     *  **Note:** To put an ASCII string without prepending its size, you can use [method put_data]:
+     *
      */
-    class Rect2 {
-        constructor()
-        constructor(from: Rect2)
-        constructor(from: Rect2i)
-        constructor(position: Vector2, size: Vector2)
-        constructor(x: float64, y: float64, width: float64, height: float64)
-        
-        /** Returns the center point of the rectangle. This is the same as `position + (size / 2.0)`. */
-        get_center(): Vector2
-        
-        /** Returns the rectangle's area. This is equivalent to `size.x * size.y`. See also [method has_area]. */
-        get_area(): float64
-        
-        /** Returns `true` if this rectangle has positive width and height. See also [method get_area]. */
-        has_area(): boolean
-        
-        /** Returns `true` if the rectangle contains the given [param point]. By convention, points on the right and bottom edges are **not** included.  
-         *      
-         *  **Note:** This method is not reliable for [Rect2] with a  *negative*  [member size]. Use [method abs] first to get a valid rectangle.  
-         */
-        has_point(point: Vector2): boolean
-        
-        /** Returns `true` if this rectangle and [param rect] are approximately equal, by calling [method Vector2.is_equal_approx] on the [member position] and the [member size]. */
-        is_equal_approx(rect: Rect2): boolean
-        
-        /** Returns `true` if this rectangle's values are finite, by calling [method Vector2.is_finite] on the [member position] and the [member size]. */
-        is_finite(): boolean
-        
-        /** Returns `true` if this rectangle overlaps with the [param b] rectangle. The edges of both rectangles are excluded, unless [param include_borders] is `true`. */
-        intersects(b: Rect2, include_borders: boolean = false): boolean
-        
-        /** Returns `true` if this rectangle  *completely*  encloses the [param b] rectangle. */
-        encloses(b: Rect2): boolean
-        
-        /** Returns the intersection between this rectangle and [param b]. If the rectangles do not intersect, returns an empty [Rect2].  
-         *    
-         *      
-         *  **Note:** If you only need to know whether two rectangles are overlapping, use [method intersects], instead.  
-         */
-        intersection(b: Rect2): Rect2
-        
-        /** Returns a [Rect2] that encloses both this rectangle and [param b] around the edges. See also [method encloses]. */
-        merge(b: Rect2): Rect2
-        
-        /** Returns a copy of this rectangle expanded to align the edges with the given [param to] point, if necessary.  
-         *    
-         */
-        expand(to: Vector2): Rect2
-        
-        /** Returns a copy of this rectangle extended on all sides by the given [param amount]. A negative [param amount] shrinks the rectangle instead. See also [method grow_individual] and [method grow_side].  
-         *    
-         */
-        grow(amount: float64): Rect2
-        
-        /** Returns a copy of this rectangle with its [param side] extended by the given [param amount] (see [enum Side] constants). A negative [param amount] shrinks the rectangle, instead. See also [method grow] and [method grow_individual]. */
-        grow_side(side: int64, amount: float64): Rect2
-        
-        /** Returns a copy of this rectangle with its [param left], [param top], [param right], and [param bottom] sides extended by the given amounts. Negative values shrink the sides, instead. See also [method grow] and [method grow_side]. */
-        grow_individual(left: float64, top: float64, right: float64, bottom: float64): Rect2
-        
-        /** Returns a [Rect2] equivalent to this rectangle, with its width and height modified to be non-negative values, and with its [member position] being the top-left corner of the rectangle.  
-         *    
-         *      
-         *  **Note:** It's recommended to use this method when [member size] is negative, as most other methods in Godot assume that the [member position] is the top-left corner, and the [member end] is the bottom-right corner.  
-         */
-        abs(): Rect2
-        get position(): Vector2
-        set position(value: Vector2)
-        get size(): Vector2
-        set size(value: Vector2)
-        get end(): Vector2
-        set end(value: Vector2)
-    }
-    /** A 2D axis-aligned bounding box using integer coordinates.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_rect2i.html  
+    put_string(value: string): void;
+
+    /** Puts a zero-terminated UTF-8 string into the stream prepended by a 32 bits unsigned integer representing its size.
+     *
+     *  **Note:** To put a UTF-8 string without prepending its size, you can use [method put_data]:
+     *
      */
-    class Rect2i {
-        constructor()
-        constructor(from: Rect2i)
-        constructor(from: Rect2)
-        constructor(position: Vector2i, size: Vector2i)
-        constructor(x: int64, y: int64, width: int64, height: int64)
-        
-        /** Returns the center point of the rectangle. This is the same as `position + (size / 2)`.  
-         *      
-         *  **Note:** If the [member size] is odd, the result will be rounded towards [member position].  
-         */
-        get_center(): Vector2i
-        
-        /** Returns the rectangle's area. This is equivalent to `size.x * size.y`. See also [method has_area]. */
-        get_area(): int64
-        
-        /** Returns `true` if this rectangle has positive width and height. See also [method get_area]. */
-        has_area(): boolean
-        
-        /** Returns `true` if the rectangle contains the given [param point]. By convention, points on the right and bottom edges are **not** included.  
-         *      
-         *  **Note:** This method is not reliable for [Rect2i] with a  *negative*  [member size]. Use [method abs] first to get a valid rectangle.  
-         */
-        has_point(point: Vector2i): boolean
-        
-        /** Returns `true` if this rectangle overlaps with the [param b] rectangle. The edges of both rectangles are excluded. */
-        intersects(b: Rect2i): boolean
-        
-        /** Returns `true` if this [Rect2i] completely encloses another one. */
-        encloses(b: Rect2i): boolean
-        
-        /** Returns the intersection between this rectangle and [param b]. If the rectangles do not intersect, returns an empty [Rect2i].  
-         *    
-         *      
-         *  **Note:** If you only need to know whether two rectangles are overlapping, use [method intersects], instead.  
-         */
-        intersection(b: Rect2i): Rect2i
-        
-        /** Returns a [Rect2i] that encloses both this rectangle and [param b] around the edges. See also [method encloses]. */
-        merge(b: Rect2i): Rect2i
-        
-        /** Returns a copy of this rectangle expanded to align the edges with the given [param to] point, if necessary.  
-         *    
-         */
-        expand(to: Vector2i): Rect2i
-        
-        /** Returns a copy of this rectangle extended on all sides by the given [param amount]. A negative [param amount] shrinks the rectangle instead. See also [method grow_individual] and [method grow_side].  
-         *    
-         */
-        grow(amount: int64): Rect2i
-        
-        /** Returns a copy of this rectangle with its [param side] extended by the given [param amount] (see [enum Side] constants). A negative [param amount] shrinks the rectangle, instead. See also [method grow] and [method grow_individual]. */
-        grow_side(side: int64, amount: int64): Rect2i
-        
-        /** Returns a copy of this rectangle with its [param left], [param top], [param right], and [param bottom] sides extended by the given amounts. Negative values shrink the sides, instead. See also [method grow] and [method grow_side]. */
-        grow_individual(left: int64, top: int64, right: int64, bottom: int64): Rect2i
-        
-        /** Returns a [Rect2i] equivalent to this rectangle, with its width and height modified to be non-negative values, and with its [member position] being the top-left corner of the rectangle.  
-         *    
-         *      
-         *  **Note:** It's recommended to use this method when [member size] is negative, as most other methods in Godot assume that the [member position] is the top-left corner, and the [member end] is the bottom-right corner.  
-         */
-        abs(): Rect2i
-        get position(): Vector2i
-        set position(value: Vector2i)
-        get size(): Vector2i
-        set size(value: Vector2i)
-        get end(): Vector2i
-        set end(value: Vector2i)
-    }
-    namespace Vector3 {
-        enum Axis {
-            /** Enumerated value for the X axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_X = 0,
-            
-            /** Enumerated value for the Y axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Y = 1,
-            
-            /** Enumerated value for the Z axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Z = 2,
-        }
-    }
-    /** A 3D vector using floating-point coordinates.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_vector3.html  
+    put_utf8_string(value: string): void;
+
+    /** Puts a Variant into the stream. If [param full_objects] is `true` encoding objects is allowed (and can potentially include code).
+     *  Internally, this uses the same encoding mechanism as the [method @GlobalScope.var_to_bytes] method.
      */
-    class Vector3 {
-        /** Zero vector, a vector with all components set to `0`. */
-        static readonly ZERO: Vector3
-        
-        /** One vector, a vector with all components set to `1`. */
-        static readonly ONE: Vector3
-        
-        /** Infinity vector, a vector with all components set to [constant @GDScript.INF]. */
-        static readonly INF: Vector3
-        
-        /** Left unit vector. Represents the local direction of left, and the global direction of west. */
-        static readonly LEFT: Vector3
-        
-        /** Right unit vector. Represents the local direction of right, and the global direction of east. */
-        static readonly RIGHT: Vector3
-        
-        /** Up unit vector. */
-        static readonly UP: Vector3
-        
-        /** Down unit vector. */
-        static readonly DOWN: Vector3
-        
-        /** Forward unit vector. Represents the local direction of forward, and the global direction of north. Keep in mind that the forward direction for lights, cameras, etc is different from 3D assets like characters, which face towards the camera by convention. Use [constant Vector3.MODEL_FRONT] and similar constants when working in 3D asset space. */
-        static readonly FORWARD: Vector3
-        
-        /** Back unit vector. Represents the local direction of back, and the global direction of south. */
-        static readonly BACK: Vector3
-        
-        /** Unit vector pointing towards the left side of imported 3D assets. */
-        static readonly MODEL_LEFT: Vector3
-        
-        /** Unit vector pointing towards the right side of imported 3D assets. */
-        static readonly MODEL_RIGHT: Vector3
-        
-        /** Unit vector pointing towards the top side (up) of imported 3D assets. */
-        static readonly MODEL_TOP: Vector3
-        
-        /** Unit vector pointing towards the bottom side (down) of imported 3D assets. */
-        static readonly MODEL_BOTTOM: Vector3
-        
-        /** Unit vector pointing towards the front side (facing forward) of imported 3D assets. */
-        static readonly MODEL_FRONT: Vector3
-        
-        /** Unit vector pointing towards the rear side (back) of imported 3D assets. */
-        static readonly MODEL_REAR: Vector3
-        constructor()
-        constructor(from: Vector3)
-        constructor(from: Vector3i)
-        constructor(x: float64, y: float64, z: float64)
-        set_indexed(index: number, value: float64)
-        get_indexed(index: number): float64
-        
-        /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_Z]. */
-        min_axis_index(): int64
-        
-        /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): int64
-        
-        /** Returns the unsigned minimum angle to the given vector, in radians. */
-        angle_to(to: Vector3): float64
-        
-        /** Returns the signed angle to the given vector, in radians. The sign of the angle is positive in a counter-clockwise direction and negative in a clockwise direction when viewed from the side specified by the [param axis]. */
-        signed_angle_to(to: Vector3, axis: Vector3): float64
-        
-        /** Returns the normalized vector pointing from this vector to [param to]. This is equivalent to using `(b - a).normalized()`. */
-        direction_to(to: Vector3): Vector3
-        
-        /** Returns the distance between this vector and [param to]. */
-        distance_to(to: Vector3): float64
-        
-        /** Returns the squared distance between this vector and [param to].  
-         *  This method runs faster than [method distance_to], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        distance_squared_to(to: Vector3): float64
-        
-        /** Returns the length (magnitude) of this vector. */
-        length(): float64
-        
-        /** Returns the squared length (squared magnitude) of this vector.  
-         *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        length_squared(): float64
-        
-        /** Returns the vector with a maximum length by limiting its length to [param length]. */
-        limit_length(length: float64 = 1): Vector3
-        
-        /** Returns the result of scaling the vector to unit length. Equivalent to `v / v.length()`. Returns `(0, 0, 0)` if `v.length() == 0`. See also [method is_normalized].  
-         *      
-         *  **Note:** This function may return incorrect values if the input vector length is near zero.  
-         */
-        normalized(): Vector3
-        
-        /** Returns `true` if the vector is normalized, i.e. its length is approximately equal to 1. */
-        is_normalized(): boolean
-        
-        /** Returns `true` if this vector and [param to] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
-        is_equal_approx(to: Vector3): boolean
-        
-        /** Returns `true` if this vector's values are approximately zero, by running [method @GlobalScope.is_zero_approx] on each component.  
-         *  This method is faster than using [method is_equal_approx] with one value as a zero vector.  
-         */
-        is_zero_approx(): boolean
-        
-        /** Returns `true` if this vector is finite, by calling [method @GlobalScope.is_finite] on each component. */
-        is_finite(): boolean
-        
-        /** Returns the inverse of the vector. This is the same as `Vector3(1.0 / v.x, 1.0 / v.y, 1.0 / v.z)`. */
-        inverse(): Vector3
-        
-        /** Returns a new vector with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clamp(min: Vector3, max: Vector3): Vector3
-        
-        /** Returns a new vector with all components clamped between [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clampf(min: float64, max: float64): Vector3
-        
-        /** Returns a new vector with each component snapped to the nearest multiple of the corresponding component in [param step]. This can also be used to round the components to an arbitrary number of decimals. */
-        snapped(step: Vector3): Vector3
-        
-        /** Returns a new vector with each component snapped to the nearest multiple of [param step]. This can also be used to round the components to an arbitrary number of decimals. */
-        snappedf(step: float64): Vector3
-        
-        /** Returns the result of rotating this vector around a given axis by [param angle] (in radians). The axis must be a normalized vector. See also [method @GlobalScope.deg_to_rad]. */
-        rotated(axis: Vector3, angle: float64): Vector3
-        
-        /** Returns the result of the linear interpolation between this vector and [param to] by amount [param weight]. [param weight] is on the range of `0.0` to `1.0`, representing the amount of interpolation. */
-        lerp(to: Vector3, weight: float64): Vector3
-        
-        /** Returns the result of spherical linear interpolation between this vector and [param to], by amount [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation.  
-         *  This method also handles interpolating the lengths if the input vectors have different lengths. For the special case of one or both input vectors having zero length, this method behaves like [method lerp].  
-         */
-        slerp(to: Vector3, weight: float64): Vector3
-        
-        /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation. */
-        cubic_interpolate(b: Vector3, pre_a: Vector3, post_b: Vector3, weight: float64): Vector3
-        
-        /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation.  
-         *  It can perform smoother interpolation than [method cubic_interpolate] by the time values.  
-         */
-        cubic_interpolate_in_time(b: Vector3, pre_a: Vector3, post_b: Vector3, weight: float64, b_t: float64, pre_a_t: float64, post_b_t: float64): Vector3
-        
-        /** Returns the point at the given [param t] on the [url=https://en.wikipedia.org/wiki/B%C3%A9zier_curve]Bézier curve[/url] defined by this vector and the given [param control_1], [param control_2], and [param end] points. */
-        bezier_interpolate(control_1: Vector3, control_2: Vector3, end: Vector3, t: float64): Vector3
-        
-        /** Returns the derivative at the given [param t] on the [url=https://en.wikipedia.org/wiki/B%C3%A9zier_curve]Bézier curve[/url] defined by this vector and the given [param control_1], [param control_2], and [param end] points. */
-        bezier_derivative(control_1: Vector3, control_2: Vector3, end: Vector3, t: float64): Vector3
-        
-        /** Returns a new vector moved toward [param to] by the fixed [param delta] amount. Will not go past the final value. */
-        move_toward(to: Vector3, delta: float64): Vector3
-        
-        /** Returns the dot product of this vector and [param with]. This can be used to compare the angle between two vectors. For example, this can be used to determine whether an enemy is facing the player.  
-         *  The dot product will be `0` for a right angle (90 degrees), greater than 0 for angles narrower than 90 degrees and lower than 0 for angles wider than 90 degrees.  
-         *  When using unit (normalized) vectors, the result will always be between `-1.0` (180 degree angle) when the vectors are facing opposite directions, and `1.0` (0 degree angle) when the vectors are aligned.  
-         *      
-         *  **Note:** `a.dot(b)` is equivalent to `b.dot(a)`.  
-         */
-        dot(with_: Vector3): float64
-        
-        /** Returns the cross product of this vector and [param with].  
-         *  This returns a vector perpendicular to both this and [param with], which would be the normal vector of the plane defined by the two vectors. As there are two such vectors, in opposite directions, this method returns the vector defined by a right-handed coordinate system. If the two vectors are parallel this returns an empty vector, making it useful for testing if two vectors are parallel.  
-         */
-        cross(with_: Vector3): Vector3
-        
-        /** Returns the outer product with [param with]. */
-        outer(with_: Vector3): Basis
-        
-        /** Returns a new vector with all components in absolute values (i.e. positive). */
-        abs(): Vector3
-        
-        /** Returns a new vector with all components rounded down (towards negative infinity). */
-        floor(): Vector3
-        
-        /** Returns a new vector with all components rounded up (towards positive infinity). */
-        ceil(): Vector3
-        
-        /** Returns a new vector with all components rounded to the nearest integer, with halfway cases rounded away from zero. */
-        round(): Vector3
-        
-        /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param mod]. */
-        posmod(mod: float64): Vector3
-        
-        /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param modv]'s components. */
-        posmodv(modv: Vector3): Vector3
-        
-        /** Returns a new vector resulting from projecting this vector onto the given vector [param b]. The resulting new vector is parallel to [param b]. See also [method slide].  
-         *      
-         *  **Note:** If the vector [param b] is a zero vector, the components of the resulting new vector will be [constant @GDScript.NAN].  
-         */
-        project(b: Vector3): Vector3
-        
-        /** Returns a new vector resulting from sliding this vector along a plane with normal [param n]. The resulting new vector is perpendicular to [param n], and is equivalent to this vector minus its projection on [param n]. See also [method project].  
-         *      
-         *  **Note:** The vector [param n] must be normalized. See also [method normalized].  
-         */
-        slide(n: Vector3): Vector3
-        
-        /** Returns the vector "bounced off" from a plane defined by the given normal [param n].  
-         *      
-         *  **Note:** [method bounce] performs the operation that most engines and frameworks call [code skip-lint]reflect()`.  
-         */
-        bounce(n: Vector3): Vector3
-        
-        /** Returns the result of reflecting the vector through a plane defined by the given normal vector [param n].  
-         *      
-         *  **Note:** [method reflect] differs from what other engines and frameworks call [code skip-lint]reflect()`. In other engines, [code skip-lint]reflect()` returns the result of the vector reflected by the given plane. The reflection thus passes through the given normal. While in Godot the reflection passes through the plane and can be thought of as bouncing off the normal. See also [method bounce] which does what most engines call [code skip-lint]reflect()`.  
-         */
-        reflect(n: Vector3): Vector3
-        
-        /** Returns a new vector with each component set to `1.0` if it's positive, `-1.0` if it's negative, and `0.0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
-        sign(): Vector3
-        
-        /** Returns the octahedral-encoded (oct32) form of this [Vector3] as a [Vector2]. Since a [Vector2] occupies 1/3 less memory compared to [Vector3], this form of compression can be used to pass greater amounts of [method normalized] [Vector3]s without increasing storage or memory requirements. See also [method octahedron_decode].  
-         *      
-         *  **Note:** [method octahedron_encode] can only be used for [method normalized] vectors. [method octahedron_encode] does  *not*  check whether this [Vector3] is normalized, and will return a value that does not decompress to the original value if the [Vector3] is not normalized.  
-         *      
-         *  **Note:** Octahedral compression is  *lossy* , although visual differences are rarely perceptible in real world scenarios.  
-         */
-        octahedron_encode(): Vector2
-        
-        /** Returns the component-wise minimum of this and [param with], equivalent to `Vector3(minf(x, with.x), minf(y, with.y), minf(z, with.z))`. */
-        min(with_: Vector3): Vector3
-        
-        /** Returns the component-wise minimum of this and [param with], equivalent to `Vector3(minf(x, with), minf(y, with), minf(z, with))`. */
-        minf(with_: float64): Vector3
-        
-        /** Returns the component-wise maximum of this and [param with], equivalent to `Vector3(maxf(x, with.x), maxf(y, with.y), maxf(z, with.z))`. */
-        max(with_: Vector3): Vector3
-        
-        /** Returns the component-wise maximum of this and [param with], equivalent to `Vector3(maxf(x, with), maxf(y, with), maxf(z, with))`. */
-        maxf(with_: float64): Vector3
-        
-        /** Returns the [Vector3] from an octahedral-compressed form created using [method octahedron_encode] (stored as a [Vector2]). */
-        static octahedron_decode(uv: Vector2): Vector3
-        static ADD(left: Vector3, right: Vector3): Vector3
-        static SUBTRACT(left: Vector3, right: Vector3): Vector3
-        static MULTIPLY(left: float64, right: Vector3): Vector3
-        static MULTIPLY(left: Vector3, right: Vector3): Vector3
-        static MULTIPLY(left: Vector3, right: float64): Vector3
-        static DIVIDE(left: Vector3, right: Vector3): Vector3
-        static DIVIDE(left: Vector3, right: float64): Vector3
-        static NEGATE(left: Vector3): Vector3
-        static EQUAL(left: Vector3, right: Vector3): boolean
-        static NOT_EQUAL(left: Vector3, right: Vector3): boolean
-        static LESS(left: Vector3, right: Vector3): boolean
-        static LESS_EQUAL(left: Vector3, right: Vector3): boolean
-        static GREATER(left: Vector3, right: Vector3): boolean
-        static GREATER_EQUAL(left: Vector3, right: Vector3): boolean
-        get x(): float64
-        set x(value: float64)
-        get y(): float64
-        set y(value: float64)
-        get z(): float64
-        set z(value: float64)
-    }
-    namespace Vector3i {
-        enum Axis {
-            /** Enumerated value for the X axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_X = 0,
-            
-            /** Enumerated value for the Y axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Y = 1,
-            
-            /** Enumerated value for the Z axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Z = 2,
-        }
-    }
-    /** A 3D vector using integer coordinates.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_vector3i.html  
+    put_var(value: any, full_objects?: boolean /* = false */): void;
+
+    /** Gets a signed byte from the stream. */
+    get_8(): int64;
+
+    /** Gets an unsigned byte from the stream. */
+    get_u8(): int64;
+
+    /** Gets a signed 16-bit value from the stream. */
+    get_16(): int64;
+
+    /** Gets an unsigned 16-bit value from the stream. */
+    get_u16(): int64;
+
+    /** Gets a signed 32-bit value from the stream. */
+    get_32(): int64;
+
+    /** Gets an unsigned 32-bit value from the stream. */
+    get_u32(): int64;
+
+    /** Gets a signed 64-bit value from the stream. */
+    get_64(): int64;
+
+    /** Gets an unsigned 64-bit value from the stream. */
+    get_u64(): int64;
+
+    /** Gets a half-precision float from the stream. */
+    get_half(): float64;
+
+    /** Gets a single-precision float from the stream. */
+    get_float(): float64;
+
+    /** Gets a double-precision float from the stream. */
+    get_double(): float64;
+
+    /** Gets an ASCII string with byte-length [param bytes] from the stream. If [param bytes] is negative (default) the length will be read from the stream using the reverse process of [method put_string]. */
+    get_string(bytes?: int64 /* = -1 */): string;
+
+    /** Gets a UTF-8 string with byte-length [param bytes] from the stream (this decodes the string sent as UTF-8). If [param bytes] is negative (default) the length will be read from the stream using the reverse process of [method put_utf8_string]. */
+    get_utf8_string(bytes?: int64 /* = -1 */): string;
+
+    /** Gets a Variant from the stream. If [param allow_objects] is `true`, decoding objects is allowed.
+     *  Internally, this uses the same decoding mechanism as the [method @GlobalScope.bytes_to_var] method.
+     *  **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
      */
-    class Vector3i {
-        /** Zero vector, a vector with all components set to `0`. */
-        static readonly ZERO: Vector3i
-        
-        /** One vector, a vector with all components set to `1`. */
-        static readonly ONE: Vector3i
-        
-        /** Min vector, a vector with all components equal to `INT32_MIN`. Can be used as a negative integer equivalent of [constant Vector3.INF]. */
-        static readonly MIN: Vector3i
-        
-        /** Max vector, a vector with all components equal to `INT32_MAX`. Can be used as an integer equivalent of [constant Vector3.INF]. */
-        static readonly MAX: Vector3i
-        
-        /** Left unit vector. Represents the local direction of left, and the global direction of west. */
-        static readonly LEFT: Vector3i
-        
-        /** Right unit vector. Represents the local direction of right, and the global direction of east. */
-        static readonly RIGHT: Vector3i
-        
-        /** Up unit vector. */
-        static readonly UP: Vector3i
-        
-        /** Down unit vector. */
-        static readonly DOWN: Vector3i
-        
-        /** Forward unit vector. Represents the local direction of forward, and the global direction of north. */
-        static readonly FORWARD: Vector3i
-        
-        /** Back unit vector. Represents the local direction of back, and the global direction of south. */
-        static readonly BACK: Vector3i
-        constructor()
-        constructor(from: Vector3i)
-        constructor(from: Vector3)
-        constructor(x: int64, y: int64, z: int64)
-        set_indexed(index: number, value: int64)
-        get_indexed(index: number): int64
-        
-        /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_Z]. */
-        min_axis_index(): int64
-        
-        /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): int64
-        
-        /** Returns the distance between this vector and [param to]. */
-        distance_to(to: Vector3i): float64
-        
-        /** Returns the squared distance between this vector and [param to].  
-         *  This method runs faster than [method distance_to], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        distance_squared_to(to: Vector3i): int64
-        
-        /** Returns the length (magnitude) of this vector. */
-        length(): float64
-        
-        /** Returns the squared length (squared magnitude) of this vector.  
-         *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        length_squared(): int64
-        
-        /** Returns a new vector with each component set to `1` if it's positive, `-1` if it's negative, and `0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
-        sign(): Vector3i
-        
-        /** Returns a new vector with all components in absolute values (i.e. positive). */
-        abs(): Vector3i
-        
-        /** Returns a new vector with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clamp(min: Vector3i, max: Vector3i): Vector3i
-        
-        /** Returns a new vector with all components clamped between [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clampi(min: int64, max: int64): Vector3i
-        
-        /** Returns a new vector with each component snapped to the closest multiple of the corresponding component in [param step]. */
-        snapped(step: Vector3i): Vector3i
-        
-        /** Returns a new vector with each component snapped to the closest multiple of [param step]. */
-        snappedi(step: int64): Vector3i
-        
-        /** Returns the component-wise minimum of this and [param with], equivalent to `Vector3i(mini(x, with.x), mini(y, with.y), mini(z, with.z))`. */
-        min(with_: Vector3i): Vector3i
-        
-        /** Returns the component-wise minimum of this and [param with], equivalent to `Vector3i(mini(x, with), mini(y, with), mini(z, with))`. */
-        mini(with_: int64): Vector3i
-        
-        /** Returns the component-wise maximum of this and [param with], equivalent to `Vector3i(maxi(x, with.x), maxi(y, with.y), maxi(z, with.z))`. */
-        max(with_: Vector3i): Vector3i
-        
-        /** Returns the component-wise maximum of this and [param with], equivalent to `Vector3i(maxi(x, with), maxi(y, with), maxi(z, with))`. */
-        maxi(with_: int64): Vector3i
-        static ADD(left: Vector3i, right: Vector3i): Vector3i
-        static SUBTRACT(left: Vector3i, right: Vector3i): Vector3i
-        static MULTIPLY(left: float64, right: Vector3i): Vector3i
-        static MULTIPLY(left: Vector3i, right: Vector3i): Vector3i
-        static MULTIPLY(left: Vector3i, right: float64): Vector3i
-        static DIVIDE(left: Vector3i, right: Vector3i): Vector3i
-        static DIVIDE(left: Vector3i, right: float64): Vector3i
-        static NEGATE(left: Vector3i): Vector3i
-        static EQUAL(left: Vector3i, right: Vector3i): boolean
-        static NOT_EQUAL(left: Vector3i, right: Vector3i): boolean
-        static LESS(left: Vector3i, right: Vector3i): boolean
-        static LESS_EQUAL(left: Vector3i, right: Vector3i): boolean
-        static GREATER(left: Vector3i, right: Vector3i): boolean
-        static GREATER_EQUAL(left: Vector3i, right: Vector3i): boolean
-        get x(): int64
-        set x(value: int64)
-        get y(): int64
-        set y(value: int64)
-        get z(): int64
-        set z(value: int64)
-    }
-    /** A 2×3 matrix representing a 2D transformation.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_transform2d.html  
+    get_var(allow_objects?: boolean /* = false */): any;
+
+    /** If `true`, this [StreamPeer] will using big-endian format for encoding and decoding. */
+    get big_endian(): boolean;
+    set big_endian(value: boolean);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapStreamPeer;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapStreamPeerBuffer extends __NameMapStreamPeer {}
+  /** A stream peer used to handle binary data streams.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_streampeerbuffer.html
+   */
+  class StreamPeerBuffer extends StreamPeer {
+    constructor(identifier?: any);
+    /** Moves the cursor to the specified position. [param position] must be a valid index of [member data_array]. */
+    seek(position: int64): void;
+
+    /** Returns the size of [member data_array]. */
+    get_size(): int64;
+
+    /** Returns the current cursor position. */
+    get_position(): int64;
+
+    /** Resizes the [member data_array]. This  *doesn't*  update the cursor. */
+    resize(size: int64): void;
+
+    /** Clears the [member data_array] and resets the cursor. */
+    clear(): void;
+
+    /** Returns a new [StreamPeerBuffer] with the same [member data_array] content. */
+    duplicate(): null | StreamPeerBuffer;
+
+    /** The underlying data buffer. Setting this value resets the cursor. */
+    get data_array(): PackedByteArray;
+    set data_array(value: PackedByteArray | byte[] | ArrayBuffer);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapStreamPeerBuffer;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapStreamPeerExtension extends __NameMapStreamPeer {}
+  /** @link https://docs.godotengine.org/en/4.5/classes/class_streampeerextension.html */
+  class StreamPeerExtension extends StreamPeer {
+    constructor(identifier?: any);
+    /* gdvirtual */ _get_data(
+      r_buffer: int64,
+      r_bytes: int64,
+      r_received: int64,
+    ): Error;
+    /* gdvirtual */ _get_partial_data(
+      r_buffer: int64,
+      r_bytes: int64,
+      r_received: int64,
+    ): Error;
+    /* gdvirtual */ _put_data(
+      p_data: int64,
+      p_bytes: int64,
+      r_sent: int64,
+    ): Error;
+    /* gdvirtual */ _put_partial_data(
+      p_data: int64,
+      p_bytes: int64,
+      r_sent: int64,
+    ): Error;
+    /* gdvirtual */ _get_available_bytes(): int64;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapStreamPeerExtension;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapStreamPeerGZIP extends __NameMapStreamPeer {}
+  /** A stream peer that handles GZIP and deflate compression/decompression.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_streampeergzip.html
+   */
+  class StreamPeerGZIP extends StreamPeer {
+    constructor(identifier?: any);
+    /** Start the stream in compression mode with the given [param buffer_size], if [param use_deflate] is `true` uses deflate instead of GZIP. */
+    start_compression(
+      use_deflate?: boolean /* = false */,
+      buffer_size?: int64 /* = 65535 */,
+    ): Error;
+
+    /** Start the stream in decompression mode with the given [param buffer_size], if [param use_deflate] is `true` uses deflate instead of GZIP. */
+    start_decompression(
+      use_deflate?: boolean /* = false */,
+      buffer_size?: int64 /* = 65535 */,
+    ): Error;
+
+    /** Finalizes the stream, compressing any buffered chunk left.
+     *  You must call it only when you are compressing.
      */
-    class Transform2D {
-        /** The identity [Transform2D]. A transform with no translation, no rotation, and its scale being `1`. When multiplied by another [Variant] such as [Rect2] or another [Transform2D], no transformation occurs. This means that:  
-         *  - The [member x] points right ([constant Vector2.RIGHT]);  
-         *  - The [member y] points up ([constant Vector2.UP]).  
-         *    
-         *  This is identical to creating [constructor Transform2D] without any parameters. This constant can be used to make your code clearer, and for consistency with C#.  
-         */
-        static readonly IDENTITY: Transform2D
-        
-        /** When any transform is multiplied by [constant FLIP_X], it negates all components of the [member x] axis (the X column).  
-         *  When [constant FLIP_X] is multiplied by any basis, it negates the [member Vector2.x] component of all axes (the X row).  
-         */
-        static readonly FLIP_X: Transform2D
-        
-        /** When any transform is multiplied by [constant FLIP_Y], it negates all components of the [member y] axis (the Y column).  
-         *  When [constant FLIP_Y] is multiplied by any basis, it negates the [member Vector2.y] component of all axes (the Y row).  
-         */
-        static readonly FLIP_Y: Transform2D
-        constructor()
-        constructor(from: Transform2D)
-        constructor(rotation: float64, position: Vector2)
-        constructor(rotation: float64, scale: Vector2, skew: float64, position: Vector2)
-        constructor(x_axis: Vector2, y_axis: Vector2, origin: Vector2)
-        set_indexed(index: number, value: Vector2)
-        get_indexed(index: number): Vector2
-        
-        /** Returns the [url=https://en.wikipedia.org/wiki/Invertible_matrix]inverted version of this transform[/url].  
-         *      
-         *  **Note:** For this method to return correctly, the transform's basis needs to be  *orthonormal*  (see [method orthonormalized]). That means, the basis should only represent a rotation. If it does not, use [method affine_inverse] instead.  
-         */
-        inverse(): Transform2D
-        
-        /** Returns the inverted version of this transform. Unlike [method inverse], this method works with almost any basis, including non-uniform ones, but is slower. See also [method inverse].  
-         *      
-         *  **Note:** For this method to return correctly, the transform's basis needs to have a determinant that is not exactly `0` (see [method determinant]).  
-         */
-        affine_inverse(): Transform2D
-        
-        /** Returns this transform's rotation (in radians). This is equivalent to [member x]'s angle (see [method Vector2.angle]). */
-        get_rotation(): float64
-        
-        /** Returns this transform's translation. Equivalent to [member origin]. */
-        get_origin(): Vector2
-        
-        /** Returns the length of both [member x] and [member y], as a [Vector2]. If this transform's basis is not skewed, this value is the scaling factor. It is not affected by rotation.  
-         *    
-         *      
-         *  **Note:** If the value returned by [method determinant] is negative, the scale is also negative.  
-         */
-        get_scale(): Vector2
-        
-        /** Returns this transform's skew (in radians). */
-        get_skew(): float64
-        
-        /** Returns a copy of this transform with its basis orthonormalized. An orthonormal basis is both  *orthogonal*  (the axes are perpendicular to each other) and  *normalized*  (the axes have a length of `1`), which also means it can only represent rotation. */
-        orthonormalized(): Transform2D
-        
-        /** Returns a copy of the transform rotated by the given [param angle] (in radians).  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding rotation transform `R` from the left, i.e., `R * X`.  
-         *  This can be seen as transforming with respect to the global/parent frame.  
-         */
-        rotated(angle: float64): Transform2D
-        
-        /** Returns a copy of the transform rotated by the given [param angle] (in radians).  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding rotation transform `R` from the right, i.e., `X * R`.  
-         *  This can be seen as transforming with respect to the local frame.  
-         */
-        rotated_local(angle: float64): Transform2D
-        
-        /** Returns a copy of the transform scaled by the given [param scale] factor.  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding scaling transform `S` from the left, i.e., `S * X`.  
-         *  This can be seen as transforming with respect to the global/parent frame.  
-         */
-        scaled(scale: Vector2): Transform2D
-        
-        /** Returns a copy of the transform scaled by the given [param scale] factor.  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding scaling transform `S` from the right, i.e., `X * S`.  
-         *  This can be seen as transforming with respect to the local frame.  
-         */
-        scaled_local(scale: Vector2): Transform2D
-        
-        /** Returns a copy of the transform translated by the given [param offset].  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding translation transform `T` from the left, i.e., `T * X`.  
-         *  This can be seen as transforming with respect to the global/parent frame.  
-         */
-        translated(offset: Vector2): Transform2D
-        
-        /** Returns a copy of the transform translated by the given [param offset].  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding translation transform `T` from the right, i.e., `X * T`.  
-         *  This can be seen as transforming with respect to the local frame.  
-         */
-        translated_local(offset: Vector2): Transform2D
-        
-        /** Returns the [url=https://en.wikipedia.org/wiki/Determinant]determinant[/url] of this transform basis's matrix. For advanced math, this number can be used to determine a few attributes:  
-         *  - If the determinant is exactly `0`, the basis is not invertible (see [method inverse]).  
-         *  - If the determinant is a negative number, the basis represents a negative scale.  
-         *      
-         *  **Note:** If the basis's scale is the same for every axis, its determinant is always that scale by the power of 2.  
-         */
-        determinant(): float64
-        
-        /** Returns a copy of the [param v] vector, transformed (multiplied) by the transform basis's matrix. Unlike the multiplication operator (`*`), this method ignores the [member origin]. */
-        basis_xform(v: Vector2): Vector2
-        
-        /** Returns a copy of the [param v] vector, transformed (multiplied) by the inverse transform basis's matrix (see [method inverse]). This method ignores the [member origin].  
-         *      
-         *  **Note:** This method assumes that this transform's basis is  *orthonormal*  (see [method orthonormalized]). If the basis is not orthonormal, `transform.affine_inverse().basis_xform(vector)` should be used instead (see [method affine_inverse]).  
-         */
-        basis_xform_inv(v: Vector2): Vector2
-        
-        /** Returns the result of the linear interpolation between this transform and [param xform] by the given [param weight].  
-         *  The [param weight] should be between `0.0` and `1.0` (inclusive). Values outside this range are allowed and can be used to perform  *extrapolation*  instead.  
-         */
-        interpolate_with(xform: Transform2D, weight: float64): Transform2D
-        
-        /** Returns `true` if this transform's basis is conformal. A conformal basis is both  *orthogonal*  (the axes are perpendicular to each other) and  *uniform*  (the axes share the same length). This method can be especially useful during physics calculations. */
-        is_conformal(): boolean
-        
-        /** Returns `true` if this transform and [param xform] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
-        is_equal_approx(xform: Transform2D): boolean
-        
-        /** Returns `true` if this transform is finite, by calling [method @GlobalScope.is_finite] on each component. */
-        is_finite(): boolean
-        
-        /** Returns a copy of the transform rotated such that the rotated X-axis points towards the [param target] position, in global space. */
-        looking_at(target: Vector2 = Vector2.ZERO): Transform2D
-        static MULTIPLY(left: Transform2D, right: Transform2D): Transform2D
-        static MULTIPLY(left: Transform2D, right: float64): Transform2D
-        static MULTIPLY(left: Transform2D, right: Vector2): Vector2
-        static MULTIPLY(left: Vector2, right: Transform2D): Vector2
-        static MULTIPLY(left: Transform2D, right: Rect2): Rect2
-        static MULTIPLY(left: Rect2, right: Transform2D): Rect2
-        static MULTIPLY(left: Transform2D, right: PackedVector2Array | Vector2[]): PackedVector2Array
-        static MULTIPLY(left: PackedVector2Array | Vector2[], right: Transform2D): PackedVector2Array
-        static EQUAL(left: Transform2D, right: Transform2D): boolean
-        static NOT_EQUAL(left: Transform2D, right: Transform2D): boolean
-        get x(): Vector2
-        set x(value: Vector2)
-        get y(): Vector2
-        set y(value: Vector2)
-        get origin(): Vector2
-        set origin(value: Vector2)
+    finish(): Error;
+
+    /** Clears this stream, resetting the internal state. */
+    clear(): void;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapStreamPeerGZIP;
+  }
+  namespace StreamPeerTCP {
+    enum Status {
+      /** The initial status of the [StreamPeerTCP]. This is also the status after disconnecting. */
+      STATUS_NONE = 0,
+
+      /** A status representing a [StreamPeerTCP] that is connecting to a host. */
+      STATUS_CONNECTING = 1,
+
+      /** A status representing a [StreamPeerTCP] that is connected to a host. */
+      STATUS_CONNECTED = 2,
+
+      /** A status representing a [StreamPeerTCP] in error state. */
+      STATUS_ERROR = 3,
     }
-    namespace Vector4 {
-        enum Axis {
-            /** Enumerated value for the X axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_X = 0,
-            
-            /** Enumerated value for the Y axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Y = 1,
-            
-            /** Enumerated value for the Z axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Z = 2,
-            
-            /** Enumerated value for the W axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_W = 3,
-        }
-    }
-    /** A 4D vector using floating-point coordinates.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_vector4.html  
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapStreamPeerTCP extends __NameMapStreamPeer {}
+  /** A stream peer that handles TCP connections.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_streampeertcp.html
+   */
+  class StreamPeerTCP extends StreamPeer {
+    constructor(identifier?: any);
+    /** Opens the TCP socket, and binds it to the specified local address.
+     *  This method is generally not needed, and only used to force the subsequent call to [method connect_to_host] to use the specified [param host] and [param port] as source address. This can be desired in some NAT punchthrough techniques, or when forcing the source network interface.
      */
-    class Vector4 {
-        /** Zero vector, a vector with all components set to `0`. */
-        static readonly ZERO: Vector4
-        
-        /** One vector, a vector with all components set to `1`. */
-        static readonly ONE: Vector4
-        
-        /** Infinity vector, a vector with all components set to [constant @GDScript.INF]. */
-        static readonly INF: Vector4
-        constructor()
-        constructor(from: Vector4)
-        constructor(from: Vector4i)
-        constructor(x: float64, y: float64, z: float64, w: float64)
-        set_indexed(index: number, value: float64)
-        get_indexed(index: number): float64
-        
-        /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_W]. */
-        min_axis_index(): int64
-        
-        /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): int64
-        
-        /** Returns the length (magnitude) of this vector. */
-        length(): float64
-        
-        /** Returns the squared length (squared magnitude) of this vector.  
-         *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        length_squared(): float64
-        
-        /** Returns a new vector with all components in absolute values (i.e. positive). */
-        abs(): Vector4
-        
-        /** Returns a new vector with each component set to `1.0` if it's positive, `-1.0` if it's negative, and `0.0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
-        sign(): Vector4
-        
-        /** Returns a new vector with all components rounded down (towards negative infinity). */
-        floor(): Vector4
-        
-        /** Returns a new vector with all components rounded up (towards positive infinity). */
-        ceil(): Vector4
-        
-        /** Returns a new vector with all components rounded to the nearest integer, with halfway cases rounded away from zero. */
-        round(): Vector4
-        
-        /** Returns the result of the linear interpolation between this vector and [param to] by amount [param weight]. [param weight] is on the range of `0.0` to `1.0`, representing the amount of interpolation. */
-        lerp(to: Vector4, weight: float64): Vector4
-        
-        /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation. */
-        cubic_interpolate(b: Vector4, pre_a: Vector4, post_b: Vector4, weight: float64): Vector4
-        
-        /** Performs a cubic interpolation between this vector and [param b] using [param pre_a] and [param post_b] as handles, and returns the result at position [param weight]. [param weight] is on the range of 0.0 to 1.0, representing the amount of interpolation.  
-         *  It can perform smoother interpolation than [method cubic_interpolate] by the time values.  
-         */
-        cubic_interpolate_in_time(b: Vector4, pre_a: Vector4, post_b: Vector4, weight: float64, b_t: float64, pre_a_t: float64, post_b_t: float64): Vector4
-        
-        /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param mod]. */
-        posmod(mod: float64): Vector4
-        
-        /** Returns a vector composed of the [method @GlobalScope.fposmod] of this vector's components and [param modv]'s components. */
-        posmodv(modv: Vector4): Vector4
-        
-        /** Returns a new vector with each component snapped to the nearest multiple of the corresponding component in [param step]. This can also be used to round the components to an arbitrary number of decimals. */
-        snapped(step: Vector4): Vector4
-        
-        /** Returns a new vector with each component snapped to the nearest multiple of [param step]. This can also be used to round the components to an arbitrary number of decimals. */
-        snappedf(step: float64): Vector4
-        
-        /** Returns a new vector with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clamp(min: Vector4, max: Vector4): Vector4
-        
-        /** Returns a new vector with all components clamped between [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clampf(min: float64, max: float64): Vector4
-        
-        /** Returns the result of scaling the vector to unit length. Equivalent to `v / v.length()`. Returns `(0, 0, 0, 0)` if `v.length() == 0`. See also [method is_normalized].  
-         *      
-         *  **Note:** This function may return incorrect values if the input vector length is near zero.  
-         */
-        normalized(): Vector4
-        
-        /** Returns `true` if the vector is normalized, i.e. its length is approximately equal to 1. */
-        is_normalized(): boolean
-        
-        /** Returns the normalized vector pointing from this vector to [param to]. This is equivalent to using `(b - a).normalized()`. */
-        direction_to(to: Vector4): Vector4
-        
-        /** Returns the distance between this vector and [param to]. */
-        distance_to(to: Vector4): float64
-        
-        /** Returns the squared distance between this vector and [param to].  
-         *  This method runs faster than [method distance_to], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        distance_squared_to(to: Vector4): float64
-        
-        /** Returns the dot product of this vector and [param with]. */
-        dot(with_: Vector4): float64
-        
-        /** Returns the inverse of the vector. This is the same as `Vector4(1.0 / v.x, 1.0 / v.y, 1.0 / v.z, 1.0 / v.w)`. */
-        inverse(): Vector4
-        
-        /** Returns `true` if this vector and [param to] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
-        is_equal_approx(to: Vector4): boolean
-        
-        /** Returns `true` if this vector's values are approximately zero, by running [method @GlobalScope.is_zero_approx] on each component.  
-         *  This method is faster than using [method is_equal_approx] with one value as a zero vector.  
-         */
-        is_zero_approx(): boolean
-        
-        /** Returns `true` if this vector is finite, by calling [method @GlobalScope.is_finite] on each component. */
-        is_finite(): boolean
-        
-        /** Returns the component-wise minimum of this and [param with], equivalent to `Vector4(minf(x, with.x), minf(y, with.y), minf(z, with.z), minf(w, with.w))`. */
-        min(with_: Vector4): Vector4
-        
-        /** Returns the component-wise minimum of this and [param with], equivalent to `Vector4(minf(x, with), minf(y, with), minf(z, with), minf(w, with))`. */
-        minf(with_: float64): Vector4
-        
-        /** Returns the component-wise maximum of this and [param with], equivalent to `Vector4(maxf(x, with.x), maxf(y, with.y), maxf(z, with.z), maxf(w, with.w))`. */
-        max(with_: Vector4): Vector4
-        
-        /** Returns the component-wise maximum of this and [param with], equivalent to `Vector4(maxf(x, with), maxf(y, with), maxf(z, with), maxf(w, with))`. */
-        maxf(with_: float64): Vector4
-        static ADD(left: Vector4, right: Vector4): Vector4
-        static SUBTRACT(left: Vector4, right: Vector4): Vector4
-        static MULTIPLY(left: float64, right: Vector4): Vector4
-        static MULTIPLY(left: Vector4, right: Vector4): Vector4
-        static MULTIPLY(left: Vector4, right: float64): Vector4
-        static DIVIDE(left: Vector4, right: Vector4): Vector4
-        static DIVIDE(left: Vector4, right: float64): Vector4
-        static NEGATE(left: Vector4): Vector4
-        static EQUAL(left: Vector4, right: Vector4): boolean
-        static NOT_EQUAL(left: Vector4, right: Vector4): boolean
-        static LESS(left: Vector4, right: Vector4): boolean
-        static LESS_EQUAL(left: Vector4, right: Vector4): boolean
-        static GREATER(left: Vector4, right: Vector4): boolean
-        static GREATER_EQUAL(left: Vector4, right: Vector4): boolean
-        get x(): float64
-        set x(value: float64)
-        get y(): float64
-        set y(value: float64)
-        get z(): float64
-        set z(value: float64)
-        get w(): float64
-        set w(value: float64)
-    }
-    namespace Vector4i {
-        enum Axis {
-            /** Enumerated value for the X axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_X = 0,
-            
-            /** Enumerated value for the Y axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Y = 1,
-            
-            /** Enumerated value for the Z axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_Z = 2,
-            
-            /** Enumerated value for the W axis. Returned by [method max_axis_index] and [method min_axis_index]. */
-            AXIS_W = 3,
-        }
-    }
-    /** A 4D vector using integer coordinates.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_vector4i.html  
+    bind(port: int64, host?: string /* = '*' */): Error;
+
+    /** Connects to the specified `host:port` pair. A hostname will be resolved if valid. Returns [constant OK] on success. */
+    connect_to_host(host: string, port: int64): Error;
+
+    /** Poll the socket, updating its state. See [method get_status]. */
+    poll(): Error;
+
+    /** Returns the status of the connection. */
+    get_status(): StreamPeerTCP.Status;
+
+    /** Returns the IP of this peer. */
+    get_connected_host(): string;
+
+    /** Returns the port of this peer. */
+    get_connected_port(): int64;
+
+    /** Returns the local port to which this peer is bound. */
+    get_local_port(): int64;
+
+    /** Disconnects from host. */
+    disconnect_from_host(): void;
+
+    /** If [param enabled] is `true`, packets will be sent immediately. If [param enabled] is `false` (the default), packet transfers will be delayed and combined using [url=https://en.wikipedia.org/wiki/Nagle%27s_algorithm]Nagle's algorithm[/url].
+     *
+     *  **Note:** It's recommended to leave this disabled for applications that send large packets or need to transfer a lot of data, as enabling this can decrease the total available bandwidth.
      */
-    class Vector4i {
-        /** Zero vector, a vector with all components set to `0`. */
-        static readonly ZERO: Vector4i
-        
-        /** One vector, a vector with all components set to `1`. */
-        static readonly ONE: Vector4i
-        
-        /** Min vector, a vector with all components equal to `INT32_MIN`. Can be used as a negative integer equivalent of [constant Vector4.INF]. */
-        static readonly MIN: Vector4i
-        
-        /** Max vector, a vector with all components equal to `INT32_MAX`. Can be used as an integer equivalent of [constant Vector4.INF]. */
-        static readonly MAX: Vector4i
-        constructor()
-        constructor(from: Vector4i)
-        constructor(from: Vector4)
-        constructor(x: int64, y: int64, z: int64, w: int64)
-        set_indexed(index: number, value: int64)
-        get_indexed(index: number): int64
-        
-        /** Returns the axis of the vector's lowest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_W]. */
-        min_axis_index(): int64
-        
-        /** Returns the axis of the vector's highest value. See `AXIS_*` constants. If all components are equal, this method returns [constant AXIS_X]. */
-        max_axis_index(): int64
-        
-        /** Returns the length (magnitude) of this vector. */
-        length(): float64
-        
-        /** Returns the squared length (squared magnitude) of this vector.  
-         *  This method runs faster than [method length], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        length_squared(): int64
-        
-        /** Returns a new vector with each component set to `1` if it's positive, `-1` if it's negative, and `0` if it's zero. The result is identical to calling [method @GlobalScope.sign] on each component. */
-        sign(): Vector4i
-        
-        /** Returns a new vector with all components in absolute values (i.e. positive). */
-        abs(): Vector4i
-        
-        /** Returns a new vector with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clamp(min: Vector4i, max: Vector4i): Vector4i
-        
-        /** Returns a new vector with all components clamped between [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clampi(min: int64, max: int64): Vector4i
-        
-        /** Returns a new vector with each component snapped to the closest multiple of the corresponding component in [param step]. */
-        snapped(step: Vector4i): Vector4i
-        
-        /** Returns a new vector with each component snapped to the closest multiple of [param step]. */
-        snappedi(step: int64): Vector4i
-        
-        /** Returns the component-wise minimum of this and [param with], equivalent to `Vector4i(mini(x, with.x), mini(y, with.y), mini(z, with.z), mini(w, with.w))`. */
-        min(with_: Vector4i): Vector4i
-        
-        /** Returns the component-wise minimum of this and [param with], equivalent to `Vector4i(mini(x, with), mini(y, with), mini(z, with), mini(w, with))`. */
-        mini(with_: int64): Vector4i
-        
-        /** Returns the component-wise maximum of this and [param with], equivalent to `Vector4i(maxi(x, with.x), maxi(y, with.y), maxi(z, with.z), maxi(w, with.w))`. */
-        max(with_: Vector4i): Vector4i
-        
-        /** Returns the component-wise maximum of this and [param with], equivalent to `Vector4i(maxi(x, with), maxi(y, with), maxi(z, with), maxi(w, with))`. */
-        maxi(with_: int64): Vector4i
-        
-        /** Returns the distance between this vector and [param to]. */
-        distance_to(to: Vector4i): float64
-        
-        /** Returns the squared distance between this vector and [param to].  
-         *  This method runs faster than [method distance_to], so prefer it if you need to compare vectors or need the squared distance for some formula.  
-         */
-        distance_squared_to(to: Vector4i): int64
-        static ADD(left: Vector4i, right: Vector4i): Vector4i
-        static SUBTRACT(left: Vector4i, right: Vector4i): Vector4i
-        static MULTIPLY(left: float64, right: Vector4i): Vector4i
-        static MULTIPLY(left: Vector4i, right: Vector4i): Vector4i
-        static MULTIPLY(left: Vector4i, right: float64): Vector4i
-        static DIVIDE(left: Vector4i, right: Vector4i): Vector4i
-        static DIVIDE(left: Vector4i, right: float64): Vector4i
-        static NEGATE(left: Vector4i): Vector4i
-        static EQUAL(left: Vector4i, right: Vector4i): boolean
-        static NOT_EQUAL(left: Vector4i, right: Vector4i): boolean
-        static LESS(left: Vector4i, right: Vector4i): boolean
-        static LESS_EQUAL(left: Vector4i, right: Vector4i): boolean
-        static GREATER(left: Vector4i, right: Vector4i): boolean
-        static GREATER_EQUAL(left: Vector4i, right: Vector4i): boolean
-        get x(): int64
-        set x(value: int64)
-        get y(): int64
-        set y(value: int64)
-        get z(): int64
-        set z(value: int64)
-        get w(): int64
-        set w(value: int64)
+    set_no_delay(enabled: boolean): void;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapStreamPeerTCP;
+  }
+  namespace StreamPeerTLS {
+    enum Status {
+      /** A status representing a [StreamPeerTLS] that is disconnected. */
+      STATUS_DISCONNECTED = 0,
+
+      /** A status representing a [StreamPeerTLS] during handshaking. */
+      STATUS_HANDSHAKING = 1,
+
+      /** A status representing a [StreamPeerTLS] that is connected to a host. */
+      STATUS_CONNECTED = 2,
+
+      /** A status representing a [StreamPeerTLS] in error state. */
+      STATUS_ERROR = 3,
+
+      /** An error status that shows a mismatch in the TLS certificate domain presented by the host and the domain requested for validation. */
+      STATUS_ERROR_HOSTNAME_MISMATCH = 4,
     }
-    /** A plane in Hessian normal form.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_plane.html  
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapStreamPeerTLS extends __NameMapStreamPeer {}
+  /** A stream peer that handles TLS connections.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_streampeertls.html
+   */
+  class StreamPeerTLS extends StreamPeer {
+    constructor(identifier?: any);
+    /** Poll the connection to check for incoming bytes. Call this right before [method StreamPeer.get_available_bytes] for it to work properly. */
+    poll(): void;
+
+    /** Accepts a peer connection as a server using the given [param server_options]. See [method TLSOptions.server]. */
+    accept_stream(stream: StreamPeer, server_options: TLSOptions): Error;
+
+    /** Connects to a peer using an underlying [StreamPeer] [param stream] and verifying the remote certificate is correctly signed for the given [param common_name]. You can pass the optional [param client_options] parameter to customize the trusted certification authorities, or disable the common name verification. See [method TLSOptions.client] and [method TLSOptions.client_unsafe]. */
+    connect_to_stream(
+      stream: StreamPeer,
+      common_name: string,
+      client_options?: TLSOptions /* = undefined */,
+    ): Error;
+
+    /** Returns the status of the connection. */
+    get_status(): StreamPeerTLS.Status;
+
+    /** Returns the underlying [StreamPeer] connection, used in [method accept_stream] or [method connect_to_stream]. */
+    get_stream(): null | StreamPeer;
+
+    /** Disconnects from host. */
+    disconnect_from_stream(): void;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapStreamPeerTLS;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapStyleBox extends __NameMapResource {}
+  /** Abstract base class for defining stylized boxes for UI elements.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_stylebox.html
+   */
+  class StyleBox extends Resource {
+    constructor(identifier?: any);
+    /* gdvirtual */ _draw(to_canvas_item: RID, rect: Rect2): void;
+    /* gdvirtual */ _get_draw_rect(rect: Rect2): Rect2;
+
+    /** Virtual method to be implemented by the user. Returns a custom minimum size that the stylebox must respect when drawing. By default [method get_minimum_size] only takes content margins into account. This method can be overridden to add another size restriction. A combination of the default behavior and the output of this method will be used, to account for both sizes. */
+    /* gdvirtual */ _get_minimum_size(): Vector2;
+    /* gdvirtual */ _test_mask(point: Vector2, rect: Rect2): boolean;
+
+    /** Returns the minimum size that this stylebox can be shrunk to. */
+    get_minimum_size(): Vector2;
+
+    /** Sets the default value of the specified [enum Side] to [param offset] pixels. */
+    set_content_margin(margin: Side, offset: float64): void;
+
+    /** Sets the default margin to [param offset] pixels for all sides. */
+    set_content_margin_all(offset: float64): void;
+
+    /** Returns the default margin of the specified [enum Side]. */
+    get_content_margin(margin: Side): float64;
+
+    /** Returns the content margin offset for the specified [enum Side].
+     *  Positive values reduce size inwards, unlike [Control]'s margin values.
      */
-    class Plane {
-        /** A plane that extends in the Y and Z axes (normal vector points +X). */
-        static readonly PLANE_YZ: Plane
-        
-        /** A plane that extends in the X and Z axes (normal vector points +Y). */
-        static readonly PLANE_XZ: Plane
-        
-        /** A plane that extends in the X and Y axes (normal vector points +Z). */
-        static readonly PLANE_XY: Plane
-        constructor()
-        constructor(from: Plane)
-        constructor(normal: Vector3)
-        constructor(normal: Vector3, d: float64)
-        constructor(normal: Vector3, point: Vector3)
-        constructor(point1: Vector3, point2: Vector3, point3: Vector3)
-        constructor(a: float64, b: float64, c: float64, d: float64)
-        
-        /** Returns a copy of the plane, with normalized [member normal] (so it's a unit vector). Returns `Plane(0, 0, 0, 0)` if [member normal] can't be normalized (it has zero length). */
-        normalized(): Plane
-        
-        /** Returns the center of the plane. */
-        get_center(): Vector3
-        
-        /** Returns `true` if this plane and [param to_plane] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
-        is_equal_approx(to_plane: Plane): boolean
-        
-        /** Returns `true` if this plane is finite, by calling [method @GlobalScope.is_finite] on each component. */
-        is_finite(): boolean
-        
-        /** Returns `true` if [param point] is located above the plane. */
-        is_point_over(point: Vector3): boolean
-        
-        /** Returns the shortest distance from the plane to the position [param point]. If the point is above the plane, the distance will be positive. If below, the distance will be negative. */
-        distance_to(point: Vector3): float64
-        
-        /** Returns `true` if [param point] is inside the plane. Comparison uses a custom minimum [param tolerance] threshold. */
-        has_point(point: Vector3, tolerance: float64 = 0.00001): boolean
-        
-        /** Returns the orthogonal projection of [param point] into a point in the plane. */
-        project(point: Vector3): Vector3
-        
-        /** Returns the intersection point of the three planes [param b], [param c] and this plane. If no intersection is found, `null` is returned. */
-        intersect_3(b: Plane, c: Plane): any
-        
-        /** Returns the intersection point of a ray consisting of the position [param from] and the direction normal [param dir] with this plane. If no intersection is found, `null` is returned. */
-        intersects_ray(from: Vector3, dir: Vector3): any
-        
-        /** Returns the intersection point of a segment from position [param from] to position [param to] with this plane. If no intersection is found, `null` is returned. */
-        intersects_segment(from: Vector3, to: Vector3): any
-        static NEGATE(left: Plane): Plane
-        static EQUAL(left: Plane, right: Plane): boolean
-        static NOT_EQUAL(left: Plane, right: Plane): boolean
-        get x(): float64
-        set x(value: float64)
-        get y(): float64
-        set y(value: float64)
-        get z(): float64
-        set z(value: float64)
-        get d(): float64
-        set d(value: float64)
-        get normal(): Vector3
-        set normal(value: Vector3)
-    }
-    /** A unit quaternion used for representing 3D rotations.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_quaternion.html  
+    get_margin(margin: Side): float64;
+
+    /** Returns the "offset" of a stylebox. This helper function returns a value equivalent to `Vector2(style.get_margin(MARGIN_LEFT), style.get_margin(MARGIN_TOP))`. */
+    get_offset(): Vector2;
+
+    /** Draws this stylebox using a canvas item identified by the given [RID].
+     *  The [RID] value can either be the result of [method CanvasItem.get_canvas_item] called on an existing [CanvasItem]-derived node, or directly from creating a canvas item in the [RenderingServer] with [method RenderingServer.canvas_item_create].
      */
-    class Quaternion {
-        /** The identity quaternion, representing no rotation. This has the same rotation as [constant Basis.IDENTITY].  
-         *  If a [Vector3] is rotated (multiplied) by this quaternion, it does not change.  
-         */
-        static readonly IDENTITY: Quaternion
-        constructor()
-        constructor(from: Quaternion)
-        constructor(from: Basis)
-        constructor(axis: Vector3, angle: float64)
-        constructor(arc_from: Vector3, arc_to: Vector3)
-        constructor(x: float64, y: float64, z: float64, w: float64)
-        set_indexed(index: number, value: float64)
-        get_indexed(index: number): float64
-        
-        /** Returns this quaternion's length, also called magnitude. */
-        length(): float64
-        
-        /** Returns this quaternion's length, squared.  
-         *      
-         *  **Note:** This method is faster than [method length], so prefer it if you only need to compare quaternion lengths.  
-         */
-        length_squared(): float64
-        
-        /** Returns a copy of this quaternion, normalized so that its length is `1.0`. See also [method is_normalized]. */
-        normalized(): Quaternion
-        
-        /** Returns `true` if this quaternion is normalized. See also [method normalized]. */
-        is_normalized(): boolean
-        
-        /** Returns `true` if this quaternion and [param to] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
-        is_equal_approx(to: Quaternion): boolean
-        
-        /** Returns `true` if this quaternion is finite, by calling [method @GlobalScope.is_finite] on each component. */
-        is_finite(): boolean
-        
-        /** Returns the inverse version of this quaternion, inverting the sign of every component except [member w]. */
-        inverse(): Quaternion
-        
-        /** Returns the logarithm of this quaternion. Multiplies this quaternion's rotation axis by its rotation angle, and stores the result in the returned quaternion's vector part ([member x], [member y], and [member z]). The returned quaternion's real part ([member w]) is always `0.0`. */
-        log(): Quaternion
-        
-        /** Returns the exponential of this quaternion. The rotation axis of the result is the normalized rotation axis of this quaternion, the angle of the result is the length of the vector part of this quaternion. */
-        exp(): Quaternion
-        
-        /** Returns the angle between this quaternion and [param to]. This is the magnitude of the angle you would need to rotate by to get from one to the other.  
-         *      
-         *  **Note:** The magnitude of the floating-point error for this method is abnormally high, so methods such as `is_zero_approx` will not work reliably.  
-         */
-        angle_to(to: Quaternion): float64
-        
-        /** Returns the dot product between this quaternion and [param with].  
-         *  This is equivalent to `(quat.x * with.x) + (quat.y * with.y) + (quat.z * with.z) + (quat.w * with.w)`.  
-         */
-        dot(with_: Quaternion): float64
-        
-        /** Performs a spherical-linear interpolation with the [param to] quaternion, given a [param weight] and returns the result. Both this quaternion and [param to] must be normalized. */
-        slerp(to: Quaternion, weight: float64): Quaternion
-        
-        /** Performs a spherical-linear interpolation with the [param to] quaternion, given a [param weight] and returns the result. Unlike [method slerp], this method does not check if the rotation path is smaller than 90 degrees. Both this quaternion and [param to] must be normalized. */
-        slerpni(to: Quaternion, weight: float64): Quaternion
-        
-        /** Performs a spherical cubic interpolation between quaternions [param pre_a], this vector, [param b], and [param post_b], by the given amount [param weight]. */
-        spherical_cubic_interpolate(b: Quaternion, pre_a: Quaternion, post_b: Quaternion, weight: float64): Quaternion
-        
-        /** Performs a spherical cubic interpolation between quaternions [param pre_a], this vector, [param b], and [param post_b], by the given amount [param weight].  
-         *  It can perform smoother interpolation than [method spherical_cubic_interpolate] by the time values.  
-         */
-        spherical_cubic_interpolate_in_time(b: Quaternion, pre_a: Quaternion, post_b: Quaternion, weight: float64, b_t: float64, pre_a_t: float64, post_b_t: float64): Quaternion
-        
-        /** Returns this quaternion's rotation as a [Vector3] of [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url], in radians.  
-         *  The order of each consecutive rotation can be changed with [param order] (see [enum EulerOrder] constants). By default, the YXZ convention is used ([constant EULER_ORDER_YXZ]): Z (roll) is calculated first, then X (pitch), and lastly Y (yaw). When using the opposite method [method from_euler], this order is reversed.  
-         */
-        get_euler(order: int64 = 2): Vector3
-        
-        /** Constructs a new [Quaternion] from the given [Vector3] of [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url], in radians. This method always uses the YXZ convention ([constant EULER_ORDER_YXZ]). */
-        static from_euler(euler: Vector3): Quaternion
-        
-        /** Returns the rotation axis of the rotation represented by this quaternion. */
-        get_axis(): Vector3
-        
-        /** Returns the angle of the rotation represented by this quaternion.  
-         *      
-         *  **Note:** The quaternion must be normalized.  
-         */
-        get_angle(): float64
-        static ADD(left: Quaternion, right: Quaternion): Quaternion
-        static SUBTRACT(left: Quaternion, right: Quaternion): Quaternion
-        static MULTIPLY(left: Quaternion, right: Quaternion): Quaternion
-        static MULTIPLY(left: Quaternion, right: float64): Quaternion
-        static MULTIPLY(left: float64, right: Quaternion): Quaternion
-        static MULTIPLY(left: Vector3, right: Quaternion): Vector3
-        static MULTIPLY(left: Quaternion, right: Vector3): Vector3
-        static DIVIDE(left: Quaternion, right: float64): Quaternion
-        static NEGATE(left: Quaternion): Quaternion
-        static EQUAL(left: Quaternion, right: Quaternion): boolean
-        static NOT_EQUAL(left: Quaternion, right: Quaternion): boolean
-        get x(): float64
-        set x(value: float64)
-        get y(): float64
-        set y(value: float64)
-        get z(): float64
-        set z(value: float64)
-        get w(): float64
-        set w(value: float64)
-    }
-    /** A 3D axis-aligned bounding box.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_aabb.html  
+    draw(canvas_item: RID, rect: Rect2): void;
+
+    /** Returns the [CanvasItem] that handles its [constant CanvasItem.NOTIFICATION_DRAW] or [method CanvasItem._draw] callback at this moment. */
+    get_current_item_drawn(): null | CanvasItem;
+
+    /** Test a position in a rectangle, return whether it passes the mask test. */
+    test_mask(point: Vector2, rect: Rect2): boolean;
+
+    /** The left margin for the contents of this style box. Increasing this value reduces the space available to the contents from the left.
+     *  Refer to [member content_margin_bottom] for extra considerations.
      */
-    class AABB {
-        constructor()
-        constructor(from: AABB)
-        constructor(position: Vector3, size: Vector3)
-        
-        /** Returns an [AABB] equivalent to this bounding box, with its width, height, and depth modified to be non-negative values.  
-         *    
-         *      
-         *  **Note:** It's recommended to use this method when [member size] is negative, as most other methods in Godot assume that the [member size]'s components are greater than `0`.  
-         */
-        abs(): AABB
-        
-        /** Returns the center point of the bounding box. This is the same as `position + (size / 2.0)`. */
-        get_center(): Vector3
-        
-        /** Returns the bounding box's volume. This is equivalent to `size.x * size.y * size.z`. See also [method has_volume]. */
-        get_volume(): float64
-        
-        /** Returns `true` if this bounding box's width, height, and depth are all positive. See also [method get_volume]. */
-        has_volume(): boolean
-        
-        /** Returns `true` if this bounding box has a surface or a length, that is, at least one component of [member size] is greater than `0`. Otherwise, returns `false`. */
-        has_surface(): boolean
-        
-        /** Returns `true` if the bounding box contains the given [param point]. By convention, points exactly on the right, top, and front sides are **not** included.  
-         *      
-         *  **Note:** This method is not reliable for [AABB] with a  *negative*  [member size]. Use [method abs] first to get a valid bounding box.  
-         */
-        has_point(point: Vector3): boolean
-        
-        /** Returns `true` if this bounding box and [param aabb] are approximately equal, by calling [method Vector2.is_equal_approx] on the [member position] and the [member size]. */
-        is_equal_approx(aabb: AABB): boolean
-        
-        /** Returns `true` if this bounding box's values are finite, by calling [method Vector2.is_finite] on the [member position] and the [member size]. */
-        is_finite(): boolean
-        
-        /** Returns `true` if this bounding box overlaps with the box [param with]. The edges of both boxes are  *always*  excluded. */
-        intersects(with_: AABB): boolean
-        
-        /** Returns `true` if this bounding box  *completely*  encloses the [param with] box. The edges of both boxes are included.  
-         *    
-         */
-        encloses(with_: AABB): boolean
-        
-        /** Returns `true` if this bounding box is on both sides of the given [param plane]. */
-        intersects_plane(plane: Plane): boolean
-        
-        /** Returns the intersection between this bounding box and [param with]. If the boxes do not intersect, returns an empty [AABB]. If the boxes intersect at the edge, returns a flat [AABB] with no volume (see [method has_surface] and [method has_volume]).  
-         *    
-         *      
-         *  **Note:** If you only need to know whether two bounding boxes are intersecting, use [method intersects], instead.  
-         */
-        intersection(with_: AABB): AABB
-        
-        /** Returns an [AABB] that encloses both this bounding box and [param with] around the edges. See also [method encloses]. */
-        merge(with_: AABB): AABB
-        
-        /** Returns a copy of this bounding box expanded to align the edges with the given [param to_point], if necessary.  
-         *    
-         */
-        expand(to_point: Vector3): AABB
-        
-        /** Returns a copy of this bounding box extended on all sides by the given amount [param by]. A negative amount shrinks the box instead.  
-         *    
-         */
-        grow(by: float64): AABB
-        
-        /** Returns the vertex's position of this bounding box that's the farthest in the given direction. This point is commonly known as the support point in collision detection algorithms. */
-        get_support(dir: Vector3): Vector3
-        
-        /** Returns the longest normalized axis of this bounding box's [member size], as a [Vector3] ([constant Vector3.RIGHT], [constant Vector3.UP], or [constant Vector3.BACK]).  
-         *    
-         *  See also [method get_longest_axis_index] and [method get_longest_axis_size].  
-         */
-        get_longest_axis(): Vector3
-        
-        /** Returns the index to the longest axis of this bounding box's [member size] (see [constant Vector3.AXIS_X], [constant Vector3.AXIS_Y], and [constant Vector3.AXIS_Z]).  
-         *  For an example, see [method get_longest_axis].  
-         */
-        get_longest_axis_index(): int64
-        
-        /** Returns the longest dimension of this bounding box's [member size].  
-         *  For an example, see [method get_longest_axis].  
-         */
-        get_longest_axis_size(): float64
-        
-        /** Returns the shortest normalized axis of this bounding box's [member size], as a [Vector3] ([constant Vector3.RIGHT], [constant Vector3.UP], or [constant Vector3.BACK]).  
-         *    
-         *  See also [method get_shortest_axis_index] and [method get_shortest_axis_size].  
-         */
-        get_shortest_axis(): Vector3
-        
-        /** Returns the index to the shortest axis of this bounding box's [member size] (see [constant Vector3.AXIS_X], [constant Vector3.AXIS_Y], and [constant Vector3.AXIS_Z]).  
-         *  For an example, see [method get_shortest_axis].  
-         */
-        get_shortest_axis_index(): int64
-        
-        /** Returns the shortest dimension of this bounding box's [member size].  
-         *  For an example, see [method get_shortest_axis].  
-         */
-        get_shortest_axis_size(): float64
-        
-        /** Returns the position of one of the 8 vertices that compose this bounding box. With a [param idx] of `0` this is the same as [member position], and a [param idx] of `7` is the same as [member end]. */
-        get_endpoint(idx: int64): Vector3
-        
-        /** Returns the first point where this bounding box and the given segment intersect, as a [Vector3]. If no intersection occurs, returns `null`.  
-         *  The segment begins at [param from] and ends at [param to].  
-         */
-        intersects_segment(from: Vector3, to: Vector3): any
-        
-        /** Returns the first point where this bounding box and the given ray intersect, as a [Vector3]. If no intersection occurs, returns `null`.  
-         *  The ray begin at [param from], faces [param dir] and extends towards infinity.  
-         */
-        intersects_ray(from: Vector3, dir: Vector3): any
-        static EQUAL(left: AABB, right: AABB): boolean
-        static NOT_EQUAL(left: AABB, right: AABB): boolean
-        get position(): Vector3
-        set position(value: Vector3)
-        get size(): Vector3
-        set size(value: Vector3)
-        get end(): Vector3
-        set end(value: Vector3)
-    }
-    /** A 3×3 matrix for representing 3D rotation and scale.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_basis.html  
+    get content_margin_left(): float64;
+    set content_margin_left(value: float64);
+
+    /** The top margin for the contents of this style box. Increasing this value reduces the space available to the contents from the top.
+     *  Refer to [member content_margin_bottom] for extra considerations.
      */
-    class Basis {
-        /** The identity basis. This is a basis with no rotation, no shear, and its scale being `1`. This means that:  
-         *  - The [member x] points right ([constant Vector3.RIGHT]);  
-         *  - The [member y] points up ([constant Vector3.UP]);  
-         *  - The [member z] points back ([constant Vector3.BACK]).  
-         *    
-         *  This is identical to creating [constructor Basis] without any parameters. This constant can be used to make your code clearer, and for consistency with C#.  
-         */
-        static readonly IDENTITY: Basis
-        
-        /** When any basis is multiplied by [constant FLIP_X], it negates all components of the [member x] axis (the X column).  
-         *  When [constant FLIP_X] is multiplied by any basis, it negates the [member Vector3.x] component of all axes (the X row).  
-         */
-        static readonly FLIP_X: Basis
-        
-        /** When any basis is multiplied by [constant FLIP_Y], it negates all components of the [member y] axis (the Y column).  
-         *  When [constant FLIP_Y] is multiplied by any basis, it negates the [member Vector3.y] component of all axes (the Y row).  
-         */
-        static readonly FLIP_Y: Basis
-        
-        /** When any basis is multiplied by [constant FLIP_Z], it negates all components of the [member z] axis (the Z column).  
-         *  When [constant FLIP_Z] is multiplied by any basis, it negates the [member Vector3.z] component of all axes (the Z row).  
-         */
-        static readonly FLIP_Z: Basis
-        constructor()
-        constructor(from: Basis)
-        constructor(from: Quaternion)
-        constructor(axis: Vector3, angle: float64)
-        constructor(x_axis: Vector3, y_axis: Vector3, z_axis: Vector3)
-        set_indexed(index: number, value: Vector3)
-        get_indexed(index: number): Vector3
-        
-        /** Returns the [url=https://en.wikipedia.org/wiki/Invertible_matrix]inverse of this basis's matrix[/url]. */
-        inverse(): Basis
-        
-        /** Returns the transposed version of this basis. This turns the basis matrix's columns into rows, and its rows into columns.  
-         *    
-         */
-        transposed(): Basis
-        
-        /** Returns the orthonormalized version of this basis. An orthonormal basis is both  *orthogonal*  (the axes are perpendicular to each other) and  *normalized*  (the axes have a length of `1`), which also means it can only represent rotation.  
-         *  It is often useful to call this method to avoid rounding errors on a rotating basis:  
-         *    
-         */
-        orthonormalized(): Basis
-        
-        /** Returns the [url=https://en.wikipedia.org/wiki/Determinant]determinant[/url] of this basis's matrix. For advanced math, this number can be used to determine a few attributes:  
-         *  - If the determinant is exactly `0`, the basis is not invertible (see [method inverse]).  
-         *  - If the determinant is a negative number, the basis represents a negative scale.  
-         *      
-         *  **Note:** If the basis's scale is the same for every axis, its determinant is always that scale by the power of 2.  
-         */
-        determinant(): float64
-        
-        /** Returns this basis rotated around the given [param axis] by [param angle] (in radians). The [param axis] must be a normalized vector (see [method Vector3.normalized]).  
-         *  Positive values rotate this basis clockwise around the axis, while negative values rotate it counterclockwise.  
-         *    
-         */
-        rotated(axis: Vector3, angle: float64): Basis
-        
-        /** Returns this basis with each axis's components scaled by the given [param scale]'s components.  
-         *  The basis matrix's rows are multiplied by [param scale]'s components. This operation is a global scale (relative to the parent).  
-         *    
-         */
-        scaled(scale: Vector3): Basis
-        
-        /** Returns the length of each axis of this basis, as a [Vector3]. If the basis is not sheared, this is the scaling factor. It is not affected by rotation.  
-         *    
-         *      
-         *  **Note:** If the value returned by [method determinant] is negative, the scale is also negative.  
-         */
-        get_scale(): Vector3
-        
-        /** Returns this basis's rotation as a [Vector3] of [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url], in radians.  
-         *  - The [member Vector3.x] contains the angle around the [member x] axis (pitch);  
-         *  - The [member Vector3.y] contains the angle around the [member y] axis (yaw);  
-         *  - The [member Vector3.z] contains the angle around the [member z] axis (roll).  
-         *  The order of each consecutive rotation can be changed with [param order] (see [enum EulerOrder] constants). By default, the YXZ convention is used ([constant EULER_ORDER_YXZ]): Z (roll) is calculated first, then X (pitch), and lastly Y (yaw). When using the opposite method [method from_euler], this order is reversed.  
-         *      
-         *  **Note:** Euler angles are much more intuitive but are not suitable for 3D math. Because of this, consider using the [method get_rotation_quaternion] method instead, which returns a [Quaternion].  
-         *      
-         *  **Note:** In the Inspector dock, a basis's rotation is often displayed in Euler angles (in degrees), as is the case with the [member Node3D.rotation] property.  
-         */
-        get_euler(order: int64 = 2): Vector3
-        
-        /** Returns the transposed dot product between [param with] and the [member x] axis (see [method transposed]).  
-         *  This is equivalent to `basis.x.dot(vector)`.  
-         */
-        tdotx(with_: Vector3): float64
-        
-        /** Returns the transposed dot product between [param with] and the [member y] axis (see [method transposed]).  
-         *  This is equivalent to `basis.y.dot(vector)`.  
-         */
-        tdoty(with_: Vector3): float64
-        
-        /** Returns the transposed dot product between [param with] and the [member z] axis (see [method transposed]).  
-         *  This is equivalent to `basis.z.dot(vector)`.  
-         */
-        tdotz(with_: Vector3): float64
-        
-        /** Performs a spherical-linear interpolation with the [param to] basis, given a [param weight]. Both this basis and [param to] should represent a rotation.  
-         *  **Example:** Smoothly rotate a [Node3D] to the target basis over time, with a [Tween].  
-         *    
-         */
-        slerp(to: Basis, weight: float64): Basis
-        
-        /** Returns `true` if this basis is conformal. A conformal basis is both  *orthogonal*  (the axes are perpendicular to each other) and  *uniform*  (the axes share the same length). This method can be especially useful during physics calculations. */
-        is_conformal(): boolean
-        
-        /** Returns `true` if this basis and [param b] are approximately equal, by calling [method @GlobalScope.is_equal_approx] on all vector components. */
-        is_equal_approx(b: Basis): boolean
-        
-        /** Returns `true` if this basis is finite, by calling [method @GlobalScope.is_finite] on all vector components. */
-        is_finite(): boolean
-        
-        /** Returns this basis's rotation as a [Quaternion].  
-         *      
-         *  **Note:** Quatenions are much more suitable for 3D math but are less intuitive. For user interfaces, consider using the [method get_euler] method, which returns Euler angles.  
-         */
-        get_rotation_quaternion(): Quaternion
-        
-        /** Creates a new [Basis] with a rotation such that the forward axis (-Z) points towards the [param target] position.  
-         *  By default, the -Z axis (camera forward) is treated as forward (implies +X is right). If [param use_model_front] is `true`, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [param target] position.  
-         *  The up axis (+Y) points as close to the [param up] vector as possible while staying perpendicular to the forward axis. The returned basis is orthonormalized (see [method orthonormalized]). The [param target] and [param up] vectors cannot be [constant Vector3.ZERO], and cannot be parallel to each other.  
-         */
-        static looking_at(target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): Basis
-        
-        /** Constructs a new [Basis] that only represents scale, with no rotation or shear, from the given [param scale] vector.  
-         *    
-         *      
-         *  **Note:** In linear algebra, the matrix of this basis is also known as a [url=https://en.wikipedia.org/wiki/Diagonal_matrix]diagonal matrix[/url].  
-         */
-        static from_scale(scale: Vector3): Basis
-        
-        /** Constructs a new [Basis] that only represents rotation from the given [Vector3] of [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url], in radians.  
-         *  - The [member Vector3.x] should contain the angle around the [member x] axis (pitch).  
-         *  - The [member Vector3.y] should contain the angle around the [member y] axis (yaw).  
-         *  - The [member Vector3.z] should contain the angle around the [member z] axis (roll).  
-         *    
-         *  The order of each consecutive rotation can be changed with [param order] (see [enum EulerOrder] constants). By default, the YXZ convention is used ([constant EULER_ORDER_YXZ]): the basis rotates first around the Y axis (yaw), then X (pitch), and lastly Z (roll). When using the opposite method [method get_euler], this order is reversed.  
-         */
-        static from_euler(euler: Vector3, order: int64 = 2): Basis
-        static MULTIPLY(left: Basis, right: Basis): Basis
-        static MULTIPLY(left: Basis, right: float64): Basis
-        static MULTIPLY(left: Basis, right: Vector3): Vector3
-        static MULTIPLY(left: Vector3, right: Basis): Vector3
-        static EQUAL(left: Basis, right: Basis): boolean
-        static NOT_EQUAL(left: Basis, right: Basis): boolean
-        get x(): Vector3
-        set x(value: Vector3)
-        get y(): Vector3
-        set y(value: Vector3)
-        get z(): Vector3
-        set z(value: Vector3)
-    }
-    /** A 3×4 matrix representing a 3D transformation.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_transform3d.html  
+    get content_margin_top(): float64;
+    set content_margin_top(value: float64);
+
+    /** The right margin for the contents of this style box. Increasing this value reduces the space available to the contents from the right.
+     *  Refer to [member content_margin_bottom] for extra considerations.
      */
-    class Transform3D {
-        /** A transform with no translation, no rotation, and its scale being `1`. Its [member basis] is equal to [constant Basis.IDENTITY].  
-         *  When multiplied by another [Variant] such as [AABB] or another [Transform3D], no transformation occurs.  
-         */
-        static readonly IDENTITY: Transform3D
-        
-        /** [Transform3D] with mirroring applied perpendicular to the YZ plane. Its [member basis] is equal to [constant Basis.FLIP_X]. */
-        static readonly FLIP_X: Transform3D
-        
-        /** [Transform3D] with mirroring applied perpendicular to the XZ plane. Its [member basis] is equal to [constant Basis.FLIP_Y]. */
-        static readonly FLIP_Y: Transform3D
-        
-        /** [Transform3D] with mirroring applied perpendicular to the XY plane. Its [member basis] is equal to [constant Basis.FLIP_Z]. */
-        static readonly FLIP_Z: Transform3D
-        constructor()
-        constructor(from: Transform3D)
-        constructor(basis: Basis, origin: Vector3)
-        constructor(x_axis: Vector3, y_axis: Vector3, z_axis: Vector3, origin: Vector3)
-        constructor(from: Projection)
-        
-        /** Returns the inverted version of this transform. See also [method Basis.inverse].  
-         *      
-         *  **Note:** For this method to return correctly, the transform's [member basis] needs to be  *orthonormal*  (see [method Basis.orthonormalized]). That means, the basis should only represent a rotation. If it does not, use [method affine_inverse] instead.  
-         */
-        inverse(): Transform3D
-        
-        /** Returns the inverted version of this transform. Unlike [method inverse], this method works with almost any [member basis], including non-uniform ones, but is slower. See also [method Basis.inverse].  
-         *      
-         *  **Note:** For this method to return correctly, the transform's [member basis] needs to have a determinant that is not exactly `0` (see [method Basis.determinant]).  
-         */
-        affine_inverse(): Transform3D
-        
-        /** Returns a copy of this transform with its [member basis] orthonormalized. An orthonormal basis is both  *orthogonal*  (the axes are perpendicular to each other) and  *normalized*  (the axes have a length of `1`), which also means it can only represent rotation. See also [method Basis.orthonormalized]. */
-        orthonormalized(): Transform3D
-        
-        /** Returns a copy of this transform rotated around the given [param axis] by the given [param angle] (in radians).  
-         *  The [param axis] must be a normalized vector.  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding rotation transform `R` from the left, i.e., `R * X`.  
-         *  This can be seen as transforming with respect to the global/parent frame.  
-         */
-        rotated(axis: Vector3, angle: float64): Transform3D
-        
-        /** Returns a copy of this transform rotated around the given [param axis] by the given [param angle] (in radians).  
-         *  The [param axis] must be a normalized vector.  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding rotation transform `R` from the right, i.e., `X * R`.  
-         *  This can be seen as transforming with respect to the local frame.  
-         */
-        rotated_local(axis: Vector3, angle: float64): Transform3D
-        
-        /** Returns a copy of this transform scaled by the given [param scale] factor.  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding scaling transform `S` from the left, i.e., `S * X`.  
-         *  This can be seen as transforming with respect to the global/parent frame.  
-         */
-        scaled(scale: Vector3): Transform3D
-        
-        /** Returns a copy of this transform scaled by the given [param scale] factor.  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding scaling transform `S` from the right, i.e., `X * S`.  
-         *  This can be seen as transforming with respect to the local frame.  
-         */
-        scaled_local(scale: Vector3): Transform3D
-        
-        /** Returns a copy of this transform translated by the given [param offset].  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding translation transform `T` from the left, i.e., `T * X`.  
-         *  This can be seen as transforming with respect to the global/parent frame.  
-         */
-        translated(offset: Vector3): Transform3D
-        
-        /** Returns a copy of this transform translated by the given [param offset].  
-         *  This method is an optimized version of multiplying the given transform `X` with a corresponding translation transform `T` from the right, i.e., `X * T`.  
-         *  This can be seen as transforming with respect to the local frame.  
-         */
-        translated_local(offset: Vector3): Transform3D
-        
-        /** Returns a copy of this transform rotated so that the forward axis (-Z) points towards the [param target] position.  
-         *  The up axis (+Y) points as close to the [param up] vector as possible while staying perpendicular to the forward axis. The resulting transform is orthonormalized. The existing rotation, scale, and skew information from the original transform is discarded. The [param target] and [param up] vectors cannot be zero, cannot be parallel to each other, and are defined in global/parent space.  
-         *  If [param use_model_front] is `true`, the +Z axis (asset front) is treated as forward (implies +X is left) and points toward the [param target] position. By default, the -Z axis (camera forward) is treated as forward (implies +X is right).  
-         */
-        looking_at(target: Vector3, up: Vector3 = Vector3.ZERO, use_model_front: boolean = false): Transform3D
-        
-        /** Returns the result of the linear interpolation between this transform and [param xform] by the given [param weight].  
-         *  The [param weight] should be between `0.0` and `1.0` (inclusive). Values outside this range are allowed and can be used to perform  *extrapolation*  instead.  
-         */
-        interpolate_with(xform: Transform3D, weight: float64): Transform3D
-        
-        /** Returns `true` if this transform and [param xform] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
-        is_equal_approx(xform: Transform3D): boolean
-        
-        /** Returns `true` if this transform is finite, by calling [method @GlobalScope.is_finite] on each component. */
-        is_finite(): boolean
-        static MULTIPLY(left: Transform3D, right: Transform3D): Transform3D
-        static MULTIPLY(left: Transform3D, right: float64): Transform3D
-        static MULTIPLY(left: Transform3D, right: Vector3): Vector3
-        static MULTIPLY(left: Vector3, right: Transform3D): Vector3
-        static MULTIPLY(left: Transform3D, right: AABB): AABB
-        static MULTIPLY(left: AABB, right: Transform3D): AABB
-        static MULTIPLY(left: Transform3D, right: Plane): Plane
-        static MULTIPLY(left: Plane, right: Transform3D): Plane
-        static MULTIPLY(left: Transform3D, right: PackedVector3Array | Vector3[]): PackedVector3Array
-        static MULTIPLY(left: PackedVector3Array | Vector3[], right: Transform3D): PackedVector3Array
-        static EQUAL(left: Transform3D, right: Transform3D): boolean
-        static NOT_EQUAL(left: Transform3D, right: Transform3D): boolean
-        get basis(): Basis
-        set basis(value: Basis)
-        get origin(): Vector3
-        set origin(value: Vector3)
-    }
-    namespace Projection {
-        enum Planes {
-            /** The index value of the projection's near clipping plane. */
-            PLANE_NEAR = 0,
-            
-            /** The index value of the projection's far clipping plane. */
-            PLANE_FAR = 1,
-            
-            /** The index value of the projection's left clipping plane. */
-            PLANE_LEFT = 2,
-            
-            /** The index value of the projection's top clipping plane. */
-            PLANE_TOP = 3,
-            
-            /** The index value of the projection's right clipping plane. */
-            PLANE_RIGHT = 4,
-            
-            /** The index value of the projection bottom clipping plane. */
-            PLANE_BOTTOM = 5,
-        }
-    }
-    /** A 4×4 matrix for 3D projective transformations.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_projection.html  
+    get content_margin_right(): float64;
+    set content_margin_right(value: float64);
+
+    /** The bottom margin for the contents of this style box. Increasing this value reduces the space available to the contents from the bottom.
+     *  If this value is negative, it is ignored and a child-specific margin is used instead. For example, for [StyleBoxFlat], the border thickness (if any) is used instead.
+     *  It is up to the code using this style box to decide what these contents are: for example, a [Button] respects this content margin for the textual contents of the button.
+     *  [method get_margin] should be used to fetch this value as consumer instead of reading these properties directly. This is because it correctly respects negative values and the fallback mentioned above.
      */
-    class Projection {
-        /** A [Projection] with no transformation defined. When applied to other data structures, no transformation is performed. */
-        static readonly IDENTITY: Projection
-        
-        /** A [Projection] with all values initialized to 0. When applied to other data structures, they will be zeroed. */
-        static readonly ZERO: Projection
-        constructor()
-        constructor(from: Projection)
-        constructor(from: Transform3D)
-        constructor(x_axis: Vector4, y_axis: Vector4, z_axis: Vector4, w_axis: Vector4)
-        set_indexed(index: number, value: Vector4)
-        get_indexed(index: number): Vector4
-        
-        /** Creates a new [Projection] that projects positions from a depth range of `-1` to `1` to one that ranges from `0` to `1`, and flips the projected positions vertically, according to [param flip_y]. */
-        static create_depth_correction(flip_y: boolean): Projection
-        
-        /** Creates a new [Projection] that projects positions into the given [Rect2]. */
-        static create_light_atlas_rect(rect: Rect2): Projection
-        
-        /** Creates a new [Projection] that projects positions using a perspective projection with the given Y-axis field of view (in degrees), X:Y aspect ratio, and clipping planes.  
-         *  [param flip_fov] determines whether the projection's field of view is flipped over its diagonal.  
-         */
-        static create_perspective(fovy: float64, aspect: float64, z_near: float64, z_far: float64, flip_fov: boolean = false): Projection
-        
-        /** Creates a new [Projection] that projects positions using a perspective projection with the given Y-axis field of view (in degrees), X:Y aspect ratio, and clipping distances. The projection is adjusted for a head-mounted display with the given distance between eyes and distance to a point that can be focused on.  
-         *  [param eye] creates the projection for the left eye when set to 1, or the right eye when set to 2.  
-         *  [param flip_fov] determines whether the projection's field of view is flipped over its diagonal.  
-         */
-        static create_perspective_hmd(fovy: float64, aspect: float64, z_near: float64, z_far: float64, flip_fov: boolean, eye: int64, intraocular_dist: float64, convergence_dist: float64): Projection
-        
-        /** Creates a new [Projection] for projecting positions onto a head-mounted display with the given X:Y aspect ratio, distance between eyes, display width, distance to lens, oversampling factor, and depth clipping planes.  
-         *  [param eye] creates the projection for the left eye when set to 1, or the right eye when set to 2.  
-         */
-        static create_for_hmd(eye: int64, aspect: float64, intraocular_dist: float64, display_width: float64, display_to_lens: float64, oversample: float64, z_near: float64, z_far: float64): Projection
-        
-        /** Creates a new [Projection] that projects positions using an orthogonal projection with the given clipping planes. */
-        static create_orthogonal(left: float64, right: float64, bottom: float64, top: float64, z_near: float64, z_far: float64): Projection
-        
-        /** Creates a new [Projection] that projects positions using an orthogonal projection with the given size, X:Y aspect ratio, and clipping planes.  
-         *  [param flip_fov] determines whether the projection's field of view is flipped over its diagonal.  
-         */
-        static create_orthogonal_aspect(size: float64, aspect: float64, z_near: float64, z_far: float64, flip_fov: boolean = false): Projection
-        
-        /** Creates a new [Projection] that projects positions in a frustum with the given clipping planes. */
-        static create_frustum(left: float64, right: float64, bottom: float64, top: float64, z_near: float64, z_far: float64): Projection
-        
-        /** Creates a new [Projection] that projects positions in a frustum with the given size, X:Y aspect ratio, offset, and clipping planes.  
-         *  [param flip_fov] determines whether the projection's field of view is flipped over its diagonal.  
-         */
-        static create_frustum_aspect(size: float64, aspect: float64, offset: Vector2, z_near: float64, z_far: float64, flip_fov: boolean = false): Projection
-        
-        /** Creates a new [Projection] that scales a given projection to fit around a given [AABB] in projection space. */
-        static create_fit_aabb(aabb: AABB): Projection
-        
-        /** Returns a scalar value that is the signed factor by which areas are scaled by this matrix. If the sign is negative, the matrix flips the orientation of the area.  
-         *  The determinant can be used to calculate the invertibility of a matrix or solve linear systems of equations involving the matrix, among other applications.  
-         */
-        determinant(): float64
-        
-        /** Returns a [Projection] with the near clipping distance adjusted to be [param new_znear].  
-         *      
-         *  **Note:** The original [Projection] must be a perspective projection.  
-         */
-        perspective_znear_adjusted(new_znear: float64): Projection
-        
-        /** Returns the clipping plane of this [Projection] whose index is given by [param plane].  
-         *  [param plane] should be equal to one of [constant PLANE_NEAR], [constant PLANE_FAR], [constant PLANE_LEFT], [constant PLANE_TOP], [constant PLANE_RIGHT], or [constant PLANE_BOTTOM].  
-         */
-        get_projection_plane(plane: int64): Plane
-        
-        /** Returns a copy of this [Projection] with the signs of the values of the Y column flipped. */
-        flipped_y(): Projection
-        
-        /** Returns a [Projection] with the X and Y values from the given [Vector2] added to the first and second values of the final column respectively. */
-        jitter_offseted(offset: Vector2): Projection
-        
-        /** Returns the vertical field of view of the projection (in degrees) associated with the given horizontal field of view (in degrees) and aspect ratio. */
-        static get_fovy(fovx: float64, aspect: float64): float64
-        
-        /** Returns the distance for this [Projection] beyond which positions are clipped. */
-        get_z_far(): float64
-        
-        /** Returns the distance for this [Projection] before which positions are clipped. */
-        get_z_near(): float64
-        
-        /** Returns the X:Y aspect ratio of this [Projection]'s viewport. */
-        get_aspect(): float64
-        
-        /** Returns the horizontal field of view of the projection (in degrees). */
-        get_fov(): float64
-        
-        /** Returns `true` if this [Projection] performs an orthogonal projection. */
-        is_orthogonal(): boolean
-        
-        /** Returns the dimensions of the viewport plane that this [Projection] projects positions onto, divided by two. */
-        get_viewport_half_extents(): Vector2
-        
-        /** Returns the dimensions of the far clipping plane of the projection, divided by two. */
-        get_far_plane_half_extents(): Vector2
-        
-        /** Returns a [Projection] that performs the inverse of this [Projection]'s projective transformation. */
-        inverse(): Projection
-        
-        /** Returns the number of pixels with the given pixel width displayed per meter, after this [Projection] is applied. */
-        get_pixels_per_meter(for_pixel_width: int64): int64
-        
-        /** Returns the factor by which the visible level of detail is scaled by this [Projection]. */
-        get_lod_multiplier(): float64
-        static MULTIPLY(left: Projection, right: Projection): Projection
-        static MULTIPLY(left: Projection, right: Vector4): Vector4
-        static MULTIPLY(left: Vector4, right: Projection): Vector4
-        static EQUAL(left: Projection, right: Projection): boolean
-        static NOT_EQUAL(left: Projection, right: Projection): boolean
-        get x(): Vector4
-        set x(value: Vector4)
-        get y(): Vector4
-        set y(value: Vector4)
-        get z(): Vector4
-        set z(value: Vector4)
-        get w(): Vector4
-        set w(value: Vector4)
-    }
-    /** A color represented in RGBA format.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_color.html  
+    get content_margin_bottom(): float64;
+    set content_margin_bottom(value: float64);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapStyleBox;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapStyleBoxEmpty extends __NameMapStyleBox {}
+  /** An empty [StyleBox] (does not display anything).
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_styleboxempty.html
+   */
+  class StyleBoxEmpty extends StyleBox {
+    constructor(identifier?: any);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapStyleBoxEmpty;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapStyleBoxFlat extends __NameMapStyleBox {}
+  /** A customizable [StyleBox] that doesn't use a texture.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_styleboxflat.html
+   */
+  class StyleBoxFlat extends StyleBox {
+    constructor(identifier?: any);
+    /** Sets the border width to [param width] pixels for all sides. */
+    set_border_width_all(width: int64): void;
+
+    /** Returns the smallest border width out of all four borders. */
+    get_border_width_min(): int64;
+
+    /** Sets the specified [enum Side]'s border width to [param width] pixels. */
+    set_border_width(margin: Side, width: int64): void;
+
+    /** Returns the specified [enum Side]'s border width. */
+    get_border_width(margin: Side): int64;
+
+    /** Sets the corner radius to [param radius] pixels for all corners. */
+    set_corner_radius_all(radius: int64): void;
+
+    /** Sets the corner radius to [param radius] pixels for the given [param corner]. */
+    set_corner_radius(corner: Corner, radius: int64): void;
+
+    /** Returns the given [param corner]'s radius. */
+    get_corner_radius(corner: Corner): int64;
+
+    /** Sets the expand margin to [param size] pixels for the specified [enum Side]. */
+    set_expand_margin(margin: Side, size: float64): void;
+
+    /** Sets the expand margin to [param size] pixels for all sides. */
+    set_expand_margin_all(size: float64): void;
+
+    /** Returns the size of the specified [enum Side]'s expand margin. */
+    get_expand_margin(margin: Side): float64;
+
+    /** The background color of the stylebox. */
+    get bg_color(): Color;
+    set bg_color(value: Color);
+
+    /** Toggles drawing of the inner part of the stylebox. */
+    get draw_center(): boolean;
+    set draw_center(value: boolean);
+
+    /** If set to a non-zero value on either axis, [member skew] distorts the StyleBox horizontally and/or vertically. This can be used for "futuristic"-style UIs. Positive values skew the StyleBox towards the right (X axis) and upwards (Y axis), while negative values skew the StyleBox towards the left (X axis) and downwards (Y axis).
+     *
+     *  **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the [StyleBox]'s content margin (see [member StyleBox.content_margin_bottom]). It is preferable to increase the content margin instead of the expand margin (see [member expand_margin_bottom]), as increasing the expand margin does not increase the size of the clickable area for [Control]s.
      */
-    class Color {
-        /** Alice blue color. */
-        static readonly ALICE_BLUE: Color
-        
-        /** Antique white color. */
-        static readonly ANTIQUE_WHITE: Color
-        
-        /** Aqua color. */
-        static readonly AQUA: Color
-        
-        /** Aquamarine color. */
-        static readonly AQUAMARINE: Color
-        
-        /** Azure color. */
-        static readonly AZURE: Color
-        
-        /** Beige color. */
-        static readonly BEIGE: Color
-        
-        /** Bisque color. */
-        static readonly BISQUE: Color
-        
-        /** Black color. In GDScript, this is the default value of any color. */
-        static readonly BLACK: Color
-        
-        /** Blanched almond color. */
-        static readonly BLANCHED_ALMOND: Color
-        
-        /** Blue color. */
-        static readonly BLUE: Color
-        
-        /** Blue violet color. */
-        static readonly BLUE_VIOLET: Color
-        
-        /** Brown color. */
-        static readonly BROWN: Color
-        
-        /** Burlywood color. */
-        static readonly BURLYWOOD: Color
-        
-        /** Cadet blue color. */
-        static readonly CADET_BLUE: Color
-        
-        /** Chartreuse color. */
-        static readonly CHARTREUSE: Color
-        
-        /** Chocolate color. */
-        static readonly CHOCOLATE: Color
-        
-        /** Coral color. */
-        static readonly CORAL: Color
-        
-        /** Cornflower blue color. */
-        static readonly CORNFLOWER_BLUE: Color
-        
-        /** Cornsilk color. */
-        static readonly CORNSILK: Color
-        
-        /** Crimson color. */
-        static readonly CRIMSON: Color
-        
-        /** Cyan color. */
-        static readonly CYAN: Color
-        
-        /** Dark blue color. */
-        static readonly DARK_BLUE: Color
-        
-        /** Dark cyan color. */
-        static readonly DARK_CYAN: Color
-        
-        /** Dark goldenrod color. */
-        static readonly DARK_GOLDENROD: Color
-        
-        /** Dark gray color. */
-        static readonly DARK_GRAY: Color
-        
-        /** Dark green color. */
-        static readonly DARK_GREEN: Color
-        
-        /** Dark khaki color. */
-        static readonly DARK_KHAKI: Color
-        
-        /** Dark magenta color. */
-        static readonly DARK_MAGENTA: Color
-        
-        /** Dark olive green color. */
-        static readonly DARK_OLIVE_GREEN: Color
-        
-        /** Dark orange color. */
-        static readonly DARK_ORANGE: Color
-        
-        /** Dark orchid color. */
-        static readonly DARK_ORCHID: Color
-        
-        /** Dark red color. */
-        static readonly DARK_RED: Color
-        
-        /** Dark salmon color. */
-        static readonly DARK_SALMON: Color
-        
-        /** Dark sea green color. */
-        static readonly DARK_SEA_GREEN: Color
-        
-        /** Dark slate blue color. */
-        static readonly DARK_SLATE_BLUE: Color
-        
-        /** Dark slate gray color. */
-        static readonly DARK_SLATE_GRAY: Color
-        
-        /** Dark turquoise color. */
-        static readonly DARK_TURQUOISE: Color
-        
-        /** Dark violet color. */
-        static readonly DARK_VIOLET: Color
-        
-        /** Deep pink color. */
-        static readonly DEEP_PINK: Color
-        
-        /** Deep sky blue color. */
-        static readonly DEEP_SKY_BLUE: Color
-        
-        /** Dim gray color. */
-        static readonly DIM_GRAY: Color
-        
-        /** Dodger blue color. */
-        static readonly DODGER_BLUE: Color
-        
-        /** Firebrick color. */
-        static readonly FIREBRICK: Color
-        
-        /** Floral white color. */
-        static readonly FLORAL_WHITE: Color
-        
-        /** Forest green color. */
-        static readonly FOREST_GREEN: Color
-        
-        /** Fuchsia color. */
-        static readonly FUCHSIA: Color
-        
-        /** Gainsboro color. */
-        static readonly GAINSBORO: Color
-        
-        /** Ghost white color. */
-        static readonly GHOST_WHITE: Color
-        
-        /** Gold color. */
-        static readonly GOLD: Color
-        
-        /** Goldenrod color. */
-        static readonly GOLDENROD: Color
-        
-        /** Gray color. */
-        static readonly GRAY: Color
-        
-        /** Green color. */
-        static readonly GREEN: Color
-        
-        /** Green yellow color. */
-        static readonly GREEN_YELLOW: Color
-        
-        /** Honeydew color. */
-        static readonly HONEYDEW: Color
-        
-        /** Hot pink color. */
-        static readonly HOT_PINK: Color
-        
-        /** Indian red color. */
-        static readonly INDIAN_RED: Color
-        
-        /** Indigo color. */
-        static readonly INDIGO: Color
-        
-        /** Ivory color. */
-        static readonly IVORY: Color
-        
-        /** Khaki color. */
-        static readonly KHAKI: Color
-        
-        /** Lavender color. */
-        static readonly LAVENDER: Color
-        
-        /** Lavender blush color. */
-        static readonly LAVENDER_BLUSH: Color
-        
-        /** Lawn green color. */
-        static readonly LAWN_GREEN: Color
-        
-        /** Lemon chiffon color. */
-        static readonly LEMON_CHIFFON: Color
-        
-        /** Light blue color. */
-        static readonly LIGHT_BLUE: Color
-        
-        /** Light coral color. */
-        static readonly LIGHT_CORAL: Color
-        
-        /** Light cyan color. */
-        static readonly LIGHT_CYAN: Color
-        
-        /** Light goldenrod color. */
-        static readonly LIGHT_GOLDENROD: Color
-        
-        /** Light gray color. */
-        static readonly LIGHT_GRAY: Color
-        
-        /** Light green color. */
-        static readonly LIGHT_GREEN: Color
-        
-        /** Light pink color. */
-        static readonly LIGHT_PINK: Color
-        
-        /** Light salmon color. */
-        static readonly LIGHT_SALMON: Color
-        
-        /** Light sea green color. */
-        static readonly LIGHT_SEA_GREEN: Color
-        
-        /** Light sky blue color. */
-        static readonly LIGHT_SKY_BLUE: Color
-        
-        /** Light slate gray color. */
-        static readonly LIGHT_SLATE_GRAY: Color
-        
-        /** Light steel blue color. */
-        static readonly LIGHT_STEEL_BLUE: Color
-        
-        /** Light yellow color. */
-        static readonly LIGHT_YELLOW: Color
-        
-        /** Lime color. */
-        static readonly LIME: Color
-        
-        /** Lime green color. */
-        static readonly LIME_GREEN: Color
-        
-        /** Linen color. */
-        static readonly LINEN: Color
-        
-        /** Magenta color. */
-        static readonly MAGENTA: Color
-        
-        /** Maroon color. */
-        static readonly MAROON: Color
-        
-        /** Medium aquamarine color. */
-        static readonly MEDIUM_AQUAMARINE: Color
-        
-        /** Medium blue color. */
-        static readonly MEDIUM_BLUE: Color
-        
-        /** Medium orchid color. */
-        static readonly MEDIUM_ORCHID: Color
-        
-        /** Medium purple color. */
-        static readonly MEDIUM_PURPLE: Color
-        
-        /** Medium sea green color. */
-        static readonly MEDIUM_SEA_GREEN: Color
-        
-        /** Medium slate blue color. */
-        static readonly MEDIUM_SLATE_BLUE: Color
-        
-        /** Medium spring green color. */
-        static readonly MEDIUM_SPRING_GREEN: Color
-        
-        /** Medium turquoise color. */
-        static readonly MEDIUM_TURQUOISE: Color
-        
-        /** Medium violet red color. */
-        static readonly MEDIUM_VIOLET_RED: Color
-        
-        /** Midnight blue color. */
-        static readonly MIDNIGHT_BLUE: Color
-        
-        /** Mint cream color. */
-        static readonly MINT_CREAM: Color
-        
-        /** Misty rose color. */
-        static readonly MISTY_ROSE: Color
-        
-        /** Moccasin color. */
-        static readonly MOCCASIN: Color
-        
-        /** Navajo white color. */
-        static readonly NAVAJO_WHITE: Color
-        
-        /** Navy blue color. */
-        static readonly NAVY_BLUE: Color
-        
-        /** Old lace color. */
-        static readonly OLD_LACE: Color
-        
-        /** Olive color. */
-        static readonly OLIVE: Color
-        
-        /** Olive drab color. */
-        static readonly OLIVE_DRAB: Color
-        
-        /** Orange color. */
-        static readonly ORANGE: Color
-        
-        /** Orange red color. */
-        static readonly ORANGE_RED: Color
-        
-        /** Orchid color. */
-        static readonly ORCHID: Color
-        
-        /** Pale goldenrod color. */
-        static readonly PALE_GOLDENROD: Color
-        
-        /** Pale green color. */
-        static readonly PALE_GREEN: Color
-        
-        /** Pale turquoise color. */
-        static readonly PALE_TURQUOISE: Color
-        
-        /** Pale violet red color. */
-        static readonly PALE_VIOLET_RED: Color
-        
-        /** Papaya whip color. */
-        static readonly PAPAYA_WHIP: Color
-        
-        /** Peach puff color. */
-        static readonly PEACH_PUFF: Color
-        
-        /** Peru color. */
-        static readonly PERU: Color
-        
-        /** Pink color. */
-        static readonly PINK: Color
-        
-        /** Plum color. */
-        static readonly PLUM: Color
-        
-        /** Powder blue color. */
-        static readonly POWDER_BLUE: Color
-        
-        /** Purple color. */
-        static readonly PURPLE: Color
-        
-        /** Rebecca purple color. */
-        static readonly REBECCA_PURPLE: Color
-        
-        /** Red color. */
-        static readonly RED: Color
-        
-        /** Rosy brown color. */
-        static readonly ROSY_BROWN: Color
-        
-        /** Royal blue color. */
-        static readonly ROYAL_BLUE: Color
-        
-        /** Saddle brown color. */
-        static readonly SADDLE_BROWN: Color
-        
-        /** Salmon color. */
-        static readonly SALMON: Color
-        
-        /** Sandy brown color. */
-        static readonly SANDY_BROWN: Color
-        
-        /** Sea green color. */
-        static readonly SEA_GREEN: Color
-        
-        /** Seashell color. */
-        static readonly SEASHELL: Color
-        
-        /** Sienna color. */
-        static readonly SIENNA: Color
-        
-        /** Silver color. */
-        static readonly SILVER: Color
-        
-        /** Sky blue color. */
-        static readonly SKY_BLUE: Color
-        
-        /** Slate blue color. */
-        static readonly SLATE_BLUE: Color
-        
-        /** Slate gray color. */
-        static readonly SLATE_GRAY: Color
-        
-        /** Snow color. */
-        static readonly SNOW: Color
-        
-        /** Spring green color. */
-        static readonly SPRING_GREEN: Color
-        
-        /** Steel blue color. */
-        static readonly STEEL_BLUE: Color
-        
-        /** Tan color. */
-        static readonly TAN: Color
-        
-        /** Teal color. */
-        static readonly TEAL: Color
-        
-        /** Thistle color. */
-        static readonly THISTLE: Color
-        
-        /** Tomato color. */
-        static readonly TOMATO: Color
-        
-        /** Transparent color (white with zero alpha). */
-        static readonly TRANSPARENT: Color
-        
-        /** Turquoise color. */
-        static readonly TURQUOISE: Color
-        
-        /** Violet color. */
-        static readonly VIOLET: Color
-        
-        /** Web gray color. */
-        static readonly WEB_GRAY: Color
-        
-        /** Web green color. */
-        static readonly WEB_GREEN: Color
-        
-        /** Web maroon color. */
-        static readonly WEB_MAROON: Color
-        
-        /** Web purple color. */
-        static readonly WEB_PURPLE: Color
-        
-        /** Wheat color. */
-        static readonly WHEAT: Color
-        
-        /** White color. */
-        static readonly WHITE: Color
-        
-        /** White smoke color. */
-        static readonly WHITE_SMOKE: Color
-        
-        /** Yellow color. */
-        static readonly YELLOW: Color
-        
-        /** Yellow green color. */
-        static readonly YELLOW_GREEN: Color
-        constructor()
-        constructor(from: Color)
-        constructor(from: Color, alpha: float64)
-        constructor(r: float64, g: float64, b: float64)
-        constructor(r: float64, g: float64, b: float64, a: float64)
-        constructor(code: string)
-        constructor(code: string, alpha: float64)
-        set_indexed(index: number, value: float64)
-        get_indexed(index: number): float64
-        
-        /** Returns the color converted to a 32-bit integer in ARGB format (each component is 8 bits). ARGB is more compatible with DirectX.  
-         *    
-         */
-        to_argb32(): int64
-        
-        /** Returns the color converted to a 32-bit integer in ABGR format (each component is 8 bits). ABGR is the reversed version of the default RGBA format.  
-         *    
-         */
-        to_abgr32(): int64
-        
-        /** Returns the color converted to a 32-bit integer in RGBA format (each component is 8 bits). RGBA is Godot's default format. This method is the inverse of [method hex].  
-         *    
-         */
-        to_rgba32(): int64
-        
-        /** Returns the color converted to a 64-bit integer in ARGB format (each component is 16 bits). ARGB is more compatible with DirectX.  
-         *    
-         */
-        to_argb64(): int64
-        
-        /** Returns the color converted to a 64-bit integer in ABGR format (each component is 16 bits). ABGR is the reversed version of the default RGBA format.  
-         *    
-         */
-        to_abgr64(): int64
-        
-        /** Returns the color converted to a 64-bit integer in RGBA format (each component is 16 bits). RGBA is Godot's default format. This method is the inverse of [method hex64].  
-         *    
-         */
-        to_rgba64(): int64
-        
-        /** Returns the color converted to an HTML hexadecimal color [String] in RGBA format, without the hash (`#`) prefix.  
-         *  Setting [param with_alpha] to `false`, excludes alpha from the hexadecimal string, using RGB format instead of RGBA format.  
-         *    
-         */
-        to_html(with_alpha: boolean = true): string
-        
-        /** Returns a new color with all components clamped between the components of [param min] and [param max], by running [method @GlobalScope.clamp] on each component. */
-        clamp(min: Color = new Color(0, 0, 0, 0), max: Color = new Color(1, 1, 1, 1)): Color
-        
-        /** Returns the color with its [member r], [member g], and [member b] components inverted (`(1 - r, 1 - g, 1 - b, a)`).  
-         *    
-         */
-        inverted(): Color
-        
-        /** Returns the linear interpolation between this color's components and [param to]'s components. The interpolation factor [param weight] should be between 0.0 and 1.0 (inclusive). See also [method @GlobalScope.lerp].  
-         *    
-         */
-        lerp(to: Color, weight: float64): Color
-        
-        /** Returns a new color resulting from making this color lighter by the specified [param amount], which should be a ratio from 0.0 to 1.0. See also [method darkened].  
-         *    
-         */
-        lightened(amount: float64): Color
-        
-        /** Returns a new color resulting from making this color darker by the specified [param amount] (ratio from 0.0 to 1.0). See also [method lightened].  
-         *    
-         */
-        darkened(amount: float64): Color
-        
-        /** Returns a new color resulting from overlaying this color over the given color. In a painting program, you can imagine it as the [param over] color painted over this color (including alpha).  
-         *    
-         */
-        blend(over: Color): Color
-        
-        /** Returns the light intensity of the color, as a value between 0.0 and 1.0 (inclusive). This is useful when determining light or dark color. Colors with a luminance smaller than 0.5 can be generally considered dark.  
-         *      
-         *  **Note:** [method get_luminance] relies on the color being in the linear color space to return an accurate relative luminance value. If the color is in the sRGB color space, use [method srgb_to_linear] to convert it to the linear color space first.  
-         */
-        get_luminance(): float64
-        
-        /** Returns the color converted to the linear color space. This method assumes the original color already is in the sRGB color space. See also [method linear_to_srgb] which performs the opposite operation. */
-        srgb_to_linear(): Color
-        
-        /** Returns the color converted to the [url=https://en.wikipedia.org/wiki/SRGB]sRGB[/url] color space. This method assumes the original color is in the linear color space. See also [method srgb_to_linear] which performs the opposite operation. */
-        linear_to_srgb(): Color
-        
-        /** Returns `true` if this color and [param to] are approximately equal, by running [method @GlobalScope.is_equal_approx] on each component. */
-        is_equal_approx(to: Color): boolean
-        
-        /** Returns the [Color] associated with the provided [param hex] integer in 32-bit RGBA format (8 bits per channel). This method is the inverse of [method to_rgba32].  
-         *  In GDScript and C#, the [int] is best visualized with hexadecimal notation (`"0x"` prefix, making it `"0xRRGGBBAA"`).  
-         *    
-         *  If you want to use hex notation in a constant expression, use the equivalent constructor instead (i.e. `Color(0xRRGGBBAA)`).  
-         */
-        static hex(hex: int64): Color
-        
-        /** Returns the [Color] associated with the provided [param hex] integer in 64-bit RGBA format (16 bits per channel). This method is the inverse of [method to_rgba64].  
-         *  In GDScript and C#, the [int] is best visualized with hexadecimal notation (`"0x"` prefix, making it `"0xRRRRGGGGBBBBAAAA"`).  
-         */
-        static hex64(hex: int64): Color
-        
-        /** Returns a new color from [param rgba], an HTML hexadecimal color string. [param rgba] is not case-sensitive, and may be prefixed by a hash sign (`#`).  
-         *  [param rgba] must be a valid three-digit or six-digit hexadecimal color string, and may contain an alpha channel value. If [param rgba] does not contain an alpha channel value, an alpha channel value of 1.0 is applied. If [param rgba] is invalid, returns an empty color.  
-         *    
-         */
-        static html(rgba: string): Color
-        
-        /** Returns `true` if [param color] is a valid HTML hexadecimal color string. The string must be a hexadecimal value (case-insensitive) of either 3, 4, 6 or 8 digits, and may be prefixed by a hash sign (`#`). This method is identical to [method String.is_valid_html_color].  
-         *    
-         */
-        static html_is_valid(color: string): boolean
-        
-        /** Creates a [Color] from the given string, which can be either an HTML color code or a named color (case-insensitive). Returns [param default] if the color cannot be inferred from the string.  
-         *  If you want to create a color from String in a constant expression, use the equivalent constructor instead (i.e. `Color("color string")`).  
-         */
-        static from_string(str: string, default_: Color): Color
-        
-        /** Constructs a color from an [url=https://en.wikipedia.org/wiki/HSL_and_HSV]HSV profile[/url]. The hue ([param h]), saturation ([param s]), and value ([param v]) are typically between 0.0 and 1.0.  
-         *    
-         */
-        static from_hsv(h: float64, s: float64, v: float64, alpha: float64 = 1): Color
-        
-        /** Constructs a color from an [url=https://bottosson.github.io/posts/colorpicker/]OK HSL profile[/url]. The hue ([param h]), saturation ([param s]), and lightness ([param l]) are typically between 0.0 and 1.0.  
-         *    
-         */
-        static from_ok_hsl(h: float64, s: float64, l: float64, alpha: float64 = 1): Color
-        
-        /** Decodes a [Color] from an RGBE9995 format integer. See [constant Image.FORMAT_RGBE9995]. */
-        static from_rgbe9995(rgbe: int64): Color
-        static ADD(left: Color, right: Color): Color
-        static SUBTRACT(left: Color, right: Color): Color
-        static MULTIPLY(left: Color, right: Color): Color
-        static MULTIPLY(left: Color, right: float64): Color
-        static MULTIPLY(left: float64, right: Color): Color
-        static DIVIDE(left: Color, right: Color): Color
-        static DIVIDE(left: Color, right: float64): Color
-        static NEGATE(left: Color): Color
-        static EQUAL(left: Color, right: Color): boolean
-        static NOT_EQUAL(left: Color, right: Color): boolean
-        get r(): float64
-        set r(value: float64)
-        get g(): float64
-        set g(value: float64)
-        get b(): float64
-        set b(value: float64)
-        get a(): float64
-        set a(value: float64)
-        get r8(): int64
-        set r8(value: int64)
-        get g8(): int64
-        set g8(value: int64)
-        get b8(): int64
-        set b8(value: int64)
-        get a8(): int64
-        set a8(value: int64)
-        get h(): float64
-        set h(value: float64)
-        get s(): float64
-        set s(value: float64)
-        get v(): float64
-        set v(value: float64)
-    }
-    /** A pre-parsed scene tree path.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_nodepath.html  
+    get skew(): Vector2;
+    set skew(value: Vector2);
+
+    /** Border width for the left border. */
+    get border_width_left(): int64;
+    set border_width_left(value: int64);
+
+    /** Border width for the top border. */
+    get border_width_top(): int64;
+    set border_width_top(value: int64);
+
+    /** Border width for the right border. */
+    get border_width_right(): int64;
+    set border_width_right(value: int64);
+
+    /** Border width for the bottom border. */
+    get border_width_bottom(): int64;
+    set border_width_bottom(value: int64);
+
+    /** Sets the color of the border. */
+    get border_color(): Color;
+    set border_color(value: Color);
+
+    /** If `true`, the border will fade into the background color. */
+    get border_blend(): boolean;
+    set border_blend(value: boolean);
+
+    /** The top-left corner's radius. If `0`, the corner is not rounded. */
+    get corner_radius_top_left(): int64;
+    set corner_radius_top_left(value: int64);
+
+    /** The top-right corner's radius. If `0`, the corner is not rounded. */
+    get corner_radius_top_right(): int64;
+    set corner_radius_top_right(value: int64);
+
+    /** The bottom-right corner's radius. If `0`, the corner is not rounded. */
+    get corner_radius_bottom_right(): int64;
+    set corner_radius_bottom_right(value: int64);
+
+    /** The bottom-left corner's radius. If `0`, the corner is not rounded. */
+    get corner_radius_bottom_left(): int64;
+    set corner_radius_bottom_left(value: int64);
+
+    /** This sets the number of vertices used for each corner. Higher values result in rounder corners but take more processing power to compute. When choosing a value, you should take the corner radius ([method set_corner_radius_all]) into account.
+     *  For corner radii less than 10, `4` or `5` should be enough. For corner radii less than 30, values between `8` and `12` should be enough.
+     *  A corner detail of `1` will result in chamfered corners instead of rounded corners, which is useful for some artistic effects.
      */
-    class NodePath {
-        constructor()
-        constructor(from: NodePath | string)
-        constructor(from: string)
-        
-        /** Returns `true` if the node path is absolute. Unlike a relative path, an absolute path is represented by a leading slash character (`/`) and always begins from the [SceneTree]. It can be used to reliably access nodes from the root node (e.g. `"/root/Global"` if an autoload named "Global" exists). */
-        is_absolute(): boolean
-        
-        /** Returns the number of node names in the path. Property subnames are not included.  
-         *  For example, `"../RigidBody2D/Sprite2D:texture"` contains 3 node names.  
-         */
-        get_name_count(): int64
-        
-        /** Returns the node name indicated by [param idx], starting from 0. If [param idx] is out of bounds, an error is generated. See also [method get_subname_count] and [method get_name_count].  
-         *    
-         */
-        get_name(idx: int64): StringName
-        
-        /** Returns the number of property names ("subnames") in the path. Each subname in the node path is listed after a colon character (`:`).  
-         *  For example, `"Level/RigidBody2D/Sprite2D:texture:resource_name"` contains 2 subnames.  
-         */
-        get_subname_count(): int64
-        
-        /** Returns the 32-bit hash value representing the node path's contents.  
-         *      
-         *  **Note:** Node paths with equal hash values are  *not*  guaranteed to be the same, as a result of hash collisions. Node paths with different hash values are guaranteed to be different.  
-         */
-        hash(): int64
-        
-        /** Returns the property name indicated by [param idx], starting from 0. If [param idx] is out of bounds, an error is generated. See also [method get_subname_count].  
-         *    
-         */
-        get_subname(idx: int64): StringName
-        
-        /** Returns all node names concatenated with a slash character (`/`) as a single [StringName]. */
-        get_concatenated_names(): StringName
-        
-        /** Returns all property subnames concatenated with a colon character (`:`) as a single [StringName].  
-         *    
-         */
-        get_concatenated_subnames(): StringName
-        
-        /** Returns the slice of the [NodePath], from [param begin] (inclusive) to [param end] (exclusive), as a new [NodePath].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the sum of [method get_name_count] and [method get_subname_count], so the default value for [param end] makes it slice to the end of the [NodePath] by default (i.e. `path.slice(1)` is a shorthand for `path.slice(1, path.get_name_count() + path.get_subname_count())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the [NodePath] (i.e. `path.slice(0, -2)` is a shorthand for `path.slice(0, path.get_name_count() + path.get_subname_count() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): NodePath
-        
-        /** Returns a copy of this node path with a colon character (`:`) prefixed, transforming it to a pure property path with no node names (relative to the current node).  
-         *    
-         */
-        get_as_property_path(): NodePath
-        
-        /** Returns `true` if the node path has been constructed from an empty [String] (`""`). */
-        is_empty(): boolean
-        static EQUAL(left: NodePath | string, right: NodePath | string): boolean
-        static NOT_EQUAL(left: NodePath | string, right: NodePath | string): boolean
-    }
-    /** A handle for a [Resource]'s unique identifier.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_rid.html  
+    get corner_detail(): int64;
+    set corner_detail(value: int64);
+
+    /** Expands the stylebox outside of the control rect on the left edge. Useful in combination with [member border_width_left] to draw a border outside the control rect.
+     *
+     *  **Note:** Unlike [member StyleBox.content_margin_left], [member expand_margin_left] does  *not*  affect the size of the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
      */
-    class RID {
-        constructor()
-        constructor(from: RID)
-        
-        /** Returns `true` if the [RID] is not `0`. */
-        is_valid(): boolean
-        
-        /** Returns the ID of the referenced low-level resource. */
-        get_id(): int64
-        static EQUAL(left: RID, right: RID): boolean
-        static NOT_EQUAL(left: RID, right: RID): boolean
-        static LESS(left: RID, right: RID): boolean
-        static LESS_EQUAL(left: RID, right: RID): boolean
-        static GREATER(left: RID, right: RID): boolean
-        static GREATER_EQUAL(left: RID, right: RID): boolean
-    }
-    /** A built-in type representing a method or a standalone function.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_callable.html  
+    get expand_margin_left(): float64;
+    set expand_margin_left(value: float64);
+
+    /** Expands the stylebox outside of the control rect on the top edge. Useful in combination with [member border_width_top] to draw a border outside the control rect.
+     *
+     *  **Note:** Unlike [member StyleBox.content_margin_top], [member expand_margin_top] does  *not*  affect the size of the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
      */
-    class Callable implements AnyCallable {
-        constructor()
-        constructor(from: AnyCallable)
-        constructor(object: Object, method: StringName)
-        /** Create a callable object with a bound object `self` */
-        static create<R = void>(self: Object, fn: () => R): Callable0<R>
-        /** Create a callable object with a bound object `self` */
-        static create<T1, R = void>(self: Object, fn: (v1: T1) => R): Callable1<T1, R>
-        /** Create a callable object with a bound object `self` */
-        static create<T1, T2, R = void>(self: Object, fn: (v1: T1, v2: T2) => R): Callable2<T1, T2, R>
-        /** Create a callable object with a bound object `self` */
-        static create<T1, T2, T3, R = void>(self: Object, fn: (v1: T1, v2: T2, v3: T3) => R): Callable3<T1, T2, T3, R>
-        /** Create a callable object with a bound object `self` */
-        static create<T1, T2, T3, T4, R = void>(self: Object, fn: (v1: T1, v2: T2, v3: T3, v4: T4) => R): Callable4<T1, T2, T3, T4, R>
-        /** Create a callable object with a bound object `self` */
-        static create<T1, T2, T3, T4, T5, R = void>(self: Object, fn: (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5) => R): Callable5<T1, T2, T3, T4, T5, R>
-        /** Create godot Callable without a bound object */
-        static create<R = void>(fn: () => R): Callable0<R>
-        /** Create godot Callable without a bound object */
-        static create<T1, R = void>(fn: (v1: T1) => R): Callable1<T1, R>
-        /** Create godot Callable without a bound object */
-        static create<T1, T2, R = void>(fn: (v1: T1, v2: T2) => R): Callable2<T1, T2, R>
-        /** Create godot Callable without a bound object */
-        static create<T1, T2, T3, R = void>(fn: (v1: T1, v2: T2, v3: T3) => R): Callable3<T1, T2, T3, R>
-        /** Create godot Callable without a bound object */
-        static create<T1, T2, T3, T4, R = void>(fn: (v1: T1, v2: T2, v3: T3, v4: T4) => R): Callable4<T1, T2, T3, T4, R>
-        /** Create godot Callable without a bound object */
-        static create<T1, T2, T3, T4, T5, R = void>(fn: (v1: T1, v2: T2, v3: T3, v4: T4, v5: T5) => R): Callable5<T1, T2, T3, T4, T5, R>
-        
-        /** Creates a new [Callable] for the method named [param method] in the specified [param variant]. To represent a method of a built-in [Variant] type, a custom callable is used (see [method is_custom]). If [param variant] is [Object], then a standard callable will be created instead.  
-         *      
-         *  **Note:** This method is always necessary for the [Dictionary] type, as property syntax is used to access its entries. You may also use this method when [param variant]'s type is not known in advance (for polymorphism).  
-         */
-        static create(variant: any, method: StringName): AnyCallable
-        
-        /** Calls the method represented by this [Callable]. Unlike [method call], this method expects all arguments to be contained inside the [param arguments] [Array]. */
-        callv(arguments_: GArray): any
-        
-        /** Returns `true` if this [Callable] has no target to call the method on. */
-        is_null(): boolean
-        
-        /** Returns `true` if this [Callable] is a custom callable. Custom callables are used:  
-         *  - for binding/unbinding arguments (see [method bind] and [method unbind]);  
-         *  - for representing methods of built-in [Variant] types (see [method create]);  
-         *  - for representing global, lambda, and RPC functions in GDScript;  
-         *  - for other purposes in the core, GDExtension, and C#.  
-         */
-        is_custom(): boolean
-        
-        /** Returns `true` if this [Callable] is a standard callable. This method is the opposite of [method is_custom]. Returns `false` if this callable is a lambda function. */
-        is_standard(): boolean
-        
-        /** Returns `true` if the callable's object exists and has a valid method name assigned, or is a custom callable. */
-        is_valid(): boolean
-        
-        /** Returns the object on which this [Callable] is called. */
-        get_object(): Object
-        
-        /** Returns the ID of this [Callable]'s object (see [method Object.get_instance_id]). */
-        get_object_id(): int64
-        
-        /** Returns the name of the method represented by this [Callable]. If the callable is a GDScript lambda function, returns the function's name or `"<anonymous lambda>"`. */
-        get_method(): StringName
-        
-        /** Returns the total number of arguments this [Callable] should take, including optional arguments. This means that any arguments bound with [method bind] are  *subtracted*  from the result, and any arguments unbound with [method unbind] are  *added*  to the result. */
-        get_argument_count(): int64
-        
-        /** Returns the total amount of arguments bound (or unbound) via successive [method bind] or [method unbind] calls. If the amount of arguments unbound is greater than the ones bound, this function returns a value less than zero. */
-        get_bound_arguments_count(): int64
-        
-        /** Return the bound arguments (as long as [method get_bound_arguments_count] is greater than zero), or empty (if [method get_bound_arguments_count] is less than or equal to zero). */
-        get_bound_arguments(): GArray
-        
-        /** Returns the 32-bit hash value of this [Callable]'s object.  
-         *      
-         *  **Note:** [Callable]s with equal content will always produce identical hash values. However, the reverse is not true. Returning identical hash values does  *not*  imply the callables are equal, because different callables can have identical hash values due to hash collisions. The engine uses a 32-bit hash algorithm for [method hash].  
-         */
-        hash(): int64
-        
-        /** Returns a copy of this [Callable] with one or more arguments bound, reading them from an array. When called, the bound arguments are passed  *after*  the arguments supplied by [method call]. See also [method unbind].  
-         *      
-         *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
-         */
-        bindv(arguments_: GArray): AnyCallable
-        
-        /** Returns a copy of this [Callable] with a number of arguments unbound. In other words, when the new callable is called the last few arguments supplied by the user are ignored, according to [param argcount]. The remaining arguments are passed to the callable. This allows to use the original callable in a context that attempts to pass more arguments than this callable can handle, e.g. a signal with a fixed number of arguments. See also [method bind].  
-         *      
-         *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
-         *    
-         */
-        unbind(argcount: int64): AnyCallable
-        
-        /** Calls the method represented by this [Callable]. Arguments can be passed and should match the method's signature. */
-        call(...vargargs: any[]): any
-        
-        /** Calls the method represented by this [Callable] in deferred mode, i.e. at the end of the current frame. Arguments can be passed and should match the method's signature.  
-         *    
-         *      
-         *  **Note:** Deferred calls are processed at idle time. Idle time happens mainly at the end of process and physics frames. In it, deferred calls will be run until there are none left, which means you can defer calls from other deferred calls and they'll still be run in the current idle time cycle. This means you should not call a method deferred from itself (or from a method called by it), as this causes infinite recursion the same way as if you had called the method directly.  
-         *  See also [method Object.call_deferred].  
-         */
-        call_deferred(...vargargs: any[]): void
-        
-        /** Perform an RPC (Remote Procedure Call) on all connected peers. This is used for multiplayer and is normally not available, unless the function being called has been marked as  *RPC*  (using [annotation @GDScript.@rpc] or [method Node.rpc_config]). Calling this method on unsupported functions will result in an error. See [method Node.rpc]. */
-        rpc(...vargargs: any[]): void
-        
-        /** Perform an RPC (Remote Procedure Call) on a specific peer ID (see multiplayer documentation for reference). This is used for multiplayer and is normally not available unless the function being called has been marked as  *RPC*  (using [annotation @GDScript.@rpc] or [method Node.rpc_config]). Calling this method on unsupported functions will result in an error. See [method Node.rpc_id]. */
-        rpc_id(peer_id: int64, ...vargargs: any[]): void
-        
-        /** Returns a copy of this [Callable] with one or more arguments bound. When called, the bound arguments are passed  *after*  the arguments supplied by [method call]. See also [method unbind].  
-         *      
-         *  **Note:** When this method is chained with other similar methods, the order in which the argument list is modified is read from right to left.  
-         */
-        bind(...vargargs: any[]): AnyCallable
-        static EQUAL(left: AnyCallable, right: AnyCallable): boolean
-        static NOT_EQUAL(left: AnyCallable, right: AnyCallable): boolean
-    }
-    /** A built-in type representing a signal of an [Object].  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_signal.html  
+    get expand_margin_top(): float64;
+    set expand_margin_top(value: float64);
+
+    /** Expands the stylebox outside of the control rect on the right edge. Useful in combination with [member border_width_right] to draw a border outside the control rect.
+     *
+     *  **Note:** Unlike [member StyleBox.content_margin_right], [member expand_margin_right] does  *not*  affect the size of the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
      */
-    class Signal implements AnySignal {
-        constructor()
-        constructor(from: AnySignal)
-        constructor(object: Object, signal: StringName)
-        
-        /** Returns `true` if the signal's name does not exist in its object, or the object is not valid. */
-        is_null(): boolean
-        
-        /** Returns the object emitting this signal. */
-        get_object(): Object
-        
-        /** Returns the ID of the object emitting this signal (see [method Object.get_instance_id]). */
-        get_object_id(): int64
-        
-        /** Returns the name of this signal. */
-        get_name(): StringName
-        
-        /** Connects this signal to the specified [param callable]. Optional [param flags] can be also added to configure the connection's behavior (see [enum Object.ConnectFlags] constants). You can provide additional arguments to the connected [param callable] by using [method Callable.bind].  
-         *  A signal can only be connected once to the same [Callable]. If the signal is already connected, returns [constant ERR_INVALID_PARAMETER] and pushes an error message, unless the signal is connected with [constant Object.CONNECT_REFERENCE_COUNTED]. To prevent this, use [method is_connected] first to check for existing connections.  
-         *    
-         */
-        connect(callable: AnyCallable, flags: int64 = 0): int64
-        
-        /** Disconnects this signal from the specified [Callable]. If the connection does not exist, generates an error. Use [method is_connected] to make sure that the connection exists. */
-        disconnect(callable: AnyCallable): void
-        
-        /** Returns `true` if the specified [Callable] is connected to this signal. */
-        is_connected(callable: AnyCallable): boolean
-        
-        /** Returns an [Array] of connections for this signal. Each connection is represented as a [Dictionary] that contains three entries:  
-         *  - `signal` is a reference to this signal;  
-         *  - `callable` is a reference to the connected [Callable];  
-         *  - `flags` is a combination of [enum Object.ConnectFlags].  
-         */
-        get_connections(): GArray
-        
-        /** Emits this signal. All [Callable]s connected to this signal will be triggered. This method supports a variable number of arguments, so parameters can be passed as a comma separated list. */
-        emit(...vargargs: any[]): void
-        static EQUAL(left: AnySignal, right: AnySignal): boolean
-        static NOT_EQUAL(left: AnySignal, right: AnySignal): boolean
-    }
-    class GDictionary {
-        constructor()
-        constructor(from: GDictionary)
-        set_indexed(index: number, value: any)
-        get_indexed(index: number): any
-        set_keyed(index: any, value: any)
-        get_keyed(index: any): any
-        [Symbol.iterator](): IteratorObject<{ key: any, value: any}>
-        
-        /** Returns the number of entries in the dictionary. Empty dictionaries (`{ }`) always return `0`. See also [method is_empty]. */
-        size(): int64
-        
-        /** Returns `true` if the dictionary is empty (its size is `0`). See also [method size]. */
-        is_empty(): boolean
-        
-        /** Clears the dictionary, removing all entries from it. */
-        clear(): void
-        
-        /** Adds entries from [param dictionary] to this dictionary. By default, duplicate keys are not copied over, unless [param overwrite] is `true`.  
-         *    
-         *      
-         *  **Note:** [method merge] is  *not*  recursive. Nested dictionaries are considered as keys that can be overwritten or not depending on the value of [param overwrite], but they will never be merged together.  
-         */
-        merge(dictionary: GDictionary, overwrite: boolean = false): void
-        
-        /** Returns a copy of this dictionary merged with the other [param dictionary]. By default, duplicate keys are not copied over, unless [param overwrite] is `true`. See also [method merge].  
-         *  This method is useful for quickly making dictionaries with default values:  
-         *    
-         */
-        merged(dictionary: GDictionary, overwrite: boolean = false): GDictionary
-        
-        /** Returns `true` if the dictionary contains an entry with the given [param key].  
-         *    
-         *  In GDScript, this is equivalent to the `in` operator:  
-         *    
-         *      
-         *  **Note:** This method returns `true` as long as the [param key] exists, even if its corresponding value is `null`.  
-         */
-        has(key: any): boolean
-        
-        /** Returns `true` if the dictionary contains all keys in the given [param keys] array.  
-         *    
-         */
-        has_all(keys: GArray): boolean
-        
-        /** Finds and returns the first key whose associated value is equal to [param value], or `null` if it is not found.  
-         *      
-         *  **Note:** `null` is also a valid key. If inside the dictionary, [method find_key] may give misleading results.  
-         */
-        find_key(value: any): any
-        
-        /** Removes the dictionary entry by key, if it exists. Returns `true` if the given [param key] existed in the dictionary, otherwise `false`.  
-         *      
-         *  **Note:** Do not erase entries while iterating over the dictionary. You can iterate over the [method keys] array instead.  
-         */
-        erase(key: any): boolean
-        
-        /** Returns a hashed 32-bit integer value representing the dictionary contents.  
-         *    
-         *      
-         *  **Note:** Dictionaries with the same entries but in a different order will not have the same hash.  
-         *      
-         *  **Note:** Dictionaries with equal hash values are  *not*  guaranteed to be the same, because of hash collisions. On the contrary, dictionaries with different hash values are guaranteed to be different.  
-         */
-        hash(): int64
-        
-        /** Returns the list of keys in the dictionary. */
-        keys(): GArray
-        
-        /** Returns the list of values in this dictionary. */
-        values(): GArray
-        
-        /** Creates and returns a new copy of the dictionary. If [param deep] is `true`, inner [Dictionary] and [Array] keys and values are also copied, recursively. */
-        duplicate(deep: boolean = false): GDictionary
-        
-        /** Returns the corresponding value for the given [param key] in the dictionary. If the [param key] does not exist, returns [param default], or `null` if the parameter is omitted. */
-        get(key: any, default_: any = <any> {}): any
-        
-        /** Gets a value and ensures the key is set. If the [param key] exists in the dictionary, this behaves like [method get]. Otherwise, the [param default] value is inserted into the dictionary and returned. */
-        get_or_add(key: any, default_: any = <any> {}): any
-        
-        /** Makes the dictionary read-only, i.e. disables modification of the dictionary's contents. Does not apply to nested content, e.g. content of nested dictionaries. */
-        make_read_only(): void
-        
-        /** Returns `true` if the dictionary is read-only. See [method make_read_only]. Dictionaries are automatically read-only if declared with `const` keyword. */
-        is_read_only(): boolean
-        
-        /** Returns `true` if the two dictionaries contain the same keys and values, inner [Dictionary] and [Array] keys and values are compared recursively. */
-        recursive_equal(dictionary: GDictionary, recursion_count: int64): boolean
-        static EQUAL(left: GDictionary, right: GDictionary): boolean
-        static NOT_EQUAL(left: GDictionary, right: GDictionary): boolean
-    }
-    class GArray<T = any> {
-        constructor()
-        constructor(from: GArray)
-        constructor(base: GArray, type: int64, class_name: StringName, script: any)
-        constructor(from: PackedByteArray | byte[] | ArrayBuffer)
-        constructor(from: PackedInt32Array | int32[])
-        constructor(from: PackedInt64Array | int64[])
-        constructor(from: PackedFloat32Array | float32[])
-        constructor(from: PackedFloat64Array | float64[])
-        constructor(from: PackedStringArray | string[])
-        constructor(from: PackedVector2Array | Vector2[])
-        constructor(from: PackedVector3Array | Vector3[])
-        constructor(from: PackedColorArray | Color[])
-        constructor(from: PackedVector4Array)
-        set_indexed(index: number, value: T)
-        get_indexed(index: number): T
-        [Symbol.iterator](): IteratorObject<T>
-        
-        /** Returns the number of elements in the array. Empty arrays (`[]`) always return `0`. See also [method is_empty]. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty (`[]`). See also [method size]. */
-        is_empty(): boolean
-        
-        /** Removes all elements from the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns a hashed 32-bit integer value representing the array and its contents.  
-         *      
-         *  **Note:** Arrays with equal hash values are  *not*  guaranteed to be the same, as a result of hash collisions. On the countrary, arrays with different hash values are guaranteed to be different.  
-         */
-        hash(): int64
-        
-        /** Assigns elements of another [param array] into the array. Resizes the array to match [param array]. Performs type conversions if the array is typed. */
-        assign(array: GArray): void
-        
-        /** Appends an element at the end of the array. See also [method push_front]. */
-        push_back(value: T): void
-        
-        /** Adds an element at the beginning of the array. See also [method push_back].  
-         *      
-         *  **Note:** This method shifts every other element's index forward, which may have a noticeable performance cost, especially on larger arrays.  
-         */
-        push_front(value: T): void
-        
-        /** Appends [param value] at the end of the array (alias of [method push_back]). */
-        append(value: T): void
-        
-        /** Appends another [param array] at the end of this array.  
-         *    
-         */
-        append_array(array: GArray): void
-        
-        /** Sets the array's number of elements to [param size]. If [param size] is smaller than the array's current size, the elements at the end are removed. If [param size] is greater, new default elements (usually `null`) are added, depending on the array's type.  
-         *  Returns [constant OK] on success, or one of the other [enum Error] constants if this method fails.  
-         *      
-         *  **Note:** Calling this method once and assigning the new values is faster than calling [method append] for every new element.  
-         */
-        resize(size: int64): int64
-        
-        /** Inserts a new element ([param value]) at a given index ([param position]) in the array. [param position] should be between `0` and the array's [method size].  
-         *  Returns [constant OK] on success, or one of the other [enum Error] constants if this method fails.  
-         *      
-         *  **Note:** Every element's index after [param position] needs to be shifted forward, which may have a noticeable performance cost, especially on larger arrays.  
-         */
-        insert(position: int64, value: T): int64
-        
-        /** Removes the element from the array at the given index ([param position]). If the index is out of bounds, this method fails.  
-         *  If you need to return the removed element, use [method pop_at]. To remove an element by value, use [method erase] instead.  
-         *      
-         *  **Note:** This method shifts every element's index after [param position] back, which may have a noticeable performance cost, especially on larger arrays.  
-         *      
-         *  **Note:** The [param position] cannot be negative. To remove an element relative to the end of the array, use `arr.remove_at(arr.size() - (i + 1))`. To remove the last element from the array, use `arr.resize(arr.size() - 1)`.  
-         */
-        remove_at(position: int64): void
-        
-        /** Assigns the given [param value] to all elements in the array.  
-         *  This method can often be combined with [method resize] to create an array with a given size and initialized elements:  
-         *    
-         *      
-         *  **Note:** If [param value] is a [Variant] passed by reference ([Object]-derived, [Array], [Dictionary], etc.), the array will be filled with references to the same [param value], which are not duplicates.  
-         */
-        fill(value: T): void
-        
-        /** Finds and removes the first occurrence of [param value] from the array. If [param value] does not exist in the array, nothing happens. To remove an element by index, use [method remove_at] instead.  
-         *      
-         *  **Note:** This method shifts every element's index after the removed [param value] back, which may have a noticeable performance cost, especially on larger arrays.  
-         *      
-         *  **Note:** Erasing elements while iterating over arrays is **not** supported and will result in unpredictable behavior.  
-         */
-        erase(value: T): void
-        
-        /** Returns the first element of the array. If the array is empty, fails and returns `null`. See also [method back].  
-         *      
-         *  **Note:** Unlike with the `[]` operator (`array[0]`), an error is generated without stopping project execution.  
-         */
-        front(): T
-        
-        /** Returns the last element of the array. If the array is empty, fails and returns `null`. See also [method front].  
-         *      
-         *  **Note:** Unlike with the `[]` operator (`array[-1]`), an error is generated without stopping project execution.  
-         */
-        back(): T
-        
-        /** Returns a random element from the array. Generates an error and returns `null` if the array is empty.  
-         *    
-         *      
-         *  **Note:** Like many similar functions in the engine (such as [method @GlobalScope.randi] or [method shuffle]), this method uses a common, global random seed. To get a predictable outcome from this method, see [method @GlobalScope.seed].  
-         */
-        pick_random(): T
-        
-        /** Returns the index of the **first** occurrence of [param what] in this array, or `-1` if there are none. The search's start can be specified with [param from], continuing to the end of the array.  
-         *      
-         *  **Note:** If you just want to know whether the array contains [param what], use [method has] (`Contains` in C#). In GDScript, you may also use the `in` operator.  
-         *      
-         *  **Note:** For performance reasons, the search is affected by [param what]'s [enum Variant.Type]. For example, `7` ([int]) and `7.0` ([float]) are not considered equal for this method.  
-         */
-        find(what: T, from: int64 = 0): int64
-        
-        /** Returns the index of the **last** occurrence of [param what] in this array, or `-1` if there are none. The search's start can be specified with [param from], continuing to the beginning of the array. This method is the reverse of [method find]. */
-        rfind(what: T, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array. */
-        count(value: T): int64
-        
-        /** Returns `true` if the array contains the given [param value].  
-         *    
-         *  In GDScript, this is equivalent to the `in` operator:  
-         *    
-         *      
-         *  **Note:** For performance reasons, the search is affected by the [param value]'s [enum Variant.Type]. For example, `7` ([int]) and `7.0` ([float]) are not considered equal for this method.  
-         */
-        has(value: T): boolean
-        
-        /** Removes and returns the last element of the array. Returns `null` if the array is empty, without generating an error. See also [method pop_front]. */
-        pop_back(): T
-        
-        /** Removes and returns the first element of the array. Returns `null` if the array is empty, without generating an error. See also [method pop_back].  
-         *      
-         *  **Note:** This method shifts every other element's index back, which may have a noticeable performance cost, especially on larger arrays.  
-         */
-        pop_front(): T
-        
-        /** Removes and returns the element of the array at index [param position]. If negative, [param position] is considered relative to the end of the array. Returns `null` if the array is empty. If [param position] is out of bounds, an error message is also generated.  
-         *      
-         *  **Note:** This method shifts every element's index after [param position] back, which may have a noticeable performance cost, especially on larger arrays.  
-         */
-        pop_at(position: int64): T
-        
-        /** Sorts the array in ascending order. The final order is dependent on the "less than" (`<`) comparison between elements.  
-         *    
-         *      
-         *  **Note:** The sorting algorithm used is not [url=https://en.wikipedia.org/wiki/Sorting_algorithm#Stability]stable[/url]. This means that equivalent elements (such as `2` and `2.0`) may have their order changed when calling [method sort].  
-         */
-        sort(): void
-        
-        /** Sorts the array using a custom [Callable].  
-         *  [param func] is called as many times as necessary, receiving two array elements as arguments. The function should return `true` if the first element should be moved  *before*  the second one, otherwise it should return `false`.  
-         *    
-         *  It may also be necessary to use this method to sort strings by natural order, with [method String.naturalnocasecmp_to], as in the following example:  
-         *    
-         *      
-         *  **Note:** In C#, this method is not supported.  
-         *      
-         *  **Note:** The sorting algorithm used is not [url=https://en.wikipedia.org/wiki/Sorting_algorithm#Stability]stable[/url]. This means that values considered equal may have their order changed when calling this method.  
-         *      
-         *  **Note:** You should not randomize the return value of [param func], as the heapsort algorithm expects a consistent result. Randomizing the return value will result in unexpected behavior.  
-         */
-        sort_custom(func: Callable2<T, T, boolean>): void
-        
-        /** Shuffles all elements of the array in a random order.  
-         *      
-         *  **Note:** Like many similar functions in the engine (such as [method @GlobalScope.randi] or [method pick_random]), this method uses a common, global random seed. To get a predictable outcome from this method, see [method @GlobalScope.seed].  
-         */
-        shuffle(): void
-        
-        /** Returns the index of [param value] in the sorted array. If it cannot be found, returns where [param value] should be inserted to keep the array sorted. The algorithm used is [url=https://en.wikipedia.org/wiki/Binary_search_algorithm]binary search[/url].  
-         *  If [param before] is `true` (as by default), the returned index comes before all existing elements equal to [param value] in the array.  
-         *    
-         *      
-         *  **Note:** Calling [method bsearch] on an  *unsorted*  array will result in unexpected behavior. Use [method sort] before calling this method.  
-         */
-        bsearch(value: T, before: boolean = true): int64
-        
-        /** Returns the index of [param value] in the sorted array. If it cannot be found, returns where [param value] should be inserted to keep the array sorted (using [param func] for the comparisons). The algorithm used is [url=https://en.wikipedia.org/wiki/Binary_search_algorithm]binary search[/url].  
-         *  Similar to [method sort_custom], [param func] is called as many times as necessary, receiving one array element and [param value] as arguments. The function should return `true` if the array element should be  *behind*  [param value], otherwise it should return `false`.  
-         *  If [param before] is `true` (as by default), the returned index comes before all existing elements equal to [param value] in the array.  
-         *    
-         *      
-         *  **Note:** Calling [method bsearch_custom] on an  *unsorted*  array will result in unexpected behavior. Use [method sort_custom] with [param func] before calling this method.  
-         */
-        bsearch_custom(value: T, func: AnyCallable, before: boolean = true): int64
-        
-        /** Reverses the order of all elements in the array. */
-        reverse(): void
-        
-        /** Returns a new copy of the array.  
-         *  By default, a **shallow** copy is returned: all nested [Array] and [Dictionary] elements are shared with the original array. Modifying them in one array will also affect them in the other.[br]If [param deep] is `true`, a **deep** copy is returned: all nested arrays and dictionaries are also duplicated (recursively).  
-         */
-        duplicate(deep: boolean = false): GArray
-        
-        /** Returns a new [Array] containing this array's elements, from index [param begin] (inclusive) to [param end] (exclusive), every [param step] elements.  
-         *  If either [param begin] or [param end] are negative, their value is relative to the end of the array.  
-         *  If [param step] is negative, this method iterates through the array in reverse, returning a slice ordered backwards. For this to work, [param begin] must be greater than [param end].  
-         *  If [param deep] is `true`, all nested [Array] and [Dictionary] elements in the slice are duplicated from the original, recursively. See also [method duplicate]).  
-         *    
-         */
-        slice(begin: int64, end: int64 = 2147483647, step: int64 = 1, deep: boolean = false): GArray
-        
-        /** Calls the given [Callable] on each element in the array and returns a new, filtered [Array].  
-         *  The [param method] receives one of the array elements as an argument, and should return `true` to add the element to the filtered array, or `false` to exclude it.  
-         *    
-         *  See also [method any], [method all], [method map] and [method reduce].  
-         */
-        filter(func: Callable1<T, boolean>): GArray
-        
-        /** Calls the given [Callable] for each element in the array and returns a new array filled with values returned by the [param method].  
-         *  The [param method] should take one [Variant] parameter (the current array element) and can return any [Variant].  
-         *    
-         *  See also [method filter], [method reduce], [method any] and [method all].  
-         */
-        map<U>(func: Callable1<T, U>): GArray<U>
-        
-        /** Calls the given [Callable] for each element in array, accumulates the result in [param accum], then returns it.  
-         *  The [param method] takes two arguments: the current value of [param accum] and the current array element. If [param accum] is `null` (as by default), the iteration will start from the second element, with the first one used as initial value of [param accum].  
-         *    
-         *  If [method max] is not desirable, this method may also be used to implement a custom comparator:  
-         *    
-         *  See also [method map], [method filter], [method any] and [method all].  
-         */
-        reduce(method: AnyCallable, accum: any = <any> {}): any
-        
-        /** Calls the given [Callable] on each element in the array and returns `true` if the [Callable] returns `true` for  *one or more*  elements in the array. If the [Callable] returns `false` for all elements in the array, this method returns `false`.  
-         *  The [param method] should take one [Variant] parameter (the current array element) and return a [bool].  
-         *    
-         *  See also [method all], [method filter], [method map] and [method reduce].  
-         *      
-         *  **Note:** Unlike relying on the size of an array returned by [method filter], this method will return as early as possible to improve performance (especially with large arrays).  
-         *      
-         *  **Note:** For an empty array, this method always returns `false`.  
-         */
-        any(func: Callable1<T, boolean>): boolean
-        
-        /** Calls the given [Callable] on each element in the array and returns `true` if the [Callable] returns `true` for  *all*  elements in the array. If the [Callable] returns `false` for one array element or more, this method returns `false`.  
-         *  The [param method] should take one [Variant] parameter (the current array element) and return a [bool].  
-         *    
-         *  See also [method any], [method filter], [method map] and [method reduce].  
-         *      
-         *  **Note:** Unlike relying on the size of an array returned by [method filter], this method will return as early as possible to improve performance (especially with large arrays).  
-         *      
-         *  **Note:** For an empty array, this method [url=https://en.wikipedia.org/wiki/Vacuous_truth]always[/url] returns `true`.  
-         */
-        all(func: Callable1<T, boolean>): boolean
-        
-        /** Returns the maximum value contained in the array, if all elements can be compared. Otherwise, returns `null`. See also [method min].  
-         *  To find the maximum value using a custom comparator, you can use [method reduce].  
-         */
-        max(): T
-        
-        /** Returns the minimum value contained in the array, if all elements can be compared. Otherwise, returns `null`. See also [method max]. */
-        min(): T
-        
-        /** Returns `true` if the array is typed. Typed arrays can only contain elements of a specific type, as defined by the typed array constructor. The methods of a typed array are still expected to return a generic [Variant].  
-         *  In GDScript, it is possible to define a typed array with static typing:  
-         *    
-         */
-        is_typed(): boolean
-        
-        /** Returns `true` if this array is typed the same as the given [param array]. See also [method is_typed]. */
-        is_same_typed(array: GArray): boolean
-        
-        /** Returns the built-in [Variant] type of the typed array as a [enum Variant.Type] constant. If the array is not typed, returns [constant TYPE_NIL]. See also [method is_typed]. */
-        get_typed_builtin(): int64
-        
-        /** Returns the **built-in** class name of the typed array, if the built-in [Variant] type [constant TYPE_OBJECT]. Otherwise, returns an empty [StringName]. See also [method is_typed] and [method Object.get_class]. */
-        get_typed_class_name(): StringName
-        
-        /** Returns the [Script] instance associated with this typed array, or `null` if it does not exist. See also [method is_typed]. */
-        get_typed_script(): any
-        
-        /** Makes the array read-only. The array's elements cannot be overridden with different values, and their order cannot change. Does not apply to nested elements, such as dictionaries.  
-         *  In GDScript, arrays are automatically read-only if declared with the `const` keyword.  
-         */
-        make_read_only(): void
-        
-        /** Returns `true` if the array is read-only. See [method make_read_only].  
-         *  In GDScript, arrays are automatically read-only if declared with the `const` keyword.  
-         */
-        is_read_only(): boolean
-        static EQUAL(left: GArray, right: GArray): boolean
-        static NOT_EQUAL(left: GArray, right: GArray): boolean
-        static LESS(left: GArray, right: GArray): boolean
-        static LESS_EQUAL(left: GArray, right: GArray): boolean
-        static GREATER(left: GArray, right: GArray): boolean
-        static GREATER_EQUAL(left: GArray, right: GArray): boolean
-    }
-    /** A packed array of bytes.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_packedbytearray.html  
+    get expand_margin_right(): float64;
+    set expand_margin_right(value: float64);
+
+    /** Expands the stylebox outside of the control rect on the bottom edge. Useful in combination with [member border_width_bottom] to draw a border outside the control rect.
+     *
+     *  **Note:** Unlike [member StyleBox.content_margin_bottom], [member expand_margin_bottom] does  *not*  affect the size of the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
      */
-    class PackedByteArray {
-        constructor()
-        constructor(from: PackedByteArray | byte[] | ArrayBuffer)
-        constructor(from: GArray)
-        set_indexed(index: number, value: int64)
-        get_indexed(index: number): int64
-        /** [jsb utility method] Converts a PackedByteArray to a JavaScript ArrayBuffer. */
-        to_array_buffer(): ArrayBuffer
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the byte at the given index. */
-        set(index: int64, value: int64): void
-        
-        /** Appends an element at the end of the array. */
-        push_back(value: int64): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: int64): boolean
-        
-        /** Appends a [PackedByteArray] at the end of this array. */
-        append_array(array: PackedByteArray | byte[] | ArrayBuffer): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: int64): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: int64): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value]. */
-        has(value: int64): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedByteArray], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedByteArray].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order. */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         */
-        bsearch(value: int64, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedByteArray
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
-        find(value: int64, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
-        rfind(value: int64, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array. */
-        count(value: int64): int64
-        
-        /** Converts ASCII/Latin-1 encoded array to [String]. Fast alternative to [method get_string_from_utf8] if the content is ASCII/Latin-1 only. Unlike the UTF-8 function this function maps every byte to a character in the array. Multibyte sequences will not be interpreted correctly. For parsing user input always use [method get_string_from_utf8]. This is the inverse of [method String.to_ascii_buffer]. */
-        get_string_from_ascii(): string
-        
-        /** Converts UTF-8 encoded array to [String]. Slower than [method get_string_from_ascii] but supports UTF-8 encoded data. Use this function if you are unsure about the source of the data. For user input this function should always be preferred. Returns empty string if source array is not valid UTF-8 string. This is the inverse of [method String.to_utf8_buffer]. */
-        get_string_from_utf8(): string
-        
-        /** Converts UTF-16 encoded array to [String]. If the BOM is missing, system endianness is assumed. Returns empty string if source array is not valid UTF-16 string. This is the inverse of [method String.to_utf16_buffer]. */
-        get_string_from_utf16(): string
-        
-        /** Converts UTF-32 encoded array to [String]. System endianness is assumed. Returns empty string if source array is not valid UTF-32 string. This is the inverse of [method String.to_utf32_buffer]. */
-        get_string_from_utf32(): string
-        
-        /** Converts wide character (`wchar_t`, UTF-16 on Windows, UTF-32 on other platforms) encoded array to [String]. Returns empty string if source array is not valid wide string. This is the inverse of [method String.to_wchar_buffer]. */
-        get_string_from_wchar(): string
-        
-        /** Returns a hexadecimal representation of this array as a [String].  
-         *    
-         */
-        hex_encode(): string
-        
-        /** Returns a new [PackedByteArray] with the data compressed. Set the compression mode using one of [enum FileAccess.CompressionMode]'s constants. */
-        compress(compression_mode: int64 = 0): PackedByteArray
-        
-        /** Returns a new [PackedByteArray] with the data decompressed. Set [param buffer_size] to the size of the uncompressed data. Set the compression mode using one of [enum FileAccess.CompressionMode]'s constants.  
-         *      
-         *  **Note:** Decompression is not guaranteed to work with data not compressed by Godot, for example if data compressed with the deflate compression mode lacks a checksum or header.  
-         */
-        decompress(buffer_size: int64, compression_mode: int64 = 0): PackedByteArray
-        
-        /** Returns a new [PackedByteArray] with the data decompressed. Set the compression mode using one of [enum FileAccess.CompressionMode]'s constants. **This method only accepts brotli, gzip, and deflate compression modes.**  
-         *  This method is potentially slower than [method decompress], as it may have to re-allocate its output buffer multiple times while decompressing, whereas [method decompress] knows it's output buffer size from the beginning.  
-         *  GZIP has a maximal compression ratio of 1032:1, meaning it's very possible for a small compressed payload to decompress to a potentially very large output. To guard against this, you may provide a maximum size this function is allowed to allocate in bytes via [param max_output_size]. Passing -1 will allow for unbounded output. If any positive value is passed, and the decompression exceeds that amount in bytes, then an error will be returned.  
-         *      
-         *  **Note:** Decompression is not guaranteed to work with data not compressed by Godot, for example if data compressed with the deflate compression mode lacks a checksum or header.  
-         */
-        decompress_dynamic(max_output_size: int64, compression_mode: int64 = 0): PackedByteArray
-        
-        /** Decodes a 8-bit unsigned integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_u8(byte_offset: int64): int64
-        
-        /** Decodes a 8-bit signed integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_s8(byte_offset: int64): int64
-        
-        /** Decodes a 16-bit unsigned integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_u16(byte_offset: int64): int64
-        
-        /** Decodes a 16-bit signed integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_s16(byte_offset: int64): int64
-        
-        /** Decodes a 32-bit unsigned integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_u32(byte_offset: int64): int64
-        
-        /** Decodes a 32-bit signed integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_s32(byte_offset: int64): int64
-        
-        /** Decodes a 64-bit unsigned integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_u64(byte_offset: int64): int64
-        
-        /** Decodes a 64-bit signed integer number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0` if a valid number can't be decoded. */
-        decode_s64(byte_offset: int64): int64
-        
-        /** Decodes a 16-bit floating-point number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0.0` if a valid number can't be decoded. */
-        decode_half(byte_offset: int64): float64
-        
-        /** Decodes a 32-bit floating-point number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0.0` if a valid number can't be decoded. */
-        decode_float(byte_offset: int64): float64
-        
-        /** Decodes a 64-bit floating-point number from the bytes starting at [param byte_offset]. Fails if the byte count is insufficient. Returns `0.0` if a valid number can't be decoded. */
-        decode_double(byte_offset: int64): float64
-        
-        /** Returns `true` if a valid [Variant] value can be decoded at the [param byte_offset]. Returns `false` otherwise or when the value is [Object]-derived and [param allow_objects] is `false`. */
-        has_encoded_var(byte_offset: int64, allow_objects: boolean = false): boolean
-        
-        /** Decodes a [Variant] from the bytes starting at [param byte_offset]. Returns `null` if a valid variant can't be decoded or the value is [Object]-derived and [param allow_objects] is `false`. */
-        decode_var(byte_offset: int64, allow_objects: boolean = false): any
-        
-        /** Decodes a size of a [Variant] from the bytes starting at [param byte_offset]. Requires at least 4 bytes of data starting at the offset, otherwise fails. */
-        decode_var_size(byte_offset: int64, allow_objects: boolean = false): int64
-        
-        /** Returns a copy of the data converted to a [PackedInt32Array], where each block of 4 bytes has been converted to a signed 32-bit integer (C++ `int32_t`).  
-         *  The size of the input array must be a multiple of 4 (size of 32-bit integer). The size of the new array will be `byte_array.size() / 4`.  
-         *  If the original data can't be converted to signed 32-bit integers, the resulting data is undefined.  
-         */
-        to_int32_array(): PackedInt32Array
-        
-        /** Returns a copy of the data converted to a [PackedInt64Array], where each block of 8 bytes has been converted to a signed 64-bit integer (C++ `int64_t`, Godot [int]).  
-         *  The size of the input array must be a multiple of 8 (size of 64-bit integer). The size of the new array will be `byte_array.size() / 8`.  
-         *  If the original data can't be converted to signed 64-bit integers, the resulting data is undefined.  
-         */
-        to_int64_array(): PackedInt64Array
-        
-        /** Returns a copy of the data converted to a [PackedFloat32Array], where each block of 4 bytes has been converted to a 32-bit float (C++ [code skip-lint]float`).  
-         *  The size of the input array must be a multiple of 4 (size of 32-bit float). The size of the new array will be `byte_array.size() / 4`.  
-         *  If the original data can't be converted to 32-bit floats, the resulting data is undefined.  
-         */
-        to_float32_array(): PackedFloat32Array
-        
-        /** Returns a copy of the data converted to a [PackedFloat64Array], where each block of 8 bytes has been converted to a 64-bit float (C++ `double`, Godot [float]).  
-         *  The size of the input array must be a multiple of 8 (size of 64-bit double). The size of the new array will be `byte_array.size() / 8`.  
-         *  If the original data can't be converted to 64-bit floats, the resulting data is undefined.  
-         */
-        to_float64_array(): PackedFloat64Array
-        
-        /** Encodes a 8-bit unsigned integer number (byte) at the index of [param byte_offset] bytes. The array must have at least 1 byte of space, starting at the offset. */
-        encode_u8(byte_offset: int64, value: int64): void
-        
-        /** Encodes a 8-bit signed integer number (signed byte) at the index of [param byte_offset] bytes. The array must have at least 1 byte of space, starting at the offset. */
-        encode_s8(byte_offset: int64, value: int64): void
-        
-        /** Encodes a 16-bit unsigned integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 2 bytes of space, starting at the offset. */
-        encode_u16(byte_offset: int64, value: int64): void
-        
-        /** Encodes a 16-bit signed integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 2 bytes of space, starting at the offset. */
-        encode_s16(byte_offset: int64, value: int64): void
-        
-        /** Encodes a 32-bit unsigned integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 4 bytes of space, starting at the offset. */
-        encode_u32(byte_offset: int64, value: int64): void
-        
-        /** Encodes a 32-bit signed integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 4 bytes of space, starting at the offset. */
-        encode_s32(byte_offset: int64, value: int64): void
-        
-        /** Encodes a 64-bit unsigned integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 8 bytes of space, starting at the offset. */
-        encode_u64(byte_offset: int64, value: int64): void
-        
-        /** Encodes a 64-bit signed integer number as bytes at the index of [param byte_offset] bytes. The array must have at least 8 bytes of space, starting at the offset. */
-        encode_s64(byte_offset: int64, value: int64): void
-        
-        /** Encodes a 16-bit floating-point number as bytes at the index of [param byte_offset] bytes. The array must have at least 2 bytes of space, starting at the offset. */
-        encode_half(byte_offset: int64, value: float64): void
-        
-        /** Encodes a 32-bit floating-point number as bytes at the index of [param byte_offset] bytes. The array must have at least 4 bytes of space, starting at the offset. */
-        encode_float(byte_offset: int64, value: float64): void
-        
-        /** Encodes a 64-bit floating-point number as bytes at the index of [param byte_offset] bytes. The array must have at least 8 bytes of allocated space, starting at the offset. */
-        encode_double(byte_offset: int64, value: float64): void
-        
-        /** Encodes a [Variant] at the index of [param byte_offset] bytes. A sufficient space must be allocated, depending on the encoded variant's size. If [param allow_objects] is `false`, [Object]-derived values are not permitted and will instead be serialized as ID-only. */
-        encode_var(byte_offset: int64, value: any, allow_objects: boolean = false): int64
-        static EQUAL(left: PackedByteArray | byte[] | ArrayBuffer, right: PackedByteArray | byte[] | ArrayBuffer): boolean
-        static NOT_EQUAL(left: PackedByteArray | byte[] | ArrayBuffer, right: PackedByteArray | byte[] | ArrayBuffer): boolean
-    }
-    /** A packed array of 32-bit integers.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_packedint32array.html  
+    get expand_margin_bottom(): float64;
+    set expand_margin_bottom(value: float64);
+
+    /** The color of the shadow. This has no effect if [member shadow_size] is lower than 1. */
+    get shadow_color(): Color;
+    set shadow_color(value: Color);
+
+    /** The shadow size in pixels. */
+    get shadow_size(): int64;
+    set shadow_size(value: int64);
+
+    /** The shadow offset in pixels. Adjusts the position of the shadow relatively to the stylebox. */
+    get shadow_offset(): Vector2;
+    set shadow_offset(value: Vector2);
+
+    /** Antialiasing draws a small ring around the edges, which fades to transparency. As a result, edges look much smoother. This is only noticeable when using rounded corners or [member skew].
+     *
+     *  **Note:** When using beveled corners with 45-degree angles ([member corner_detail] = 1), it is recommended to set [member anti_aliasing] to `false` to ensure crisp visuals and avoid possible visual glitches.
      */
-    class PackedInt32Array {
-        constructor()
-        constructor(from: PackedInt32Array | int32[])
-        constructor(from: GArray)
-        set_indexed(index: number, value: int64)
-        get_indexed(index: number): int64
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the integer at the given index. */
-        set(index: int64, value: int64): void
-        
-        /** Appends a value to the array. */
-        push_back(value: int64): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: int64): boolean
-        
-        /** Appends a [PackedInt32Array] at the end of this array. */
-        append_array(array: PackedInt32Array | int32[]): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new integer at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: int64): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: int64): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value]. */
-        has(value: int64): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedInt32Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedInt32Array].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedInt32Array
-        
-        /** Returns a copy of the data converted to a [PackedByteArray], where each element have been encoded as 4 bytes.  
-         *  The size of the new array will be `int32_array.size() * 4`.  
-         */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order. */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         */
-        bsearch(value: int64, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedInt32Array
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
-        find(value: int64, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
-        rfind(value: int64, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array. */
-        count(value: int64): int64
-        static EQUAL(left: PackedInt32Array | int32[], right: PackedInt32Array | int32[]): boolean
-        static NOT_EQUAL(left: PackedInt32Array | int32[], right: PackedInt32Array | int32[]): boolean
-    }
-    /** A packed array of 64-bit integers.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_packedint64array.html  
+    get anti_aliasing(): boolean;
+    set anti_aliasing(value: boolean);
+
+    /** This changes the size of the antialiasing effect. `1.0` is recommended for an optimal result at 100% scale, identical to how rounded rectangles are rendered in web browsers and most vector drawing software.
+     *
+     *  **Note:** Higher values may produce a blur effect but can also create undesired artifacts on small boxes with large-radius corners.
      */
-    class PackedInt64Array {
-        constructor()
-        constructor(from: PackedInt64Array | int64[])
-        constructor(from: GArray)
-        set_indexed(index: number, value: int64)
-        get_indexed(index: number): int64
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the integer at the given index. */
-        set(index: int64, value: int64): void
-        
-        /** Appends a value to the array. */
-        push_back(value: int64): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: int64): boolean
-        
-        /** Appends a [PackedInt64Array] at the end of this array. */
-        append_array(array: PackedInt64Array | int64[]): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new integer at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: int64): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: int64): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value]. */
-        has(value: int64): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedInt64Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedInt64Array].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedInt64Array
-        
-        /** Returns a copy of the data converted to a [PackedByteArray], where each element have been encoded as 8 bytes.  
-         *  The size of the new array will be `int64_array.size() * 8`.  
-         */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order. */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         */
-        bsearch(value: int64, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedInt64Array
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
-        find(value: int64, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
-        rfind(value: int64, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array. */
-        count(value: int64): int64
-        static EQUAL(left: PackedInt64Array | int64[], right: PackedInt64Array | int64[]): boolean
-        static NOT_EQUAL(left: PackedInt64Array | int64[], right: PackedInt64Array | int64[]): boolean
+    get anti_aliasing_size(): float64;
+    set anti_aliasing_size(value: float64);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapStyleBoxFlat;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapStyleBoxLine extends __NameMapStyleBox {}
+  /** A [StyleBox] that displays a single line of a given color and thickness.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_styleboxline.html
+   */
+  class StyleBoxLine extends StyleBox {
+    constructor(identifier?: any);
+    /** The line's color. */
+    get color(): Color;
+    set color(value: Color);
+
+    /** The number of pixels the line will extend before the [StyleBoxLine]'s bounds. If set to a negative value, the line will begin inside the [StyleBoxLine]'s bounds. */
+    get grow_begin(): float64;
+    set grow_begin(value: float64);
+
+    /** The number of pixels the line will extend past the [StyleBoxLine]'s bounds. If set to a negative value, the line will end inside the [StyleBoxLine]'s bounds. */
+    get grow_end(): float64;
+    set grow_end(value: float64);
+
+    /** The line's thickness in pixels. */
+    get thickness(): int64;
+    set thickness(value: int64);
+
+    /** If `true`, the line will be vertical. If `false`, the line will be horizontal. */
+    get vertical(): boolean;
+    set vertical(value: boolean);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapStyleBoxLine;
+  }
+  namespace StyleBoxTexture {
+    enum AxisStretchMode {
+      /** Stretch the stylebox's texture. This results in visible distortion unless the texture size matches the stylebox's size perfectly. */
+      AXIS_STRETCH_MODE_STRETCH = 0,
+
+      /** Repeats the stylebox's texture to match the stylebox's size according to the nine-patch system. */
+      AXIS_STRETCH_MODE_TILE = 1,
+
+      /** Repeats the stylebox's texture to match the stylebox's size according to the nine-patch system. Unlike [constant AXIS_STRETCH_MODE_TILE], the texture may be slightly stretched to make the nine-patch texture tile seamlessly. */
+      AXIS_STRETCH_MODE_TILE_FIT = 2,
     }
-    /** A packed array of 32-bit floating-point values.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_packedfloat32array.html  
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapStyleBoxTexture extends __NameMapStyleBox {}
+  /** A texture-based nine-patch [StyleBox].
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_styleboxtexture.html
+   */
+  class StyleBoxTexture extends StyleBox {
+    constructor(identifier?: any);
+    /** Sets the margin to [param size] pixels for the specified [enum Side]. */
+    set_texture_margin(margin: Side, size: float64): void;
+
+    /** Sets the margin to [param size] pixels for all sides. */
+    set_texture_margin_all(size: float64): void;
+
+    /** Returns the margin size of the specified [enum Side]. */
+    get_texture_margin(margin: Side): float64;
+
+    /** Sets the expand margin to [param size] pixels for the specified [enum Side]. */
+    set_expand_margin(margin: Side, size: float64): void;
+
+    /** Sets the expand margin to [param size] pixels for all sides. */
+    set_expand_margin_all(size: float64): void;
+
+    /** Returns the expand margin size of the specified [enum Side]. */
+    get_expand_margin(margin: Side): float64;
+
+    /** The texture to use when drawing this style box. */
+    get texture(): null | Texture2D;
+    set texture(value: null | Texture2D);
+
+    /** Increases the left margin of the 3×3 texture box.
+     *  A higher value means more of the source texture is considered to be part of the left border of the 3×3 box.
+     *  This is also the value used as fallback for [member StyleBox.content_margin_left] if it is negative.
      */
-    class PackedFloat32Array {
-        constructor()
-        constructor(from: PackedFloat32Array | float32[])
-        constructor(from: GArray)
-        set_indexed(index: number, value: float64)
-        get_indexed(index: number): float64
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the float at the given index. */
-        set(index: int64, value: float64): void
-        
-        /** Appends an element at the end of the array. */
-        push_back(value: float64): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: float64): boolean
-        
-        /** Appends a [PackedFloat32Array] at the end of this array. */
-        append_array(array: PackedFloat32Array | float32[]): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: float64): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: float64): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value].  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        has(value: float64): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedFloat32Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedFloat32Array].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedFloat32Array
-        
-        /** Returns a copy of the data converted to a [PackedByteArray], where each element have been encoded as 4 bytes.  
-         *  The size of the new array will be `float32_array.size() * 4`.  
-         */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        bsearch(value: float64, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedFloat32Array
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        find(value: float64, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        rfind(value: float64, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        count(value: float64): int64
-        static EQUAL(left: PackedFloat32Array | float32[], right: PackedFloat32Array | float32[]): boolean
-        static NOT_EQUAL(left: PackedFloat32Array | float32[], right: PackedFloat32Array | float32[]): boolean
-    }
-    /** A packed array of 64-bit floating-point values.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_packedfloat64array.html  
+    get texture_margin_left(): float64;
+    set texture_margin_left(value: float64);
+
+    /** Increases the top margin of the 3×3 texture box.
+     *  A higher value means more of the source texture is considered to be part of the top border of the 3×3 box.
+     *  This is also the value used as fallback for [member StyleBox.content_margin_top] if it is negative.
      */
-    class PackedFloat64Array {
-        constructor()
-        constructor(from: PackedFloat64Array | float64[])
-        constructor(from: GArray)
-        set_indexed(index: number, value: float64)
-        get_indexed(index: number): float64
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the float at the given index. */
-        set(index: int64, value: float64): void
-        
-        /** Appends an element at the end of the array. */
-        push_back(value: float64): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: float64): boolean
-        
-        /** Appends a [PackedFloat64Array] at the end of this array. */
-        append_array(array: PackedFloat64Array | float64[]): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: float64): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: float64): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value].  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        has(value: float64): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedFloat64Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedFloat64Array].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedFloat64Array
-        
-        /** Returns a copy of the data converted to a [PackedByteArray], where each element have been encoded as 8 bytes.  
-         *  The size of the new array will be `float64_array.size() * 8`.  
-         */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        bsearch(value: float64, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedFloat64Array
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        find(value: float64, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        rfind(value: float64, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array.  
-         *      
-         *  **Note:** [constant @GDScript.NAN] doesn't behave the same as other numbers. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        count(value: float64): int64
-        static EQUAL(left: PackedFloat64Array | float64[], right: PackedFloat64Array | float64[]): boolean
-        static NOT_EQUAL(left: PackedFloat64Array | float64[], right: PackedFloat64Array | float64[]): boolean
-    }
-    /** A packed array of [String]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_packedstringarray.html  
+    get texture_margin_top(): float64;
+    set texture_margin_top(value: float64);
+
+    /** Increases the right margin of the 3×3 texture box.
+     *  A higher value means more of the source texture is considered to be part of the right border of the 3×3 box.
+     *  This is also the value used as fallback for [member StyleBox.content_margin_right] if it is negative.
      */
-    class PackedStringArray {
-        constructor()
-        constructor(from: PackedStringArray | string[])
-        constructor(from: GArray)
-        set_indexed(index: number, value: string)
-        get_indexed(index: number): string
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the [String] at the given index. */
-        set(index: int64, value: string): void
-        
-        /** Appends a string element at end of the array. */
-        push_back(value: string): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: string): boolean
-        
-        /** Appends a [PackedStringArray] at the end of this array. */
-        append_array(array: PackedStringArray | string[]): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: string): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: string): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value]. */
-        has(value: string): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedStringArray], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedStringArray].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedStringArray
-        
-        /** Returns a [PackedByteArray] with each string encoded as bytes. */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order. */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         */
-        bsearch(value: string, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedStringArray
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
-        find(value: string, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
-        rfind(value: string, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array. */
-        count(value: string): int64
-        static EQUAL(left: PackedStringArray | string[], right: PackedStringArray | string[]): boolean
-        static NOT_EQUAL(left: PackedStringArray | string[], right: PackedStringArray | string[]): boolean
-    }
-    /** A packed array of [Vector2]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_packedvector2array.html  
+    get texture_margin_right(): float64;
+    set texture_margin_right(value: float64);
+
+    /** Increases the bottom margin of the 3×3 texture box.
+     *  A higher value means more of the source texture is considered to be part of the bottom border of the 3×3 box.
+     *  This is also the value used as fallback for [member StyleBox.content_margin_bottom] if it is negative.
      */
-    class PackedVector2Array {
-        constructor()
-        constructor(from: PackedVector2Array | Vector2[])
-        constructor(from: GArray)
-        set_indexed(index: number, value: Vector2)
-        get_indexed(index: number): Vector2
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the [Vector2] at the given index. */
-        set(index: int64, value: Vector2): void
-        
-        /** Inserts a [Vector2] at the end. */
-        push_back(value: Vector2): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: Vector2): boolean
-        
-        /** Appends a [PackedVector2Array] at the end of this array. */
-        append_array(array: PackedVector2Array | Vector2[]): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: Vector2): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: Vector2): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value].  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        has(value: Vector2): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedVector2Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedVector2Array].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedVector2Array
-        
-        /** Returns a [PackedByteArray] with each vector encoded as bytes. */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        bsearch(value: Vector2, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedVector2Array
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        find(value: Vector2, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        rfind(value: Vector2, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        count(value: Vector2): int64
-        static EQUAL(left: PackedVector2Array | Vector2[], right: PackedVector2Array | Vector2[]): boolean
-        static NOT_EQUAL(left: PackedVector2Array | Vector2[], right: PackedVector2Array | Vector2[]): boolean
-    }
-    /** A packed array of [Vector3]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_packedvector3array.html  
+    get texture_margin_bottom(): float64;
+    set texture_margin_bottom(value: float64);
+
+    /** Expands the left margin of this style box when drawing, causing it to be drawn larger than requested. */
+    get expand_margin_left(): float64;
+    set expand_margin_left(value: float64);
+
+    /** Expands the top margin of this style box when drawing, causing it to be drawn larger than requested. */
+    get expand_margin_top(): float64;
+    set expand_margin_top(value: float64);
+
+    /** Expands the right margin of this style box when drawing, causing it to be drawn larger than requested. */
+    get expand_margin_right(): float64;
+    set expand_margin_right(value: float64);
+
+    /** Expands the bottom margin of this style box when drawing, causing it to be drawn larger than requested. */
+    get expand_margin_bottom(): float64;
+    set expand_margin_bottom(value: float64);
+
+    /** Controls how the stylebox's texture will be stretched or tiled horizontally. */
+    get axis_stretch_horizontal(): int64;
+    set axis_stretch_horizontal(value: int64);
+
+    /** Controls how the stylebox's texture will be stretched or tiled vertically. */
+    get axis_stretch_vertical(): int64;
+    set axis_stretch_vertical(value: int64);
+
+    /** The region to use from the [member texture].
+     *  This is equivalent to first wrapping the [member texture] in an [AtlasTexture] with the same region.
+     *  If empty (`Rect2(0, 0, 0, 0)`), the whole [member texture] is used.
      */
-    class PackedVector3Array {
-        constructor()
-        constructor(from: PackedVector3Array | Vector3[])
-        constructor(from: GArray)
-        set_indexed(index: number, value: Vector3)
-        get_indexed(index: number): Vector3
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the [Vector3] at the given index. */
-        set(index: int64, value: Vector3): void
-        
-        /** Inserts a [Vector3] at the end. */
-        push_back(value: Vector3): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: Vector3): boolean
-        
-        /** Appends a [PackedVector3Array] at the end of this array. */
-        append_array(array: PackedVector3Array | Vector3[]): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: Vector3): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: Vector3): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value].  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        has(value: Vector3): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedVector3Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedVector3Array].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedVector3Array
-        
-        /** Returns a [PackedByteArray] with each vector encoded as bytes. */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        bsearch(value: Vector3, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedVector3Array
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        find(value: Vector3, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        rfind(value: Vector3, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        count(value: Vector3): int64
-        static EQUAL(left: PackedVector3Array | Vector3[], right: PackedVector3Array | Vector3[]): boolean
-        static NOT_EQUAL(left: PackedVector3Array | Vector3[], right: PackedVector3Array | Vector3[]): boolean
+    get region_rect(): Rect2;
+    set region_rect(value: Rect2);
+
+    /** Modulates the color of the texture when this style box is drawn. */
+    get modulate_color(): Color;
+    set modulate_color(value: Color);
+
+    /** If `true`, the nine-patch texture's center tile will be drawn. */
+    get draw_center(): boolean;
+    set draw_center(value: boolean);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapStyleBoxTexture;
+  }
+  namespace SubViewport {
+    enum ClearMode {
+      /** Always clear the render target before drawing. */
+      CLEAR_MODE_ALWAYS = 0,
+
+      /** Never clear the render target. */
+      CLEAR_MODE_NEVER = 1,
+
+      /** Clear the render target on the next frame, then switch to [constant CLEAR_MODE_NEVER]. */
+      CLEAR_MODE_ONCE = 2,
     }
-    /** A packed array of [Vector4]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_packedvector4array.html  
+    enum UpdateMode {
+      /** Do not update the render target. */
+      UPDATE_DISABLED = 0,
+
+      /** Update the render target once, then switch to [constant UPDATE_DISABLED]. */
+      UPDATE_ONCE = 1,
+
+      /** Update the render target only when it is visible. This is the default value. */
+      UPDATE_WHEN_VISIBLE = 2,
+
+      /** Update the render target only when its parent is visible. */
+      UPDATE_WHEN_PARENT_VISIBLE = 3,
+
+      /** Always update the render target. */
+      UPDATE_ALWAYS = 4,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapSubViewport extends __NameMapViewport {}
+  /** An interface to a game world that doesn't create a window or draw to the screen directly.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_subviewport.html
+   */
+  class SubViewport<Map extends NodePathMap = any> extends Viewport<Map> {
+    constructor(identifier?: any);
+    /** The width and height of the sub-viewport. Must be set to a value greater than or equal to 2 pixels on both dimensions. Otherwise, nothing will be displayed.
+     *
+     *  **Note:** If the parent node is a [SubViewportContainer] and its [member SubViewportContainer.stretch] is `true`, the viewport size cannot be changed manually.
      */
-    class PackedVector4Array {
-        constructor()
-        constructor(from: PackedVector4Array)
-        constructor(from: GArray)
-        set_indexed(index: number, value: Vector4)
-        get_indexed(index: number): Vector4
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the [Vector4] at the given index. */
-        set(index: int64, value: Vector4): void
-        
-        /** Inserts a [Vector4] at the end. */
-        push_back(value: Vector4): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: Vector4): boolean
-        
-        /** Appends a [PackedVector4Array] at the end of this array. */
-        append_array(array: PackedVector4Array): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: Vector4): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: Vector4): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value].  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        has(value: Vector4): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedVector4Array], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedVector4Array].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedVector4Array
-        
-        /** Returns a [PackedByteArray] with each vector encoded as bytes. */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        bsearch(value: Vector4, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedVector4Array
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        find(value: Vector4, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        rfind(value: Vector4, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array.  
-         *      
-         *  **Note:** Vectors with [constant @GDScript.NAN] elements don't behave the same as other vectors. Therefore, the results from this method may not be accurate if NaNs are included.  
-         */
-        count(value: Vector4): int64
-        static EQUAL(left: PackedVector4Array, right: PackedVector4Array): boolean
-        static NOT_EQUAL(left: PackedVector4Array, right: PackedVector4Array): boolean
-    }
-    /** A packed array of [Color]s.  
-     *  	  
-     *  @link https://docs.godotengine.org/en/4.3/classes/class_packedcolorarray.html  
+    get size(): Vector2i;
+    set size(value: Vector2i);
+
+    /** The 2D size override of the sub-viewport. If either the width or height is `0`, the override is disabled. */
+    get size_2d_override(): Vector2i;
+    set size_2d_override(value: Vector2i);
+
+    /** If `true`, the 2D size override affects stretch as well. */
+    get size_2d_override_stretch(): boolean;
+    set size_2d_override_stretch(value: boolean);
+
+    /** The clear mode when the sub-viewport is used as a render target.
+     *
+     *  **Note:** This property is intended for 2D usage.
      */
-    class PackedColorArray {
-        constructor()
-        constructor(from: PackedColorArray | Color[])
-        constructor(from: GArray)
-        set_indexed(index: number, value: Color)
-        get_indexed(index: number): Color
-        
-        /** Returns the number of elements in the array. */
-        size(): int64
-        
-        /** Returns `true` if the array is empty. */
-        is_empty(): boolean
-        
-        /** Changes the [Color] at the given index. */
-        set(index: int64, value: Color): void
-        
-        /** Appends a value to the array. */
-        push_back(value: Color): boolean
-        
-        /** Appends an element at the end of the array (alias of [method push_back]). */
-        append(value: Color): boolean
-        
-        /** Appends a [PackedColorArray] at the end of this array. */
-        append_array(array: PackedColorArray | Color[]): void
-        
-        /** Removes an element from the array by index. */
-        remove_at(index: int64): void
-        
-        /** Inserts a new element at a given position in the array. The position must be valid, or at the end of the array (`idx == size()`). */
-        insert(at_index: int64, value: Color): int64
-        
-        /** Assigns the given value to all elements in the array. This can typically be used together with [method resize] to create an array with a given size and initialized elements. */
-        fill(value: Color): void
-        
-        /** Sets the size of the array. If the array is grown, reserves elements at the end of the array. If the array is shrunk, truncates the array to the new size. Calling [method resize] once and assigning the new values is faster than adding new elements one by one. */
-        resize(new_size: int64): int64
-        
-        /** Clears the array. This is equivalent to using [method resize] with a size of `0`. */
-        clear(): void
-        
-        /** Returns `true` if the array contains [param value]. */
-        has(value: Color): boolean
-        
-        /** Reverses the order of the elements in the array. */
-        reverse(): void
-        
-        /** Returns the slice of the [PackedColorArray], from [param begin] (inclusive) to [param end] (exclusive), as a new [PackedColorArray].  
-         *  The absolute value of [param begin] and [param end] will be clamped to the array size, so the default value for [param end] makes it slice to the size of the array by default (i.e. `arr.slice(1)` is a shorthand for `arr.slice(1, arr.size())`).  
-         *  If either [param begin] or [param end] are negative, they will be relative to the end of the array (i.e. `arr.slice(0, -2)` is a shorthand for `arr.slice(0, arr.size() - 2)`).  
-         */
-        slice(begin: int64, end: int64 = 2147483647): PackedColorArray
-        
-        /** Returns a [PackedByteArray] with each color encoded as bytes. */
-        to_byte_array(): PackedByteArray
-        
-        /** Sorts the elements of the array in ascending order. */
-        sort(): void
-        
-        /** Finds the index of an existing value (or the insertion index that maintains sorting order, if the value is not yet present in the array) using binary search. Optionally, a [param before] specifier can be passed. If `false`, the returned index comes after all existing entries of the value in the array.  
-         *      
-         *  **Note:** Calling [method bsearch] on an unsorted array results in unexpected behavior.  
-         */
-        bsearch(value: Color, before: boolean = true): int64
-        
-        /** Creates a copy of the array, and returns it. */
-        duplicate(): PackedColorArray
-        
-        /** Searches the array for a value and returns its index or `-1` if not found. Optionally, the initial search index can be passed. */
-        find(value: Color, from: int64 = 0): int64
-        
-        /** Searches the array in reverse order. Optionally, a start search index can be passed. If negative, the start index is considered relative to the end of the array. */
-        rfind(value: Color, from: int64 = -1): int64
-        
-        /** Returns the number of times an element is in the array. */
-        count(value: Color): int64
-        static EQUAL(left: PackedColorArray | Color[], right: PackedColorArray | Color[]): boolean
-        static NOT_EQUAL(left: PackedColorArray | Color[], right: PackedColorArray | Color[]): boolean
+    get render_target_clear_mode(): int64;
+    set render_target_clear_mode(value: int64);
+
+    /** The update mode when the sub-viewport is used as a render target. */
+    get render_target_update_mode(): int64;
+    set render_target_update_mode(value: int64);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapSubViewport;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapSubViewportContainer extends __NameMapContainer {}
+  /** A container used for displaying the contents of a [SubViewport].
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_subviewportcontainer.html
+   */
+  class SubViewportContainer<
+    Map extends NodePathMap = any,
+  > extends Container<Map> {
+    constructor(identifier?: any);
+    /** Virtual method to be implemented by the user. If it returns `true`, the [param event] is propagated to [SubViewport] children. Propagation doesn't happen if it returns `false`. If the function is not implemented, all events are propagated to SubViewports. */
+    /* gdvirtual */ _propagate_input_event(event: InputEvent): boolean;
+
+    /** If `true`, the sub-viewport will be automatically resized to the control's size.
+     *
+     *  **Note:** If `true`, this will prohibit changing [member SubViewport.size] of its children manually.
+     */
+    get stretch(): boolean;
+    set stretch(value: boolean);
+
+    /** Divides the sub-viewport's effective resolution by this value while preserving its scale. This can be used to speed up rendering.
+     *  For example, a 1280×720 sub-viewport with [member stretch_shrink] set to `2` will be rendered at 640×360 while occupying the same size in the container.
+     *
+     *  **Note:** [member stretch] must be `true` for this property to work.
+     */
+    get stretch_shrink(): int64;
+    set stretch_shrink(value: int64);
+
+    /** Configure, if either the [SubViewportContainer] or alternatively the [Control] nodes of its [SubViewport] children should be available as targets of mouse-related functionalities, like identifying the drop target in drag-and-drop operations or cursor shape of hovered [Control] node.
+     *  If `false`, the [Control] nodes inside its [SubViewport] children are considered as targets.
+     *  If `true`, the [SubViewportContainer] itself will be considered as a target.
+     */
+    get mouse_target(): boolean;
+    set mouse_target(value: boolean);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapSubViewportContainer;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapSubtweenTweener extends __NameMapTweener {}
+  /** Runs a [Tween] nested within another [Tween].
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_subtweentweener.html
+   */
+  class SubtweenTweener extends Tweener {
+    constructor(identifier?: any);
+    /** Sets the time in seconds after which the [SubtweenTweener] will start running the subtween. By default there's no delay. */
+    set_delay(delay: float64): null | SubtweenTweener;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapSubtweenTweener;
+  }
+  namespace SurfaceTool {
+    enum CustomFormat {
+      /** Limits range of data passed to [method set_custom] to unsigned normalized 0 to 1 stored in 8 bits per channel. See [constant Mesh.ARRAY_CUSTOM_RGBA8_UNORM]. */
+      CUSTOM_RGBA8_UNORM = 0,
+
+      /** Limits range of data passed to [method set_custom] to signed normalized -1 to 1 stored in 8 bits per channel. See [constant Mesh.ARRAY_CUSTOM_RGBA8_SNORM]. */
+      CUSTOM_RGBA8_SNORM = 1,
+
+      /** Stores data passed to [method set_custom] as half precision floats, and uses only red and green color channels. See [constant Mesh.ARRAY_CUSTOM_RG_HALF]. */
+      CUSTOM_RG_HALF = 2,
+
+      /** Stores data passed to [method set_custom] as half precision floats and uses all color channels. See [constant Mesh.ARRAY_CUSTOM_RGBA_HALF]. */
+      CUSTOM_RGBA_HALF = 3,
+
+      /** Stores data passed to [method set_custom] as full precision floats, and uses only red color channel. See [constant Mesh.ARRAY_CUSTOM_R_FLOAT]. */
+      CUSTOM_R_FLOAT = 4,
+
+      /** Stores data passed to [method set_custom] as full precision floats, and uses only red and green color channels. See [constant Mesh.ARRAY_CUSTOM_RG_FLOAT]. */
+      CUSTOM_RG_FLOAT = 5,
+
+      /** Stores data passed to [method set_custom] as full precision floats, and uses only red, green and blue color channels. See [constant Mesh.ARRAY_CUSTOM_RGB_FLOAT]. */
+      CUSTOM_RGB_FLOAT = 6,
+
+      /** Stores data passed to [method set_custom] as full precision floats, and uses all color channels. See [constant Mesh.ARRAY_CUSTOM_RGBA_FLOAT]. */
+      CUSTOM_RGBA_FLOAT = 7,
+
+      /** Used to indicate a disabled custom channel. */
+      CUSTOM_MAX = 8,
     }
-    enum Side {
-        /** Left side, usually used for [Control] or [StyleBox]-derived classes. */
-        SIDE_LEFT = 0,
-        
-        /** Top side, usually used for [Control] or [StyleBox]-derived classes. */
-        SIDE_TOP = 1,
-        
-        /** Right side, usually used for [Control] or [StyleBox]-derived classes. */
-        SIDE_RIGHT = 2,
-        
-        /** Bottom side, usually used for [Control] or [StyleBox]-derived classes. */
-        SIDE_BOTTOM = 3,
+    enum SkinWeightCount {
+      /** Each individual vertex can be influenced by only 4 bone weights. */
+      SKIN_4_WEIGHTS = 0,
+
+      /** Each individual vertex can be influenced by up to 8 bone weights. */
+      SKIN_8_WEIGHTS = 1,
     }
-    enum Corner {
-        /** Top-left corner. */
-        CORNER_TOP_LEFT = 0,
-        
-        /** Top-right corner. */
-        CORNER_TOP_RIGHT = 1,
-        
-        /** Bottom-right corner. */
-        CORNER_BOTTOM_RIGHT = 2,
-        
-        /** Bottom-left corner. */
-        CORNER_BOTTOM_LEFT = 3,
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapSurfaceTool extends __NameMapRefCounted {}
+  /** Helper tool to create geometry.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_surfacetool.html
+   */
+  class SurfaceTool extends RefCounted {
+    constructor(identifier?: any);
+    /** Set to [constant SKIN_8_WEIGHTS] to indicate that up to 8 bone influences per vertex may be used.
+     *  By default, only 4 bone influences are used ([constant SKIN_4_WEIGHTS]).
+     *
+     *  **Note:** This function takes an enum, not the exact number of weights.
+     */
+    set_skin_weight_count(count: SurfaceTool.SkinWeightCount): void;
+
+    /** By default, returns [constant SKIN_4_WEIGHTS] to indicate only 4 bone influences per vertex are used.
+     *  Returns [constant SKIN_8_WEIGHTS] if up to 8 influences are used.
+     *
+     *  **Note:** This function returns an enum, not the exact number of weights.
+     */
+    get_skin_weight_count(): SurfaceTool.SkinWeightCount;
+
+    /** Sets the color format for this custom [param channel_index]. Use [constant CUSTOM_MAX] to disable.
+     *  Must be invoked after [method begin] and should be set before [method commit] or [method commit_to_arrays].
+     */
+    set_custom_format(
+      channel_index: int64,
+      format: SurfaceTool.CustomFormat,
+    ): void;
+
+    /** Returns the format for custom [param channel_index] (currently up to 4). Returns [constant CUSTOM_MAX] if this custom channel is unused. */
+    get_custom_format(channel_index: int64): SurfaceTool.CustomFormat;
+
+    /** Called before adding any vertices. Takes the primitive type as an argument (e.g. [constant Mesh.PRIMITIVE_TRIANGLES]). */
+    begin(primitive: Mesh.PrimitiveType): void;
+
+    /** Specifies the position of current vertex. Should be called after specifying other vertex properties (e.g. Color, UV). */
+    add_vertex(vertex: Vector3): void;
+
+    /** Specifies a [Color] to use for the  *next*  vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
+     *
+     *  **Note:** The material must have [member BaseMaterial3D.vertex_color_use_as_albedo] enabled for the vertex color to be visible.
+     */
+    set_color(color: Color): void;
+
+    /** Specifies a normal to use for the  *next*  vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all. */
+    set_normal(normal: Vector3): void;
+
+    /** Specifies a tangent to use for the  *next*  vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all. */
+    set_tangent(tangent: Plane): void;
+
+    /** Specifies a set of UV coordinates to use for the  *next*  vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all. */
+    set_uv(uv: Vector2): void;
+
+    /** Specifies an optional second set of UV coordinates to use for the  *next*  vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all. */
+    set_uv2(uv2: Vector2): void;
+
+    /** Specifies an array of bones to use for the  *next*  vertex. [param bones] must contain 4 integers. */
+    set_bones(bones: PackedInt32Array | int32[]): void;
+
+    /** Specifies weight values to use for the  *next*  vertex. [param weights] must contain 4 values. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all. */
+    set_weights(weights: PackedFloat32Array | float32[]): void;
+
+    /** Sets the custom value on this vertex for [param channel_index].
+     *  [method set_custom_format] must be called first for this [param channel_index]. Formats which are not RGBA will ignore other color channels.
+     */
+    set_custom(channel_index: int64, custom_color: Color): void;
+
+    /** Specifies the smooth group to use for the  *next*  vertex. If this is never called, all vertices will have the default smooth group of `0` and will be smoothed with adjacent vertices of the same group. To produce a mesh with flat normals, set the smooth group to `-1`.
+     *
+     *  **Note:** This function actually takes a `uint32_t`, so C# users should use `uint32.MaxValue` instead of `-1` to produce a mesh with flat normals.
+     */
+    set_smooth_group(index: int64): void;
+
+    /** Inserts a triangle fan made of array data into [Mesh] being constructed.
+     *  Requires the primitive type be set to [constant Mesh.PRIMITIVE_TRIANGLES].
+     */
+    add_triangle_fan(
+      vertices: PackedVector3Array | Vector3[],
+      uvs?: PackedVector2Array | Vector2[] /* = [] */,
+      colors?: PackedColorArray | Color[] /* = [] */,
+      uv2s?: PackedVector2Array | Vector2[] /* = [] */,
+      normals?: PackedVector3Array | Vector3[] /* = [] */,
+      tangents?: GArray<Plane> /* = [] */,
+    ): void;
+
+    /** Adds a vertex to index array if you are using indexed vertices. Does not need to be called before adding vertices. */
+    add_index(index: int64): void;
+
+    /** Shrinks the vertex array by creating an index array. This can improve performance by avoiding vertex reuse. */
+    index(): void;
+
+    /** Removes the index array by expanding the vertex array. */
+    deindex(): void;
+
+    /** Generates normals from vertices so you do not have to do it manually. If [param flip] is `true`, the resulting normals will be inverted. [method generate_normals] should be called  *after*  generating geometry and  *before*  committing the mesh using [method commit] or [method commit_to_arrays]. For correct display of normal-mapped surfaces, you will also have to generate tangents using [method generate_tangents].
+     *
+     *  **Note:** [method generate_normals] only works if the primitive type is set to [constant Mesh.PRIMITIVE_TRIANGLES].
+     *
+     *  **Note:** [method generate_normals] takes smooth groups into account. To generate smooth normals, set the smooth group to a value greater than or equal to `0` using [method set_smooth_group] or leave the smooth group at the default of `0`. To generate flat normals, set the smooth group to `-1` using [method set_smooth_group] prior to adding vertices.
+     */
+    generate_normals(flip?: boolean /* = false */): void;
+
+    /** Generates a tangent vector for each vertex. Requires that each vertex already has UVs and normals set (see [method generate_normals]). */
+    generate_tangents(): void;
+
+    /** Optimizes triangle sorting for performance. Requires that [method get_primitive_type] is [constant Mesh.PRIMITIVE_TRIANGLES]. */
+    optimize_indices_for_cache(): void;
+
+    /** Returns the axis-aligned bounding box of the vertex positions. */
+    get_aabb(): AABB;
+
+    /** Generates an LOD for a given [param nd_threshold] in linear units (square root of quadric error metric), using at most [param target_index_count] indices. */
+    generate_lod(
+      nd_threshold: float64,
+      target_index_count?: int64 /* = 3 */,
+    ): PackedInt32Array;
+
+    /** Sets [Material] to be used by the [Mesh] you are constructing. */
+    set_material(material: Material): void;
+
+    /** Returns the type of mesh geometry, such as [constant Mesh.PRIMITIVE_TRIANGLES]. */
+    get_primitive_type(): Mesh.PrimitiveType;
+
+    /** Clear all information passed into the surface tool so far. */
+    clear(): void;
+
+    /** Creates a vertex array from an existing [Mesh]. */
+    create_from(existing: Mesh, surface: int64): void;
+
+    /** Creates this SurfaceTool from existing vertex arrays such as returned by [method commit_to_arrays], [method Mesh.surface_get_arrays], [method Mesh.surface_get_blend_shape_arrays], [method ImporterMesh.get_surface_arrays], and [method ImporterMesh.get_surface_blend_shape_arrays]. [param primitive_type] controls the type of mesh data, defaulting to [constant Mesh.PRIMITIVE_TRIANGLES]. */
+    create_from_arrays(
+      arrays: GArray,
+      primitive_type?: Mesh.PrimitiveType /* = 3 */,
+    ): void;
+
+    /** Creates a vertex array from the specified blend shape of an existing [Mesh]. This can be used to extract a specific pose from a blend shape. */
+    create_from_blend_shape(
+      existing: Mesh,
+      surface: int64,
+      blend_shape: string,
+    ): void;
+
+    /** Append vertices from a given [Mesh] surface onto the current vertex array with specified [Transform3D]. */
+    append_from(existing: Mesh, surface: int64, transform: Transform3D): void;
+
+    /** Returns a constructed [ArrayMesh] from current information passed in. If an existing [ArrayMesh] is passed in as an argument, will add an extra surface to the existing [ArrayMesh].
+     *  The [param flags] argument can be the bitwise OR of [constant Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE], [constant Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS], or [constant Mesh.ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].
+     */
+    commit(
+      existing?: ArrayMesh /* = undefined */,
+      flags?: int64 /* = 0 */,
+    ): null | ArrayMesh;
+
+    /** Commits the data to the same format used by [method ArrayMesh.add_surface_from_arrays], [method ImporterMesh.add_surface], and [method create_from_arrays]. This way you can further process the mesh data using the [ArrayMesh] or [ImporterMesh] APIs. */
+    commit_to_arrays(): GArray;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapSurfaceTool;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapSyntaxHighlighter extends __NameMapResource {}
+  /** Base class for syntax highlighters. Provides syntax highlighting data to a [TextEdit].
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_syntaxhighlighter.html
+   */
+  class SyntaxHighlighter extends Resource {
+    constructor(identifier?: any);
+    /** Virtual method which can be overridden to return syntax highlighting data.
+     *  See [method get_line_syntax_highlighting] for more details.
+     */
+    /* gdvirtual */ _get_line_syntax_highlighting(line: int64): GDictionary;
+
+    /** Virtual method which can be overridden to clear any local caches. */
+    /* gdvirtual */ _clear_highlighting_cache(): void;
+
+    /** Virtual method which can be overridden to update any local caches. */
+    /* gdvirtual */ _update_cache(): void;
+
+    /** Returns the syntax highlighting data for the line at index [param line]. If the line is not cached, calls [method _get_line_syntax_highlighting] first to calculate the data.
+     *  Each entry is a column number containing a nested [Dictionary]. The column number denotes the start of a region, the region will end if another region is found, or at the end of the line. The nested [Dictionary] contains the data for that region. Currently only the key `"color"` is supported.
+     *  **Example:** Possible return value. This means columns `0` to `4` should be red, and columns `5` to the end of the line should be green:
+     *
+     */
+    get_line_syntax_highlighting(line: int64): GDictionary;
+
+    /** Clears then updates the [SyntaxHighlighter] caches. Override [method _update_cache] for a callback.
+     *
+     *  **Note:** This is called automatically when the associated [TextEdit] node, updates its own cache.
+     */
+    update_cache(): void;
+
+    /** Clears all cached syntax highlighting data.
+     *  Then calls overridable method [method _clear_highlighting_cache].
+     */
+    clear_highlighting_cache(): void;
+
+    /** Returns the associated [TextEdit] node. */
+    get_text_edit(): null | TextEdit;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapSyntaxHighlighter;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapSystemFont extends __NameMapFont {}
+  /** A font loaded from a system font. Falls back to a default theme font if not implemented on the host OS.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_systemfont.html
+   */
+  class SystemFont extends Font {
+    constructor(identifier?: any);
+    /** Array of font family names to search, first matching font found is used. */
+    get font_names(): PackedStringArray;
+    set font_names(value: PackedStringArray | string[]);
+
+    /** If set to `true`, italic or oblique font is preferred. */
+    get font_italic(): boolean;
+    set font_italic(value: boolean);
+
+    /** Preferred weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`. */
+    get font_weight(): int64;
+    set font_weight(value: int64);
+
+    /** Preferred font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`. */
+    get font_stretch(): int64;
+    set font_stretch(value: int64);
+
+    /** Font anti-aliasing mode. */
+    get antialiasing(): int64;
+    set antialiasing(value: int64);
+
+    /** If set to `true`, generate mipmaps for the font textures. */
+    get generate_mipmaps(): boolean;
+    set generate_mipmaps(value: boolean);
+
+    /** If set to `true`, embedded font bitmap loading is disabled (bitmap-only and color fonts ignore this property). */
+    get disable_embedded_bitmaps(): boolean;
+    set disable_embedded_bitmaps(value: boolean);
+
+    /** If set to `true`, system fonts can be automatically used as fallbacks. */
+    get allow_system_fallback(): boolean;
+    set allow_system_fallback(value: boolean);
+
+    /** If set to `true`, auto-hinting is supported and preferred over font built-in hinting. */
+    get force_autohinter(): boolean;
+    set force_autohinter(value: boolean);
+
+    /** If set to `true`, color modulation is applied when drawing colored glyphs, otherwise it's applied to the monochrome glyphs only. */
+    get modulate_color_glyphs(): boolean;
+    set modulate_color_glyphs(value: boolean);
+
+    /** Font hinting mode. */
+    get hinting(): int64;
+    set hinting(value: int64);
+
+    /** Font glyph subpixel positioning mode. Subpixel positioning provides shaper text and better kerning for smaller font sizes, at the cost of memory usage and font rasterization speed. Use [constant TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the font size. */
+    get subpixel_positioning(): int64;
+    set subpixel_positioning(value: int64);
+
+    /** If set to `true`, when aligning glyphs to the pixel boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This setting has no effect if subpixel positioning is enabled. */
+    get keep_rounding_remainders(): boolean;
+    set keep_rounding_remainders(value: boolean);
+
+    /** If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data. */
+    get multichannel_signed_distance_field(): boolean;
+    set multichannel_signed_distance_field(value: boolean);
+
+    /** The width of the range around the shape between the minimum and maximum representable signed distance. If using font outlines, [member msdf_pixel_range] must be set to at least  *twice*  the size of the largest font outline. The default [member msdf_pixel_range] value of `16` allows outline sizes up to `8` to look correct. */
+    get msdf_pixel_range(): int64;
+    set msdf_pixel_range(value: int64);
+
+    /** Source font size used to generate MSDF textures. Higher values allow for more precision, but are slower to render and require more memory. Only increase this value if you notice a visible lack of precision in glyph rendering. */
+    get msdf_size(): int64;
+    set msdf_size(value: int64);
+
+    /** If set to a positive value, overrides the oversampling factor of the viewport this font is used in. See [member Viewport.oversampling]. This value doesn't override the [code skip-lint]oversampling` parameter of [code skip-lint]draw_*` methods. */
+    get oversampling(): float64;
+    set oversampling(value: float64);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapSystemFont;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTCPServer extends __NameMapRefCounted {}
+  /** A TCP server.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_tcpserver.html
+   */
+  class TCPServer extends RefCounted {
+    constructor(identifier?: any);
+    /** Listen on the [param port] binding to [param bind_address].
+     *  If [param bind_address] is set as `"*"` (default), the server will listen on all available addresses (both IPv4 and IPv6).
+     *  If [param bind_address] is set as `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the server will listen on all available addresses matching that IP type.
+     *  If [param bind_address] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc.), the server will only listen on the interface with that address (or fail if no interface with the given address exists).
+     */
+    listen(port: int64, bind_address?: string /* = '*' */): Error;
+
+    /** Returns `true` if a connection is available for taking. */
+    is_connection_available(): boolean;
+
+    /** Returns `true` if the server is currently listening for connections. */
+    is_listening(): boolean;
+
+    /** Returns the local port this server is listening to. */
+    get_local_port(): int64;
+
+    /** If a connection is available, returns a StreamPeerTCP with the connection. */
+    take_connection(): null | StreamPeerTCP;
+
+    /** Stops listening. */
+    stop(): void;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTCPServer;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTLSOptions extends __NameMapRefCounted {}
+  /** TLS configuration for clients and servers.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_tlsoptions.html
+   */
+  class TLSOptions extends RefCounted {
+    constructor(identifier?: any);
+    /** Creates a TLS client configuration which validates certificates and their common names (fully qualified domain names).
+     *  You can specify a custom [param trusted_chain] of certification authorities (the default CA list will be used if `null`), and optionally provide a [param common_name_override] if you expect the certificate to have a common name other than the server FQDN.
+     *
+     *  **Note:** On the Web platform, TLS verification is always enforced against the CA list of the web browser. This is considered a security feature.
+     */
+    static client(
+      trusted_chain?: X509Certificate /* = undefined */,
+      common_name_override?: string /* = '' */,
+    ): null | TLSOptions;
+
+    /** Creates an **unsafe** TLS client configuration where certificate validation is optional. You can optionally provide a valid [param trusted_chain], but the common name of the certificates will never be checked. Using this configuration for purposes other than testing **is not recommended**.
+     *
+     *  **Note:** On the Web platform, TLS verification is always enforced against the CA list of the web browser. This is considered a security feature.
+     */
+    static client_unsafe(
+      trusted_chain?: X509Certificate /* = undefined */,
+    ): null | TLSOptions;
+
+    /** Creates a TLS server configuration using the provided [param key] and [param certificate].
+     *
+     *  **Note:** The [param certificate] should include the full certificate chain up to the signing CA (certificates file can be concatenated using a general purpose text editor).
+     */
+    static server(
+      key: CryptoKey,
+      certificate: X509Certificate,
+    ): null | TLSOptions;
+
+    /** Returns `true` if created with [method TLSOptions.server], `false` otherwise. */
+    is_server(): boolean;
+
+    /** Returns `true` if created with [method TLSOptions.client_unsafe], `false` otherwise. */
+    is_unsafe_client(): boolean;
+
+    /** Returns the common name (domain name) override specified when creating with [method TLSOptions.client]. */
+    get_common_name_override(): string;
+
+    /** Returns the CA [X509Certificate] chain specified when creating with [method TLSOptions.client] or [method TLSOptions.client_unsafe]. */
+    get_trusted_ca_chain(): null | X509Certificate;
+
+    /** Returns the [CryptoKey] specified when creating with [method TLSOptions.server]. */
+    get_private_key(): null | CryptoKey;
+
+    /** Returns the [X509Certificate] specified when creating with [method TLSOptions.server]. */
+    get_own_certificate(): null | X509Certificate;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTLSOptions;
+  }
+  namespace TabBar {
+    enum AlignmentMode {
+      /** Places tabs to the left. */
+      ALIGNMENT_LEFT = 0,
+
+      /** Places tabs in the middle. */
+      ALIGNMENT_CENTER = 1,
+
+      /** Places tabs to the right. */
+      ALIGNMENT_RIGHT = 2,
+
+      /** Represents the size of the [enum AlignmentMode] enum. */
+      ALIGNMENT_MAX = 3,
+    }
+    enum CloseButtonDisplayPolicy {
+      /** Never show the close buttons. */
+      CLOSE_BUTTON_SHOW_NEVER = 0,
+
+      /** Only show the close button on the currently active tab. */
+      CLOSE_BUTTON_SHOW_ACTIVE_ONLY = 1,
+
+      /** Show the close button on all tabs. */
+      CLOSE_BUTTON_SHOW_ALWAYS = 2,
+
+      /** Represents the size of the [enum CloseButtonDisplayPolicy] enum. */
+      CLOSE_BUTTON_MAX = 3,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTabBar extends __NameMapControl {}
+  /** A control that provides a horizontal bar with tabs.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_tabbar.html
+   */
+  class TabBar<Map extends NodePathMap = any> extends Control<Map> {
+    constructor(identifier?: any);
+    /** Returns the previously active tab index. */
+    get_previous_tab(): int64;
+
+    /** Selects the first available tab with lower index than the currently selected. Returns `true` if tab selection changed. */
+    select_previous_available(): boolean;
+
+    /** Selects the first available tab with greater index than the currently selected. Returns `true` if tab selection changed. */
+    select_next_available(): boolean;
+
+    /** Sets a [param title] for the tab at index [param tab_idx]. */
+    set_tab_title(tab_idx: int64, title: string): void;
+
+    /** Returns the title of the tab at index [param tab_idx]. */
+    get_tab_title(tab_idx: int64): string;
+
+    /** Sets a [param tooltip] for tab at index [param tab_idx].
+     *
+     *  **Note:** By default, if the [param tooltip] is empty and the tab text is truncated (not all characters fit into the tab), the title will be displayed as a tooltip. To hide the tooltip, assign `" "` as the [param tooltip] text.
+     */
+    set_tab_tooltip(tab_idx: int64, tooltip: string): void;
+
+    /** Returns the tooltip text of the tab at index [param tab_idx]. */
+    get_tab_tooltip(tab_idx: int64): string;
+
+    /** Sets tab title base writing direction. */
+    set_tab_text_direction(
+      tab_idx: int64,
+      direction: Control.TextDirection,
+    ): void;
+
+    /** Returns tab title text base writing direction. */
+    get_tab_text_direction(tab_idx: int64): Control.TextDirection;
+
+    /** Sets language code of tab title used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
+    set_tab_language(tab_idx: int64, language: string): void;
+
+    /** Returns tab title language code. */
+    get_tab_language(tab_idx: int64): string;
+
+    /** Sets an [param icon] for the tab at index [param tab_idx]. */
+    set_tab_icon(tab_idx: int64, icon: Texture2D): void;
+
+    /** Returns the icon for the tab at index [param tab_idx] or `null` if the tab has no icon. */
+    get_tab_icon(tab_idx: int64): null | Texture2D;
+
+    /** Sets the maximum allowed width of the icon for the tab at index [param tab_idx]. This limit is applied on top of the default size of the icon and on top of [theme_item icon_max_width]. The height is adjusted according to the icon's ratio. */
+    set_tab_icon_max_width(tab_idx: int64, width: int64): void;
+
+    /** Returns the maximum allowed width of the icon for the tab at index [param tab_idx]. */
+    get_tab_icon_max_width(tab_idx: int64): int64;
+
+    /** Sets an [param icon] for the button of the tab at index [param tab_idx] (located to the right, before the close button), making it visible and clickable (See [signal tab_button_pressed]). Giving it a `null` value will hide the button. */
+    set_tab_button_icon(tab_idx: int64, icon: Texture2D): void;
+
+    /** Returns the icon for the right button of the tab at index [param tab_idx] or `null` if the right button has no icon. */
+    get_tab_button_icon(tab_idx: int64): null | Texture2D;
+
+    /** If [param disabled] is `true`, disables the tab at index [param tab_idx], making it non-interactable. */
+    set_tab_disabled(tab_idx: int64, disabled: boolean): void;
+
+    /** Returns `true` if the tab at index [param tab_idx] is disabled. */
+    is_tab_disabled(tab_idx: int64): boolean;
+
+    /** If [param hidden] is `true`, hides the tab at index [param tab_idx], making it disappear from the tab area. */
+    set_tab_hidden(tab_idx: int64, hidden: boolean): void;
+
+    /** Returns `true` if the tab at index [param tab_idx] is hidden. */
+    is_tab_hidden(tab_idx: int64): boolean;
+
+    /** Sets the metadata value for the tab at index [param tab_idx], which can be retrieved later using [method get_tab_metadata]. */
+    set_tab_metadata(tab_idx: int64, metadata: any): void;
+
+    /** Returns the metadata value set to the tab at index [param tab_idx] using [method set_tab_metadata]. If no metadata was previously set, returns `null` by default. */
+    get_tab_metadata(tab_idx: int64): any;
+
+    /** Removes the tab at index [param tab_idx]. */
+    remove_tab(tab_idx: int64): void;
+
+    /** Adds a new tab. */
+    add_tab(
+      title?: string /* = '' */,
+      icon?: Texture2D /* = undefined */,
+    ): void;
+
+    /** Returns the index of the tab at local coordinates [param point]. Returns `-1` if the point is outside the control boundaries or if there's no tab at the queried position. */
+    get_tab_idx_at_point(point: Vector2): int64;
+
+    /** Returns the number of hidden tabs offsetted to the left. */
+    get_tab_offset(): int64;
+
+    /** Returns `true` if the offset buttons (the ones that appear when there's not enough space for all tabs) are visible. */
+    get_offset_buttons_visible(): boolean;
+
+    /** Moves the scroll view to make the tab visible. */
+    ensure_tab_visible(idx: int64): void;
+
+    /** Returns tab [Rect2] with local position and size. */
+    get_tab_rect(tab_idx: int64): Rect2;
+
+    /** Moves a tab from [param from] to [param to]. */
+    move_tab(from: int64, to: int64): void;
+
+    /** Clears all tabs. */
+    clear_tabs(): void;
+
+    /** The index of the current selected tab. A value of `-1` means that no tab is selected and can only be set when [member deselect_enabled] is `true` or if all tabs are hidden or disabled. */
+    get current_tab(): int64;
+    set current_tab(value: int64);
+
+    /** The position at which tabs will be placed. */
+    get tab_alignment(): int64;
+    set tab_alignment(value: int64);
+
+    /** If `true`, tabs overflowing this node's width will be hidden, displaying two navigation buttons instead. Otherwise, this node's minimum size is updated so that all tabs are visible. */
+    get clip_tabs(): boolean;
+    set clip_tabs(value: boolean);
+
+    /** If `true`, middle clicking on the mouse will fire the [signal tab_close_pressed] signal. */
+    get close_with_middle_mouse(): boolean;
+    set close_with_middle_mouse(value: boolean);
+
+    /** When the close button will appear on the tabs. */
+    get tab_close_display_policy(): int64;
+    set tab_close_display_policy(value: int64);
+
+    /** Sets the maximum width which all tabs should be limited to. Unlimited if set to `0`. */
+    get max_tab_width(): int64;
+    set max_tab_width(value: int64);
+
+    /** if `true`, the mouse's scroll wheel can be used to navigate the scroll view. */
+    get scrolling_enabled(): boolean;
+    set scrolling_enabled(value: boolean);
+
+    /** If `true`, tabs can be rearranged with mouse drag. */
+    get drag_to_rearrange_enabled(): boolean;
+    set drag_to_rearrange_enabled(value: boolean);
+
+    /** [TabBar]s with the same rearrange group ID will allow dragging the tabs between them. Enable drag with [member drag_to_rearrange_enabled].
+     *  Setting this to `-1` will disable rearranging between [TabBar]s.
+     */
+    get tabs_rearrange_group(): int64;
+    set tabs_rearrange_group(value: int64);
+
+    /** If `true`, the tab offset will be changed to keep the currently selected tab visible. */
+    get scroll_to_selected(): boolean;
+    set scroll_to_selected(value: boolean);
+
+    /** If `true`, enables selecting a tab with the right mouse button. */
+    get select_with_rmb(): boolean;
+    set select_with_rmb(value: boolean);
+
+    /** If `true`, all tabs can be deselected so that no tab is selected. Click on the current tab to deselect it. */
+    get deselect_enabled(): boolean;
+    set deselect_enabled(value: boolean);
+
+    /** The number of tabs currently in the bar. */
+    get tab_count(): int64;
+    set tab_count(value: int64);
+
+    /** Emitted when a tab is selected via click, directional input, or script, even if it is the current tab. */
+    readonly tab_selected: Signal<(tab: int64) => void>;
+
+    /** Emitted when switching to another tab. */
+    readonly tab_changed: Signal<(tab: int64) => void>;
+
+    /** Emitted when a tab is clicked, even if it is the current tab. */
+    readonly tab_clicked: Signal<(tab: int64) => void>;
+
+    /** Emitted when a tab is right-clicked. [member select_with_rmb] must be enabled. */
+    readonly tab_rmb_clicked: Signal<(tab: int64) => void>;
+
+    /** Emitted when a tab's close button is pressed or when middle-clicking on a tab, if [member close_with_middle_mouse] is enabled.
+     *
+     *  **Note:** Tabs are not removed automatically once the close button is pressed, this behavior needs to be programmed manually. For example:
+     *
+     */
+    readonly tab_close_pressed: Signal<(tab: int64) => void>;
+
+    /** Emitted when a tab's right button is pressed. See [method set_tab_button_icon]. */
+    readonly tab_button_pressed: Signal<(tab: int64) => void>;
+
+    /** Emitted when a tab is hovered by the mouse. */
+    readonly tab_hovered: Signal<(tab: int64) => void>;
+
+    /** Emitted when the active tab is rearranged via mouse drag. See [member drag_to_rearrange_enabled]. */
+    readonly active_tab_rearranged: Signal<(idx_to: int64) => void>;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTabBar;
+  }
+  namespace TabContainer {
+    enum TabPosition {
+      /** Places the tab bar at the top. */
+      POSITION_TOP = 0,
+
+      /** Places the tab bar at the bottom. The tab bar's [StyleBox] will be flipped vertically. */
+      POSITION_BOTTOM = 1,
+
+      /** Represents the size of the [enum TabPosition] enum. */
+      POSITION_MAX = 2,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTabContainer extends __NameMapContainer {}
+  /** A container that creates a tab for each child control, displaying only the active tab's control.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_tabcontainer.html
+   */
+  class TabContainer<Map extends NodePathMap = any> extends Container<Map> {
+    constructor(identifier?: any);
+    /** Returns the number of tabs. */
+    get_tab_count(): int64;
+
+    /** Returns the previously active tab index. */
+    get_previous_tab(): int64;
+
+    /** Selects the first available tab with lower index than the currently selected. Returns `true` if tab selection changed. */
+    select_previous_available(): boolean;
+
+    /** Selects the first available tab with greater index than the currently selected. Returns `true` if tab selection changed. */
+    select_next_available(): boolean;
+
+    /** Returns the child [Control] node located at the active tab index. */
+    get_current_tab_control(): null | Control;
+
+    /** Returns the [TabBar] contained in this container.
+     *  **Warning:** This is a required internal node, removing and freeing it or editing its tabs may cause a crash. If you wish to edit the tabs, use the methods provided in [TabContainer].
+     */
+    get_tab_bar(): null | TabBar;
+
+    /** Returns the [Control] node from the tab at index [param tab_idx]. */
+    get_tab_control(tab_idx: int64): null | Control;
+
+    /** Sets a custom title for the tab at index [param tab_idx] (tab titles default to the name of the indexed child node). Set it back to the child's name to make the tab default to it again. */
+    set_tab_title(tab_idx: int64, title: string): void;
+
+    /** Returns the title of the tab at index [param tab_idx]. Tab titles default to the name of the indexed child node, but this can be overridden with [method set_tab_title]. */
+    get_tab_title(tab_idx: int64): string;
+
+    /** Sets a custom tooltip text for tab at index [param tab_idx].
+     *
+     *  **Note:** By default, if the [param tooltip] is empty and the tab text is truncated (not all characters fit into the tab), the title will be displayed as a tooltip. To hide the tooltip, assign `" "` as the [param tooltip] text.
+     */
+    set_tab_tooltip(tab_idx: int64, tooltip: string): void;
+
+    /** Returns the tooltip text of the tab at index [param tab_idx]. */
+    get_tab_tooltip(tab_idx: int64): string;
+
+    /** Sets an icon for the tab at index [param tab_idx]. */
+    set_tab_icon(tab_idx: int64, icon: Texture2D): void;
+
+    /** Returns the [Texture2D] for the tab at index [param tab_idx] or `null` if the tab has no [Texture2D]. */
+    get_tab_icon(tab_idx: int64): null | Texture2D;
+
+    /** Sets the maximum allowed width of the icon for the tab at index [param tab_idx]. This limit is applied on top of the default size of the icon and on top of [theme_item icon_max_width]. The height is adjusted according to the icon's ratio. */
+    set_tab_icon_max_width(tab_idx: int64, width: int64): void;
+
+    /** Returns the maximum allowed width of the icon for the tab at index [param tab_idx]. */
+    get_tab_icon_max_width(tab_idx: int64): int64;
+
+    /** If [param disabled] is `true`, disables the tab at index [param tab_idx], making it non-interactable. */
+    set_tab_disabled(tab_idx: int64, disabled: boolean): void;
+
+    /** Returns `true` if the tab at index [param tab_idx] is disabled. */
+    is_tab_disabled(tab_idx: int64): boolean;
+
+    /** If [param hidden] is `true`, hides the tab at index [param tab_idx], making it disappear from the tab area. */
+    set_tab_hidden(tab_idx: int64, hidden: boolean): void;
+
+    /** Returns `true` if the tab at index [param tab_idx] is hidden. */
+    is_tab_hidden(tab_idx: int64): boolean;
+
+    /** Sets the metadata value for the tab at index [param tab_idx], which can be retrieved later using [method get_tab_metadata]. */
+    set_tab_metadata(tab_idx: int64, metadata: any): void;
+
+    /** Returns the metadata value set to the tab at index [param tab_idx] using [method set_tab_metadata]. If no metadata was previously set, returns `null` by default. */
+    get_tab_metadata(tab_idx: int64): any;
+
+    /** Sets the button icon from the tab at index [param tab_idx]. */
+    set_tab_button_icon(tab_idx: int64, icon: Texture2D): void;
+
+    /** Returns the button icon from the tab at index [param tab_idx]. */
+    get_tab_button_icon(tab_idx: int64): null | Texture2D;
+
+    /** Returns the index of the tab at local coordinates [param point]. Returns `-1` if the point is outside the control boundaries or if there's no tab at the queried position. */
+    get_tab_idx_at_point(point: Vector2): int64;
+
+    /** Returns the index of the tab tied to the given [param control]. The control must be a child of the [TabContainer]. */
+    get_tab_idx_from_control(control: Control): int64;
+
+    /** If set on a [Popup] node instance, a popup menu icon appears in the top-right corner of the [TabContainer] (setting it to `null` will make it go away). Clicking it will expand the [Popup] node. */
+    set_popup(popup: Node): void;
+
+    /** Returns the [Popup] node instance if one has been set already with [method set_popup].
+     *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member Window.visible] property.
+     */
+    get_popup(): null | Popup;
+
+    /** The position at which tabs will be placed. */
+    get tab_alignment(): int64;
+    set tab_alignment(value: int64);
+
+    /** The current tab index. When set, this index's [Control] node's `visible` property is set to `true` and all others are set to `false`.
+     *  A value of `-1` means that no tab is selected.
+     */
+    get current_tab(): int64;
+    set current_tab(value: int64);
+
+    /** The position of the tab bar. */
+    get tabs_position(): int64;
+    set tabs_position(value: int64);
+
+    /** If `true`, tabs overflowing this node's width will be hidden, displaying two navigation buttons instead. Otherwise, this node's minimum size is updated so that all tabs are visible. */
+    get clip_tabs(): boolean;
+    set clip_tabs(value: boolean);
+
+    /** If `true`, tabs are visible. If `false`, tabs' content and titles are hidden. */
+    get tabs_visible(): boolean;
+    set tabs_visible(value: boolean);
+
+    /** If `true`, all tabs are drawn in front of the panel. If `false`, inactive tabs are drawn behind the panel. */
+    get all_tabs_in_front(): boolean;
+    set all_tabs_in_front(value: boolean);
+
+    /** If `true`, tabs can be rearranged with mouse drag. */
+    get drag_to_rearrange_enabled(): boolean;
+    set drag_to_rearrange_enabled(value: boolean);
+
+    /** [TabContainer]s with the same rearrange group ID will allow dragging the tabs between them. Enable drag with [member drag_to_rearrange_enabled].
+     *  Setting this to `-1` will disable rearranging between [TabContainer]s.
+     */
+    get tabs_rearrange_group(): int64;
+    set tabs_rearrange_group(value: int64);
+
+    /** If `true`, child [Control] nodes that are hidden have their minimum size take into account in the total, instead of only the currently visible one. */
+    get use_hidden_tabs_for_min_size(): boolean;
+    set use_hidden_tabs_for_min_size(value: boolean);
+
+    /** The focus access mode for the internal [TabBar] node. */
+    get tab_focus_mode(): int64;
+    set tab_focus_mode(value: int64);
+
+    /** If `true`, all tabs can be deselected so that no tab is selected. Click on the [member current_tab] to deselect it.
+     *  Only the tab header will be shown if no tabs are selected.
+     */
+    get deselect_enabled(): boolean;
+    set deselect_enabled(value: boolean);
+
+    /** Emitted when the active tab is rearranged via mouse drag. See [member drag_to_rearrange_enabled]. */
+    readonly active_tab_rearranged: Signal<(idx_to: int64) => void>;
+
+    /** Emitted when switching to another tab. */
+    readonly tab_changed: Signal<(tab: int64) => void>;
+
+    /** Emitted when a tab is clicked, even if it is the current tab. */
+    readonly tab_clicked: Signal<(tab: int64) => void>;
+
+    /** Emitted when a tab is hovered by the mouse. */
+    readonly tab_hovered: Signal<(tab: int64) => void>;
+
+    /** Emitted when a tab is selected via click, directional input, or script, even if it is the current tab. */
+    readonly tab_selected: Signal<(tab: int64) => void>;
+
+    /** Emitted when the user clicks on the button icon on this tab. */
+    readonly tab_button_pressed: Signal<(tab: int64) => void>;
+
+    /** Emitted when the [TabContainer]'s [Popup] button is clicked. See [method set_popup] for details. */
+    readonly pre_popup_pressed: Signal<() => void>;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTabContainer;
+  }
+  namespace TextEdit {
+    enum MenuItems {
+      /** Cuts (copies and clears) the selected text. */
+      MENU_CUT = 0,
+
+      /** Copies the selected text. */
+      MENU_COPY = 1,
+
+      /** Pastes the clipboard text over the selected text (or at the cursor's position). */
+      MENU_PASTE = 2,
+
+      /** Erases the whole [TextEdit] text. */
+      MENU_CLEAR = 3,
+
+      /** Selects the whole [TextEdit] text. */
+      MENU_SELECT_ALL = 4,
+
+      /** Undoes the previous action. */
+      MENU_UNDO = 5,
+
+      /** Redoes the previous action. */
+      MENU_REDO = 6,
+
+      /** ID of "Text Writing Direction" submenu. */
+      MENU_SUBMENU_TEXT_DIR = 7,
+
+      /** Sets text direction to inherited. */
+      MENU_DIR_INHERITED = 8,
+
+      /** Sets text direction to automatic. */
+      MENU_DIR_AUTO = 9,
+
+      /** Sets text direction to left-to-right. */
+      MENU_DIR_LTR = 10,
+
+      /** Sets text direction to right-to-left. */
+      MENU_DIR_RTL = 11,
+
+      /** Toggles control character display. */
+      MENU_DISPLAY_UCC = 12,
+
+      /** ID of "Insert Control Character" submenu. */
+      MENU_SUBMENU_INSERT_UCC = 13,
+
+      /** Inserts left-to-right mark (LRM) character. */
+      MENU_INSERT_LRM = 14,
+
+      /** Inserts right-to-left mark (RLM) character. */
+      MENU_INSERT_RLM = 15,
+
+      /** Inserts start of left-to-right embedding (LRE) character. */
+      MENU_INSERT_LRE = 16,
+
+      /** Inserts start of right-to-left embedding (RLE) character. */
+      MENU_INSERT_RLE = 17,
+
+      /** Inserts start of left-to-right override (LRO) character. */
+      MENU_INSERT_LRO = 18,
+
+      /** Inserts start of right-to-left override (RLO) character. */
+      MENU_INSERT_RLO = 19,
+
+      /** Inserts pop direction formatting (PDF) character. */
+      MENU_INSERT_PDF = 20,
+
+      /** Inserts Arabic letter mark (ALM) character. */
+      MENU_INSERT_ALM = 21,
+
+      /** Inserts left-to-right isolate (LRI) character. */
+      MENU_INSERT_LRI = 22,
+
+      /** Inserts right-to-left isolate (RLI) character. */
+      MENU_INSERT_RLI = 23,
+
+      /** Inserts first strong isolate (FSI) character. */
+      MENU_INSERT_FSI = 24,
+
+      /** Inserts pop direction isolate (PDI) character. */
+      MENU_INSERT_PDI = 25,
+
+      /** Inserts zero width joiner (ZWJ) character. */
+      MENU_INSERT_ZWJ = 26,
+
+      /** Inserts zero width non-joiner (ZWNJ) character. */
+      MENU_INSERT_ZWNJ = 27,
+
+      /** Inserts word joiner (WJ) character. */
+      MENU_INSERT_WJ = 28,
+
+      /** Inserts soft hyphen (SHY) character. */
+      MENU_INSERT_SHY = 29,
+
+      /** Opens system emoji and symbol picker. */
+      MENU_EMOJI_AND_SYMBOL = 30,
+
+      /** Represents the size of the [enum MenuItems] enum. */
+      MENU_MAX = 31,
+    }
+    enum EditAction {
+      /** No current action. */
+      ACTION_NONE = 0,
+
+      /** A typing action. */
+      ACTION_TYPING = 1,
+
+      /** A backwards delete action. */
+      ACTION_BACKSPACE = 2,
+
+      /** A forward delete action. */
+      ACTION_DELETE = 3,
+    }
+    enum SearchFlags {
+      /** Match case when searching. */
+      SEARCH_MATCH_CASE = 1,
+
+      /** Match whole words when searching. */
+      SEARCH_WHOLE_WORDS = 2,
+
+      /** Search from end to beginning. */
+      SEARCH_BACKWARDS = 4,
+    }
+    enum CaretType {
+      /** Vertical line caret. */
+      CARET_TYPE_LINE = 0,
+
+      /** Block caret. */
+      CARET_TYPE_BLOCK = 1,
+    }
+    enum SelectionMode {
+      /** Not selecting. */
+      SELECTION_MODE_NONE = 0,
+
+      /** Select as if `shift` is pressed. */
+      SELECTION_MODE_SHIFT = 1,
+
+      /** Select single characters as if the user single clicked. */
+      SELECTION_MODE_POINTER = 2,
+
+      /** Select whole words as if the user double clicked. */
+      SELECTION_MODE_WORD = 3,
+
+      /** Select whole lines as if the user triple clicked. */
+      SELECTION_MODE_LINE = 4,
+    }
+    enum LineWrappingMode {
+      /** Line wrapping is disabled. */
+      LINE_WRAPPING_NONE = 0,
+
+      /** Line wrapping occurs at the control boundary, beyond what would normally be visible. */
+      LINE_WRAPPING_BOUNDARY = 1,
+    }
+    enum GutterType {
+      /** When a gutter is set to string using [method set_gutter_type], it is used to contain text set via the [method set_line_gutter_text] method. */
+      GUTTER_TYPE_STRING = 0,
+
+      /** When a gutter is set to icon using [method set_gutter_type], it is used to contain an icon set via the [method set_line_gutter_icon] method. */
+      GUTTER_TYPE_ICON = 1,
+
+      /** When a gutter is set to custom using [method set_gutter_type], it is used to contain custom visuals controlled by a callback method set via the [method set_gutter_custom_draw] method. */
+      GUTTER_TYPE_CUSTOM = 2,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTextEdit extends __NameMapControl {}
+  /** A multiline text editor.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_textedit.html
+   */
+  class TextEdit<Map extends NodePathMap = any> extends Control<Map> {
+    constructor(identifier?: any);
+    /** Override this method to define what happens when the user types in the provided key [param unicode_char]. */
+    /* gdvirtual */ _handle_unicode_input(
+      unicode_char: int64,
+      caret_index: int64,
+    ): void;
+
+    /** Override this method to define what happens when the user presses the backspace key. */
+    /* gdvirtual */ _backspace(caret_index: int64): void;
+
+    /** Override this method to define what happens when the user performs a cut operation. */
+    /* gdvirtual */ _cut(caret_index: int64): void;
+
+    /** Override this method to define what happens when the user performs a copy operation. */
+    /* gdvirtual */ _copy(caret_index: int64): void;
+
+    /** Override this method to define what happens when the user performs a paste operation. */
+    /* gdvirtual */ _paste(caret_index: int64): void;
+
+    /** Override this method to define what happens when the user performs a paste operation with middle mouse button.
+     *
+     *  **Note:** This method is only implemented on Linux.
+     */
+    /* gdvirtual */ _paste_primary_clipboard(caret_index: int64): void;
+
+    /** Returns `true` if the user has text in the [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] (IME). */
+    has_ime_text(): boolean;
+
+    /** Closes the [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] (IME) if it is open. Any text in the IME will be lost. */
+    cancel_ime(): void;
+
+    /** Applies text from the [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] (IME) to each caret and closes the IME if it is open. */
+    apply_ime(): void;
+
+    /** Sets the tab size for the [TextEdit] to use. */
+    set_tab_size(size: int64): void;
+
+    /** Returns the [TextEdit]'s' tab size. */
+    get_tab_size(): int64;
+
+    /** If `true`, enables overtype mode. In this mode, typing overrides existing text instead of inserting text. The [member ProjectSettings.input/ui_text_toggle_insert_mode] action toggles overtype mode. See [method is_overtype_mode_enabled]. */
+    set_overtype_mode_enabled(enabled: boolean): void;
+
+    /** Returns `true` if overtype mode is enabled. See [method set_overtype_mode_enabled]. */
+    is_overtype_mode_enabled(): boolean;
+
+    /** Performs a full reset of [TextEdit], including undo history. */
+    clear(): void;
+
+    /** Returns the number of lines in the text. */
+    get_line_count(): int64;
+
+    /** Sets the text for a specific [param line].
+     *  Carets on the line will attempt to keep their visual x position.
+     */
+    set_line(line: int64, new_text: string): void;
+
+    /** Returns the text of a specific line. */
+    get_line(line: int64): string;
+
+    /** Returns line text as it is currently displayed, including IME composition string. */
+    get_line_with_ime(line: int64): string;
+
+    /** Returns the width in pixels of the [param wrap_index] on [param line]. */
+    get_line_width(line: int64, wrap_index?: int64 /* = -1 */): int64;
+
+    /** Returns the maximum value of the line height among all lines.
+     *
+     *  **Note:** The return value is influenced by [theme_item line_spacing] and [theme_item font_size]. And it will not be less than `1`.
+     */
+    get_line_height(): int64;
+
+    /** Returns the indent level of the given line. This is the number of spaces and tabs at the beginning of the line, with the tabs taking the tab size into account (see [method get_tab_size]). */
+    get_indent_level(line: int64): int64;
+
+    /** Returns the first column containing a non-whitespace character on the given line. If there is only whitespace, returns the number of characters. */
+    get_first_non_whitespace_column(line: int64): int64;
+
+    /** Swaps the two lines. Carets will be swapped with the lines. */
+    swap_lines(from_line: int64, to_line: int64): void;
+
+    /** Inserts a new line with [param text] at [param line]. */
+    insert_line_at(line: int64, text: string): void;
+
+    /** Removes the line of text at [param line]. Carets on this line will attempt to match their previous visual x position.
+     *  If [param move_carets_down] is `true` carets will move to the next line down, otherwise carets will move up.
+     */
+    remove_line_at(line: int64, move_carets_down?: boolean /* = true */): void;
+
+    /** Insert the specified text at the caret position. */
+    insert_text_at_caret(text: string, caret_index?: int64 /* = -1 */): void;
+
+    /** Inserts the [param text] at [param line] and [param column].
+     *  If [param before_selection_begin] is `true`, carets and selections that begin at [param line] and [param column] will moved to the end of the inserted text, along with all carets after it.
+     *  If [param before_selection_end] is `true`, selections that end at [param line] and [param column] will be extended to the end of the inserted text. These parameters can be used to insert text inside of or outside of selections.
+     */
+    insert_text(
+      text: string,
+      line: int64,
+      column: int64,
+      before_selection_begin?: boolean /* = true */,
+      before_selection_end?: boolean /* = false */,
+    ): void;
+
+    /** Removes text between the given positions. */
+    remove_text(
+      from_line: int64,
+      from_column: int64,
+      to_line: int64,
+      to_column: int64,
+    ): void;
+
+    /** Returns the last unhidden line in the entire [TextEdit]. */
+    get_last_unhidden_line(): int64;
+
+    /** Returns the count to the next visible line from [param line] to `line + visible_amount`. Can also count backwards. For example if a [TextEdit] has 5 lines with lines 2 and 3 hidden, calling this with `line = 1, visible_amount = 1` would return 3. */
+    get_next_visible_line_offset_from(
+      line: int64,
+      visible_amount: int64,
+    ): int64;
+
+    /** Similar to [method get_next_visible_line_offset_from], but takes into account the line wrap indexes. In the returned vector, `x` is the line, `y` is the wrap index. */
+    get_next_visible_line_index_offset_from(
+      line: int64,
+      wrap_index: int64,
+      visible_amount: int64,
+    ): Vector2i;
+
+    /** Called when the user presses the backspace key. Can be overridden with [method _backspace]. */
+    backspace(caret_index?: int64 /* = -1 */): void;
+
+    /** Cut's the current selection. Can be overridden with [method _cut]. */
+    cut(caret_index?: int64 /* = -1 */): void;
+
+    /** Copies the current text selection. Can be overridden with [method _copy]. */
+    copy(caret_index?: int64 /* = -1 */): void;
+
+    /** Paste at the current location. Can be overridden with [method _paste]. */
+    paste(caret_index?: int64 /* = -1 */): void;
+
+    /** Pastes the primary clipboard. */
+    paste_primary_clipboard(caret_index?: int64 /* = -1 */): void;
+
+    /** Starts an action, will end the current action if [param action] is different.
+     *  An action will also end after a call to [method end_action], after [member ProjectSettings.gui/timers/text_edit_idle_detect_sec] is triggered or a new undoable step outside the [method start_action] and [method end_action] calls.
+     */
+    start_action(action: TextEdit.EditAction): void;
+
+    /** Marks the end of steps in the current action started with [method start_action]. */
+    end_action(): void;
+
+    /** Starts a multipart edit. All edits will be treated as one action until [method end_complex_operation] is called. */
+    begin_complex_operation(): void;
+
+    /** Ends a multipart edit, started with [method begin_complex_operation]. If called outside a complex operation, the current operation is pushed onto the undo/redo stack. */
+    end_complex_operation(): void;
+
+    /** Returns `true` if an "undo" action is available. */
+    has_undo(): boolean;
+
+    /** Returns `true` if a "redo" action is available. */
+    has_redo(): boolean;
+
+    /** Perform undo operation. */
+    undo(): void;
+
+    /** Perform redo operation. */
+    redo(): void;
+
+    /** Clears the undo history. */
+    clear_undo_history(): void;
+
+    /** Tag the current version as saved. */
+    tag_saved_version(): void;
+
+    /** Returns the current version of the [TextEdit]. The version is a count of recorded operations by the undo/redo history. */
+    get_version(): int64;
+
+    /** Returns the last tagged saved version from [method tag_saved_version]. */
+    get_saved_version(): int64;
+
+    /** Sets the search text. See [method set_search_flags]. */
+    set_search_text(search_text: string): void;
+
+    /** Sets the search [param flags]. This is used with [method set_search_text] to highlight occurrences of the searched text. Search flags can be specified from the [enum SearchFlags] enum. */
+    set_search_flags(flags: int64): void;
+
+    /** Perform a search inside the text. Search flags can be specified in the [enum SearchFlags] enum.
+     *  In the returned vector, `x` is the column, `y` is the line. If no results are found, both are equal to `-1`.
+     *
+     */
+    search(
+      text: string,
+      flags: int64,
+      from_line: int64,
+      from_column: int64,
+    ): Vector2i;
+
+    /** Provide custom tooltip text. The callback method must take the following args: `hovered_word: String`. */
+    set_tooltip_request_func(callback: Callable): void;
+
+    /** Returns the local mouse position adjusted for the text direction. */
+    get_local_mouse_pos(): Vector2;
+
+    /** Returns the word at [param position]. */
+    get_word_at_pos(position: Vector2): string;
+
+    /** Returns the line and column at the given position. In the returned vector, `x` is the column and `y` is the line.
+     *  If [param clamp_line] is `false` and [param position] is below the last line, `Vector2i(-1, -1)` is returned.
+     *  If [param clamp_column] is `false` and [param position] is outside the column range of the line, `Vector2i(-1, -1)` is returned.
+     */
+    get_line_column_at_pos(
+      position: Vector2i,
+      clamp_line?: boolean /* = true */,
+      clamp_column?: boolean /* = true */,
+    ): Vector2i;
+
+    /** Returns the local position for the given [param line] and [param column]. If `x` or `y` of the returned vector equal `-1`, the position is outside of the viewable area of the control.
+     *
+     *  **Note:** The Y position corresponds to the bottom side of the line. Use [method get_rect_at_line_column] to get the top side position.
+     */
+    get_pos_at_line_column(line: int64, column: int64): Vector2i;
+
+    /** Returns the local position and size for the grapheme at the given [param line] and [param column]. If `x` or `y` position of the returned rect equal `-1`, the position is outside of the viewable area of the control.
+     *
+     *  **Note:** The Y position of the returned rect corresponds to the top side of the line, unlike [method get_pos_at_line_column] which returns the bottom side.
+     */
+    get_rect_at_line_column(line: int64, column: int64): Rect2i;
+
+    /** Returns the equivalent minimap line at [param position]. */
+    get_minimap_line_at_pos(position: Vector2i): int64;
+
+    /** Returns `true` if the user is dragging their mouse for scrolling, selecting, or text dragging. */
+    is_dragging_cursor(): boolean;
+
+    /** Returns `true` if the mouse is over a selection. If [param edges] is `true`, the edges are considered part of the selection. */
+    is_mouse_over_selection(
+      edges: boolean,
+      caret_index?: int64 /* = -1 */,
+    ): boolean;
+
+    /** Adds a new caret at the given location. Returns the index of the new caret, or `-1` if the location is invalid. */
+    add_caret(line: int64, column: int64): int64;
+
+    /** Removes the given caret index.
+     *
+     *  **Note:** This can result in adjustment of all other caret indices.
+     */
+    remove_caret(caret: int64): void;
+
+    /** Removes all additional carets. */
+    remove_secondary_carets(): void;
+
+    /** Returns the number of carets in this [TextEdit]. */
+    get_caret_count(): int64;
+
+    /** Adds an additional caret above or below every caret. If [param below] is `true` the new caret will be added below and above otherwise. */
+    add_caret_at_carets(below: boolean): void;
+
+    /** Returns the carets sorted by selection beginning from lowest line and column to highest (from top to bottom of text).
+     *  If [param include_ignored_carets] is `false`, carets from [method multicaret_edit_ignore_caret] will be ignored.
+     */
+    get_sorted_carets(
+      include_ignored_carets?: boolean /* = false */,
+    ): PackedInt32Array;
+
+    /** Collapse all carets in the given range to the [param from_line] and [param from_column] position.
+     *  [param inclusive] applies to both ends.
+     *  If [method is_in_mulitcaret_edit] is `true`, carets that are collapsed will be `true` for [method multicaret_edit_ignore_caret].
+     *  [method merge_overlapping_carets] will be called if any carets were collapsed.
+     */
+    collapse_carets(
+      from_line: int64,
+      from_column: int64,
+      to_line: int64,
+      to_column: int64,
+      inclusive?: boolean /* = false */,
+    ): void;
+
+    /** Merges any overlapping carets. Will favor the newest caret, or the caret with a selection.
+     *  If [method is_in_mulitcaret_edit] is `true`, the merge will be queued to happen at the end of the multicaret edit. See [method begin_multicaret_edit] and [method end_multicaret_edit].
+     *
+     *  **Note:** This is not called when a caret changes position but after certain actions, so it is possible to get into a state where carets overlap.
+     */
+    merge_overlapping_carets(): void;
+
+    /** Starts an edit for multiple carets. The edit must be ended with [method end_multicaret_edit]. Multicaret edits can be used to edit text at multiple carets and delay merging the carets until the end, so the caret indexes aren't affected immediately. [method begin_multicaret_edit] and [method end_multicaret_edit] can be nested, and the merge will happen at the last [method end_multicaret_edit].
+     *
+     */
+    begin_multicaret_edit(): void;
+
+    /** Ends an edit for multiple carets, that was started with [method begin_multicaret_edit]. If this was the last [method end_multicaret_edit] and [method merge_overlapping_carets] was called, carets will be merged. */
+    end_multicaret_edit(): void;
+
+    /** Returns `true` if a [method begin_multicaret_edit] has been called and [method end_multicaret_edit] has not yet been called. */
+    is_in_mulitcaret_edit(): boolean;
+
+    /** Returns `true` if the given [param caret_index] should be ignored as part of a multicaret edit. See [method begin_multicaret_edit] and [method end_multicaret_edit]. Carets that should be ignored are ones that were part of removed text and will likely be merged at the end of the edit, or carets that were added during the edit.
+     *  It is recommended to `continue` within a loop iterating on multiple carets if a caret should be ignored.
+     */
+    multicaret_edit_ignore_caret(caret_index: int64): boolean;
+
+    /** Returns `true` if the caret is visible, `false` otherwise. A caret will be considered hidden if it is outside the scrollable area when scrolling is enabled.
+     *
+     *  **Note:** [method is_caret_visible] does not account for a caret being off-screen if it is still within the scrollable area. It will return `true` even if the caret is off-screen as long as it meets [TextEdit]'s own conditions for being visible. This includes uses of [member scroll_fit_content_width] and [member scroll_fit_content_height] that cause the [TextEdit] to expand beyond the viewport's bounds.
+     */
+    is_caret_visible(caret_index?: int64 /* = 0 */): boolean;
+
+    /** Returns the caret pixel draw position. */
+    get_caret_draw_pos(caret_index?: int64 /* = 0 */): Vector2;
+
+    /** Moves the caret to the specified [param line] index. The caret column will be moved to the same visual position it was at the last time [method set_caret_column] was called, or clamped to the end of the line.
+     *  If [param adjust_viewport] is `true`, the viewport will center at the caret position after the move occurs.
+     *  If [param can_be_hidden] is `true`, the specified [param line] can be hidden.
+     *  If [param wrap_index] is `-1`, the caret column will be clamped to the [param line]'s length. If [param wrap_index] is greater than `-1`, the column will be moved to attempt to match the visual x position on the line's [param wrap_index] to the position from the last time [method set_caret_column] was called.
+     *
+     *  **Note:** If supporting multiple carets this will not check for any overlap. See [method merge_overlapping_carets].
+     */
+    set_caret_line(
+      line: int64,
+      adjust_viewport?: boolean /* = true */,
+      can_be_hidden?: boolean /* = true */,
+      wrap_index?: int64 /* = 0 */,
+      caret_index?: int64 /* = 0 */,
+    ): void;
+
+    /** Returns the line the editing caret is on. */
+    get_caret_line(caret_index?: int64 /* = 0 */): int64;
+
+    /** Moves the caret to the specified [param column] index.
+     *  If [param adjust_viewport] is `true`, the viewport will center at the caret position after the move occurs.
+     *
+     *  **Note:** If supporting multiple carets this will not check for any overlap. See [method merge_overlapping_carets].
+     */
+    set_caret_column(
+      column: int64,
+      adjust_viewport?: boolean /* = true */,
+      caret_index?: int64 /* = 0 */,
+    ): void;
+
+    /** Returns the column the editing caret is at. */
+    get_caret_column(caret_index?: int64 /* = 0 */): int64;
+
+    /** Returns the correct column at the end of a composite character like ❤️‍🩹 (mending heart; Unicode: `U+2764 U+FE0F U+200D U+1FA79`) which is comprised of more than one Unicode code point, if the caret is at the start of the composite character. Also returns the correct column with the caret at mid grapheme and for non-composite characters.
+     *
+     *  **Note:** To check at caret location use `get_next_composite_character_column(get_caret_line(), get_caret_column())`
+     */
+    get_next_composite_character_column(line: int64, column: int64): int64;
+
+    /** Returns the correct column at the start of a composite character like ❤️‍🩹 (mending heart; Unicode: `U+2764 U+FE0F U+200D U+1FA79`) which is comprised of more than one Unicode code point, if the caret is at the end of the composite character. Also returns the correct column with the caret at mid grapheme and for non-composite characters.
+     *
+     *  **Note:** To check at caret location use `get_previous_composite_character_column(get_caret_line(), get_caret_column())`
+     */
+    get_previous_composite_character_column(line: int64, column: int64): int64;
+
+    /** Returns the wrap index the editing caret is on. */
+    get_caret_wrap_index(caret_index?: int64 /* = 0 */): int64;
+
+    /** Returns a [String] text with the word under the caret's location. */
+    get_word_under_caret(caret_index?: int64 /* = -1 */): string;
+
+    /** Sets the current selection mode. */
+    set_selection_mode(mode: TextEdit.SelectionMode): void;
+
+    /** Returns the current selection mode. */
+    get_selection_mode(): TextEdit.SelectionMode;
+
+    /** Select all the text.
+     *  If [member selecting_enabled] is `false`, no selection will occur.
+     */
+    select_all(): void;
+
+    /** Selects the word under the caret. */
+    select_word_under_caret(caret_index?: int64 /* = -1 */): void;
+
+    /** Adds a selection and a caret for the next occurrence of the current selection. If there is no active selection, selects word under caret. */
+    add_selection_for_next_occurrence(): void;
+
+    /** Moves a selection and a caret for the next occurrence of the current selection. If there is no active selection, moves to the next occurrence of the word under caret. */
+    skip_selection_for_next_occurrence(): void;
+
+    /** Selects text from [param origin_line] and [param origin_column] to [param caret_line] and [param caret_column] for the given [param caret_index]. This moves the selection origin and the caret. If the positions are the same, the selection will be deselected.
+     *  If [member selecting_enabled] is `false`, no selection will occur.
+     *
+     *  **Note:** If supporting multiple carets this will not check for any overlap. See [method merge_overlapping_carets].
+     */
+    select(
+      origin_line: int64,
+      origin_column: int64,
+      caret_line: int64,
+      caret_column: int64,
+      caret_index?: int64 /* = 0 */,
+    ): void;
+
+    /** Returns `true` if the user has selected text. */
+    has_selection(caret_index?: int64 /* = -1 */): boolean;
+
+    /** Returns the text inside the selection of a caret, or all the carets if [param caret_index] is its default value `-1`. */
+    get_selected_text(caret_index?: int64 /* = -1 */): string;
+
+    /** Returns the caret index of the selection at the given [param line] and [param column], or `-1` if there is none.
+     *  If [param include_edges] is `false`, the position must be inside the selection and not at either end. If [param only_selections] is `false`, carets without a selection will also be considered.
+     */
+    get_selection_at_line_column(
+      line: int64,
+      column: int64,
+      include_edges?: boolean /* = true */,
+      only_selections?: boolean /* = true */,
+    ): int64;
+
+    /** Returns an [Array] of line ranges where `x` is the first line and `y` is the last line. All lines within these ranges will have a caret on them or be part of a selection. Each line will only be part of one line range, even if it has multiple carets on it.
+     *  If a selection's end column ([method get_selection_to_column]) is at column `0`, that line will not be included. If a selection begins on the line after another selection ends and [param merge_adjacent] is `true`, or they begin and end on the same line, one line range will include both selections.
+     */
+    get_line_ranges_from_carets(
+      only_selections?: boolean /* = false */,
+      merge_adjacent?: boolean /* = true */,
+    ): GArray<Vector2i>;
+
+    /** Returns the origin line of the selection. This is the opposite end from the caret. */
+    get_selection_origin_line(caret_index?: int64 /* = 0 */): int64;
+
+    /** Returns the origin column of the selection. This is the opposite end from the caret. */
+    get_selection_origin_column(caret_index?: int64 /* = 0 */): int64;
+
+    /** Sets the selection origin line to the [param line] for the given [param caret_index]. If the selection origin is moved to the caret position, the selection will deselect.
+     *  If [param can_be_hidden] is `false`, The line will be set to the nearest unhidden line below or above.
+     *  If [param wrap_index] is `-1`, the selection origin column will be clamped to the [param line]'s length. If [param wrap_index] is greater than `-1`, the column will be moved to attempt to match the visual x position on the line's [param wrap_index] to the position from the last time [method set_selection_origin_column] or [method select] was called.
+     */
+    set_selection_origin_line(
+      line: int64,
+      can_be_hidden?: boolean /* = true */,
+      wrap_index?: int64 /* = -1 */,
+      caret_index?: int64 /* = 0 */,
+    ): void;
+
+    /** Sets the selection origin column to the [param column] for the given [param caret_index]. If the selection origin is moved to the caret position, the selection will deselect. */
+    set_selection_origin_column(
+      column: int64,
+      caret_index?: int64 /* = 0 */,
+    ): void;
+
+    /** Returns the selection begin line. Returns the caret line if there is no selection. */
+    get_selection_from_line(caret_index?: int64 /* = 0 */): int64;
+
+    /** Returns the selection begin column. Returns the caret column if there is no selection. */
+    get_selection_from_column(caret_index?: int64 /* = 0 */): int64;
+
+    /** Returns the selection end line. Returns the caret line if there is no selection. */
+    get_selection_to_line(caret_index?: int64 /* = 0 */): int64;
+
+    /** Returns the selection end column. Returns the caret column if there is no selection. */
+    get_selection_to_column(caret_index?: int64 /* = 0 */): int64;
+
+    /** Returns `true` if the caret of the selection is after the selection origin. This can be used to determine the direction of the selection. */
+    is_caret_after_selection_origin(caret_index?: int64 /* = 0 */): boolean;
+
+    /** Deselects the current selection. */
+    deselect(caret_index?: int64 /* = -1 */): void;
+
+    /** Deletes the selected text. */
+    delete_selection(caret_index?: int64 /* = -1 */): void;
+
+    /** Returns if the given line is wrapped. */
+    is_line_wrapped(line: int64): boolean;
+
+    /** Returns the number of times the given line is wrapped. */
+    get_line_wrap_count(line: int64): int64;
+
+    /** Returns the wrap index of the given column on the given line. This ranges from `0` to [method get_line_wrap_count]. */
+    get_line_wrap_index_at_column(line: int64, column: int64): int64;
+
+    /** Returns an array of [String]s representing each wrapped index. */
+    get_line_wrapped_text(line: int64): PackedStringArray;
+
+    /** Returns the [VScrollBar] of the [TextEdit]. */
+    get_v_scroll_bar(): null | VScrollBar;
+
+    /** Returns the [HScrollBar] used by [TextEdit]. */
+    get_h_scroll_bar(): null | HScrollBar;
+
+    /** Returns the scroll position for [param wrap_index] of [param line]. */
+    get_scroll_pos_for_line(line: int64, wrap_index?: int64 /* = 0 */): float64;
+
+    /** Positions the [param wrap_index] of [param line] at the top of the viewport. */
+    set_line_as_first_visible(line: int64, wrap_index?: int64 /* = 0 */): void;
+
+    /** Returns the first visible line. */
+    get_first_visible_line(): int64;
+
+    /** Positions the [param wrap_index] of [param line] at the center of the viewport. */
+    set_line_as_center_visible(line: int64, wrap_index?: int64 /* = 0 */): void;
+
+    /** Positions the [param wrap_index] of [param line] at the bottom of the viewport. */
+    set_line_as_last_visible(line: int64, wrap_index?: int64 /* = 0 */): void;
+
+    /** Returns the last visible line. Use [method get_last_full_visible_line_wrap_index] for the wrap index. */
+    get_last_full_visible_line(): int64;
+
+    /** Returns the last visible wrap index of the last visible line. */
+    get_last_full_visible_line_wrap_index(): int64;
+
+    /** Returns the number of lines that can visually fit, rounded down, based on this control's height. */
+    get_visible_line_count(): int64;
+
+    /** Returns the total number of lines between [param from_line] and [param to_line] (inclusive) in the text. This includes wrapped lines and excludes folded lines. If the range covers all lines it is equivalent to [method get_total_visible_line_count]. */
+    get_visible_line_count_in_range(from_line: int64, to_line: int64): int64;
+
+    /** Returns the total number of lines in the text. This includes wrapped lines and excludes folded lines. If [member wrap_mode] is set to [constant LINE_WRAPPING_NONE] and no lines are folded (see [method CodeEdit.is_line_folded]) then this is equivalent to [method get_line_count]. See [method get_visible_line_count_in_range] for a limited range of lines. */
+    get_total_visible_line_count(): int64;
+
+    /** Adjust the viewport so the caret is visible. */
+    adjust_viewport_to_caret(caret_index?: int64 /* = 0 */): void;
+
+    /** Centers the viewport on the line the editing caret is at. This also resets the [member scroll_horizontal] value to `0`. */
+    center_viewport_to_caret(caret_index?: int64 /* = 0 */): void;
+
+    /** Returns the number of lines that may be drawn on the minimap. */
+    get_minimap_visible_lines(): int64;
+
+    /** Register a new gutter to this [TextEdit]. Use [param at] to have a specific gutter order. A value of `-1` appends the gutter to the right. */
+    add_gutter(at?: int64 /* = -1 */): void;
+
+    /** Removes the gutter at the given index. */
+    remove_gutter(gutter: int64): void;
+
+    /** Returns the number of gutters registered. */
+    get_gutter_count(): int64;
+
+    /** Sets the name of the gutter at the given index. */
+    set_gutter_name(gutter: int64, name: string): void;
+
+    /** Returns the name of the gutter at the given index. */
+    get_gutter_name(gutter: int64): string;
+
+    /** Sets the type of gutter at the given index. Gutters can contain icons, text, or custom visuals. */
+    set_gutter_type(gutter: int64, type: TextEdit.GutterType): void;
+
+    /** Returns the type of the gutter at the given index. Gutters can contain icons, text, or custom visuals. */
+    get_gutter_type(gutter: int64): TextEdit.GutterType;
+
+    /** Set the width of the gutter at the given index. */
+    set_gutter_width(gutter: int64, width: int64): void;
+
+    /** Returns the width of the gutter at the given index. */
+    get_gutter_width(gutter: int64): int64;
+
+    /** If `true`, the gutter at the given index is drawn. The gutter type ([method set_gutter_type]) determines how it is drawn. See [method is_gutter_drawn]. */
+    set_gutter_draw(gutter: int64, draw: boolean): void;
+
+    /** Returns `true` if the gutter at the given index is currently drawn. See [method set_gutter_draw]. */
+    is_gutter_drawn(gutter: int64): boolean;
+
+    /** If `true`, the mouse cursor will change to a pointing hand ([constant Control.CURSOR_POINTING_HAND]) when hovering over the gutter at the given index. See [method is_gutter_clickable] and [method set_line_gutter_clickable]. */
+    set_gutter_clickable(gutter: int64, clickable: boolean): void;
+
+    /** Returns `true` if the gutter at the given index is clickable. See [method set_gutter_clickable]. */
+    is_gutter_clickable(gutter: int64): boolean;
+
+    /** If `true`, the line data of the gutter at the given index can be overridden when using [method merge_gutters]. See [method is_gutter_overwritable]. */
+    set_gutter_overwritable(gutter: int64, overwritable: boolean): void;
+
+    /** Returns `true` if the gutter at the given index is overwritable. See [method set_gutter_overwritable]. */
+    is_gutter_overwritable(gutter: int64): boolean;
+
+    /** Merge the gutters from [param from_line] into [param to_line]. Only overwritable gutters will be copied. See [method set_gutter_overwritable]. */
+    merge_gutters(from_line: int64, to_line: int64): void;
+
+    /** Set a custom draw callback for the gutter at the given index. [param draw_callback] must take the following arguments: A line index [int], a gutter index [int], and an area [Rect2]. This callback only works when the gutter type is [constant GUTTER_TYPE_CUSTOM] (see [method set_gutter_type]). */
+    set_gutter_custom_draw(column: int64, draw_callback: Callable): void;
+
+    /** Returns the total width of all gutters and internal padding. */
+    get_total_gutter_width(): int64;
+
+    /** Sets the metadata for [param gutter] on [param line] to [param metadata]. */
+    set_line_gutter_metadata(line: int64, gutter: int64, metadata: any): void;
+
+    /** Returns the metadata currently in [param gutter] at [param line]. */
+    get_line_gutter_metadata(line: int64, gutter: int64): any;
+
+    /** Sets the text for [param gutter] on [param line] to [param text]. This only works when the gutter type is [constant GUTTER_TYPE_STRING] (see [method set_gutter_type]). */
+    set_line_gutter_text(line: int64, gutter: int64, text: string): void;
+
+    /** Returns the text currently in [param gutter] at [param line]. This only works when the gutter type is [constant GUTTER_TYPE_STRING] (see [method set_gutter_type]). */
+    get_line_gutter_text(line: int64, gutter: int64): string;
+
+    /** Sets the icon for [param gutter] on [param line] to [param icon]. This only works when the gutter type is [constant GUTTER_TYPE_ICON] (see [method set_gutter_type]). */
+    set_line_gutter_icon(line: int64, gutter: int64, icon: Texture2D): void;
+
+    /** Returns the icon currently in [param gutter] at [param line]. This only works when the gutter type is [constant GUTTER_TYPE_ICON] (see [method set_gutter_type]). */
+    get_line_gutter_icon(line: int64, gutter: int64): null | Texture2D;
+
+    /** Sets the color for [param gutter] on [param line] to [param color]. */
+    set_line_gutter_item_color(line: int64, gutter: int64, color: Color): void;
+
+    /** Returns the color currently in [param gutter] at [param line]. */
+    get_line_gutter_item_color(line: int64, gutter: int64): Color;
+
+    /** If [param clickable] is `true`, makes the [param gutter] on the given [param line] clickable. This is like [method set_gutter_clickable], but for a single line. If [method is_gutter_clickable] is `true`, this will not have any effect. See [method is_line_gutter_clickable] and [signal gutter_clicked]. */
+    set_line_gutter_clickable(
+      line: int64,
+      gutter: int64,
+      clickable: boolean,
+    ): void;
+
+    /** Returns `true` if the gutter at the given index on the given line is clickable. See [method set_line_gutter_clickable]. */
+    is_line_gutter_clickable(line: int64, gutter: int64): boolean;
+
+    /** Sets the custom background color of the given line. If transparent, this color is applied on top of the default background color (See [theme_item background_color]). If set to `Color(0, 0, 0, 0)`, no additional color is applied. */
+    set_line_background_color(line: int64, color: Color): void;
+
+    /** Returns the custom background color of the given line. If no color is set, returns `Color(0, 0, 0, 0)`. */
+    get_line_background_color(line: int64): Color;
+
+    /** Returns the [PopupMenu] of this [TextEdit]. By default, this menu is displayed when right-clicking on the [TextEdit].
+     *  You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with the standard ones (see [enum MenuItems]). For example:
+     *
+     *  **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [member Window.visible] property.
+     */
+    get_menu(): null | PopupMenu;
+
+    /** Returns `true` if the menu is visible. Use this instead of `get_menu().visible` to improve performance (so the creation of the menu is avoided). See [method get_menu]. */
+    is_menu_visible(): boolean;
+
+    /** Executes a given action as defined in the [enum MenuItems] enum. */
+    menu_option(option: int64): void;
+
+    /** This method does nothing. */
+    adjust_carets_after_edit(
+      caret: int64,
+      from_line: int64,
+      from_col: int64,
+      to_line: int64,
+      to_col: int64,
+    ): void;
+
+    /** Returns a list of caret indexes in their edit order, this done from bottom to top. Edit order refers to the way actions such as [method insert_text_at_caret] are applied. */
+    get_caret_index_edit_order(): PackedInt32Array;
+
+    /** Returns the original start line of the selection. */
+    get_selection_line(caret_index?: int64 /* = 0 */): int64;
+
+    /** Returns the original start column of the selection. */
+    get_selection_column(caret_index?: int64 /* = 0 */): int64;
+
+    /** String value of the [TextEdit]. */
+    get text(): string;
+    set text(value: string);
+
+    /** Text shown when the [TextEdit] is empty. It is **not** the [TextEdit]'s default value (see [member text]). */
+    get placeholder_text(): string;
+    set placeholder_text(value: string);
+
+    /** If `false`, existing text cannot be modified and new text cannot be added. */
+    get editable(): boolean;
+    set editable(value: boolean);
+
+    /** If `true`, a right-click displays the context menu. */
+    get context_menu_enabled(): boolean;
+    set context_menu_enabled(value: boolean);
+
+    /** If `true`, "Emoji and Symbols" menu is enabled. */
+    get emoji_menu_enabled(): boolean;
+    set emoji_menu_enabled(value: boolean);
+
+    /** If `true` and [member caret_mid_grapheme] is `false`, backspace deletes an entire composite character such as ❤️‍🩹, instead of deleting part of the composite character. */
+    get backspace_deletes_composite_character_enabled(): boolean;
+    set backspace_deletes_composite_character_enabled(value: boolean);
+
+    /** If `true`, shortcut keys for context menu items are enabled, even if the context menu is disabled. */
+    get shortcut_keys_enabled(): boolean;
+    set shortcut_keys_enabled(value: boolean);
+
+    /** If `true`, text can be selected.
+     *  If `false`, text can not be selected by the user or by the [method select] or [method select_all] methods.
+     */
+    get selecting_enabled(): boolean;
+    set selecting_enabled(value: boolean);
+
+    /** If `true`, the selected text will be deselected when focus is lost. */
+    get deselect_on_focus_loss_enabled(): boolean;
+    set deselect_on_focus_loss_enabled(value: boolean);
+
+    /** If `true`, allow drag and drop of selected text. Text can still be dropped from other sources. */
+    get drag_and_drop_selection_enabled(): boolean;
+    set drag_and_drop_selection_enabled(value: boolean);
+
+    /** If `true`, the native virtual keyboard is enabled on platforms that support it. */
+    get virtual_keyboard_enabled(): boolean;
+    set virtual_keyboard_enabled(value: boolean);
+
+    /** If `true`, the native virtual keyboard is shown on focus events on platforms that support it. */
+    get virtual_keyboard_show_on_focus(): boolean;
+    set virtual_keyboard_show_on_focus(value: boolean);
+
+    /** If `false`, using middle mouse button to paste clipboard will be disabled.
+     *
+     *  **Note:** This method is only implemented on Linux.
+     */
+    get middle_mouse_paste_enabled(): boolean;
+    set middle_mouse_paste_enabled(value: boolean);
+
+    /** If `true`, copying or cutting without a selection is performed on all lines with a caret. Otherwise, copy and cut require a selection. */
+    get empty_selection_clipboard_enabled(): boolean;
+    set empty_selection_clipboard_enabled(value: boolean);
+
+    /** Sets the line wrapping mode to use. */
+    get wrap_mode(): int64;
+    set wrap_mode(value: int64);
+
+    /** If [member wrap_mode] is set to [constant LINE_WRAPPING_BOUNDARY], sets text wrapping mode. */
+    get autowrap_mode(): int64;
+    set autowrap_mode(value: int64);
+
+    /** If `true`, all wrapped lines are indented to the same amount as the unwrapped line. */
+    get indent_wrapped_lines(): boolean;
+    set indent_wrapped_lines(value: boolean);
+
+    /** If `true`, [member ProjectSettings.input/ui_text_indent] input `Tab` character, otherwise it moves keyboard focus to the next [Control] in the scene. */
+    get tab_input_mode(): boolean;
+    set tab_input_mode(value: boolean);
+
+    /** Scroll smoothly over the text rather than jumping to the next location. */
+    get scroll_smooth(): boolean;
+    set scroll_smooth(value: boolean);
+
+    /** Sets the scroll speed with the minimap or when [member scroll_smooth] is enabled. */
+    get scroll_v_scroll_speed(): float64;
+    set scroll_v_scroll_speed(value: float64);
+
+    /** Allow scrolling past the last line into "virtual" space. */
+    get scroll_past_end_of_file(): boolean;
+    set scroll_past_end_of_file(value: boolean);
+
+    /** If there is a vertical scrollbar, this determines the current vertical scroll value in line numbers, starting at 0 for the top line. */
+    get scroll_vertical(): float64;
+    set scroll_vertical(value: float64);
+
+    /** If there is a horizontal scrollbar, this determines the current horizontal scroll value in pixels. */
+    get scroll_horizontal(): int64;
+    set scroll_horizontal(value: int64);
+
+    /** If `true`, [TextEdit] will disable vertical scroll and fit minimum height to the number of visible lines. When both this property and [member scroll_fit_content_width] are `true`, no scrollbars will be displayed. */
+    get scroll_fit_content_height(): boolean;
+    set scroll_fit_content_height(value: boolean);
+
+    /** If `true`, [TextEdit] will disable horizontal scroll and fit minimum width to the widest line in the text. When both this property and [member scroll_fit_content_height] are `true`, no scrollbars will be displayed. */
+    get scroll_fit_content_width(): boolean;
+    set scroll_fit_content_width(value: boolean);
+
+    /** If `true`, a minimap is shown, providing an outline of your source code. The minimap uses a fixed-width text size. */
+    get minimap_draw(): boolean;
+    set minimap_draw(value: boolean);
+
+    /** The width, in pixels, of the minimap. */
+    get minimap_width(): int64;
+    set minimap_width(value: int64);
+
+    /** Set the type of caret to draw. */
+    get caret_type(): int64;
+    set caret_type(value: int64);
+
+    /** If `true`, makes the caret blink. */
+    get caret_blink(): boolean;
+    set caret_blink(value: boolean);
+
+    /** The interval at which the caret blinks (in seconds). */
+    get caret_blink_interval(): float64;
+    set caret_blink_interval(value: float64);
+
+    /** If `true`, caret will be visible when [member editable] is disabled. */
+    get caret_draw_when_editable_disabled(): boolean;
+    set caret_draw_when_editable_disabled(value: boolean);
+
+    /** If `true`, a right-click moves the caret at the mouse position before displaying the context menu.
+     *  If `false`, the context menu ignores mouse location.
+     */
+    get caret_move_on_right_click(): boolean;
+    set caret_move_on_right_click(value: boolean);
+
+    /** Allow moving caret, selecting and removing the individual composite character components.
+     *
+     *  **Note:** [kbd]Backspace[/kbd] is always removing individual composite character components.
+     */
+    get caret_mid_grapheme(): boolean;
+    set caret_mid_grapheme(value: boolean);
+
+    /** If `true`, multiple carets are allowed. Left-clicking with [kbd]Alt[/kbd] adds a new caret. See [method add_caret] and [method get_caret_count]. */
+    get caret_multiple(): boolean;
+    set caret_multiple(value: boolean);
+
+    /** If `false`, using [kbd]Ctrl + Left[/kbd] or [kbd]Ctrl + Right[/kbd] ([kbd]Cmd + Left[/kbd] or [kbd]Cmd + Right[/kbd] on macOS) bindings will stop moving caret only if a space or punctuation is detected. If `true`, it will also stop the caret if a character is part of `!"#$%&'()*+,-./:;<=>?@[\]^`{|}~`, the Unicode General Punctuation table, or the Unicode CJK Punctuation table. Useful for subword moving. This behavior also will be applied to the behavior of text selection. */
+    get use_default_word_separators(): boolean;
+    set use_default_word_separators(value: boolean);
+
+    /** If `false`, using [kbd]Ctrl + Left[/kbd] or [kbd]Ctrl + Right[/kbd] ([kbd]Cmd + Left[/kbd] or [kbd]Cmd + Right[/kbd] on macOS) bindings will use the behavior of [member use_default_word_separators]. If `true`, it will also stop the caret if a character within [member custom_word_separators] is detected. Useful for subword moving. This behavior also will be applied to the behavior of text selection. */
+    get use_custom_word_separators(): boolean;
+    set use_custom_word_separators(value: boolean);
+
+    /** The characters to consider as word delimiters if [member use_custom_word_separators] is `true`. The characters should be defined without separation, for example `#_!`. */
+    get custom_word_separators(): string;
+    set custom_word_separators(value: string);
+
+    /** The syntax highlighter to use.
+     *
+     *  **Note:** A [SyntaxHighlighter] instance should not be used across multiple [TextEdit] nodes.
+     */
+    get syntax_highlighter(): null | SyntaxHighlighter;
+    set syntax_highlighter(value: null | SyntaxHighlighter);
+
+    /** If `true`, all occurrences of the selected text will be highlighted. */
+    get highlight_all_occurrences(): boolean;
+    set highlight_all_occurrences(value: boolean);
+
+    /** If `true`, the line containing the cursor is highlighted. */
+    get highlight_current_line(): boolean;
+    set highlight_current_line(value: boolean);
+
+    /** If `true`, control characters are displayed. */
+    get draw_control_chars(): boolean;
+    set draw_control_chars(value: boolean);
+
+    /** If `true`, the "tab" character will have a visible representation. */
+    get draw_tabs(): boolean;
+    set draw_tabs(value: boolean);
+
+    /** If `true`, the "space" character will have a visible representation. */
+    get draw_spaces(): boolean;
+    set draw_spaces(value: boolean);
+
+    /** Base text writing direction. */
+    get text_direction(): int64;
+    set text_direction(value: int64);
+
+    /** Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
+    get language(): string;
+    set language(value: string);
+
+    /** Set BiDi algorithm override for the structured text. */
+    get structured_text_bidi_override(): int64;
+    set structured_text_bidi_override(value: int64);
+
+    /** Set additional options for BiDi override. */
+    get structured_text_bidi_override_options(): GArray;
+    set structured_text_bidi_override_options(value: GArray);
+
+    /** Emitted when [method clear] is called or [member text] is set. */
+    readonly text_set: Signal<() => void>;
+
+    /** Emitted when the text changes. */
+    readonly text_changed: Signal<() => void>;
+
+    /** Emitted immediately when the text changes.
+     *  When text is added [param from_line] will be less than [param to_line]. On a remove [param to_line] will be less than [param from_line].
+     */
+    readonly lines_edited_from: Signal<
+      (from_line: int64, to_line: int64) => void
+    >;
+
+    /** Emitted when any caret changes position. */
+    readonly caret_changed: Signal<() => void>;
+
+    /** Emitted when a gutter is clicked. */
+    readonly gutter_clicked: Signal<(line: int64, gutter: int64) => void>;
+
+    /** Emitted when a gutter is added. */
+    readonly gutter_added: Signal<() => void>;
+
+    /** Emitted when a gutter is removed. */
+    readonly gutter_removed: Signal<() => void>;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTextEdit;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTextLine extends __NameMapRefCounted {}
+  /** Holds a line of text.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_textline.html
+   */
+  class TextLine extends RefCounted {
+    constructor(identifier?: any);
+    /** Clears text line (removes text and inline objects). */
+    clear(): void;
+
+    /** Returns the text writing direction inferred by the BiDi algorithm. */
+    get_inferred_direction(): TextServer.Direction;
+
+    /** Overrides BiDi for the structured text.
+     *  Override ranges should cover full source text without overlaps. BiDi algorithm will be used on each range separately.
+     */
+    set_bidi_override(override: GArray): void;
+
+    /** Adds text span and font to draw it. */
+    add_string(
+      text: string,
+      font: Font,
+      font_size: int64,
+      language?: string /* = '' */,
+      meta?: any /* = <any> {} */,
+    ): boolean;
+
+    /** Adds inline object to the text buffer, [param key] must be unique. In the text, object is represented as [param length] object replacement characters. */
+    add_object(
+      key: any,
+      size: Vector2,
+      inline_align?: InlineAlignment /* = 5 */,
+      length?: int64 /* = 1 */,
+      baseline?: float64 /* = 0 */,
+    ): boolean;
+
+    /** Sets new size and alignment of embedded object. */
+    resize_object(
+      key: any,
+      size: Vector2,
+      inline_align?: InlineAlignment /* = 5 */,
+      baseline?: float64 /* = 0 */,
+    ): boolean;
+
+    /** Aligns text to the given tab-stops. */
+    tab_align(tab_stops: PackedFloat32Array | float32[]): void;
+
+    /** Returns array of inline objects. */
+    get_objects(): GArray;
+
+    /** Returns bounding rectangle of the inline object. */
+    get_object_rect(key: any): Rect2;
+
+    /** Returns size of the bounding box of the text. */
+    get_size(): Vector2;
+
+    /** Returns TextServer buffer RID. */
+    get_rid(): RID;
+
+    /** Returns the text ascent (number of pixels above the baseline for horizontal layout or to the left of baseline for vertical). */
+    get_line_ascent(): float64;
+
+    /** Returns the text descent (number of pixels below the baseline for horizontal layout or to the right of baseline for vertical). */
+    get_line_descent(): float64;
+
+    /** Returns width (for horizontal layout) or height (for vertical) of the text. */
+    get_line_width(): float64;
+
+    /** Returns pixel offset of the underline below the baseline. */
+    get_line_underline_position(): float64;
+
+    /** Returns thickness of the underline. */
+    get_line_underline_thickness(): float64;
+
+    /** Draw text into a canvas item at a given position, with [param color]. [param pos] specifies the top left corner of the bounding box. If [param oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used. */
+    draw(
+      canvas: RID,
+      pos: Vector2,
+      color?: Color /* = new Color(1, 1, 1, 1) */,
+      oversampling?: float64 /* = 0 */,
+    ): void;
+
+    /** Draw text into a canvas item at a given position, with [param color]. [param pos] specifies the top left corner of the bounding box. If [param oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used. */
+    draw_outline(
+      canvas: RID,
+      pos: Vector2,
+      outline_size?: int64 /* = 1 */,
+      color?: Color /* = new Color(1, 1, 1, 1) */,
+      oversampling?: float64 /* = 0 */,
+    ): void;
+
+    /** Returns caret character offset at the specified pixel offset at the baseline. This function always returns a valid position. */
+    hit_test(coords: float64): int64;
+
+    /** Text writing direction. */
+    get direction(): int64;
+    set direction(value: int64);
+
+    /** Text orientation. */
+    get orientation(): int64;
+    set orientation(value: int64);
+
+    /** If set to `true` text will display invalid characters. */
+    get preserve_invalid(): boolean;
+    set preserve_invalid(value: boolean);
+
+    /** If set to `true` text will display control characters. */
+    get preserve_control(): boolean;
+    set preserve_control(value: boolean);
+
+    /** Text line width. */
+    get width(): float64;
+    set width(value: float64);
+
+    /** Sets text alignment within the line as if the line was horizontal. */
+    get alignment(): int64;
+    set alignment(value: int64);
+
+    /** Line alignment rules. For more info see [TextServer]. */
+    get flags(): int64;
+    set flags(value: int64);
+
+    /** The clipping behavior when the text exceeds the text line's set width. */
+    get text_overrun_behavior(): int64;
+    set text_overrun_behavior(value: int64);
+
+    /** Ellipsis character used for text clipping. */
+    get ellipsis_char(): string;
+    set ellipsis_char(value: string);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTextLine;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTextMesh extends __NameMapPrimitiveMesh {}
+  /** Generate a [PrimitiveMesh] from the text.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_textmesh.html
+   */
+  class TextMesh extends PrimitiveMesh {
+    constructor(identifier?: any);
+    /** The text to generate mesh from.
+     *
+     *  **Note:** Due to being a [Resource], it doesn't follow the rules of [member Node.auto_translate_mode]. If disabling translation is desired, it should be done manually with [method Object.set_message_translation].
+     */
+    get text(): string;
+    set text(value: string);
+
+    /** Font configuration used to display text. */
+    get font(): null | Font;
+    set font(value: null | Font);
+
+    /** Font size of the [TextMesh]'s text. */
+    get font_size(): int64;
+    set font_size(value: int64);
+
+    /** Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify. */
+    get horizontal_alignment(): int64;
+    set horizontal_alignment(value: int64);
+
+    /** Controls the text's vertical alignment. Supports top, center, and bottom. */
+    get vertical_alignment(): int64;
+    set vertical_alignment(value: int64);
+
+    /** If `true`, all the text displays as UPPERCASE. */
+    get uppercase(): boolean;
+    set uppercase(value: boolean);
+
+    /** Additional vertical spacing between lines (in pixels), spacing is added to line descent. This value can be negative. */
+    get line_spacing(): float64;
+    set line_spacing(value: float64);
+
+    /** If set to something other than [constant TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. If you resize the node, it will change its height automatically to show all the text. */
+    get autowrap_mode(): int64;
+    set autowrap_mode(value: int64);
+
+    /** Line fill alignment rules. */
+    get justification_flags(): int64;
+    set justification_flags(value: int64);
+
+    /** The size of one pixel's width on the text to scale it in 3D. */
+    get pixel_size(): float64;
+    set pixel_size(value: float64);
+
+    /** Step (in pixels) used to approximate Bézier curves. */
+    get curve_step(): float64;
+    set curve_step(value: float64);
+
+    /** Depths of the mesh, if set to `0.0` only front surface, is generated, and UV layout is changed to use full texture for the front face only. */
+    get depth(): float64;
+    set depth(value: float64);
+
+    /** Text width (in pixels), used for fill alignment. */
+    get width(): float64;
+    set width(value: float64);
+
+    /** The text drawing offset (in pixels). */
+    get offset(): Vector2;
+    set offset(value: Vector2);
+
+    /** Base text writing direction. */
+    get text_direction(): int64;
+    set text_direction(value: int64);
+
+    /** Language code used for text shaping algorithms, if left empty current locale is used instead. */
+    get language(): string;
+    set language(value: string);
+
+    /** Set BiDi algorithm override for the structured text. */
+    get structured_text_bidi_override(): int64;
+    set structured_text_bidi_override(value: int64);
+
+    /** Set additional options for BiDi override. */
+    get structured_text_bidi_override_options(): GArray;
+    set structured_text_bidi_override_options(value: GArray);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTextMesh;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTextParagraph extends __NameMapRefCounted {}
+  /** Holds a paragraph of text.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_textparagraph.html
+   */
+  class TextParagraph extends RefCounted {
+    constructor(identifier?: any);
+    /** Clears text paragraph (removes text and inline objects). */
+    clear(): void;
+
+    /** Returns the text writing direction inferred by the BiDi algorithm. */
+    get_inferred_direction(): TextServer.Direction;
+
+    /** Overrides BiDi for the structured text.
+     *  Override ranges should cover full source text without overlaps. BiDi algorithm will be used on each range separately.
+     */
+    set_bidi_override(override: GArray): void;
+
+    /** Sets drop cap, overrides previously set drop cap. Drop cap (dropped capital) is a decorative element at the beginning of a paragraph that is larger than the rest of the text. */
+    set_dropcap(
+      text: string,
+      font: Font,
+      font_size: int64,
+      dropcap_margins?: Rect2 /* = new Rect2(0, 0, 0, 0) */,
+      language?: string /* = '' */,
+    ): boolean;
+
+    /** Removes dropcap. */
+    clear_dropcap(): void;
+
+    /** Adds text span and font to draw it. */
+    add_string(
+      text: string,
+      font: Font,
+      font_size: int64,
+      language?: string /* = '' */,
+      meta?: any /* = <any> {} */,
+    ): boolean;
+
+    /** Adds inline object to the text buffer, [param key] must be unique. In the text, object is represented as [param length] object replacement characters. */
+    add_object(
+      key: any,
+      size: Vector2,
+      inline_align?: InlineAlignment /* = 5 */,
+      length?: int64 /* = 1 */,
+      baseline?: float64 /* = 0 */,
+    ): boolean;
+
+    /** Sets new size and alignment of embedded object. */
+    resize_object(
+      key: any,
+      size: Vector2,
+      inline_align?: InlineAlignment /* = 5 */,
+      baseline?: float64 /* = 0 */,
+    ): boolean;
+
+    /** Aligns paragraph to the given tab-stops. */
+    tab_align(tab_stops: PackedFloat32Array | float32[]): void;
+
+    /** Returns the size of the bounding box of the paragraph, without line breaks. */
+    get_non_wrapped_size(): Vector2;
+
+    /** Returns the size of the bounding box of the paragraph. */
+    get_size(): Vector2;
+
+    /** Returns TextServer full string buffer RID. */
+    get_rid(): RID;
+
+    /** Returns TextServer line buffer RID. */
+    get_line_rid(line: int64): RID;
+
+    /** Returns drop cap text buffer RID. */
+    get_dropcap_rid(): RID;
+
+    /** Returns the character range of the paragraph. */
+    get_range(): Vector2i;
+
+    /** Returns number of lines in the paragraph. */
+    get_line_count(): int64;
+
+    /** Returns array of inline objects in the line. */
+    get_line_objects(line: int64): GArray;
+
+    /** Returns bounding rectangle of the inline object. */
+    get_line_object_rect(line: int64, key: any): Rect2;
+
+    /** Returns size of the bounding box of the line of text. Returned size is rounded up. */
+    get_line_size(line: int64): Vector2;
+
+    /** Returns character range of the line. */
+    get_line_range(line: int64): Vector2i;
+
+    /** Returns the text line ascent (number of pixels above the baseline for horizontal layout or to the left of baseline for vertical). */
+    get_line_ascent(line: int64): float64;
+
+    /** Returns the text line descent (number of pixels below the baseline for horizontal layout or to the right of baseline for vertical). */
+    get_line_descent(line: int64): float64;
+
+    /** Returns width (for horizontal layout) or height (for vertical) of the line of text. */
+    get_line_width(line: int64): float64;
+
+    /** Returns pixel offset of the underline below the baseline. */
+    get_line_underline_position(line: int64): float64;
+
+    /** Returns thickness of the underline. */
+    get_line_underline_thickness(line: int64): float64;
+
+    /** Returns drop cap bounding box size. */
+    get_dropcap_size(): Vector2;
+
+    /** Returns number of lines used by dropcap. */
+    get_dropcap_lines(): int64;
+
+    /** Draw all lines of the text and drop cap into a canvas item at a given position, with [param color]. [param pos] specifies the top left corner of the bounding box. If [param oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used. */
+    draw(
+      canvas: RID,
+      pos: Vector2,
+      color?: Color /* = new Color(1, 1, 1, 1) */,
+      dc_color?: Color /* = new Color(1, 1, 1, 1) */,
+      oversampling?: float64 /* = 0 */,
+    ): void;
+
+    /** Draw outlines of all lines of the text and drop cap into a canvas item at a given position, with [param color]. [param pos] specifies the top left corner of the bounding box. If [param oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used. */
+    draw_outline(
+      canvas: RID,
+      pos: Vector2,
+      outline_size?: int64 /* = 1 */,
+      color?: Color /* = new Color(1, 1, 1, 1) */,
+      dc_color?: Color /* = new Color(1, 1, 1, 1) */,
+      oversampling?: float64 /* = 0 */,
+    ): void;
+
+    /** Draw single line of text into a canvas item at a given position, with [param color]. [param pos] specifies the top left corner of the bounding box. If [param oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used. */
+    draw_line(
+      canvas: RID,
+      pos: Vector2,
+      line: int64,
+      color?: Color /* = new Color(1, 1, 1, 1) */,
+      oversampling?: float64 /* = 0 */,
+    ): void;
+
+    /** Draw outline of the single line of text into a canvas item at a given position, with [param color]. [param pos] specifies the top left corner of the bounding box. If [param oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used. */
+    draw_line_outline(
+      canvas: RID,
+      pos: Vector2,
+      line: int64,
+      outline_size?: int64 /* = 1 */,
+      color?: Color /* = new Color(1, 1, 1, 1) */,
+      oversampling?: float64 /* = 0 */,
+    ): void;
+
+    /** Draw drop cap into a canvas item at a given position, with [param color]. [param pos] specifies the top left corner of the bounding box. If [param oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used. */
+    draw_dropcap(
+      canvas: RID,
+      pos: Vector2,
+      color?: Color /* = new Color(1, 1, 1, 1) */,
+      oversampling?: float64 /* = 0 */,
+    ): void;
+
+    /** Draw drop cap outline into a canvas item at a given position, with [param color]. [param pos] specifies the top left corner of the bounding box. If [param oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used. */
+    draw_dropcap_outline(
+      canvas: RID,
+      pos: Vector2,
+      outline_size?: int64 /* = 1 */,
+      color?: Color /* = new Color(1, 1, 1, 1) */,
+      oversampling?: float64 /* = 0 */,
+    ): void;
+
+    /** Returns caret character offset at the specified coordinates. This function always returns a valid position. */
+    hit_test(coords: Vector2): int64;
+
+    /** Text writing direction. */
+    get direction(): int64;
+    set direction(value: int64);
+
+    /** Custom punctuation character list, used for word breaking. If set to empty string, server defaults are used. */
+    get custom_punctuation(): string;
+    set custom_punctuation(value: string);
+
+    /** Text orientation. */
+    get orientation(): int64;
+    set orientation(value: int64);
+
+    /** If set to `true` text will display invalid characters. */
+    get preserve_invalid(): boolean;
+    set preserve_invalid(value: boolean);
+
+    /** If set to `true` text will display control characters. */
+    get preserve_control(): boolean;
+    set preserve_control(value: boolean);
+
+    /** Paragraph horizontal alignment. */
+    get alignment(): int64;
+    set alignment(value: int64);
+
+    /** Line breaking rules. For more info see [TextServer]. */
+    get break_flags(): int64;
+    set break_flags(value: int64);
+
+    /** Line fill alignment rules. */
+    get justification_flags(): int64;
+    set justification_flags(value: int64);
+
+    /** The clipping behavior when the text exceeds the paragraph's set width. */
+    get text_overrun_behavior(): int64;
+    set text_overrun_behavior(value: int64);
+
+    /** Ellipsis character used for text clipping. */
+    get ellipsis_char(): string;
+    set ellipsis_char(value: string);
+
+    /** Paragraph width. */
+    get width(): float64;
+    set width(value: float64);
+
+    /** Limits the lines of text shown. */
+    get max_lines_visible(): int64;
+    set max_lines_visible(value: int64);
+
+    /** Additional vertical spacing between lines (in pixels), spacing is added to line descent. This value can be negative. */
+    get line_spacing(): float64;
+    set line_spacing(value: float64);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTextParagraph;
+  }
+  namespace TextServer {
+    enum FontAntialiasing {
+      /** Font glyphs are rasterized as 1-bit bitmaps. */
+      FONT_ANTIALIASING_NONE = 0,
+
+      /** Font glyphs are rasterized as 8-bit grayscale anti-aliased bitmaps. */
+      FONT_ANTIALIASING_GRAY = 1,
+
+      /** Font glyphs are rasterized for LCD screens.
+       *  LCD subpixel layout is determined by the value of the [member ProjectSettings.gui/theme/lcd_subpixel_layout] setting.
+       *  LCD subpixel anti-aliasing mode is suitable only for rendering horizontal, unscaled text in 2D.
+       */
+      FONT_ANTIALIASING_LCD = 2,
+    }
+    enum FontLCDSubpixelLayout {
+      /** Unknown or unsupported subpixel layout, LCD subpixel antialiasing is disabled. */
+      FONT_LCD_SUBPIXEL_LAYOUT_NONE = 0,
+
+      /** Horizontal RGB subpixel layout. */
+      FONT_LCD_SUBPIXEL_LAYOUT_HRGB = 1,
+
+      /** Horizontal BGR subpixel layout. */
+      FONT_LCD_SUBPIXEL_LAYOUT_HBGR = 2,
+
+      /** Vertical RGB subpixel layout. */
+      FONT_LCD_SUBPIXEL_LAYOUT_VRGB = 3,
+
+      /** Vertical BGR subpixel layout. */
+      FONT_LCD_SUBPIXEL_LAYOUT_VBGR = 4,
+
+      /** Represents the size of the [enum FontLCDSubpixelLayout] enum. */
+      FONT_LCD_SUBPIXEL_LAYOUT_MAX = 5,
+    }
+    enum Direction {
+      /** Text direction is determined based on contents and current locale. */
+      DIRECTION_AUTO = 0,
+
+      /** Text is written from left to right. */
+      DIRECTION_LTR = 1,
+
+      /** Text is written from right to left. */
+      DIRECTION_RTL = 2,
+
+      /** Text writing direction is the same as base string writing direction. Used for BiDi override only. */
+      DIRECTION_INHERITED = 3,
     }
     enum Orientation {
-        /** General vertical alignment, usually used for [Separator], [ScrollBar], [Slider], etc. */
-        VERTICAL = 1,
-        
-        /** General horizontal alignment, usually used for [Separator], [ScrollBar], [Slider], etc. */
-        HORIZONTAL = 0,
+      /** Text is written horizontally. */
+      ORIENTATION_HORIZONTAL = 0,
+
+      /** Left to right text is written vertically from top to bottom.
+       *  Right to left text is written vertically from bottom to top.
+       */
+      ORIENTATION_VERTICAL = 1,
     }
-    enum ClockDirection {
-        /** Clockwise rotation. Used by some methods (e.g. [method Image.rotate_90]). */
-        CLOCKWISE = 0,
-        
-        /** Counter-clockwise rotation. Used by some methods (e.g. [method Image.rotate_90]). */
-        COUNTERCLOCKWISE = 1,
+    enum JustificationFlag {
+      /** Do not justify text. */
+      JUSTIFICATION_NONE = 0,
+
+      /** Justify text by adding and removing kashidas. */
+      JUSTIFICATION_KASHIDA = 1,
+
+      /** Justify text by changing width of the spaces between the words. */
+      JUSTIFICATION_WORD_BOUND = 2,
+
+      /** Remove trailing and leading spaces from the justified text. */
+      JUSTIFICATION_TRIM_EDGE_SPACES = 4,
+
+      /** Only apply justification to the part of the text after the last tab. */
+      JUSTIFICATION_AFTER_LAST_TAB = 8,
+
+      /** Apply justification to the trimmed line with ellipsis. */
+      JUSTIFICATION_CONSTRAIN_ELLIPSIS = 16,
+
+      /** Do not apply justification to the last line of the paragraph. */
+      JUSTIFICATION_SKIP_LAST_LINE = 32,
+
+      /** Do not apply justification to the last line of the paragraph with visible characters (takes precedence over [constant JUSTIFICATION_SKIP_LAST_LINE]). */
+      JUSTIFICATION_SKIP_LAST_LINE_WITH_VISIBLE_CHARS = 64,
+
+      /** Always apply justification to the paragraphs with a single line ([constant JUSTIFICATION_SKIP_LAST_LINE] and [constant JUSTIFICATION_SKIP_LAST_LINE_WITH_VISIBLE_CHARS] are ignored). */
+      JUSTIFICATION_DO_NOT_SKIP_SINGLE_LINE = 128,
     }
-    enum HorizontalAlignment {
-        /** Horizontal left alignment, usually for text-derived classes. */
-        HORIZONTAL_ALIGNMENT_LEFT = 0,
-        
-        /** Horizontal center alignment, usually for text-derived classes. */
-        HORIZONTAL_ALIGNMENT_CENTER = 1,
-        
-        /** Horizontal right alignment, usually for text-derived classes. */
-        HORIZONTAL_ALIGNMENT_RIGHT = 2,
-        
-        /** Expand row to fit width, usually for text-derived classes. */
-        HORIZONTAL_ALIGNMENT_FILL = 3,
+    enum AutowrapMode {
+      /** Autowrap is disabled. */
+      AUTOWRAP_OFF = 0,
+
+      /** Wraps the text inside the node's bounding rectangle by allowing to break lines at arbitrary positions, which is useful when very limited space is available. */
+      AUTOWRAP_ARBITRARY = 1,
+
+      /** Wraps the text inside the node's bounding rectangle by soft-breaking between words. */
+      AUTOWRAP_WORD = 2,
+
+      /** Behaves similarly to [constant AUTOWRAP_WORD], but force-breaks a word if that single word does not fit in one line. */
+      AUTOWRAP_WORD_SMART = 3,
     }
-    enum VerticalAlignment {
-        /** Vertical top alignment, usually for text-derived classes. */
-        VERTICAL_ALIGNMENT_TOP = 0,
-        
-        /** Vertical center alignment, usually for text-derived classes. */
-        VERTICAL_ALIGNMENT_CENTER = 1,
-        
-        /** Vertical bottom alignment, usually for text-derived classes. */
-        VERTICAL_ALIGNMENT_BOTTOM = 2,
-        
-        /** Expand rows to fit height, usually for text-derived classes. */
-        VERTICAL_ALIGNMENT_FILL = 3,
+    enum LineBreakFlag {
+      /** Do not break the line. */
+      BREAK_NONE = 0,
+
+      /** Break the line at the line mandatory break characters (e.g. `"\n"`). */
+      BREAK_MANDATORY = 1,
+
+      /** Break the line between the words. */
+      BREAK_WORD_BOUND = 2,
+
+      /** Break the line between any unconnected graphemes. */
+      BREAK_GRAPHEME_BOUND = 4,
+
+      /** Should be used only in conjunction with [constant BREAK_WORD_BOUND], break the line between any unconnected graphemes, if it's impossible to break it between the words. */
+      BREAK_ADAPTIVE = 8,
+
+      /** Remove edge spaces from the broken line segments. */
+      BREAK_TRIM_EDGE_SPACES = 16,
+
+      /** Subtract first line indentation width from all lines after the first one. */
+      BREAK_TRIM_INDENT = 32,
+
+      /** Remove spaces and line break characters from the start of broken line segments.
+       *  E.g, after line breaking, the second segment of the following text `test  \n  next`, is `next` if the flag is set, and `  next` if it is not.
+       */
+      BREAK_TRIM_START_EDGE_SPACES = 64,
+
+      /** Remove spaces and line break characters from the end of broken line segments.
+       *  E.g, after line breaking, the first segment of the following text `test  \n  next`, is `test` if the flag is set, and `test  \n` if it is not.
+       */
+      BREAK_TRIM_END_EDGE_SPACES = 128,
     }
-    enum InlineAlignment {
-        /** Aligns the top of the inline object (e.g. image, table) to the position of the text specified by `INLINE_ALIGNMENT_TO_*` constant. */
-        INLINE_ALIGNMENT_TOP_TO = 0,
-        
-        /** Aligns the center of the inline object (e.g. image, table) to the position of the text specified by `INLINE_ALIGNMENT_TO_*` constant. */
-        INLINE_ALIGNMENT_CENTER_TO = 1,
-        
-        /** Aligns the baseline (user defined) of the inline object (e.g. image, table) to the position of the text specified by `INLINE_ALIGNMENT_TO_*` constant. */
-        INLINE_ALIGNMENT_BASELINE_TO = 3,
-        
-        /** Aligns the bottom of the inline object (e.g. image, table) to the position of the text specified by `INLINE_ALIGNMENT_TO_*` constant. */
-        INLINE_ALIGNMENT_BOTTOM_TO = 2,
-        
-        /** Aligns the position of the inline object (e.g. image, table) specified by `INLINE_ALIGNMENT_*_TO` constant to the top of the text. */
-        INLINE_ALIGNMENT_TO_TOP = 0,
-        
-        /** Aligns the position of the inline object (e.g. image, table) specified by `INLINE_ALIGNMENT_*_TO` constant to the center of the text. */
-        INLINE_ALIGNMENT_TO_CENTER = 4,
-        
-        /** Aligns the position of the inline object (e.g. image, table) specified by `INLINE_ALIGNMENT_*_TO` constant to the baseline of the text. */
-        INLINE_ALIGNMENT_TO_BASELINE = 8,
-        
-        /** Aligns inline object (e.g. image, table) to the bottom of the text. */
-        INLINE_ALIGNMENT_TO_BOTTOM = 12,
-        
-        /** Aligns top of the inline object (e.g. image, table) to the top of the text. Equivalent to `INLINE_ALIGNMENT_TOP_TO | INLINE_ALIGNMENT_TO_TOP`. */
-        INLINE_ALIGNMENT_TOP = 0,
-        
-        /** Aligns center of the inline object (e.g. image, table) to the center of the text. Equivalent to `INLINE_ALIGNMENT_CENTER_TO | INLINE_ALIGNMENT_TO_CENTER`. */
-        INLINE_ALIGNMENT_CENTER = 5,
-        
-        /** Aligns bottom of the inline object (e.g. image, table) to the bottom of the text. Equivalent to `INLINE_ALIGNMENT_BOTTOM_TO | INLINE_ALIGNMENT_TO_BOTTOM`. */
-        INLINE_ALIGNMENT_BOTTOM = 14,
-        
-        /** A bit mask for `INLINE_ALIGNMENT_*_TO` alignment constants. */
-        INLINE_ALIGNMENT_IMAGE_MASK = 3,
-        
-        /** A bit mask for `INLINE_ALIGNMENT_TO_*` alignment constants. */
-        INLINE_ALIGNMENT_TEXT_MASK = 12,
+    enum VisibleCharactersBehavior {
+      /** Trims text before the shaping. e.g, increasing [member Label.visible_characters] or [member RichTextLabel.visible_characters] value is visually identical to typing the text.
+       *
+       *  **Note:** In this mode, trimmed text is not processed at all. It is not accounted for in line breaking and size calculations.
+       */
+      VC_CHARS_BEFORE_SHAPING = 0,
+
+      /** Displays glyphs that are mapped to the first [member Label.visible_characters] or [member RichTextLabel.visible_characters] characters from the beginning of the text. */
+      VC_CHARS_AFTER_SHAPING = 1,
+
+      /** Displays [member Label.visible_ratio] or [member RichTextLabel.visible_ratio] glyphs, starting from the left or from the right, depending on [member Control.layout_direction] value. */
+      VC_GLYPHS_AUTO = 2,
+
+      /** Displays [member Label.visible_ratio] or [member RichTextLabel.visible_ratio] glyphs, starting from the left. */
+      VC_GLYPHS_LTR = 3,
+
+      /** Displays [member Label.visible_ratio] or [member RichTextLabel.visible_ratio] glyphs, starting from the right. */
+      VC_GLYPHS_RTL = 4,
     }
-    enum EulerOrder {
-        /** Specifies that Euler angles should be in XYZ order. When composing, the order is X, Y, Z. When decomposing, the order is reversed, first Z, then Y, and X last. */
-        EULER_ORDER_XYZ = 0,
-        
-        /** Specifies that Euler angles should be in XZY order. When composing, the order is X, Z, Y. When decomposing, the order is reversed, first Y, then Z, and X last. */
-        EULER_ORDER_XZY = 1,
-        
-        /** Specifies that Euler angles should be in YXZ order. When composing, the order is Y, X, Z. When decomposing, the order is reversed, first Z, then X, and Y last. */
-        EULER_ORDER_YXZ = 2,
-        
-        /** Specifies that Euler angles should be in YZX order. When composing, the order is Y, Z, X. When decomposing, the order is reversed, first X, then Z, and Y last. */
-        EULER_ORDER_YZX = 3,
-        
-        /** Specifies that Euler angles should be in ZXY order. When composing, the order is Z, X, Y. When decomposing, the order is reversed, first Y, then X, and Z last. */
-        EULER_ORDER_ZXY = 4,
-        
-        /** Specifies that Euler angles should be in ZYX order. When composing, the order is Z, Y, X. When decomposing, the order is reversed, first X, then Y, and Z last. */
-        EULER_ORDER_ZYX = 5,
+    enum OverrunBehavior {
+      /** No text trimming is performed. */
+      OVERRUN_NO_TRIMMING = 0,
+
+      /** Trims the text per character. */
+      OVERRUN_TRIM_CHAR = 1,
+
+      /** Trims the text per word. */
+      OVERRUN_TRIM_WORD = 2,
+
+      /** Trims the text per character and adds an ellipsis to indicate that parts are hidden if trimmed text is 6 characters or longer. */
+      OVERRUN_TRIM_ELLIPSIS = 3,
+
+      /** Trims the text per word and adds an ellipsis to indicate that parts are hidden if trimmed text is 6 characters or longer. */
+      OVERRUN_TRIM_WORD_ELLIPSIS = 4,
+
+      /** Trims the text per character and adds an ellipsis to indicate that parts are hidden regardless of trimmed text length. */
+      OVERRUN_TRIM_ELLIPSIS_FORCE = 5,
+
+      /** Trims the text per word and adds an ellipsis to indicate that parts are hidden regardless of trimmed text length. */
+      OVERRUN_TRIM_WORD_ELLIPSIS_FORCE = 6,
     }
-    enum Key {
-        /** Enum value which doesn't correspond to any key. This is used to initialize [enum Key] properties with a generic state. */
-        KEY_NONE = 0,
-        
-        /** Keycodes with this bit applied are non-printable. */
-        KEY_SPECIAL = 4194304,
-        
-        /** Escape key. */
-        KEY_ESCAPE = 4194305,
-        
-        /** Tab key. */
-        KEY_TAB = 4194306,
-        
-        /** Shift + Tab key. */
-        KEY_BACKTAB = 4194307,
-        
-        /** Backspace key. */
-        KEY_BACKSPACE = 4194308,
-        
-        /** Return key (on the main keyboard). */
-        KEY_ENTER = 4194309,
-        
-        /** Enter key on the numeric keypad. */
-        KEY_KP_ENTER = 4194310,
-        
-        /** Insert key. */
-        KEY_INSERT = 4194311,
-        
-        /** Delete key. */
-        KEY_DELETE = 4194312,
-        
-        /** Pause key. */
-        KEY_PAUSE = 4194313,
-        
-        /** Print Screen key. */
-        KEY_PRINT = 4194314,
-        
-        /** System Request key. */
-        KEY_SYSREQ = 4194315,
-        
-        /** Clear key. */
-        KEY_CLEAR = 4194316,
-        
-        /** Home key. */
-        KEY_HOME = 4194317,
-        
-        /** End key. */
-        KEY_END = 4194318,
-        
-        /** Left arrow key. */
-        KEY_LEFT = 4194319,
-        
-        /** Up arrow key. */
-        KEY_UP = 4194320,
-        
-        /** Right arrow key. */
-        KEY_RIGHT = 4194321,
-        
-        /** Down arrow key. */
-        KEY_DOWN = 4194322,
-        
-        /** Page Up key. */
-        KEY_PAGEUP = 4194323,
-        
-        /** Page Down key. */
-        KEY_PAGEDOWN = 4194324,
-        
-        /** Shift key. */
-        KEY_SHIFT = 4194325,
-        
-        /** Control key. */
-        KEY_CTRL = 4194326,
-        
-        /** Meta key. */
-        KEY_META = 4194327,
-        
-        /** Alt key. */
-        KEY_ALT = 4194328,
-        
-        /** Caps Lock key. */
-        KEY_CAPSLOCK = 4194329,
-        
-        /** Num Lock key. */
-        KEY_NUMLOCK = 4194330,
-        
-        /** Scroll Lock key. */
-        KEY_SCROLLLOCK = 4194331,
-        
-        /** F1 key. */
-        KEY_F1 = 4194332,
-        
-        /** F2 key. */
-        KEY_F2 = 4194333,
-        
-        /** F3 key. */
-        KEY_F3 = 4194334,
-        
-        /** F4 key. */
-        KEY_F4 = 4194335,
-        
-        /** F5 key. */
-        KEY_F5 = 4194336,
-        
-        /** F6 key. */
-        KEY_F6 = 4194337,
-        
-        /** F7 key. */
-        KEY_F7 = 4194338,
-        
-        /** F8 key. */
-        KEY_F8 = 4194339,
-        
-        /** F9 key. */
-        KEY_F9 = 4194340,
-        
-        /** F10 key. */
-        KEY_F10 = 4194341,
-        
-        /** F11 key. */
-        KEY_F11 = 4194342,
-        
-        /** F12 key. */
-        KEY_F12 = 4194343,
-        
-        /** F13 key. */
-        KEY_F13 = 4194344,
-        
-        /** F14 key. */
-        KEY_F14 = 4194345,
-        
-        /** F15 key. */
-        KEY_F15 = 4194346,
-        
-        /** F16 key. */
-        KEY_F16 = 4194347,
-        
-        /** F17 key. */
-        KEY_F17 = 4194348,
-        
-        /** F18 key. */
-        KEY_F18 = 4194349,
-        
-        /** F19 key. */
-        KEY_F19 = 4194350,
-        
-        /** F20 key. */
-        KEY_F20 = 4194351,
-        
-        /** F21 key. */
-        KEY_F21 = 4194352,
-        
-        /** F22 key. */
-        KEY_F22 = 4194353,
-        
-        /** F23 key. */
-        KEY_F23 = 4194354,
-        
-        /** F24 key. */
-        KEY_F24 = 4194355,
-        
-        /** F25 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F25 = 4194356,
-        
-        /** F26 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F26 = 4194357,
-        
-        /** F27 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F27 = 4194358,
-        
-        /** F28 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F28 = 4194359,
-        
-        /** F29 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F29 = 4194360,
-        
-        /** F30 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F30 = 4194361,
-        
-        /** F31 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F31 = 4194362,
-        
-        /** F32 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F32 = 4194363,
-        
-        /** F33 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F33 = 4194364,
-        
-        /** F34 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F34 = 4194365,
-        
-        /** F35 key. Only supported on macOS and Linux due to a Windows limitation. */
-        KEY_F35 = 4194366,
-        
-        /** Multiply (*) key on the numeric keypad. */
-        KEY_KP_MULTIPLY = 4194433,
-        
-        /** Divide (/) key on the numeric keypad. */
-        KEY_KP_DIVIDE = 4194434,
-        
-        /** Subtract (-) key on the numeric keypad. */
-        KEY_KP_SUBTRACT = 4194435,
-        
-        /** Period (.) key on the numeric keypad. */
-        KEY_KP_PERIOD = 4194436,
-        
-        /** Add (+) key on the numeric keypad. */
-        KEY_KP_ADD = 4194437,
-        
-        /** Number 0 on the numeric keypad. */
-        KEY_KP_0 = 4194438,
-        
-        /** Number 1 on the numeric keypad. */
-        KEY_KP_1 = 4194439,
-        
-        /** Number 2 on the numeric keypad. */
-        KEY_KP_2 = 4194440,
-        
-        /** Number 3 on the numeric keypad. */
-        KEY_KP_3 = 4194441,
-        
-        /** Number 4 on the numeric keypad. */
-        KEY_KP_4 = 4194442,
-        
-        /** Number 5 on the numeric keypad. */
-        KEY_KP_5 = 4194443,
-        
-        /** Number 6 on the numeric keypad. */
-        KEY_KP_6 = 4194444,
-        
-        /** Number 7 on the numeric keypad. */
-        KEY_KP_7 = 4194445,
-        
-        /** Number 8 on the numeric keypad. */
-        KEY_KP_8 = 4194446,
-        
-        /** Number 9 on the numeric keypad. */
-        KEY_KP_9 = 4194447,
-        
-        /** Context menu key. */
-        KEY_MENU = 4194370,
-        
-        /** Hyper key. (On Linux/X11 only). */
-        KEY_HYPER = 4194371,
-        
-        /** Help key. */
-        KEY_HELP = 4194373,
-        
-        /** Media back key. Not to be confused with the Back button on an Android device. */
-        KEY_BACK = 4194376,
-        
-        /** Media forward key. */
-        KEY_FORWARD = 4194377,
-        
-        /** Media stop key. */
-        KEY_STOP = 4194378,
-        
-        /** Media refresh key. */
-        KEY_REFRESH = 4194379,
-        
-        /** Volume down key. */
-        KEY_VOLUMEDOWN = 4194380,
-        
-        /** Mute volume key. */
-        KEY_VOLUMEMUTE = 4194381,
-        
-        /** Volume up key. */
-        KEY_VOLUMEUP = 4194382,
-        
-        /** Media play key. */
-        KEY_MEDIAPLAY = 4194388,
-        
-        /** Media stop key. */
-        KEY_MEDIASTOP = 4194389,
-        
-        /** Previous song key. */
-        KEY_MEDIAPREVIOUS = 4194390,
-        
-        /** Next song key. */
-        KEY_MEDIANEXT = 4194391,
-        
-        /** Media record key. */
-        KEY_MEDIARECORD = 4194392,
-        
-        /** Home page key. */
-        KEY_HOMEPAGE = 4194393,
-        
-        /** Favorites key. */
-        KEY_FAVORITES = 4194394,
-        
-        /** Search key. */
-        KEY_SEARCH = 4194395,
-        
-        /** Standby key. */
-        KEY_STANDBY = 4194396,
-        
-        /** Open URL / Launch Browser key. */
-        KEY_OPENURL = 4194397,
-        
-        /** Launch Mail key. */
-        KEY_LAUNCHMAIL = 4194398,
-        
-        /** Launch Media key. */
-        KEY_LAUNCHMEDIA = 4194399,
-        
-        /** Launch Shortcut 0 key. */
-        KEY_LAUNCH0 = 4194400,
-        
-        /** Launch Shortcut 1 key. */
-        KEY_LAUNCH1 = 4194401,
-        
-        /** Launch Shortcut 2 key. */
-        KEY_LAUNCH2 = 4194402,
-        
-        /** Launch Shortcut 3 key. */
-        KEY_LAUNCH3 = 4194403,
-        
-        /** Launch Shortcut 4 key. */
-        KEY_LAUNCH4 = 4194404,
-        
-        /** Launch Shortcut 5 key. */
-        KEY_LAUNCH5 = 4194405,
-        
-        /** Launch Shortcut 6 key. */
-        KEY_LAUNCH6 = 4194406,
-        
-        /** Launch Shortcut 7 key. */
-        KEY_LAUNCH7 = 4194407,
-        
-        /** Launch Shortcut 8 key. */
-        KEY_LAUNCH8 = 4194408,
-        
-        /** Launch Shortcut 9 key. */
-        KEY_LAUNCH9 = 4194409,
-        
-        /** Launch Shortcut A key. */
-        KEY_LAUNCHA = 4194410,
-        
-        /** Launch Shortcut B key. */
-        KEY_LAUNCHB = 4194411,
-        
-        /** Launch Shortcut C key. */
-        KEY_LAUNCHC = 4194412,
-        
-        /** Launch Shortcut D key. */
-        KEY_LAUNCHD = 4194413,
-        
-        /** Launch Shortcut E key. */
-        KEY_LAUNCHE = 4194414,
-        
-        /** Launch Shortcut F key. */
-        KEY_LAUNCHF = 4194415,
-        
-        /** "Globe" key on Mac / iPad keyboard. */
-        KEY_GLOBE = 4194416,
-        
-        /** "On-screen keyboard" key on iPad keyboard. */
-        KEY_KEYBOARD = 4194417,
-        
-        /** 英数 key on Mac keyboard. */
-        KEY_JIS_EISU = 4194418,
-        
-        /** かな key on Mac keyboard. */
-        KEY_JIS_KANA = 4194419,
-        
-        /** Unknown key. */
-        KEY_UNKNOWN = 8388607,
-        
-        /** Space key. */
-        KEY_SPACE = 32,
-        
-        /** ! key. */
-        KEY_EXCLAM = 33,
-        
-        /** " key. */
-        KEY_QUOTEDBL = 34,
-        
-        /** # key. */
-        KEY_NUMBERSIGN = 35,
-        
-        /** $ key. */
-        KEY_DOLLAR = 36,
-        
-        /** % key. */
-        KEY_PERCENT = 37,
-        
-        /** & key. */
-        KEY_AMPERSAND = 38,
-        
-        /** ' key. */
-        KEY_APOSTROPHE = 39,
-        
-        /** ( key. */
-        KEY_PARENLEFT = 40,
-        
-        /** ) key. */
-        KEY_PARENRIGHT = 41,
-        
-        /** * key. */
-        KEY_ASTERISK = 42,
-        
-        /** + key. */
-        KEY_PLUS = 43,
-        
-        /** , key. */
-        KEY_COMMA = 44,
-        
-        /** - key. */
-        KEY_MINUS = 45,
-        
-        /** . key. */
-        KEY_PERIOD = 46,
-        
-        /** / key. */
-        KEY_SLASH = 47,
-        
-        /** Number 0 key. */
-        KEY_0 = 48,
-        
-        /** Number 1 key. */
-        KEY_1 = 49,
-        
-        /** Number 2 key. */
-        KEY_2 = 50,
-        
-        /** Number 3 key. */
-        KEY_3 = 51,
-        
-        /** Number 4 key. */
-        KEY_4 = 52,
-        
-        /** Number 5 key. */
-        KEY_5 = 53,
-        
-        /** Number 6 key. */
-        KEY_6 = 54,
-        
-        /** Number 7 key. */
-        KEY_7 = 55,
-        
-        /** Number 8 key. */
-        KEY_8 = 56,
-        
-        /** Number 9 key. */
-        KEY_9 = 57,
-        
-        /** : key. */
-        KEY_COLON = 58,
-        
-        /** ; key. */
-        KEY_SEMICOLON = 59,
-        
-        /** < key. */
-        KEY_LESS = 60,
-        
-        /** = key. */
-        KEY_EQUAL = 61,
-        
-        /** > key. */
-        KEY_GREATER = 62,
-        
-        /** ? key. */
-        KEY_QUESTION = 63,
-        
-        /** @ key. */
-        KEY_AT = 64,
-        
-        /** A key. */
-        KEY_A = 65,
-        
-        /** B key. */
-        KEY_B = 66,
-        
-        /** C key. */
-        KEY_C = 67,
-        
-        /** D key. */
-        KEY_D = 68,
-        
-        /** E key. */
-        KEY_E = 69,
-        
-        /** F key. */
-        KEY_F = 70,
-        
-        /** G key. */
-        KEY_G = 71,
-        
-        /** H key. */
-        KEY_H = 72,
-        
-        /** I key. */
-        KEY_I = 73,
-        
-        /** J key. */
-        KEY_J = 74,
-        
-        /** K key. */
-        KEY_K = 75,
-        
-        /** L key. */
-        KEY_L = 76,
-        
-        /** M key. */
-        KEY_M = 77,
-        
-        /** N key. */
-        KEY_N = 78,
-        
-        /** O key. */
-        KEY_O = 79,
-        
-        /** P key. */
-        KEY_P = 80,
-        
-        /** Q key. */
-        KEY_Q = 81,
-        
-        /** R key. */
-        KEY_R = 82,
-        
-        /** S key. */
-        KEY_S = 83,
-        
-        /** T key. */
-        KEY_T = 84,
-        
-        /** U key. */
-        KEY_U = 85,
-        
-        /** V key. */
-        KEY_V = 86,
-        
-        /** W key. */
-        KEY_W = 87,
-        
-        /** X key. */
-        KEY_X = 88,
-        
-        /** Y key. */
-        KEY_Y = 89,
-        
-        /** Z key. */
-        KEY_Z = 90,
-        
-        /** [ key. */
-        KEY_BRACKETLEFT = 91,
-        
-        /** \ key. */
-        KEY_BACKSLASH = 92,
-        
-        /** ] key. */
-        KEY_BRACKETRIGHT = 93,
-        
-        /** ^ key. */
-        KEY_ASCIICIRCUM = 94,
-        
-        /** _ key. */
-        KEY_UNDERSCORE = 95,
-        
-        /** ` key. */
-        KEY_QUOTELEFT = 96,
-        
-        /** { key. */
-        KEY_BRACELEFT = 123,
-        
-        /** | key. */
-        KEY_BAR = 124,
-        
-        /** } key. */
-        KEY_BRACERIGHT = 125,
-        
-        /** ~ key. */
-        KEY_ASCIITILDE = 126,
-        
-        /** ¥ key. */
-        KEY_YEN = 165,
-        
-        /** § key. */
-        KEY_SECTION = 167,
+    enum TextOverrunFlag {
+      /** No trimming is performed. */
+      OVERRUN_NO_TRIM = 0,
+
+      /** Trims the text when it exceeds the given width. */
+      OVERRUN_TRIM = 1,
+
+      /** Trims the text per word instead of per grapheme. */
+      OVERRUN_TRIM_WORD_ONLY = 2,
+
+      /** Determines whether an ellipsis should be added at the end of the text. */
+      OVERRUN_ADD_ELLIPSIS = 4,
+
+      /** Determines whether the ellipsis at the end of the text is enforced and may not be hidden. */
+      OVERRUN_ENFORCE_ELLIPSIS = 8,
+
+      /** Accounts for the text being justified before attempting to trim it (see [enum JustificationFlag]). */
+      OVERRUN_JUSTIFICATION_AWARE = 16,
     }
-    enum KeyModifierMask {
-        /** Key Code mask. */
-        KEY_CODE_MASK = 8388607,
-        
-        /** Modifier key mask. */
-        KEY_MODIFIER_MASK = 532676608,
-        
-        /** Automatically remapped to [constant KEY_META] on macOS and [constant KEY_CTRL] on other platforms, this mask is never set in the actual events, and should be used for key mapping only. */
-        KEY_MASK_CMD_OR_CTRL = 16777216,
-        
-        /** Shift key mask. */
-        KEY_MASK_SHIFT = 33554432,
-        
-        /** Alt or Option (on macOS) key mask. */
-        KEY_MASK_ALT = 67108864,
-        
-        /** Command (on macOS) or Meta/Windows key mask. */
-        KEY_MASK_META = 134217728,
-        
-        /** Control key mask. */
-        KEY_MASK_CTRL = 268435456,
-        
-        /** Keypad key mask. */
-        KEY_MASK_KPAD = 536870912,
-        
-        /** Group Switch key mask. */
-        KEY_MASK_GROUP_SWITCH = 1073741824,
+    enum GraphemeFlag {
+      /** Grapheme is supported by the font, and can be drawn. */
+      GRAPHEME_IS_VALID = 1,
+
+      /** Grapheme is part of right-to-left or bottom-to-top run. */
+      GRAPHEME_IS_RTL = 2,
+
+      /** Grapheme is not part of source text, it was added by justification process. */
+      GRAPHEME_IS_VIRTUAL = 4,
+
+      /** Grapheme is whitespace. */
+      GRAPHEME_IS_SPACE = 8,
+
+      /** Grapheme is mandatory break point (e.g. `"\n"`). */
+      GRAPHEME_IS_BREAK_HARD = 16,
+
+      /** Grapheme is optional break point (e.g. space). */
+      GRAPHEME_IS_BREAK_SOFT = 32,
+
+      /** Grapheme is the tabulation character. */
+      GRAPHEME_IS_TAB = 64,
+
+      /** Grapheme is kashida. */
+      GRAPHEME_IS_ELONGATION = 128,
+
+      /** Grapheme is punctuation character. */
+      GRAPHEME_IS_PUNCTUATION = 256,
+
+      /** Grapheme is underscore character. */
+      GRAPHEME_IS_UNDERSCORE = 512,
+
+      /** Grapheme is connected to the previous grapheme. Breaking line before this grapheme is not safe. */
+      GRAPHEME_IS_CONNECTED = 1024,
+
+      /** It is safe to insert a U+0640 before this grapheme for elongation. */
+      GRAPHEME_IS_SAFE_TO_INSERT_TATWEEL = 2048,
+
+      /** Grapheme is an object replacement character for the embedded object. */
+      GRAPHEME_IS_EMBEDDED_OBJECT = 4096,
+
+      /** Grapheme is a soft hyphen. */
+      GRAPHEME_IS_SOFT_HYPHEN = 8192,
     }
-    enum KeyLocation {
-        /** Used for keys which only appear once, or when a comparison doesn't need to differentiate the `LEFT` and `RIGHT` versions.  
-         *  For example, when using [method InputEvent.is_match], an event which has [constant KEY_LOCATION_UNSPECIFIED] will match any [enum KeyLocation] on the passed event.  
-         */
-        KEY_LOCATION_UNSPECIFIED = 0,
-        
-        /** A key which is to the left of its twin. */
-        KEY_LOCATION_LEFT = 1,
-        
-        /** A key which is to the right of its twin. */
-        KEY_LOCATION_RIGHT = 2,
+    enum Hinting {
+      /** Disables font hinting (smoother but less crisp). */
+      HINTING_NONE = 0,
+
+      /** Use the light font hinting mode. */
+      HINTING_LIGHT = 1,
+
+      /** Use the default font hinting mode (crisper but less smooth).
+       *
+       *  **Note:** This hinting mode changes both horizontal and vertical glyph metrics. If applied to monospace font, some glyphs might have different width.
+       */
+      HINTING_NORMAL = 2,
     }
-    enum MouseButton {
-        /** Enum value which doesn't correspond to any mouse button. This is used to initialize [enum MouseButton] properties with a generic state. */
-        MOUSE_BUTTON_NONE = 0,
-        
-        /** Primary mouse button, usually assigned to the left button. */
-        MOUSE_BUTTON_LEFT = 1,
-        
-        /** Secondary mouse button, usually assigned to the right button. */
-        MOUSE_BUTTON_RIGHT = 2,
-        
-        /** Middle mouse button. */
-        MOUSE_BUTTON_MIDDLE = 3,
-        
-        /** Mouse wheel scrolling up. */
-        MOUSE_BUTTON_WHEEL_UP = 4,
-        
-        /** Mouse wheel scrolling down. */
-        MOUSE_BUTTON_WHEEL_DOWN = 5,
-        
-        /** Mouse wheel left button (only present on some mice). */
-        MOUSE_BUTTON_WHEEL_LEFT = 6,
-        
-        /** Mouse wheel right button (only present on some mice). */
-        MOUSE_BUTTON_WHEEL_RIGHT = 7,
-        
-        /** Extra mouse button 1. This is sometimes present, usually to the sides of the mouse. */
-        MOUSE_BUTTON_XBUTTON1 = 8,
-        
-        /** Extra mouse button 2. This is sometimes present, usually to the sides of the mouse. */
-        MOUSE_BUTTON_XBUTTON2 = 9,
+    enum SubpixelPositioning {
+      /** Glyph horizontal position is rounded to the whole pixel size, each glyph is rasterized once. */
+      SUBPIXEL_POSITIONING_DISABLED = 0,
+
+      /** Glyph horizontal position is rounded based on font size.
+       *  - To one quarter of the pixel size if font size is smaller or equal to [constant SUBPIXEL_POSITIONING_ONE_QUARTER_MAX_SIZE].
+       *  - To one half of the pixel size if font size is smaller or equal to [constant SUBPIXEL_POSITIONING_ONE_HALF_MAX_SIZE].
+       *  - To the whole pixel size for larger fonts.
+       */
+      SUBPIXEL_POSITIONING_AUTO = 1,
+
+      /** Glyph horizontal position is rounded to one half of the pixel size, each glyph is rasterized up to two times. */
+      SUBPIXEL_POSITIONING_ONE_HALF = 2,
+
+      /** Glyph horizontal position is rounded to one quarter of the pixel size, each glyph is rasterized up to four times. */
+      SUBPIXEL_POSITIONING_ONE_QUARTER = 3,
+
+      /** Maximum font size which will use "one half of the pixel" subpixel positioning in [constant SUBPIXEL_POSITIONING_AUTO] mode. */
+      SUBPIXEL_POSITIONING_ONE_HALF_MAX_SIZE = 20,
+
+      /** Maximum font size which will use "one quarter of the pixel" subpixel positioning in [constant SUBPIXEL_POSITIONING_AUTO] mode. */
+      SUBPIXEL_POSITIONING_ONE_QUARTER_MAX_SIZE = 16,
     }
-    enum MouseButtonMask {
-        /** Primary mouse button mask, usually for the left button. */
-        MOUSE_BUTTON_MASK_LEFT = 1,
-        
-        /** Secondary mouse button mask, usually for the right button. */
-        MOUSE_BUTTON_MASK_RIGHT = 2,
-        
-        /** Middle mouse button mask. */
-        MOUSE_BUTTON_MASK_MIDDLE = 4,
-        
-        /** Extra mouse button 1 mask. */
-        MOUSE_BUTTON_MASK_MB_XBUTTON1 = 128,
-        
-        /** Extra mouse button 2 mask. */
-        MOUSE_BUTTON_MASK_MB_XBUTTON2 = 256,
+    enum Feature {
+      /** TextServer supports simple text layouts. */
+      FEATURE_SIMPLE_LAYOUT = 1,
+
+      /** TextServer supports bidirectional text layouts. */
+      FEATURE_BIDI_LAYOUT = 2,
+
+      /** TextServer supports vertical layouts. */
+      FEATURE_VERTICAL_LAYOUT = 4,
+
+      /** TextServer supports complex text shaping. */
+      FEATURE_SHAPING = 8,
+
+      /** TextServer supports justification using kashidas. */
+      FEATURE_KASHIDA_JUSTIFICATION = 16,
+
+      /** TextServer supports complex line/word breaking rules (e.g. dictionary based). */
+      FEATURE_BREAK_ITERATORS = 32,
+
+      /** TextServer supports loading bitmap fonts. */
+      FEATURE_FONT_BITMAP = 64,
+
+      /** TextServer supports loading dynamic (TrueType, OpeType, etc.) fonts. */
+      FEATURE_FONT_DYNAMIC = 128,
+
+      /** TextServer supports multichannel signed distance field dynamic font rendering. */
+      FEATURE_FONT_MSDF = 256,
+
+      /** TextServer supports loading system fonts. */
+      FEATURE_FONT_SYSTEM = 512,
+
+      /** TextServer supports variable fonts. */
+      FEATURE_FONT_VARIABLE = 1024,
+
+      /** TextServer supports locale dependent and context sensitive case conversion. */
+      FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION = 2048,
+
+      /** TextServer require external data file for some features, see [method load_support_data]. */
+      FEATURE_USE_SUPPORT_DATA = 4096,
+
+      /** TextServer supports UAX #31 identifier validation, see [method is_valid_identifier]. */
+      FEATURE_UNICODE_IDENTIFIERS = 8192,
+
+      /** TextServer supports [url=https://unicode.org/reports/tr36/]Unicode Technical Report #36[/url] and [url=https://unicode.org/reports/tr39/]Unicode Technical Standard #39[/url] based spoof detection features. */
+      FEATURE_UNICODE_SECURITY = 16384,
     }
-    enum JoyButton {
-        /** An invalid game controller button. */
-        JOY_BUTTON_INVALID = -1,
-        
-        /** Game controller SDL button A. Corresponds to the bottom action button: Sony Cross, Xbox A, Nintendo B. */
-        JOY_BUTTON_A = 0,
-        
-        /** Game controller SDL button B. Corresponds to the right action button: Sony Circle, Xbox B, Nintendo A. */
-        JOY_BUTTON_B = 1,
-        
-        /** Game controller SDL button X. Corresponds to the left action button: Sony Square, Xbox X, Nintendo Y. */
-        JOY_BUTTON_X = 2,
-        
-        /** Game controller SDL button Y. Corresponds to the top action button: Sony Triangle, Xbox Y, Nintendo X. */
-        JOY_BUTTON_Y = 3,
-        
-        /** Game controller SDL back button. Corresponds to the Sony Select, Xbox Back, Nintendo - button. */
-        JOY_BUTTON_BACK = 4,
-        
-        /** Game controller SDL guide button. Corresponds to the Sony PS, Xbox Home button. */
-        JOY_BUTTON_GUIDE = 5,
-        
-        /** Game controller SDL start button. Corresponds to the Sony Options, Xbox Menu, Nintendo + button. */
-        JOY_BUTTON_START = 6,
-        
-        /** Game controller SDL left stick button. Corresponds to the Sony L3, Xbox L/LS button. */
-        JOY_BUTTON_LEFT_STICK = 7,
-        
-        /** Game controller SDL right stick button. Corresponds to the Sony R3, Xbox R/RS button. */
-        JOY_BUTTON_RIGHT_STICK = 8,
-        
-        /** Game controller SDL left shoulder button. Corresponds to the Sony L1, Xbox LB button. */
-        JOY_BUTTON_LEFT_SHOULDER = 9,
-        
-        /** Game controller SDL right shoulder button. Corresponds to the Sony R1, Xbox RB button. */
-        JOY_BUTTON_RIGHT_SHOULDER = 10,
-        
-        /** Game controller D-pad up button. */
-        JOY_BUTTON_DPAD_UP = 11,
-        
-        /** Game controller D-pad down button. */
-        JOY_BUTTON_DPAD_DOWN = 12,
-        
-        /** Game controller D-pad left button. */
-        JOY_BUTTON_DPAD_LEFT = 13,
-        
-        /** Game controller D-pad right button. */
-        JOY_BUTTON_DPAD_RIGHT = 14,
-        
-        /** Game controller SDL miscellaneous button. Corresponds to Xbox share button, PS5 microphone button, Nintendo Switch capture button. */
-        JOY_BUTTON_MISC1 = 15,
-        
-        /** Game controller SDL paddle 1 button. */
-        JOY_BUTTON_PADDLE1 = 16,
-        
-        /** Game controller SDL paddle 2 button. */
-        JOY_BUTTON_PADDLE2 = 17,
-        
-        /** Game controller SDL paddle 3 button. */
-        JOY_BUTTON_PADDLE3 = 18,
-        
-        /** Game controller SDL paddle 4 button. */
-        JOY_BUTTON_PADDLE4 = 19,
-        
-        /** Game controller SDL touchpad button. */
-        JOY_BUTTON_TOUCHPAD = 20,
-        
-        /** The number of SDL game controller buttons. */
-        JOY_BUTTON_SDL_MAX = 21,
-        
-        /** The maximum number of game controller buttons supported by the engine. The actual limit may be lower on specific platforms:  
-         *  - **Android:** Up to 36 buttons.  
-         *  - **Linux:** Up to 80 buttons.  
-         *  - **Windows** and **macOS:** Up to 128 buttons.  
-         */
-        JOY_BUTTON_MAX = 128,
+    enum ContourPointTag {
+      /** Contour point is on the curve. */
+      CONTOUR_CURVE_TAG_ON = 1,
+
+      /** Contour point isn't on the curve, but serves as a control point for a conic (quadratic) Bézier arc. */
+      CONTOUR_CURVE_TAG_OFF_CONIC = 0,
+
+      /** Contour point isn't on the curve, but serves as a control point for a cubic Bézier arc. */
+      CONTOUR_CURVE_TAG_OFF_CUBIC = 2,
     }
-    enum JoyAxis {
-        /** An invalid game controller axis. */
-        JOY_AXIS_INVALID = -1,
-        
-        /** Game controller left joystick x-axis. */
-        JOY_AXIS_LEFT_X = 0,
-        
-        /** Game controller left joystick y-axis. */
-        JOY_AXIS_LEFT_Y = 1,
-        
-        /** Game controller right joystick x-axis. */
-        JOY_AXIS_RIGHT_X = 2,
-        
-        /** Game controller right joystick y-axis. */
-        JOY_AXIS_RIGHT_Y = 3,
-        
-        /** Game controller left trigger axis. */
-        JOY_AXIS_TRIGGER_LEFT = 4,
-        
-        /** Game controller right trigger axis. */
-        JOY_AXIS_TRIGGER_RIGHT = 5,
-        
-        /** The number of SDL game controller axes. */
-        JOY_AXIS_SDL_MAX = 6,
-        
-        /** The maximum number of game controller axes: OpenVR supports up to 5 Joysticks making a total of 10 axes. */
-        JOY_AXIS_MAX = 10,
+    enum SpacingType {
+      /** Spacing for each glyph. */
+      SPACING_GLYPH = 0,
+
+      /** Spacing for the space character. */
+      SPACING_SPACE = 1,
+
+      /** Spacing at the top of the line. */
+      SPACING_TOP = 2,
+
+      /** Spacing at the bottom of the line. */
+      SPACING_BOTTOM = 3,
+
+      /** Represents the size of the [enum SpacingType] enum. */
+      SPACING_MAX = 4,
     }
-    enum MIDIMessage {
-        /** Does not correspond to any MIDI message. This is the default value of [member InputEventMIDI.message]. */
-        MIDI_MESSAGE_NONE = 0,
-        
-        /** MIDI message sent when a note is released.  
-         *      
-         *  **Note:** Not all MIDI devices send this message; some may send [constant MIDI_MESSAGE_NOTE_ON] with [member InputEventMIDI.velocity] set to `0`.  
-         */
-        MIDI_MESSAGE_NOTE_OFF = 8,
-        
-        /** MIDI message sent when a note is pressed. */
-        MIDI_MESSAGE_NOTE_ON = 9,
-        
-        /** MIDI message sent to indicate a change in pressure while a note is being pressed down, also called aftertouch. */
-        MIDI_MESSAGE_AFTERTOUCH = 10,
-        
-        /** MIDI message sent when a controller value changes. In a MIDI device, a controller is any input that doesn't play notes. These may include sliders for volume, balance, and panning, as well as switches and pedals. See the [url=https://en.wikipedia.org/wiki/General_MIDI#Controller_events]General MIDI specification[/url] for a small list. */
-        MIDI_MESSAGE_CONTROL_CHANGE = 11,
-        
-        /** MIDI message sent when the MIDI device changes its current instrument (also called  *program*  or  *preset* ). */
-        MIDI_MESSAGE_PROGRAM_CHANGE = 12,
-        
-        /** MIDI message sent to indicate a change in pressure for the whole channel. Some MIDI devices may send this instead of [constant MIDI_MESSAGE_AFTERTOUCH]. */
-        MIDI_MESSAGE_CHANNEL_PRESSURE = 13,
-        
-        /** MIDI message sent when the value of the pitch bender changes, usually a wheel on the MIDI device. */
-        MIDI_MESSAGE_PITCH_BEND = 14,
-        
-        /** MIDI system exclusive (SysEx) message. This type of message is not standardized and it's highly dependent on the MIDI device sending it.  
-         *      
-         *  **Note:** Getting this message's data from [InputEventMIDI] is not implemented.  
-         */
-        MIDI_MESSAGE_SYSTEM_EXCLUSIVE = 240,
-        
-        /** MIDI message sent every quarter frame to keep connected MIDI devices synchronized. Related to [constant MIDI_MESSAGE_TIMING_CLOCK].  
-         *      
-         *  **Note:** Getting this message's data from [InputEventMIDI] is not implemented.  
-         */
-        MIDI_MESSAGE_QUARTER_FRAME = 241,
-        
-        /** MIDI message sent to jump onto a new position in the current sequence or song.  
-         *      
-         *  **Note:** Getting this message's data from [InputEventMIDI] is not implemented.  
-         */
-        MIDI_MESSAGE_SONG_POSITION_POINTER = 242,
-        
-        /** MIDI message sent to select a sequence or song to play.  
-         *      
-         *  **Note:** Getting this message's data from [InputEventMIDI] is not implemented.  
-         */
-        MIDI_MESSAGE_SONG_SELECT = 243,
-        
-        /** MIDI message sent to request a tuning calibration. Used on analog synthesizers. Most modern MIDI devices do not need this message. */
-        MIDI_MESSAGE_TUNE_REQUEST = 246,
-        
-        /** MIDI message sent 24 times after [constant MIDI_MESSAGE_QUARTER_FRAME], to keep connected MIDI devices synchronized. */
-        MIDI_MESSAGE_TIMING_CLOCK = 248,
-        
-        /** MIDI message sent to start the current sequence or song from the beginning. */
-        MIDI_MESSAGE_START = 250,
-        
-        /** MIDI message sent to resume from the point the current sequence or song was paused. */
-        MIDI_MESSAGE_CONTINUE = 251,
-        
-        /** MIDI message sent to pause the current sequence or song. */
-        MIDI_MESSAGE_STOP = 252,
-        
-        /** MIDI message sent repeatedly while the MIDI device is idle, to tell the receiver that the connection is alive. Most MIDI devices do not send this message. */
-        MIDI_MESSAGE_ACTIVE_SENSING = 254,
-        
-        /** MIDI message sent to reset a MIDI device to its default state, as if it was just turned on. It should not be sent when the MIDI device is being turned on. */
-        MIDI_MESSAGE_SYSTEM_RESET = 255,
+    enum FontStyle {
+      /** Font is bold. */
+      FONT_BOLD = 1,
+
+      /** Font is italic or oblique. */
+      FONT_ITALIC = 2,
+
+      /** Font has fixed-width characters (also known as monospace). */
+      FONT_FIXED_WIDTH = 4,
     }
-    enum GError {
-        /** Methods that return [enum Error] return [constant OK] when no error occurred.  
-         *  Since [constant OK] has value 0, and all other error constants are positive integers, it can also be used in boolean checks.  
-         *  **Example:**  
-         *    
-         *      
-         *  **Note:** Many functions do not return an error code, but will print error messages to standard output.  
-         */
-        OK = 0,
-        
-        /** Generic error. */
-        FAILED = 1,
-        
-        /** Unavailable error. */
-        ERR_UNAVAILABLE = 2,
-        
-        /** Unconfigured error. */
-        ERR_UNCONFIGURED = 3,
-        
-        /** Unauthorized error. */
-        ERR_UNAUTHORIZED = 4,
-        
-        /** Parameter range error. */
-        ERR_PARAMETER_RANGE_ERROR = 5,
-        
-        /** Out of memory (OOM) error. */
-        ERR_OUT_OF_MEMORY = 6,
-        
-        /** File: Not found error. */
-        ERR_FILE_NOT_FOUND = 7,
-        
-        /** File: Bad drive error. */
-        ERR_FILE_BAD_DRIVE = 8,
-        
-        /** File: Bad path error. */
-        ERR_FILE_BAD_PATH = 9,
-        
-        /** File: No permission error. */
-        ERR_FILE_NO_PERMISSION = 10,
-        
-        /** File: Already in use error. */
-        ERR_FILE_ALREADY_IN_USE = 11,
-        
-        /** File: Can't open error. */
-        ERR_FILE_CANT_OPEN = 12,
-        
-        /** File: Can't write error. */
-        ERR_FILE_CANT_WRITE = 13,
-        
-        /** File: Can't read error. */
-        ERR_FILE_CANT_READ = 14,
-        
-        /** File: Unrecognized error. */
-        ERR_FILE_UNRECOGNIZED = 15,
-        
-        /** File: Corrupt error. */
-        ERR_FILE_CORRUPT = 16,
-        
-        /** File: Missing dependencies error. */
-        ERR_FILE_MISSING_DEPENDENCIES = 17,
-        
-        /** File: End of file (EOF) error. */
-        ERR_FILE_EOF = 18,
-        
-        /** Can't open error. */
-        ERR_CANT_OPEN = 19,
-        
-        /** Can't create error. */
-        ERR_CANT_CREATE = 20,
-        
-        /** Query failed error. */
-        ERR_QUERY_FAILED = 21,
-        
-        /** Already in use error. */
-        ERR_ALREADY_IN_USE = 22,
-        
-        /** Locked error. */
-        ERR_LOCKED = 23,
-        
-        /** Timeout error. */
-        ERR_TIMEOUT = 24,
-        
-        /** Can't connect error. */
-        ERR_CANT_CONNECT = 25,
-        
-        /** Can't resolve error. */
-        ERR_CANT_RESOLVE = 26,
-        
-        /** Connection error. */
-        ERR_CONNECTION_ERROR = 27,
-        
-        /** Can't acquire resource error. */
-        ERR_CANT_ACQUIRE_RESOURCE = 28,
-        
-        /** Can't fork process error. */
-        ERR_CANT_FORK = 29,
-        
-        /** Invalid data error. */
-        ERR_INVALID_DATA = 30,
-        
-        /** Invalid parameter error. */
-        ERR_INVALID_PARAMETER = 31,
-        
-        /** Already exists error. */
-        ERR_ALREADY_EXISTS = 32,
-        
-        /** Does not exist error. */
-        ERR_DOES_NOT_EXIST = 33,
-        
-        /** Database: Read error. */
-        ERR_DATABASE_CANT_READ = 34,
-        
-        /** Database: Write error. */
-        ERR_DATABASE_CANT_WRITE = 35,
-        
-        /** Compilation failed error. */
-        ERR_COMPILATION_FAILED = 36,
-        
-        /** Method not found error. */
-        ERR_METHOD_NOT_FOUND = 37,
-        
-        /** Linking failed error. */
-        ERR_LINK_FAILED = 38,
-        
-        /** Script failed error. */
-        ERR_SCRIPT_FAILED = 39,
-        
-        /** Cycling link (import cycle) error. */
-        ERR_CYCLIC_LINK = 40,
-        
-        /** Invalid declaration error. */
-        ERR_INVALID_DECLARATION = 41,
-        
-        /** Duplicate symbol error. */
-        ERR_DUPLICATE_SYMBOL = 42,
-        
-        /** Parse error. */
-        ERR_PARSE_ERROR = 43,
-        
-        /** Busy error. */
-        ERR_BUSY = 44,
-        
-        /** Skip error. */
-        ERR_SKIP = 45,
-        
-        /** Help error. Used internally when passing `--version` or `--help` as executable options. */
-        ERR_HELP = 46,
-        
-        /** Bug error, caused by an implementation issue in the method.  
-         *      
-         *  **Note:** If a built-in method returns this code, please open an issue on [url=https://github.com/godotengine/godot/issues]the GitHub Issue Tracker[/url].  
-         */
-        ERR_BUG = 47,
-        
-        /** Printer on fire error (This is an easter egg, no built-in methods return this error code). */
-        ERR_PRINTER_ON_FIRE = 48,
+    enum StructuredTextParser {
+      /** Use default Unicode BiDi algorithm. */
+      STRUCTURED_TEXT_DEFAULT = 0,
+
+      /** BiDi override for URI. */
+      STRUCTURED_TEXT_URI = 1,
+
+      /** BiDi override for file path. */
+      STRUCTURED_TEXT_FILE = 2,
+
+      /** BiDi override for email. */
+      STRUCTURED_TEXT_EMAIL = 3,
+
+      /** BiDi override for lists. Structured text options: list separator [String]. */
+      STRUCTURED_TEXT_LIST = 4,
+
+      /** BiDi override for GDScript. */
+      STRUCTURED_TEXT_GDSCRIPT = 5,
+
+      /** User defined structured text BiDi override function. */
+      STRUCTURED_TEXT_CUSTOM = 6,
     }
-    enum PropertyHint {
-        /** The property has no hint for the editor. */
-        PROPERTY_HINT_NONE = 0,
-        
-        /** Hints that an [int] or [float] property should be within a range specified via the hint string `"min,max"` or `"min,max,step"`. The hint string can optionally include `"or_greater"` and/or `"or_less"` to allow manual input going respectively above the max or below the min values.  
-         *  **Example:** `"-360,360,1,or_greater,or_less"`.  
-         *  Additionally, other keywords can be included: `"exp"` for exponential range editing, `"radians_as_degrees"` for editing radian angles in degrees (the range values are also in degrees), `"degrees"` to hint at an angle and `"hide_slider"` to hide the slider.  
-         */
-        PROPERTY_HINT_RANGE = 1,
-        
-        /** Hints that an [int] or [String] property is an enumerated value to pick in a list specified via a hint string.  
-         *  The hint string is a comma separated list of names such as `"Hello,Something,Else"`. Whitespaces are **not** removed from either end of a name. For integer properties, the first name in the list has value 0, the next 1, and so on. Explicit values can also be specified by appending `:integer` to the name, e.g. `"Zero,One,Three:3,Four,Six:6"`.  
-         */
-        PROPERTY_HINT_ENUM = 2,
-        
-        /** Hints that a [String] property can be an enumerated value to pick in a list specified via a hint string such as `"Hello,Something,Else"`.  
-         *  Unlike [constant PROPERTY_HINT_ENUM], a property with this hint still accepts arbitrary values and can be empty. The list of values serves to suggest possible values.  
-         */
-        PROPERTY_HINT_ENUM_SUGGESTION = 3,
-        
-        /** Hints that a [float] property should be edited via an exponential easing function. The hint string can include `"attenuation"` to flip the curve horizontally and/or `"positive_only"` to exclude in/out easing and limit values to be greater than or equal to zero. */
-        PROPERTY_HINT_EXP_EASING = 4,
-        
-        /** Hints that a vector property should allow its components to be linked. For example, this allows [member Vector2.x] and [member Vector2.y] to be edited together. */
-        PROPERTY_HINT_LINK = 5,
-        
-        /** Hints that an [int] property is a bitmask with named bit flags.  
-         *  The hint string is a comma separated list of names such as `"Bit0,Bit1,Bit2,Bit3"`. Whitespaces are **not** removed from either end of a name. The first name in the list has value 1, the next 2, then 4, 8, 16 and so on. Explicit values can also be specified by appending `:integer` to the name, e.g. `"A:4,B:8,C:16"`. You can also combine several flags (`"A:4,B:8,AB:12,C:16"`).  
-         *      
-         *  **Note:** A flag value must be at least `1` and at most `2 ** 32 - 1`.  
-         *      
-         *  **Note:** Unlike [constant PROPERTY_HINT_ENUM], the previous explicit value is not taken into account. For the hint `"A:16,B,C"`, A is 16, B is 2, C is 4.  
-         */
-        PROPERTY_HINT_FLAGS = 6,
-        
-        /** Hints that an [int] property is a bitmask using the optionally named 2D render layers. */
-        PROPERTY_HINT_LAYERS_2D_RENDER = 7,
-        
-        /** Hints that an [int] property is a bitmask using the optionally named 2D physics layers. */
-        PROPERTY_HINT_LAYERS_2D_PHYSICS = 8,
-        
-        /** Hints that an [int] property is a bitmask using the optionally named 2D navigation layers. */
-        PROPERTY_HINT_LAYERS_2D_NAVIGATION = 9,
-        
-        /** Hints that an [int] property is a bitmask using the optionally named 3D render layers. */
-        PROPERTY_HINT_LAYERS_3D_RENDER = 10,
-        
-        /** Hints that an [int] property is a bitmask using the optionally named 3D physics layers. */
-        PROPERTY_HINT_LAYERS_3D_PHYSICS = 11,
-        
-        /** Hints that an [int] property is a bitmask using the optionally named 3D navigation layers. */
-        PROPERTY_HINT_LAYERS_3D_NAVIGATION = 12,
-        
-        /** Hints that an integer property is a bitmask using the optionally named avoidance layers. */
-        PROPERTY_HINT_LAYERS_AVOIDANCE = 37,
-        
-        /** Hints that a [String] property is a path to a file. Editing it will show a file dialog for picking the path. The hint string can be a set of filters with wildcards like `"*.png,*.jpg"`. */
-        PROPERTY_HINT_FILE = 13,
-        
-        /** Hints that a [String] property is a path to a directory. Editing it will show a file dialog for picking the path. */
-        PROPERTY_HINT_DIR = 14,
-        
-        /** Hints that a [String] property is an absolute path to a file outside the project folder. Editing it will show a file dialog for picking the path. The hint string can be a set of filters with wildcards, like `"*.png,*.jpg"`. */
-        PROPERTY_HINT_GLOBAL_FILE = 15,
-        
-        /** Hints that a [String] property is an absolute path to a directory outside the project folder. Editing it will show a file dialog for picking the path. */
-        PROPERTY_HINT_GLOBAL_DIR = 16,
-        
-        /** Hints that a property is an instance of a [Resource]-derived type, optionally specified via the hint string (e.g. `"Texture2D"`). Editing it will show a popup menu of valid resource types to instantiate. */
-        PROPERTY_HINT_RESOURCE_TYPE = 17,
-        
-        /** Hints that a [String] property is text with line breaks. Editing it will show a text input field where line breaks can be typed. */
-        PROPERTY_HINT_MULTILINE_TEXT = 18,
-        
-        /** Hints that a [String] property is an [Expression]. */
-        PROPERTY_HINT_EXPRESSION = 19,
-        
-        /** Hints that a [String] property should show a placeholder text on its input field, if empty. The hint string is the placeholder text to use. */
-        PROPERTY_HINT_PLACEHOLDER_TEXT = 20,
-        
-        /** Hints that a [Color] property should be edited without affecting its transparency ([member Color.a] is not editable). */
-        PROPERTY_HINT_COLOR_NO_ALPHA = 21,
-        
-        /** Hints that the property's value is an object encoded as object ID, with its type specified in the hint string. Used by the debugger. */
-        PROPERTY_HINT_OBJECT_ID = 22,
-        
-        /** If a property is [String], hints that the property represents a particular type (class). This allows to select a type from the create dialog. The property will store the selected type as a string.  
-         *  If a property is [Array], hints the editor how to show elements. The `hint_string` must encode nested types using `":"` and `"/"`.  
-         *    
-         *  Examples:  
-         *    
-         *      
-         *  **Note:** The trailing colon is required for properly detecting built-in types.  
-         */
-        PROPERTY_HINT_TYPE_STRING = 23,
-        PROPERTY_HINT_NODE_PATH_TO_EDITED_NODE = 24,
-        
-        /** Hints that an object is too big to be sent via the debugger. */
-        PROPERTY_HINT_OBJECT_TOO_BIG = 25,
-        
-        /** Hints that the hint string specifies valid node types for property of type [NodePath]. */
-        PROPERTY_HINT_NODE_PATH_VALID_TYPES = 26,
-        
-        /** Hints that a [String] property is a path to a file. Editing it will show a file dialog for picking the path for the file to be saved at. The dialog has access to the project's directory. The hint string can be a set of filters with wildcards like `"*.png,*.jpg"`. See also [member FileDialog.filters]. */
-        PROPERTY_HINT_SAVE_FILE = 27,
-        
-        /** Hints that a [String] property is a path to a file. Editing it will show a file dialog for picking the path for the file to be saved at. The dialog has access to the entire filesystem. The hint string can be a set of filters with wildcards like `"*.png,*.jpg"`. See also [member FileDialog.filters]. */
-        PROPERTY_HINT_GLOBAL_SAVE_FILE = 28,
-        PROPERTY_HINT_INT_IS_OBJECTID = 29,
-        
-        /** Hints that an [int] property is a pointer. Used by GDExtension. */
-        PROPERTY_HINT_INT_IS_POINTER = 30,
-        
-        /** Hints that a property is an [Array] with the stored type specified in the hint string. */
-        PROPERTY_HINT_ARRAY_TYPE = 31,
-        
-        /** Hints that a string property is a locale code. Editing it will show a locale dialog for picking language and country. */
-        PROPERTY_HINT_LOCALE_ID = 32,
-        
-        /** Hints that a dictionary property is string translation map. Dictionary keys are locale codes and, values are translated strings. */
-        PROPERTY_HINT_LOCALIZABLE_STRING = 33,
-        
-        /** Hints that a property is an instance of a [Node]-derived type, optionally specified via the hint string (e.g. `"Node2D"`). Editing it will show a dialog for picking a node from the scene. */
-        PROPERTY_HINT_NODE_TYPE = 34,
-        
-        /** Hints that a quaternion property should disable the temporary euler editor. */
-        PROPERTY_HINT_HIDE_QUATERNION_EDIT = 35,
-        
-        /** Hints that a string property is a password, and every character is replaced with the secret character. */
-        PROPERTY_HINT_PASSWORD = 36,
-        
-        /** Represents the size of the [enum PropertyHint] enum. */
-        PROPERTY_HINT_MAX = 38,
+    enum FixedSizeScaleMode {
+      /** Bitmap font is not scaled. */
+      FIXED_SIZE_SCALE_DISABLE = 0,
+
+      /** Bitmap font is scaled to the closest integer multiple of the font's fixed size. This is the recommended option for pixel art fonts. */
+      FIXED_SIZE_SCALE_INTEGER_ONLY = 1,
+
+      /** Bitmap font is scaled to an arbitrary (fractional) size. This is the recommended option for non-pixel art fonts. */
+      FIXED_SIZE_SCALE_ENABLED = 2,
     }
-    enum PropertyUsageFlags {
-        /** The property is not stored, and does not display in the editor. This is the default for non-exported properties. */
-        PROPERTY_USAGE_NONE = 0,
-        
-        /** The property is serialized and saved in the scene file (default for exported properties). */
-        PROPERTY_USAGE_STORAGE = 2,
-        
-        /** The property is shown in the [EditorInspector] (default for exported properties). */
-        PROPERTY_USAGE_EDITOR = 4,
-        
-        /** The property is excluded from the class reference. */
-        PROPERTY_USAGE_INTERNAL = 8,
-        
-        /** The property can be checked in the [EditorInspector]. */
-        PROPERTY_USAGE_CHECKABLE = 16,
-        
-        /** The property is checked in the [EditorInspector]. */
-        PROPERTY_USAGE_CHECKED = 32,
-        
-        /** Used to group properties together in the editor. See [EditorInspector]. */
-        PROPERTY_USAGE_GROUP = 64,
-        
-        /** Used to categorize properties together in the editor. */
-        PROPERTY_USAGE_CATEGORY = 128,
-        
-        /** Used to group properties together in the editor in a subgroup (under a group). See [EditorInspector]. */
-        PROPERTY_USAGE_SUBGROUP = 256,
-        
-        /** The property is a bitfield, i.e. it contains multiple flags represented as bits. */
-        PROPERTY_USAGE_CLASS_IS_BITFIELD = 512,
-        
-        /** The property does not save its state in [PackedScene]. */
-        PROPERTY_USAGE_NO_INSTANCE_STATE = 1024,
-        
-        /** Editing the property prompts the user for restarting the editor. */
-        PROPERTY_USAGE_RESTART_IF_CHANGED = 2048,
-        
-        /** The property is a script variable which should be serialized and saved in the scene file. */
-        PROPERTY_USAGE_SCRIPT_VARIABLE = 4096,
-        
-        /** The property value of type [Object] will be stored even if its value is `null`. */
-        PROPERTY_USAGE_STORE_IF_NULL = 8192,
-        
-        /** If this property is modified, all inspector fields will be refreshed. */
-        PROPERTY_USAGE_UPDATE_ALL_IF_MODIFIED = 16384,
-        PROPERTY_USAGE_SCRIPT_DEFAULT_VALUE = 32768,
-        
-        /** The property is an enum, i.e. it only takes named integer constants from its associated enumeration. */
-        PROPERTY_USAGE_CLASS_IS_ENUM = 65536,
-        
-        /** If property has `nil` as default value, its type will be [Variant]. */
-        PROPERTY_USAGE_NIL_IS_VARIANT = 131072,
-        
-        /** The property is an array. */
-        PROPERTY_USAGE_ARRAY = 262144,
-        
-        /** When duplicating a resource with [method Resource.duplicate], and this flag is set on a property of that resource, the property should always be duplicated, regardless of the `subresources` bool parameter. */
-        PROPERTY_USAGE_ALWAYS_DUPLICATE = 524288,
-        
-        /** When duplicating a resource with [method Resource.duplicate], and this flag is set on a property of that resource, the property should never be duplicated, regardless of the `subresources` bool parameter. */
-        PROPERTY_USAGE_NEVER_DUPLICATE = 1048576,
-        
-        /** The property is only shown in the editor if modern renderers are supported (the Compatibility rendering method is excluded). */
-        PROPERTY_USAGE_HIGH_END_GFX = 2097152,
-        
-        /** The [NodePath] property will always be relative to the scene's root. Mostly useful for local resources. */
-        PROPERTY_USAGE_NODE_PATH_FROM_SCENE_ROOT = 4194304,
-        
-        /** Use when a resource is created on the fly, i.e. the getter will always return a different instance. [ResourceSaver] needs this information to properly save such resources. */
-        PROPERTY_USAGE_RESOURCE_NOT_PERSISTENT = 8388608,
-        
-        /** Inserting an animation key frame of this property will automatically increment the value, allowing to easily keyframe multiple values in a row. */
-        PROPERTY_USAGE_KEYING_INCREMENTS = 16777216,
-        PROPERTY_USAGE_DEFERRED_SET_RESOURCE = 33554432,
-        
-        /** When this property is a [Resource] and base object is a [Node], a resource instance will be automatically created whenever the node is created in the editor. */
-        PROPERTY_USAGE_EDITOR_INSTANTIATE_OBJECT = 67108864,
-        
-        /** The property is considered a basic setting and will appear even when advanced mode is disabled. Used for project settings. */
-        PROPERTY_USAGE_EDITOR_BASIC_SETTING = 134217728,
-        
-        /** The property is read-only in the [EditorInspector]. */
-        PROPERTY_USAGE_READ_ONLY = 268435456,
-        
-        /** An export preset property with this flag contains confidential information and is stored separately from the rest of the export preset configuration. */
-        PROPERTY_USAGE_SECRET = 536870912,
-        
-        /** Default usage (storage and editor). */
-        PROPERTY_USAGE_DEFAULT = 6,
-        
-        /** Default usage but without showing the property in the editor (storage). */
-        PROPERTY_USAGE_NO_EDITOR = 2,
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTextServer extends __NameMapRefCounted {}
+  /** A server interface for font management and text rendering.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_textserver.html
+   */
+  class TextServer extends RefCounted {
+    constructor(identifier?: any);
+    /** Returns `true` if the server supports a feature. */
+    has_feature(feature: TextServer.Feature): boolean;
+
+    /** Returns the name of the server interface. */
+    get_name(): string;
+
+    /** Returns text server features, see [enum Feature]. */
+    get_features(): int64;
+
+    /** Loads optional TextServer database (e.g. ICU break iterators and dictionaries).
+     *
+     *  **Note:** This function should be called before any other TextServer functions used, otherwise it won't have any effect.
+     */
+    load_support_data(filename: string): boolean;
+
+    /** Returns default TextServer database (e.g. ICU break iterators and dictionaries) filename. */
+    get_support_data_filename(): string;
+
+    /** Returns TextServer database (e.g. ICU break iterators and dictionaries) description. */
+    get_support_data_info(): string;
+
+    /** Saves optional TextServer database (e.g. ICU break iterators and dictionaries) to the file.
+     *
+     *  **Note:** This function is used by during project export, to include TextServer database.
+     */
+    save_support_data(filename: string): boolean;
+
+    /** Returns default TextServer database (e.g. ICU break iterators and dictionaries). */
+    get_support_data(): PackedByteArray;
+
+    /** Returns `true` if locale is right-to-left. */
+    is_locale_right_to_left(locale: string): boolean;
+
+    /** Converts readable feature, variation, script, or language name to OpenType tag. */
+    name_to_tag(name: string): int64;
+
+    /** Converts OpenType tag to readable feature, variation, script, or language name. */
+    tag_to_name(tag: int64): string;
+
+    /** Returns `true` if [param rid] is valid resource owned by this text server. */
+    has(rid: RID): boolean;
+
+    /** Frees an object created by this [TextServer]. */
+    free_rid(rid: RID): void;
+
+    /** Creates a new, empty font cache entry resource. To free the resulting resource, use the [method free_rid] method. */
+    create_font(): RID;
+
+    /** Creates a new variation existing font which is reusing the same glyph cache and font data. To free the resulting resource, use the [method free_rid] method. */
+    create_font_linked_variation(font_rid: RID): RID;
+
+    /** Sets font source data, e.g contents of the dynamic font source file. */
+    font_set_data(
+      font_rid: RID,
+      data: PackedByteArray | byte[] | ArrayBuffer,
+    ): void;
+
+    /** Sets an active face index in the TrueType / OpenType collection. */
+    font_set_face_index(font_rid: RID, face_index: int64): void;
+
+    /** Returns an active face index in the TrueType / OpenType collection. */
+    font_get_face_index(font_rid: RID): int64;
+
+    /** Returns number of faces in the TrueType / OpenType collection. */
+    font_get_face_count(font_rid: RID): int64;
+
+    /** Sets the font style flags.
+     *
+     *  **Note:** This value is used for font matching only and will not affect font rendering. Use [method font_set_face_index], [method font_set_variation_coordinates], [method font_set_embolden], or [method font_set_transform] instead.
+     */
+    font_set_style(font_rid: RID, style: TextServer.FontStyle): void;
+
+    /** Returns font style flags. */
+    font_get_style(font_rid: RID): TextServer.FontStyle;
+
+    /** Sets the font family name. */
+    font_set_name(font_rid: RID, name: string): void;
+
+    /** Returns font family name. */
+    font_get_name(font_rid: RID): string;
+
+    /** Returns [Dictionary] with OpenType font name strings (localized font names, version, description, license information, sample text, etc.). */
+    font_get_ot_name_strings(font_rid: RID): GDictionary;
+
+    /** Sets the font style name. */
+    font_set_style_name(font_rid: RID, name: string): void;
+
+    /** Returns font style name. */
+    font_get_style_name(font_rid: RID): string;
+
+    /** Sets weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
+     *
+     *  **Note:** This value is used for font matching only and will not affect font rendering. Use [method font_set_face_index], [method font_set_variation_coordinates], or [method font_set_embolden] instead.
+     */
+    font_set_weight(font_rid: RID, weight: int64): void;
+
+    /** Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`. */
+    font_get_weight(font_rid: RID): int64;
+
+    /** Sets font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`.
+     *
+     *  **Note:** This value is used for font matching only and will not affect font rendering. Use [method font_set_face_index], [method font_set_variation_coordinates], or [method font_set_transform] instead.
+     */
+    font_set_stretch(font_rid: RID, weight: int64): void;
+
+    /** Returns font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`. */
+    font_get_stretch(font_rid: RID): int64;
+
+    /** Sets font anti-aliasing mode. */
+    font_set_antialiasing(
+      font_rid: RID,
+      antialiasing: TextServer.FontAntialiasing,
+    ): void;
+
+    /** Returns font anti-aliasing mode. */
+    font_get_antialiasing(font_rid: RID): TextServer.FontAntialiasing;
+
+    /** If set to `true`, embedded font bitmap loading is disabled (bitmap-only and color fonts ignore this property). */
+    font_set_disable_embedded_bitmaps(
+      font_rid: RID,
+      disable_embedded_bitmaps: boolean,
+    ): void;
+
+    /** Returns whether the font's embedded bitmap loading is disabled. */
+    font_get_disable_embedded_bitmaps(font_rid: RID): boolean;
+
+    /** If set to `true` font texture mipmap generation is enabled. */
+    font_set_generate_mipmaps(font_rid: RID, generate_mipmaps: boolean): void;
+
+    /** Returns `true` if font texture mipmap generation is enabled. */
+    font_get_generate_mipmaps(font_rid: RID): boolean;
+
+    /** If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data. MSDF rendering allows displaying the font at any scaling factor without blurriness, and without incurring a CPU cost when the font size changes (since the font no longer needs to be rasterized on the CPU). As a downside, font hinting is not available with MSDF. The lack of font hinting may result in less crisp and less readable fonts at small sizes.
+     *
+     *  **Note:** MSDF font rendering does not render glyphs with overlapping shapes correctly. Overlapping shapes are not valid per the OpenType standard, but are still commonly found in many font files, especially those converted by Google Fonts. To avoid issues with overlapping glyphs, consider downloading the font file directly from the type foundry instead of relying on Google Fonts.
+     */
+    font_set_multichannel_signed_distance_field(
+      font_rid: RID,
+      msdf: boolean,
+    ): void;
+
+    /** Returns `true` if glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data. */
+    font_is_multichannel_signed_distance_field(font_rid: RID): boolean;
+
+    /** Sets the width of the range around the shape between the minimum and maximum representable signed distance. */
+    font_set_msdf_pixel_range(font_rid: RID, msdf_pixel_range: int64): void;
+
+    /** Returns the width of the range around the shape between the minimum and maximum representable signed distance. */
+    font_get_msdf_pixel_range(font_rid: RID): int64;
+
+    /** Sets source font size used to generate MSDF textures. */
+    font_set_msdf_size(font_rid: RID, msdf_size: int64): void;
+
+    /** Returns source font size used to generate MSDF textures. */
+    font_get_msdf_size(font_rid: RID): int64;
+
+    /** Sets bitmap font fixed size. If set to value greater than zero, same cache entry will be used for all font sizes. */
+    font_set_fixed_size(font_rid: RID, fixed_size: int64): void;
+
+    /** Returns bitmap font fixed size. */
+    font_get_fixed_size(font_rid: RID): int64;
+
+    /** Sets bitmap font scaling mode. This property is used only if `fixed_size` is greater than zero. */
+    font_set_fixed_size_scale_mode(
+      font_rid: RID,
+      fixed_size_scale_mode: TextServer.FixedSizeScaleMode,
+    ): void;
+
+    /** Returns bitmap font scaling mode. */
+    font_get_fixed_size_scale_mode(
+      font_rid: RID,
+    ): TextServer.FixedSizeScaleMode;
+
+    /** If set to `true`, system fonts can be automatically used as fallbacks. */
+    font_set_allow_system_fallback(
+      font_rid: RID,
+      allow_system_fallback: boolean,
+    ): void;
+
+    /** Returns `true` if system fonts can be automatically used as fallbacks. */
+    font_is_allow_system_fallback(font_rid: RID): boolean;
+
+    /** Frees all automatically loaded system fonts. */
+    font_clear_system_fallback_cache(): void;
+
+    /** If set to `true` auto-hinting is preferred over font built-in hinting. */
+    font_set_force_autohinter(font_rid: RID, force_autohinter: boolean): void;
+
+    /** Returns `true` if auto-hinting is supported and preferred over font built-in hinting. Used by dynamic fonts only. */
+    font_is_force_autohinter(font_rid: RID): boolean;
+
+    /** If set to `true`, color modulation is applied when drawing colored glyphs, otherwise it's applied to the monochrome glyphs only. */
+    font_set_modulate_color_glyphs(
+      font_rid: RID,
+      force_autohinter: boolean,
+    ): void;
+
+    /** Returns `true`, if color modulation is applied when drawing colored glyphs. */
+    font_is_modulate_color_glyphs(font_rid: RID): boolean;
+
+    /** Sets font hinting mode. Used by dynamic fonts only. */
+    font_set_hinting(font_rid: RID, hinting: TextServer.Hinting): void;
+
+    /** Returns the font hinting mode. Used by dynamic fonts only. */
+    font_get_hinting(font_rid: RID): TextServer.Hinting;
+
+    /** Sets font subpixel glyph positioning mode. */
+    font_set_subpixel_positioning(
+      font_rid: RID,
+      subpixel_positioning: TextServer.SubpixelPositioning,
+    ): void;
+
+    /** Returns font subpixel glyph positioning mode. */
+    font_get_subpixel_positioning(
+      font_rid: RID,
+    ): TextServer.SubpixelPositioning;
+
+    /** Sets glyph position rounding behavior. If set to `true`, when aligning glyphs to the pixel boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This setting has no effect if subpixel positioning is enabled. */
+    font_set_keep_rounding_remainders(
+      font_rid: RID,
+      keep_rounding_remainders: boolean,
+    ): void;
+
+    /** Returns glyph position rounding behavior. If set to `true`, when aligning glyphs to the pixel boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This setting has no effect if subpixel positioning is enabled. */
+    font_get_keep_rounding_remainders(font_rid: RID): boolean;
+
+    /** Sets font embolden strength. If [param strength] is not equal to zero, emboldens the font outlines. Negative values reduce the outline thickness. */
+    font_set_embolden(font_rid: RID, strength: float64): void;
+
+    /** Returns font embolden strength. */
+    font_get_embolden(font_rid: RID): float64;
+
+    /** Sets the spacing for [param spacing] to [param value] in pixels (not relative to the font size). */
+    font_set_spacing(
+      font_rid: RID,
+      spacing: TextServer.SpacingType,
+      value: int64,
+    ): void;
+
+    /** Returns the spacing for [param spacing] in pixels (not relative to the font size). */
+    font_get_spacing(font_rid: RID, spacing: TextServer.SpacingType): int64;
+
+    /** Sets extra baseline offset (as a fraction of font height). */
+    font_set_baseline_offset(font_rid: RID, baseline_offset: float64): void;
+
+    /** Returns extra baseline offset (as a fraction of font height). */
+    font_get_baseline_offset(font_rid: RID): float64;
+
+    /** Sets 2D transform, applied to the font outlines, can be used for slanting, flipping, and rotating glyphs.
+     *  For example, to simulate italic typeface by slanting, apply the following transform `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
+     */
+    font_set_transform(font_rid: RID, transform: Transform2D): void;
+
+    /** Returns 2D transform applied to the font outlines. */
+    font_get_transform(font_rid: RID): Transform2D;
+
+    /** Sets variation coordinates for the specified font cache entry. See [method font_supported_variation_list] for more info. */
+    font_set_variation_coordinates(
+      font_rid: RID,
+      variation_coordinates: GDictionary,
+    ): void;
+
+    /** Returns variation coordinates for the specified font cache entry. See [method font_supported_variation_list] for more info. */
+    font_get_variation_coordinates(font_rid: RID): GDictionary;
+
+    /** If set to a positive value, overrides the oversampling factor of the viewport this font is used in. See [member Viewport.oversampling]. This value doesn't override the [code skip-lint]oversampling` parameter of [code skip-lint]draw_*` methods. Used by dynamic fonts only. */
+    font_set_oversampling(font_rid: RID, oversampling: float64): void;
+
+    /** Returns oversampling factor override. If set to a positive value, overrides the oversampling factor of the viewport this font is used in. See [member Viewport.oversampling]. This value doesn't override the [code skip-lint]oversampling` parameter of [code skip-lint]draw_*` methods. Used by dynamic fonts only. */
+    font_get_oversampling(font_rid: RID): float64;
+
+    /** Returns list of the font sizes in the cache. Each size is [Vector2i] with font size and outline size. */
+    font_get_size_cache_list(font_rid: RID): GArray<Vector2i>;
+
+    /** Removes all font sizes from the cache entry. */
+    font_clear_size_cache(font_rid: RID): void;
+
+    /** Removes specified font size from the cache entry. */
+    font_remove_size_cache(font_rid: RID, size: Vector2i): void;
+
+    /** Returns font cache information, each entry contains the following fields: `Vector2i size_px` - font size in pixels, `float viewport_oversampling` - viewport oversampling factor, `int glyphs` - number of rendered glyphs, `int textures` - number of used textures, `int textures_size` - size of texture data in bytes. */
+    font_get_size_cache_info(font_rid: RID): GArray<GDictionary>;
+
+    /** Sets the font ascent (number of pixels above the baseline). */
+    font_set_ascent(font_rid: RID, size: int64, ascent: float64): void;
+
+    /** Returns the font ascent (number of pixels above the baseline). */
+    font_get_ascent(font_rid: RID, size: int64): float64;
+
+    /** Sets the font descent (number of pixels below the baseline). */
+    font_set_descent(font_rid: RID, size: int64, descent: float64): void;
+
+    /** Returns the font descent (number of pixels below the baseline). */
+    font_get_descent(font_rid: RID, size: int64): float64;
+
+    /** Sets pixel offset of the underline below the baseline. */
+    font_set_underline_position(
+      font_rid: RID,
+      size: int64,
+      underline_position: float64,
+    ): void;
+
+    /** Returns pixel offset of the underline below the baseline. */
+    font_get_underline_position(font_rid: RID, size: int64): float64;
+
+    /** Sets thickness of the underline in pixels. */
+    font_set_underline_thickness(
+      font_rid: RID,
+      size: int64,
+      underline_thickness: float64,
+    ): void;
+
+    /** Returns thickness of the underline in pixels. */
+    font_get_underline_thickness(font_rid: RID, size: int64): float64;
+
+    /** Sets scaling factor of the color bitmap font. */
+    font_set_scale(font_rid: RID, size: int64, scale: float64): void;
+
+    /** Returns scaling factor of the color bitmap font. */
+    font_get_scale(font_rid: RID, size: int64): float64;
+
+    /** Returns number of textures used by font cache entry. */
+    font_get_texture_count(font_rid: RID, size: Vector2i): int64;
+
+    /** Removes all textures from font cache entry.
+     *
+     *  **Note:** This function will not remove glyphs associated with the texture, use [method font_remove_glyph] to remove them manually.
+     */
+    font_clear_textures(font_rid: RID, size: Vector2i): void;
+
+    /** Removes specified texture from the cache entry.
+     *
+     *  **Note:** This function will not remove glyphs associated with the texture, remove them manually, using [method font_remove_glyph].
+     */
+    font_remove_texture(
+      font_rid: RID,
+      size: Vector2i,
+      texture_index: int64,
+    ): void;
+
+    /** Sets font cache texture image data. */
+    font_set_texture_image(
+      font_rid: RID,
+      size: Vector2i,
+      texture_index: int64,
+      image: Image,
+    ): void;
+
+    /** Returns font cache texture image data. */
+    font_get_texture_image(
+      font_rid: RID,
+      size: Vector2i,
+      texture_index: int64,
+    ): null | Image;
+
+    /** Sets array containing glyph packing data. */
+    font_set_texture_offsets(
+      font_rid: RID,
+      size: Vector2i,
+      texture_index: int64,
+      offset: PackedInt32Array | int32[],
+    ): void;
+
+    /** Returns array containing glyph packing data. */
+    font_get_texture_offsets(
+      font_rid: RID,
+      size: Vector2i,
+      texture_index: int64,
+    ): PackedInt32Array;
+
+    /** Returns list of rendered glyphs in the cache entry. */
+    font_get_glyph_list(font_rid: RID, size: Vector2i): PackedInt32Array;
+
+    /** Removes all rendered glyph information from the cache entry.
+     *
+     *  **Note:** This function will not remove textures associated with the glyphs, use [method font_remove_texture] to remove them manually.
+     */
+    font_clear_glyphs(font_rid: RID, size: Vector2i): void;
+
+    /** Removes specified rendered glyph information from the cache entry.
+     *
+     *  **Note:** This function will not remove textures associated with the glyphs, use [method font_remove_texture] to remove them manually.
+     */
+    font_remove_glyph(font_rid: RID, size: Vector2i, glyph: int64): void;
+
+    /** Returns glyph advance (offset of the next glyph).
+     *
+     *  **Note:** Advance for glyphs outlines is the same as the base glyph advance and is not saved.
+     */
+    font_get_glyph_advance(font_rid: RID, size: int64, glyph: int64): Vector2;
+
+    /** Sets glyph advance (offset of the next glyph).
+     *
+     *  **Note:** Advance for glyphs outlines is the same as the base glyph advance and is not saved.
+     */
+    font_set_glyph_advance(
+      font_rid: RID,
+      size: int64,
+      glyph: int64,
+      advance: Vector2,
+    ): void;
+
+    /** Returns glyph offset from the baseline. */
+    font_get_glyph_offset(font_rid: RID, size: Vector2i, glyph: int64): Vector2;
+
+    /** Sets glyph offset from the baseline. */
+    font_set_glyph_offset(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+      offset: Vector2,
+    ): void;
+
+    /** Returns size of the glyph. */
+    font_get_glyph_size(font_rid: RID, size: Vector2i, glyph: int64): Vector2;
+
+    /** Sets size of the glyph. */
+    font_set_glyph_size(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+      gl_size: Vector2,
+    ): void;
+
+    /** Returns rectangle in the cache texture containing the glyph. */
+    font_get_glyph_uv_rect(font_rid: RID, size: Vector2i, glyph: int64): Rect2;
+
+    /** Sets rectangle in the cache texture containing the glyph. */
+    font_set_glyph_uv_rect(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+      uv_rect: Rect2,
+    ): void;
+
+    /** Returns index of the cache texture containing the glyph. */
+    font_get_glyph_texture_idx(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+    ): int64;
+
+    /** Sets index of the cache texture containing the glyph. */
+    font_set_glyph_texture_idx(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+      texture_idx: int64,
+    ): void;
+
+    /** Returns resource ID of the cache texture containing the glyph.
+     *
+     *  **Note:** If there are pending glyphs to render, calling this function might trigger the texture cache update.
+     */
+    font_get_glyph_texture_rid(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+    ): RID;
+
+    /** Returns size of the cache texture containing the glyph.
+     *
+     *  **Note:** If there are pending glyphs to render, calling this function might trigger the texture cache update.
+     */
+    font_get_glyph_texture_size(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+    ): Vector2;
+
+    /** Returns outline contours of the glyph as a [Dictionary] with the following contents:
+     *  `points`         - [PackedVector3Array], containing outline points. `x` and `y` are point coordinates. `z` is the type of the point, using the [enum ContourPointTag] values.
+     *  `contours`       - [PackedInt32Array], containing indices the end points of each contour.
+     *  `orientation`    - [bool], contour orientation. If `true`, clockwise contours must be filled.
+     *  - Two successive [constant CONTOUR_CURVE_TAG_ON] points indicate a line segment.
+     *  - One [constant CONTOUR_CURVE_TAG_OFF_CONIC] point between two [constant CONTOUR_CURVE_TAG_ON] points indicates a single conic (quadratic) Bézier arc.
+     *  - Two [constant CONTOUR_CURVE_TAG_OFF_CUBIC] points between two [constant CONTOUR_CURVE_TAG_ON] points indicate a single cubic Bézier arc.
+     *  - Two successive [constant CONTOUR_CURVE_TAG_OFF_CONIC] points indicate two successive conic (quadratic) Bézier arcs with a virtual [constant CONTOUR_CURVE_TAG_ON] point at their middle.
+     *  - Each contour is closed. The last point of a contour uses the first point of a contour as its next point, and vice versa. The first point can be [constant CONTOUR_CURVE_TAG_OFF_CONIC] point.
+     */
+    font_get_glyph_contours(font: RID, size: int64, index: int64): GDictionary;
+
+    /** Returns list of the kerning overrides. */
+    font_get_kerning_list(font_rid: RID, size: int64): GArray<Vector2i>;
+
+    /** Removes all kerning overrides. */
+    font_clear_kerning_map(font_rid: RID, size: int64): void;
+
+    /** Removes kerning override for the pair of glyphs. */
+    font_remove_kerning(font_rid: RID, size: int64, glyph_pair: Vector2i): void;
+
+    /** Sets kerning for the pair of glyphs. */
+    font_set_kerning(
+      font_rid: RID,
+      size: int64,
+      glyph_pair: Vector2i,
+      kerning: Vector2,
+    ): void;
+
+    /** Returns kerning for the pair of glyphs. */
+    font_get_kerning(font_rid: RID, size: int64, glyph_pair: Vector2i): Vector2;
+
+    /** Returns the glyph index of a [param char], optionally modified by the [param variation_selector]. See [method font_get_char_from_glyph_index]. */
+    font_get_glyph_index(
+      font_rid: RID,
+      size: int64,
+      char: int64,
+      variation_selector: int64,
+    ): int64;
+
+    /** Returns character code associated with [param glyph_index], or `0` if [param glyph_index] is invalid. See [method font_get_glyph_index]. */
+    font_get_char_from_glyph_index(
+      font_rid: RID,
+      size: int64,
+      glyph_index: int64,
+    ): int64;
+
+    /** Returns `true` if a Unicode [param char] is available in the font. */
+    font_has_char(font_rid: RID, char: int64): boolean;
+
+    /** Returns a string containing all the characters available in the font. */
+    font_get_supported_chars(font_rid: RID): string;
+
+    /** Returns an array containing all glyph indices in the font. */
+    font_get_supported_glyphs(font_rid: RID): PackedInt32Array;
+
+    /** Renders the range of characters to the font cache texture. */
+    font_render_range(
+      font_rid: RID,
+      size: Vector2i,
+      start: int64,
+      end: int64,
+    ): void;
+
+    /** Renders specified glyph to the font cache texture. */
+    font_render_glyph(font_rid: RID, size: Vector2i, index: int64): void;
+
+    /** Draws single glyph into a canvas item at the position, using [param font_rid] at the size [param size]. If [param oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used.
+     *
+     *  **Note:** Glyph index is specific to the font, use glyphs indices returned by [method shaped_text_get_glyphs] or [method font_get_glyph_index].
+     *
+     *  **Note:** If there are pending glyphs to render, calling this function might trigger the texture cache update.
+     */
+    font_draw_glyph(
+      font_rid: RID,
+      canvas: RID,
+      size: int64,
+      pos: Vector2,
+      index: int64,
+      color?: Color /* = new Color(1, 1, 1, 1) */,
+      oversampling?: float64 /* = 0 */,
+    ): void;
+
+    /** Draws single glyph outline of size [param outline_size] into a canvas item at the position, using [param font_rid] at the size [param size]. If [param oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used.
+     *
+     *  **Note:** Glyph index is specific to the font, use glyphs indices returned by [method shaped_text_get_glyphs] or [method font_get_glyph_index].
+     *
+     *  **Note:** If there are pending glyphs to render, calling this function might trigger the texture cache update.
+     */
+    font_draw_glyph_outline(
+      font_rid: RID,
+      canvas: RID,
+      size: int64,
+      outline_size: int64,
+      pos: Vector2,
+      index: int64,
+      color?: Color /* = new Color(1, 1, 1, 1) */,
+      oversampling?: float64 /* = 0 */,
+    ): void;
+
+    /** Returns `true`, if font supports given language ([url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code). */
+    font_is_language_supported(font_rid: RID, language: string): boolean;
+
+    /** Adds override for [method font_is_language_supported]. */
+    font_set_language_support_override(
+      font_rid: RID,
+      language: string,
+      supported: boolean,
+    ): void;
+
+    /** Returns `true` if support override is enabled for the [param language]. */
+    font_get_language_support_override(
+      font_rid: RID,
+      language: string,
+    ): boolean;
+
+    /** Remove language support override. */
+    font_remove_language_support_override(
+      font_rid: RID,
+      language: string,
+    ): void;
+
+    /** Returns list of language support overrides. */
+    font_get_language_support_overrides(font_rid: RID): PackedStringArray;
+
+    /** Returns `true`, if font supports given script (ISO 15924 code). */
+    font_is_script_supported(font_rid: RID, script: string): boolean;
+
+    /** Adds override for [method font_is_script_supported]. */
+    font_set_script_support_override(
+      font_rid: RID,
+      script: string,
+      supported: boolean,
+    ): void;
+
+    /** Returns `true` if support override is enabled for the [param script]. */
+    font_get_script_support_override(font_rid: RID, script: string): boolean;
+
+    /** Removes script support override. */
+    font_remove_script_support_override(font_rid: RID, script: string): void;
+
+    /** Returns list of script support overrides. */
+    font_get_script_support_overrides(font_rid: RID): PackedStringArray;
+
+    /** Sets font OpenType feature set override. */
+    font_set_opentype_feature_overrides(
+      font_rid: RID,
+      overrides: GDictionary,
+    ): void;
+
+    /** Returns font OpenType feature set override. */
+    font_get_opentype_feature_overrides(font_rid: RID): GDictionary;
+
+    /** Returns the dictionary of the supported OpenType features. */
+    font_supported_feature_list(font_rid: RID): GDictionary;
+
+    /** Returns the dictionary of the supported OpenType variation coordinates. */
+    font_supported_variation_list(font_rid: RID): GDictionary;
+
+    /** Deprecated. This method always returns `1.0`. */
+    font_get_global_oversampling(): float64;
+
+    /** Deprecated. This method does nothing. */
+    font_set_global_oversampling(oversampling: float64): void;
+
+    /** Returns size of the replacement character (box with character hexadecimal code that is drawn in place of invalid characters). */
+    get_hex_code_box_size(size: int64, index: int64): Vector2;
+
+    /** Draws box displaying character hexadecimal code. Used for replacing missing characters. */
+    draw_hex_code_box(
+      canvas: RID,
+      size: int64,
+      pos: Vector2,
+      index: int64,
+      color: Color,
+    ): void;
+
+    /** Creates a new buffer for complex text layout, with the given [param direction] and [param orientation]. To free the resulting buffer, use [method free_rid] method.
+     *
+     *  **Note:** Direction is ignored if server does not support [constant FEATURE_BIDI_LAYOUT] feature (supported by [TextServerAdvanced]).
+     *
+     *  **Note:** Orientation is ignored if server does not support [constant FEATURE_VERTICAL_LAYOUT] feature (supported by [TextServerAdvanced]).
+     */
+    create_shaped_text(
+      direction?: TextServer.Direction /* = 0 */,
+      orientation?: TextServer.Orientation /* = 0 */,
+    ): RID;
+
+    /** Clears text buffer (removes text and inline objects). */
+    shaped_text_clear(rid: RID): void;
+
+    /** Sets desired text direction. If set to [constant DIRECTION_AUTO], direction will be detected based on the buffer contents and current locale.
+     *
+     *  **Note:** Direction is ignored if server does not support [constant FEATURE_BIDI_LAYOUT] feature (supported by [TextServerAdvanced]).
+     */
+    shaped_text_set_direction(
+      shaped: RID,
+      direction?: TextServer.Direction /* = 0 */,
+    ): void;
+
+    /** Returns direction of the text. */
+    shaped_text_get_direction(shaped: RID): TextServer.Direction;
+
+    /** Returns direction of the text, inferred by the BiDi algorithm. */
+    shaped_text_get_inferred_direction(shaped: RID): TextServer.Direction;
+
+    /** Overrides BiDi for the structured text.
+     *  Override ranges should cover full source text without overlaps. BiDi algorithm will be used on each range separately.
+     */
+    shaped_text_set_bidi_override(shaped: RID, override: GArray): void;
+
+    /** Sets custom punctuation character list, used for word breaking. If set to empty string, server defaults are used. */
+    shaped_text_set_custom_punctuation(shaped: RID, punct: string): void;
+
+    /** Returns custom punctuation character list, used for word breaking. If set to empty string, server defaults are used. */
+    shaped_text_get_custom_punctuation(shaped: RID): string;
+
+    /** Sets ellipsis character used for text clipping. */
+    shaped_text_set_custom_ellipsis(shaped: RID, char: int64): void;
+
+    /** Returns ellipsis character used for text clipping. */
+    shaped_text_get_custom_ellipsis(shaped: RID): int64;
+
+    /** Sets desired text orientation.
+     *
+     *  **Note:** Orientation is ignored if server does not support [constant FEATURE_VERTICAL_LAYOUT] feature (supported by [TextServerAdvanced]).
+     */
+    shaped_text_set_orientation(
+      shaped: RID,
+      orientation?: TextServer.Orientation /* = 0 */,
+    ): void;
+
+    /** Returns text orientation. */
+    shaped_text_get_orientation(shaped: RID): TextServer.Orientation;
+
+    /** If set to `true` text buffer will display invalid characters as hexadecimal codes, otherwise nothing is displayed. */
+    shaped_text_set_preserve_invalid(shaped: RID, enabled: boolean): void;
+
+    /** Returns `true` if text buffer is configured to display hexadecimal codes in place of invalid characters.
+     *
+     *  **Note:** If set to `false`, nothing is displayed in place of invalid characters.
+     */
+    shaped_text_get_preserve_invalid(shaped: RID): boolean;
+
+    /** If set to `true` text buffer will display control characters. */
+    shaped_text_set_preserve_control(shaped: RID, enabled: boolean): void;
+
+    /** Returns `true` if text buffer is configured to display control characters. */
+    shaped_text_get_preserve_control(shaped: RID): boolean;
+
+    /** Sets extra spacing added between glyphs or lines in pixels. */
+    shaped_text_set_spacing(
+      shaped: RID,
+      spacing: TextServer.SpacingType,
+      value: int64,
+    ): void;
+
+    /** Returns extra spacing added between glyphs or lines in pixels. */
+    shaped_text_get_spacing(
+      shaped: RID,
+      spacing: TextServer.SpacingType,
+    ): int64;
+
+    /** Adds text span and font to draw it to the text buffer. */
+    shaped_text_add_string(
+      shaped: RID,
+      text: string,
+      fonts: GArray<RID>,
+      size: int64,
+      opentype_features?: GDictionary /* = new GDictionary() */,
+      language?: string /* = '' */,
+      meta?: any /* = <any> {} */,
+    ): boolean;
+
+    /** Adds inline object to the text buffer, [param key] must be unique. In the text, object is represented as [param length] object replacement characters. */
+    shaped_text_add_object(
+      shaped: RID,
+      key: any,
+      size: Vector2,
+      inline_align?: InlineAlignment /* = 5 */,
+      length?: int64 /* = 1 */,
+      baseline?: float64 /* = 0 */,
+    ): boolean;
+
+    /** Sets new size and alignment of embedded object. */
+    shaped_text_resize_object(
+      shaped: RID,
+      key: any,
+      size: Vector2,
+      inline_align?: InlineAlignment /* = 5 */,
+      baseline?: float64 /* = 0 */,
+    ): boolean;
+
+    /** Returns the text buffer source text, including object replacement characters. */
+    shaped_get_text(shaped: RID): string;
+
+    /** Returns number of text spans added using [method shaped_text_add_string] or [method shaped_text_add_object]. */
+    shaped_get_span_count(shaped: RID): int64;
+
+    /** Returns text span metadata. */
+    shaped_get_span_meta(shaped: RID, index: int64): any;
+
+    /** Returns text embedded object key. */
+    shaped_get_span_embedded_object(shaped: RID, index: int64): any;
+
+    /** Returns the text span source text. */
+    shaped_get_span_text(shaped: RID, index: int64): string;
+
+    /** Returns the text span embedded object key. */
+    shaped_get_span_object(shaped: RID, index: int64): any;
+
+    /** Changes text span font, font size, and OpenType features, without changing the text. */
+    shaped_set_span_update_font(
+      shaped: RID,
+      index: int64,
+      fonts: GArray<RID>,
+      size: int64,
+      opentype_features?: GDictionary /* = new GDictionary() */,
+    ): void;
+
+    /** Returns the number of uniform text runs in the buffer. */
+    shaped_get_run_count(shaped: RID): int64;
+
+    /** Returns the source text of the [param index] text run (in visual order). */
+    shaped_get_run_text(shaped: RID, index: int64): string;
+
+    /** Returns the source text range of the [param index] text run (in visual order). */
+    shaped_get_run_range(shaped: RID, index: int64): Vector2i;
+
+    /** Returns the font RID of the [param index] text run (in visual order). */
+    shaped_get_run_font_rid(shaped: RID, index: int64): RID;
+
+    /** Returns the font size of the [param index] text run (in visual order). */
+    shaped_get_run_font_size(shaped: RID, index: int64): int64;
+
+    /** Returns the language of the [param index] text run (in visual order). */
+    shaped_get_run_language(shaped: RID, index: int64): string;
+
+    /** Returns the direction of the [param index] text run (in visual order). */
+    shaped_get_run_direction(shaped: RID, index: int64): TextServer.Direction;
+
+    /** Returns the embedded object of the [param index] text run (in visual order). */
+    shaped_get_run_object(shaped: RID, index: int64): any;
+
+    /** Returns text buffer for the substring of the text in the [param shaped] text buffer (including inline objects). */
+    shaped_text_substr(shaped: RID, start: int64, length: int64): RID;
+
+    /** Returns the parent buffer from which the substring originates. */
+    shaped_text_get_parent(shaped: RID): RID;
+
+    /** Adjusts text width to fit to specified width, returns new text width. */
+    shaped_text_fit_to_width(
+      shaped: RID,
+      width: float64,
+      justification_flags?: TextServer.JustificationFlag /* = 3 */,
+    ): float64;
+
+    /** Aligns shaped text to the given tab-stops. */
+    shaped_text_tab_align(
+      shaped: RID,
+      tab_stops: PackedFloat32Array | float32[],
+    ): float64;
+
+    /** Shapes buffer if it's not shaped. Returns `true` if the string is shaped successfully.
+     *
+     *  **Note:** It is not necessary to call this function manually, buffer will be shaped automatically as soon as any of its output data is requested.
+     */
+    shaped_text_shape(shaped: RID): boolean;
+
+    /** Returns `true` if buffer is successfully shaped. */
+    shaped_text_is_ready(shaped: RID): boolean;
+
+    /** Returns `true` if text buffer contains any visible characters. */
+    shaped_text_has_visible_chars(shaped: RID): boolean;
+
+    /** Returns an array of glyphs in the visual order. */
+    shaped_text_get_glyphs(shaped: RID): GArray<GDictionary>;
+
+    /** Returns text glyphs in the logical order. */
+    shaped_text_sort_logical(shaped: RID): GArray<GDictionary>;
+
+    /** Returns number of glyphs in the buffer. */
+    shaped_text_get_glyph_count(shaped: RID): int64;
+
+    /** Returns substring buffer character range in the parent buffer. */
+    shaped_text_get_range(shaped: RID): Vector2i;
+
+    /** Breaks text to the lines and columns. Returns character ranges for each segment. */
+    shaped_text_get_line_breaks_adv(
+      shaped: RID,
+      width: PackedFloat32Array | float32[],
+      start?: int64 /* = 0 */,
+      once?: boolean /* = true */,
+      break_flags?: TextServer.LineBreakFlag /* = 3 */,
+    ): PackedInt32Array;
+
+    /** Breaks text to the lines and returns character ranges for each line. */
+    shaped_text_get_line_breaks(
+      shaped: RID,
+      width: float64,
+      start?: int64 /* = 0 */,
+      break_flags?: TextServer.LineBreakFlag /* = 3 */,
+    ): PackedInt32Array;
+
+    /** Breaks text into words and returns array of character ranges. Use [param grapheme_flags] to set what characters are used for breaking. */
+    shaped_text_get_word_breaks(
+      shaped: RID,
+      grapheme_flags?: TextServer.GraphemeFlag /* = 264 */,
+      skip_grapheme_flags?: TextServer.GraphemeFlag /* = 4 */,
+    ): PackedInt32Array;
+
+    /** Returns the position of the overrun trim. */
+    shaped_text_get_trim_pos(shaped: RID): int64;
+
+    /** Returns position of the ellipsis. */
+    shaped_text_get_ellipsis_pos(shaped: RID): int64;
+
+    /** Returns array of the glyphs in the ellipsis. */
+    shaped_text_get_ellipsis_glyphs(shaped: RID): GArray<GDictionary>;
+
+    /** Returns number of glyphs in the ellipsis. */
+    shaped_text_get_ellipsis_glyph_count(shaped: RID): int64;
+
+    /** Trims text if it exceeds the given width. */
+    shaped_text_overrun_trim_to_width(
+      shaped: RID,
+      width?: float64 /* = 0 */,
+      overrun_trim_flags?: TextServer.TextOverrunFlag /* = 0 */,
+    ): void;
+
+    /** Returns array of inline objects. */
+    shaped_text_get_objects(shaped: RID): GArray;
+
+    /** Returns bounding rectangle of the inline object. */
+    shaped_text_get_object_rect(shaped: RID, key: any): Rect2;
+
+    /** Returns the character range of the inline object. */
+    shaped_text_get_object_range(shaped: RID, key: any): Vector2i;
+
+    /** Returns the glyph index of the inline object. */
+    shaped_text_get_object_glyph(shaped: RID, key: any): int64;
+
+    /** Returns size of the text. */
+    shaped_text_get_size(shaped: RID): Vector2;
+
+    /** Returns the text ascent (number of pixels above the baseline for horizontal layout or to the left of baseline for vertical).
+     *
+     *  **Note:** Overall ascent can be higher than font ascent, if some glyphs are displaced from the baseline.
+     */
+    shaped_text_get_ascent(shaped: RID): float64;
+
+    /** Returns the text descent (number of pixels below the baseline for horizontal layout or to the right of baseline for vertical).
+     *
+     *  **Note:** Overall descent can be higher than font descent, if some glyphs are displaced from the baseline.
+     */
+    shaped_text_get_descent(shaped: RID): float64;
+
+    /** Returns width (for horizontal layout) or height (for vertical) of the text. */
+    shaped_text_get_width(shaped: RID): float64;
+
+    /** Returns pixel offset of the underline below the baseline. */
+    shaped_text_get_underline_position(shaped: RID): float64;
+
+    /** Returns thickness of the underline. */
+    shaped_text_get_underline_thickness(shaped: RID): float64;
+
+    /** Returns shapes of the carets corresponding to the character offset [param position] in the text. Returned caret shape is 1 pixel wide rectangle. */
+    shaped_text_get_carets(shaped: RID, position: int64): GDictionary;
+
+    /** Returns selection rectangles for the specified character range. */
+    shaped_text_get_selection(
+      shaped: RID,
+      start: int64,
+      end: int64,
+    ): PackedVector2Array;
+
+    /** Returns grapheme index at the specified pixel offset at the baseline, or `-1` if none is found. */
+    shaped_text_hit_test_grapheme(shaped: RID, coords: float64): int64;
+
+    /** Returns caret character offset at the specified pixel offset at the baseline. This function always returns a valid position. */
+    shaped_text_hit_test_position(shaped: RID, coords: float64): int64;
+
+    /** Returns composite character's bounds as offsets from the start of the line. */
+    shaped_text_get_grapheme_bounds(shaped: RID, pos: int64): Vector2;
+
+    /** Returns grapheme end position closest to the [param pos]. */
+    shaped_text_next_grapheme_pos(shaped: RID, pos: int64): int64;
+
+    /** Returns grapheme start position closest to the [param pos]. */
+    shaped_text_prev_grapheme_pos(shaped: RID, pos: int64): int64;
+
+    /** Returns array of the composite character boundaries. */
+    shaped_text_get_character_breaks(shaped: RID): PackedInt32Array;
+
+    /** Returns composite character end position closest to the [param pos]. */
+    shaped_text_next_character_pos(shaped: RID, pos: int64): int64;
+
+    /** Returns composite character start position closest to the [param pos]. */
+    shaped_text_prev_character_pos(shaped: RID, pos: int64): int64;
+
+    /** Returns composite character position closest to the [param pos]. */
+    shaped_text_closest_character_pos(shaped: RID, pos: int64): int64;
+
+    /** Draw shaped text into a canvas item at a given position, with [param color]. [param pos] specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the baseline (for vertical layout). If [param oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used.
+     *  [param clip_l] and [param clip_r] are offsets relative to [param pos], going to the right in horizontal layout and downward in vertical layout. If [param clip_l] is not negative, glyphs starting before the offset are clipped. If [param clip_r] is not negative, glyphs ending after the offset are clipped.
+     */
+    shaped_text_draw(
+      shaped: RID,
+      canvas: RID,
+      pos: Vector2,
+      clip_l?: float64 /* = -1 */,
+      clip_r?: float64 /* = -1 */,
+      color?: Color /* = new Color(1, 1, 1, 1) */,
+      oversampling?: float64 /* = 0 */,
+    ): void;
+
+    /** Draw the outline of the shaped text into a canvas item at a given position, with [param color]. [param pos] specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the baseline (for vertical layout). If [param oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used.
+     *  [param clip_l] and [param clip_r] are offsets relative to [param pos], going to the right in horizontal layout and downward in vertical layout. If [param clip_l] is not negative, glyphs starting before the offset are clipped. If [param clip_r] is not negative, glyphs ending after the offset are clipped.
+     */
+    shaped_text_draw_outline(
+      shaped: RID,
+      canvas: RID,
+      pos: Vector2,
+      clip_l?: float64 /* = -1 */,
+      clip_r?: float64 /* = -1 */,
+      outline_size?: int64 /* = 1 */,
+      color?: Color /* = new Color(1, 1, 1, 1) */,
+      oversampling?: float64 /* = 0 */,
+    ): void;
+
+    /** Returns dominant direction of in the range of text. */
+    shaped_text_get_dominant_direction_in_range(
+      shaped: RID,
+      start: int64,
+      end: int64,
+    ): TextServer.Direction;
+
+    /** Converts a number from the Western Arabic (0..9) to the numeral systems used in [param language].
+     *  If [param language] is omitted, the active locale will be used.
+     */
+    format_number(number: string, language?: string /* = '' */): string;
+
+    /** Converts [param number] from the numeral systems used in [param language] to Western Arabic (0..9). */
+    parse_number(number: string, language?: string /* = '' */): string;
+
+    /** Returns percent sign used in the [param language]. */
+    percent_sign(language?: string /* = '' */): string;
+
+    /** Returns an array of the word break boundaries. Elements in the returned array are the offsets of the start and end of words. Therefore the length of the array is always even.
+     *  When [param chars_per_line] is greater than zero, line break boundaries are returned instead.
+     *
+     */
+    string_get_word_breaks(
+      string_: string,
+      language?: string /* = '' */,
+      chars_per_line?: int64 /* = 0 */,
+    ): PackedInt32Array;
+
+    /** Returns array of the composite character boundaries.
+     *
+     */
+    string_get_character_breaks(
+      string_: string,
+      language?: string /* = '' */,
+    ): PackedInt32Array;
+
+    /** Returns index of the first string in [param dict] which is visually confusable with the [param string], or `-1` if none is found.
+     *
+     *  **Note:** This method doesn't detect invisible characters, for spoof detection use it in combination with [method spoof_check].
+     *
+     *  **Note:** Always returns `-1` if the server does not support the [constant FEATURE_UNICODE_SECURITY] feature.
+     */
+    is_confusable(string_: string, dict: PackedStringArray | string[]): int64;
+
+    /** Returns `true` if [param string] is likely to be an attempt at confusing the reader.
+     *
+     *  **Note:** Always returns `false` if the server does not support the [constant FEATURE_UNICODE_SECURITY] feature.
+     */
+    spoof_check(string_: string): boolean;
+
+    /** Strips diacritics from the string.
+     *
+     *  **Note:** The result may be longer or shorter than the original.
+     */
+    strip_diacritics(string_: string): string;
+
+    /** Returns `true` if [param string] is a valid identifier.
+     *  If the text server supports the [constant FEATURE_UNICODE_IDENTIFIERS] feature, a valid identifier must:
+     *  - Conform to normalization form C.
+     *  - Begin with a Unicode character of class XID_Start or `"_"`.
+     *  - May contain Unicode characters of class XID_Continue in the other positions.
+     *  - Use UAX #31 recommended scripts only (mixed scripts are allowed).
+     *  If the [constant FEATURE_UNICODE_IDENTIFIERS] feature is not supported, a valid identifier must:
+     *  - Begin with a Unicode character of class XID_Start or `"_"`.
+     *  - May contain Unicode characters of class XID_Continue in the other positions.
+     */
+    is_valid_identifier(string_: string): boolean;
+
+    /** Returns `true` if the given code point is a valid letter, i.e. it belongs to the Unicode category "L". */
+    is_valid_letter(unicode: int64): boolean;
+
+    /** Returns the string converted to uppercase.
+     *
+     *  **Note:** Casing is locale dependent and context sensitive if server support [constant FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION] feature (supported by [TextServerAdvanced]).
+     *
+     *  **Note:** The result may be longer or shorter than the original.
+     */
+    string_to_upper(string_: string, language?: string /* = '' */): string;
+
+    /** Returns the string converted to lowercase.
+     *
+     *  **Note:** Casing is locale dependent and context sensitive if server support [constant FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION] feature (supported by [TextServerAdvanced]).
+     *
+     *  **Note:** The result may be longer or shorter than the original.
+     */
+    string_to_lower(string_: string, language?: string /* = '' */): string;
+
+    /** Returns the string converted to title case.
+     *
+     *  **Note:** Casing is locale dependent and context sensitive if server support [constant FEATURE_CONTEXT_SENSITIVE_CASE_CONVERSION] feature (supported by [TextServerAdvanced]).
+     *
+     *  **Note:** The result may be longer or shorter than the original.
+     */
+    string_to_title(string_: string, language?: string /* = '' */): string;
+
+    /** Default implementation of the BiDi algorithm override function. */
+    parse_structured_text(
+      parser_type: TextServer.StructuredTextParser,
+      args: GArray,
+      text: string,
+    ): GArray<Vector3i>;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTextServer;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTextServerAdvanced extends __NameMapTextServerExtension {}
+  /** An advanced text server with support for BiDi, complex text layout, and contextual OpenType features. Used in Godot by default.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_textserveradvanced.html
+   */
+  class TextServerAdvanced extends TextServerExtension {
+    constructor(identifier?: any);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTextServerAdvanced;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTextServerDummy extends __NameMapTextServerExtension {}
+  /** A dummy text server that can't render text or manage fonts.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_textserverdummy.html
+   */
+  class TextServerDummy extends TextServerExtension {
+    constructor(identifier?: any);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTextServerDummy;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTextServerExtension extends __NameMapTextServer {}
+  /** Base class for custom [TextServer] implementations (plugins).
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_textserverextension.html
+   */
+  class TextServerExtension extends TextServer {
+    constructor(identifier?: any);
+    /** Returns `true` if the server supports a feature. */
+    /* gdvirtual */ _has_feature(feature: TextServer.Feature): boolean;
+
+    /** Returns the name of the server interface. */
+    /* gdvirtual */ _get_name(): string;
+
+    /** Returns text server features, see [enum TextServer.Feature]. */
+    /* gdvirtual */ _get_features(): int64;
+
+    /** Frees an object created by this [TextServer]. */
+    /* gdvirtual */ _free_rid(rid: RID): void;
+
+    /** Returns `true` if [param rid] is valid resource owned by this text server. */
+    /* gdvirtual */ _has(rid: RID): boolean;
+
+    /** Loads optional TextServer database (e.g. ICU break iterators and dictionaries). */
+    /* gdvirtual */ _load_support_data(filename: string): boolean;
+
+    /** Returns default TextServer database (e.g. ICU break iterators and dictionaries) filename. */
+    /* gdvirtual */ _get_support_data_filename(): string;
+
+    /** Returns TextServer database (e.g. ICU break iterators and dictionaries) description. */
+    /* gdvirtual */ _get_support_data_info(): string;
+
+    /** Saves optional TextServer database (e.g. ICU break iterators and dictionaries) to the file. */
+    /* gdvirtual */ _save_support_data(filename: string): boolean;
+
+    /** Returns default TextServer database (e.g. ICU break iterators and dictionaries). */
+    /* gdvirtual */ _get_support_data(): PackedByteArray;
+
+    /** Returns `true` if locale is right-to-left. */
+    /* gdvirtual */ _is_locale_right_to_left(locale: string): boolean;
+
+    /** Converts readable feature, variation, script, or language name to OpenType tag. */
+    /* gdvirtual */ _name_to_tag(name: string): int64;
+
+    /** Converts OpenType tag to readable feature, variation, script, or language name. */
+    /* gdvirtual */ _tag_to_name(tag: int64): string;
+
+    /** Creates a new, empty font cache entry resource. */
+    /* gdvirtual */ _create_font(): RID;
+
+    /** Optional, implement if font supports extra spacing or baseline offset.
+     *  Creates a new variation existing font which is reusing the same glyph cache and font data.
+     */
+    /* gdvirtual */ _create_font_linked_variation(font_rid: RID): RID;
+
+    /** Sets font source data, e.g contents of the dynamic font source file. */
+    /* gdvirtual */ _font_set_data(
+      font_rid: RID,
+      data: PackedByteArray | byte[] | ArrayBuffer,
+    ): void;
+
+    /** Sets pointer to the font source data, e.g contents of the dynamic font source file. */
+    /* gdvirtual */ _font_set_data_ptr(
+      font_rid: RID,
+      data_ptr: int64,
+      data_size: int64,
+    ): void;
+
+    /** Sets an active face index in the TrueType / OpenType collection. */
+    /* gdvirtual */ _font_set_face_index(
+      font_rid: RID,
+      face_index: int64,
+    ): void;
+
+    /** Returns an active face index in the TrueType / OpenType collection. */
+    /* gdvirtual */ _font_get_face_index(font_rid: RID): int64;
+
+    /** Returns number of faces in the TrueType / OpenType collection. */
+    /* gdvirtual */ _font_get_face_count(font_rid: RID): int64;
+
+    /** Sets the font style flags. */
+    /* gdvirtual */ _font_set_style(
+      font_rid: RID,
+      style: TextServer.FontStyle,
+    ): void;
+
+    /** Returns font style flags. */
+    /* gdvirtual */ _font_get_style(font_rid: RID): TextServer.FontStyle;
+
+    /** Sets the font family name. */
+    /* gdvirtual */ _font_set_name(font_rid: RID, name: string): void;
+
+    /** Returns font family name. */
+    /* gdvirtual */ _font_get_name(font_rid: RID): string;
+
+    /** Returns [Dictionary] with OpenType font name strings (localized font names, version, description, license information, sample text, etc.). */
+    /* gdvirtual */ _font_get_ot_name_strings(font_rid: RID): GDictionary;
+
+    /** Sets the font style name. */
+    /* gdvirtual */ _font_set_style_name(
+      font_rid: RID,
+      name_style: string,
+    ): void;
+
+    /** Returns font style name. */
+    /* gdvirtual */ _font_get_style_name(font_rid: RID): string;
+
+    /** Sets weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`. */
+    /* gdvirtual */ _font_set_weight(font_rid: RID, weight: int64): void;
+
+    /** Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`. */
+    /* gdvirtual */ _font_get_weight(font_rid: RID): int64;
+
+    /** Sets font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`. */
+    /* gdvirtual */ _font_set_stretch(font_rid: RID, stretch: int64): void;
+
+    /** Returns font stretch amount, compared to a normal width. A percentage value between `50%` and `200%`. */
+    /* gdvirtual */ _font_get_stretch(font_rid: RID): int64;
+
+    /** Sets font anti-aliasing mode. */
+    /* gdvirtual */ _font_set_antialiasing(
+      font_rid: RID,
+      antialiasing: TextServer.FontAntialiasing,
+    ): void;
+
+    /** Returns font anti-aliasing mode. */
+    /* gdvirtual */ _font_get_antialiasing(
+      font_rid: RID,
+    ): TextServer.FontAntialiasing;
+
+    /** If set to `true`, embedded font bitmap loading is disabled. */
+    /* gdvirtual */ _font_set_disable_embedded_bitmaps(
+      font_rid: RID,
+      disable_embedded_bitmaps: boolean,
+    ): void;
+
+    /** Returns whether the font's embedded bitmap loading is disabled. */
+    /* gdvirtual */ _font_get_disable_embedded_bitmaps(font_rid: RID): boolean;
+
+    /** If set to `true` font texture mipmap generation is enabled. */
+    /* gdvirtual */ _font_set_generate_mipmaps(
+      font_rid: RID,
+      generate_mipmaps: boolean,
+    ): void;
+
+    /** Returns `true` if font texture mipmap generation is enabled. */
+    /* gdvirtual */ _font_get_generate_mipmaps(font_rid: RID): boolean;
+
+    /** If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data. MSDF rendering allows displaying the font at any scaling factor without blurriness, and without incurring a CPU cost when the font size changes (since the font no longer needs to be rasterized on the CPU). As a downside, font hinting is not available with MSDF. The lack of font hinting may result in less crisp and less readable fonts at small sizes. */
+    /* gdvirtual */ _font_set_multichannel_signed_distance_field(
+      font_rid: RID,
+      msdf: boolean,
+    ): void;
+
+    /** Returns `true` if glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data. */
+    /* gdvirtual */ _font_is_multichannel_signed_distance_field(
+      font_rid: RID,
+    ): boolean;
+
+    /** Sets the width of the range around the shape between the minimum and maximum representable signed distance. */
+    /* gdvirtual */ _font_set_msdf_pixel_range(
+      font_rid: RID,
+      msdf_pixel_range: int64,
+    ): void;
+
+    /** Returns the width of the range around the shape between the minimum and maximum representable signed distance. */
+    /* gdvirtual */ _font_get_msdf_pixel_range(font_rid: RID): int64;
+
+    /** Sets source font size used to generate MSDF textures. */
+    /* gdvirtual */ _font_set_msdf_size(font_rid: RID, msdf_size: int64): void;
+
+    /** Returns source font size used to generate MSDF textures. */
+    /* gdvirtual */ _font_get_msdf_size(font_rid: RID): int64;
+
+    /** Sets bitmap font fixed size. If set to value greater than zero, same cache entry will be used for all font sizes. */
+    /* gdvirtual */ _font_set_fixed_size(
+      font_rid: RID,
+      fixed_size: int64,
+    ): void;
+
+    /** Returns bitmap font fixed size. */
+    /* gdvirtual */ _font_get_fixed_size(font_rid: RID): int64;
+
+    /** Sets bitmap font scaling mode. This property is used only if `fixed_size` is greater than zero. */
+    /* gdvirtual */ _font_set_fixed_size_scale_mode(
+      font_rid: RID,
+      fixed_size_scale_mode: TextServer.FixedSizeScaleMode,
+    ): void;
+
+    /** Returns bitmap font scaling mode. */
+    /* gdvirtual */ _font_get_fixed_size_scale_mode(
+      font_rid: RID,
+    ): TextServer.FixedSizeScaleMode;
+
+    /** If set to `true`, system fonts can be automatically used as fallbacks. */
+    /* gdvirtual */ _font_set_allow_system_fallback(
+      font_rid: RID,
+      allow_system_fallback: boolean,
+    ): void;
+
+    /** Returns `true` if system fonts can be automatically used as fallbacks. */
+    /* gdvirtual */ _font_is_allow_system_fallback(font_rid: RID): boolean;
+
+    /** Frees all automatically loaded system fonts. */
+    /* gdvirtual */ _font_clear_system_fallback_cache(): void;
+
+    /** If set to `true` auto-hinting is preferred over font built-in hinting. */
+    /* gdvirtual */ _font_set_force_autohinter(
+      font_rid: RID,
+      force_autohinter: boolean,
+    ): void;
+
+    /** Returns `true` if auto-hinting is supported and preferred over font built-in hinting. */
+    /* gdvirtual */ _font_is_force_autohinter(font_rid: RID): boolean;
+
+    /** If set to `true`, color modulation is applied when drawing colored glyphs, otherwise it's applied to the monochrome glyphs only. */
+    /* gdvirtual */ _font_set_modulate_color_glyphs(
+      font_rid: RID,
+      modulate: boolean,
+    ): void;
+
+    /** Returns `true`, if color modulation is applied when drawing colored glyphs. */
+    /* gdvirtual */ _font_is_modulate_color_glyphs(font_rid: RID): boolean;
+
+    /** Sets font hinting mode. Used by dynamic fonts only. */
+    /* gdvirtual */ _font_set_hinting(
+      font_rid: RID,
+      hinting: TextServer.Hinting,
+    ): void;
+
+    /** Returns the font hinting mode. Used by dynamic fonts only. */
+    /* gdvirtual */ _font_get_hinting(font_rid: RID): TextServer.Hinting;
+
+    /** Sets font subpixel glyph positioning mode. */
+    /* gdvirtual */ _font_set_subpixel_positioning(
+      font_rid: RID,
+      subpixel_positioning: TextServer.SubpixelPositioning,
+    ): void;
+
+    /** Returns font subpixel glyph positioning mode. */
+    /* gdvirtual */ _font_get_subpixel_positioning(
+      font_rid: RID,
+    ): TextServer.SubpixelPositioning;
+
+    /** Sets glyph position rounding behavior. If set to `true`, when aligning glyphs to the pixel boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This setting has no effect if subpixel positioning is enabled. */
+    /* gdvirtual */ _font_set_keep_rounding_remainders(
+      font_rid: RID,
+      keep_rounding_remainders: boolean,
+    ): void;
+
+    /** Returns glyph position rounding behavior. If set to `true`, when aligning glyphs to the pixel boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This setting has no effect if subpixel positioning is enabled. */
+    /* gdvirtual */ _font_get_keep_rounding_remainders(font_rid: RID): boolean;
+
+    /** Sets font embolden strength. If [param strength] is not equal to zero, emboldens the font outlines. Negative values reduce the outline thickness. */
+    /* gdvirtual */ _font_set_embolden(font_rid: RID, strength: float64): void;
+
+    /** Returns font embolden strength. */
+    /* gdvirtual */ _font_get_embolden(font_rid: RID): float64;
+
+    /** Sets the spacing for [param spacing] to [param value] in pixels (not relative to the font size). */
+    /* gdvirtual */ _font_set_spacing(
+      font_rid: RID,
+      spacing: TextServer.SpacingType,
+      value: int64,
+    ): void;
+
+    /** Returns the spacing for [param spacing] in pixels (not relative to the font size). */
+    /* gdvirtual */ _font_get_spacing(
+      font_rid: RID,
+      spacing: TextServer.SpacingType,
+    ): int64;
+
+    /** Sets extra baseline offset (as a fraction of font height). */
+    /* gdvirtual */ _font_set_baseline_offset(
+      font_rid: RID,
+      baseline_offset: float64,
+    ): void;
+
+    /** Returns extra baseline offset (as a fraction of font height). */
+    /* gdvirtual */ _font_get_baseline_offset(font_rid: RID): float64;
+
+    /** Sets 2D transform, applied to the font outlines, can be used for slanting, flipping, and rotating glyphs. */
+    /* gdvirtual */ _font_set_transform(
+      font_rid: RID,
+      transform: Transform2D,
+    ): void;
+
+    /** Returns 2D transform applied to the font outlines. */
+    /* gdvirtual */ _font_get_transform(font_rid: RID): Transform2D;
+
+    /** Sets variation coordinates for the specified font cache entry. */
+    /* gdvirtual */ _font_set_variation_coordinates(
+      font_rid: RID,
+      variation_coordinates: GDictionary,
+    ): void;
+
+    /** Returns variation coordinates for the specified font cache entry. */
+    /* gdvirtual */ _font_get_variation_coordinates(font_rid: RID): GDictionary;
+
+    /** If set to a positive value, overrides the oversampling factor of the viewport this font is used in. See [member Viewport.oversampling]. This value doesn't override the [code skip-lint]oversampling` parameter of [code skip-lint]draw_*` methods. Used by dynamic fonts only. */
+    /* gdvirtual */ _font_set_oversampling(
+      font_rid: RID,
+      oversampling: float64,
+    ): void;
+
+    /** Returns oversampling factor override. If set to a positive value, overrides the oversampling factor of the viewport this font is used in. See [member Viewport.oversampling]. This value doesn't override the [code skip-lint]oversampling` parameter of [code skip-lint]draw_*` methods. Used by dynamic fonts only. */
+    /* gdvirtual */ _font_get_oversampling(font_rid: RID): float64;
+
+    /** Returns list of the font sizes in the cache. Each size is [Vector2i] with font size and outline size. */
+    /* gdvirtual */ _font_get_size_cache_list(font_rid: RID): GArray<Vector2i>;
+
+    /** Removes all font sizes from the cache entry. */
+    /* gdvirtual */ _font_clear_size_cache(font_rid: RID): void;
+
+    /** Removes specified font size from the cache entry. */
+    /* gdvirtual */ _font_remove_size_cache(
+      font_rid: RID,
+      size: Vector2i,
+    ): void;
+
+    /** Returns font cache information, each entry contains the following fields: `Vector2i size_px` - font size in pixels, `float viewport_oversampling` - viewport oversampling factor, `int glyphs` - number of rendered glyphs, `int textures` - number of used textures, `int textures_size` - size of texture data in bytes. */
+    /* gdvirtual */ _font_get_size_cache_info(
+      font_rid: RID,
+    ): GArray<GDictionary>;
+
+    /** Sets the font ascent (number of pixels above the baseline). */
+    /* gdvirtual */ _font_set_ascent(
+      font_rid: RID,
+      size: int64,
+      ascent: float64,
+    ): void;
+
+    /** Returns the font ascent (number of pixels above the baseline). */
+    /* gdvirtual */ _font_get_ascent(font_rid: RID, size: int64): float64;
+
+    /** Sets the font descent (number of pixels below the baseline). */
+    /* gdvirtual */ _font_set_descent(
+      font_rid: RID,
+      size: int64,
+      descent: float64,
+    ): void;
+
+    /** Returns the font descent (number of pixels below the baseline). */
+    /* gdvirtual */ _font_get_descent(font_rid: RID, size: int64): float64;
+
+    /** Sets pixel offset of the underline below the baseline. */
+    /* gdvirtual */ _font_set_underline_position(
+      font_rid: RID,
+      size: int64,
+      underline_position: float64,
+    ): void;
+
+    /** Returns pixel offset of the underline below the baseline. */
+    /* gdvirtual */ _font_get_underline_position(
+      font_rid: RID,
+      size: int64,
+    ): float64;
+
+    /** Sets thickness of the underline in pixels. */
+    /* gdvirtual */ _font_set_underline_thickness(
+      font_rid: RID,
+      size: int64,
+      underline_thickness: float64,
+    ): void;
+
+    /** Returns thickness of the underline in pixels. */
+    /* gdvirtual */ _font_get_underline_thickness(
+      font_rid: RID,
+      size: int64,
+    ): float64;
+
+    /** Sets scaling factor of the color bitmap font. */
+    /* gdvirtual */ _font_set_scale(
+      font_rid: RID,
+      size: int64,
+      scale: float64,
+    ): void;
+
+    /** Returns scaling factor of the color bitmap font. */
+    /* gdvirtual */ _font_get_scale(font_rid: RID, size: int64): float64;
+
+    /** Returns number of textures used by font cache entry. */
+    /* gdvirtual */ _font_get_texture_count(
+      font_rid: RID,
+      size: Vector2i,
+    ): int64;
+
+    /** Removes all textures from font cache entry. */
+    /* gdvirtual */ _font_clear_textures(font_rid: RID, size: Vector2i): void;
+
+    /** Removes specified texture from the cache entry. */
+    /* gdvirtual */ _font_remove_texture(
+      font_rid: RID,
+      size: Vector2i,
+      texture_index: int64,
+    ): void;
+
+    /** Sets font cache texture image data. */
+    /* gdvirtual */ _font_set_texture_image(
+      font_rid: RID,
+      size: Vector2i,
+      texture_index: int64,
+      image: Image,
+    ): void;
+
+    /** Returns font cache texture image data. */
+    /* gdvirtual */ _font_get_texture_image(
+      font_rid: RID,
+      size: Vector2i,
+      texture_index: int64,
+    ): null | Image;
+
+    /** Sets array containing glyph packing data. */
+    /* gdvirtual */ _font_set_texture_offsets(
+      font_rid: RID,
+      size: Vector2i,
+      texture_index: int64,
+      offset: PackedInt32Array | int32[],
+    ): void;
+
+    /** Returns array containing glyph packing data. */
+    /* gdvirtual */ _font_get_texture_offsets(
+      font_rid: RID,
+      size: Vector2i,
+      texture_index: int64,
+    ): PackedInt32Array;
+
+    /** Returns list of rendered glyphs in the cache entry. */
+    /* gdvirtual */ _font_get_glyph_list(
+      font_rid: RID,
+      size: Vector2i,
+    ): PackedInt32Array;
+
+    /** Removes all rendered glyph information from the cache entry. */
+    /* gdvirtual */ _font_clear_glyphs(font_rid: RID, size: Vector2i): void;
+
+    /** Removes specified rendered glyph information from the cache entry. */
+    /* gdvirtual */ _font_remove_glyph(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+    ): void;
+
+    /** Returns glyph advance (offset of the next glyph). */
+    /* gdvirtual */ _font_get_glyph_advance(
+      font_rid: RID,
+      size: int64,
+      glyph: int64,
+    ): Vector2;
+
+    /** Sets glyph advance (offset of the next glyph). */
+    /* gdvirtual */ _font_set_glyph_advance(
+      font_rid: RID,
+      size: int64,
+      glyph: int64,
+      advance: Vector2,
+    ): void;
+
+    /** Returns glyph offset from the baseline. */
+    /* gdvirtual */ _font_get_glyph_offset(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+    ): Vector2;
+
+    /** Sets glyph offset from the baseline. */
+    /* gdvirtual */ _font_set_glyph_offset(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+      offset: Vector2,
+    ): void;
+
+    /** Returns size of the glyph. */
+    /* gdvirtual */ _font_get_glyph_size(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+    ): Vector2;
+
+    /** Sets size of the glyph. */
+    /* gdvirtual */ _font_set_glyph_size(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+      gl_size: Vector2,
+    ): void;
+
+    /** Returns rectangle in the cache texture containing the glyph. */
+    /* gdvirtual */ _font_get_glyph_uv_rect(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+    ): Rect2;
+
+    /** Sets rectangle in the cache texture containing the glyph. */
+    /* gdvirtual */ _font_set_glyph_uv_rect(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+      uv_rect: Rect2,
+    ): void;
+
+    /** Returns index of the cache texture containing the glyph. */
+    /* gdvirtual */ _font_get_glyph_texture_idx(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+    ): int64;
+
+    /** Sets index of the cache texture containing the glyph. */
+    /* gdvirtual */ _font_set_glyph_texture_idx(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+      texture_idx: int64,
+    ): void;
+
+    /** Returns resource ID of the cache texture containing the glyph. */
+    /* gdvirtual */ _font_get_glyph_texture_rid(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+    ): RID;
+
+    /** Returns size of the cache texture containing the glyph. */
+    /* gdvirtual */ _font_get_glyph_texture_size(
+      font_rid: RID,
+      size: Vector2i,
+      glyph: int64,
+    ): Vector2;
+
+    /** Returns outline contours of the glyph. */
+    /* gdvirtual */ _font_get_glyph_contours(
+      font_rid: RID,
+      size: int64,
+      index: int64,
+    ): GDictionary;
+
+    /** Returns list of the kerning overrides. */
+    /* gdvirtual */ _font_get_kerning_list(
+      font_rid: RID,
+      size: int64,
+    ): GArray<Vector2i>;
+
+    /** Removes all kerning overrides. */
+    /* gdvirtual */ _font_clear_kerning_map(font_rid: RID, size: int64): void;
+
+    /** Removes kerning override for the pair of glyphs. */
+    /* gdvirtual */ _font_remove_kerning(
+      font_rid: RID,
+      size: int64,
+      glyph_pair: Vector2i,
+    ): void;
+
+    /** Sets kerning for the pair of glyphs. */
+    /* gdvirtual */ _font_set_kerning(
+      font_rid: RID,
+      size: int64,
+      glyph_pair: Vector2i,
+      kerning: Vector2,
+    ): void;
+
+    /** Returns kerning for the pair of glyphs. */
+    /* gdvirtual */ _font_get_kerning(
+      font_rid: RID,
+      size: int64,
+      glyph_pair: Vector2i,
+    ): Vector2;
+
+    /** Returns the glyph index of a [param char], optionally modified by the [param variation_selector]. */
+    /* gdvirtual */ _font_get_glyph_index(
+      font_rid: RID,
+      size: int64,
+      char: int64,
+      variation_selector: int64,
+    ): int64;
+
+    /** Returns character code associated with [param glyph_index], or `0` if [param glyph_index] is invalid. */
+    /* gdvirtual */ _font_get_char_from_glyph_index(
+      font_rid: RID,
+      size: int64,
+      glyph_index: int64,
+    ): int64;
+
+    /** Returns `true` if a Unicode [param char] is available in the font. */
+    /* gdvirtual */ _font_has_char(font_rid: RID, char: int64): boolean;
+
+    /** Returns a string containing all the characters available in the font. */
+    /* gdvirtual */ _font_get_supported_chars(font_rid: RID): string;
+
+    /** Returns an array containing all glyph indices in the font. */
+    /* gdvirtual */ _font_get_supported_glyphs(font_rid: RID): PackedInt32Array;
+
+    /** Renders the range of characters to the font cache texture. */
+    /* gdvirtual */ _font_render_range(
+      font_rid: RID,
+      size: Vector2i,
+      start: int64,
+      end: int64,
+    ): void;
+
+    /** Renders specified glyph to the font cache texture. */
+    /* gdvirtual */ _font_render_glyph(
+      font_rid: RID,
+      size: Vector2i,
+      index: int64,
+    ): void;
+
+    /** Draws single glyph into a canvas item at the position, using [param font_rid] at the size [param size]. If [param oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used. */
+    /* gdvirtual */ _font_draw_glyph(
+      font_rid: RID,
+      canvas: RID,
+      size: int64,
+      pos: Vector2,
+      index: int64,
+      color: Color,
+      oversampling: float64,
+    ): void;
+
+    /** Draws single glyph outline of size [param outline_size] into a canvas item at the position, using [param font_rid] at the size [param size]. If [param oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used. */
+    /* gdvirtual */ _font_draw_glyph_outline(
+      font_rid: RID,
+      canvas: RID,
+      size: int64,
+      outline_size: int64,
+      pos: Vector2,
+      index: int64,
+      color: Color,
+      oversampling: float64,
+    ): void;
+
+    /** Returns `true`, if font supports given language ([url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code). */
+    /* gdvirtual */ _font_is_language_supported(
+      font_rid: RID,
+      language: string,
+    ): boolean;
+
+    /** Adds override for [method _font_is_language_supported]. */
+    /* gdvirtual */ _font_set_language_support_override(
+      font_rid: RID,
+      language: string,
+      supported: boolean,
+    ): void;
+
+    /** Returns `true` if support override is enabled for the [param language]. */
+    /* gdvirtual */ _font_get_language_support_override(
+      font_rid: RID,
+      language: string,
+    ): boolean;
+
+    /** Remove language support override. */
+    /* gdvirtual */ _font_remove_language_support_override(
+      font_rid: RID,
+      language: string,
+    ): void;
+
+    /** Returns list of language support overrides. */
+    /* gdvirtual */ _font_get_language_support_overrides(
+      font_rid: RID,
+    ): PackedStringArray;
+
+    /** Returns `true`, if font supports given script (ISO 15924 code). */
+    /* gdvirtual */ _font_is_script_supported(
+      font_rid: RID,
+      script: string,
+    ): boolean;
+
+    /** Adds override for [method _font_is_script_supported]. */
+    /* gdvirtual */ _font_set_script_support_override(
+      font_rid: RID,
+      script: string,
+      supported: boolean,
+    ): void;
+
+    /** Returns `true` if support override is enabled for the [param script]. */
+    /* gdvirtual */ _font_get_script_support_override(
+      font_rid: RID,
+      script: string,
+    ): boolean;
+
+    /** Removes script support override. */
+    /* gdvirtual */ _font_remove_script_support_override(
+      font_rid: RID,
+      script: string,
+    ): void;
+
+    /** Returns list of script support overrides. */
+    /* gdvirtual */ _font_get_script_support_overrides(
+      font_rid: RID,
+    ): PackedStringArray;
+
+    /** Sets font OpenType feature set override. */
+    /* gdvirtual */ _font_set_opentype_feature_overrides(
+      font_rid: RID,
+      overrides: GDictionary,
+    ): void;
+
+    /** Returns font OpenType feature set override. */
+    /* gdvirtual */ _font_get_opentype_feature_overrides(
+      font_rid: RID,
+    ): GDictionary;
+
+    /** Returns the dictionary of the supported OpenType features. */
+    /* gdvirtual */ _font_supported_feature_list(font_rid: RID): GDictionary;
+
+    /** Returns the dictionary of the supported OpenType variation coordinates. */
+    /* gdvirtual */ _font_supported_variation_list(font_rid: RID): GDictionary;
+
+    /** Returns the font oversampling factor, shared by all fonts in the TextServer. */
+    /* gdvirtual */ _font_get_global_oversampling(): float64;
+
+    /** Sets oversampling factor, shared by all font in the TextServer. */
+    /* gdvirtual */ _font_set_global_oversampling(oversampling: float64): void;
+
+    /** Increases the reference count of the specified oversampling level. This method is called by [Viewport], and should not be used directly. */
+    /* gdvirtual */ _reference_oversampling_level(oversampling: float64): void;
+
+    /** Decreases the reference count of the specified oversampling level, and frees the font cache for oversampling level when the reference count reaches zero. This method is called by [Viewport], and should not be used directly. */
+    /* gdvirtual */ _unreference_oversampling_level(
+      oversampling: float64,
+    ): void;
+
+    /** Returns size of the replacement character (box with character hexadecimal code that is drawn in place of invalid characters). */
+    /* gdvirtual */ _get_hex_code_box_size(size: int64, index: int64): Vector2;
+
+    /** Draws box displaying character hexadecimal code. */
+    /* gdvirtual */ _draw_hex_code_box(
+      canvas: RID,
+      size: int64,
+      pos: Vector2,
+      index: int64,
+      color: Color,
+    ): void;
+
+    /** Creates a new buffer for complex text layout, with the given [param direction] and [param orientation]. */
+    /* gdvirtual */ _create_shaped_text(
+      direction: TextServer.Direction,
+      orientation: TextServer.Orientation,
+    ): RID;
+
+    /** Clears text buffer (removes text and inline objects). */
+    /* gdvirtual */ _shaped_text_clear(shaped: RID): void;
+
+    /** Sets desired text direction. If set to [constant TextServer.DIRECTION_AUTO], direction will be detected based on the buffer contents and current locale. */
+    /* gdvirtual */ _shaped_text_set_direction(
+      shaped: RID,
+      direction: TextServer.Direction,
+    ): void;
+
+    /** Returns direction of the text. */
+    /* gdvirtual */ _shaped_text_get_direction(
+      shaped: RID,
+    ): TextServer.Direction;
+
+    /** Returns direction of the text, inferred by the BiDi algorithm. */
+    /* gdvirtual */ _shaped_text_get_inferred_direction(
+      shaped: RID,
+    ): TextServer.Direction;
+
+    /** Overrides BiDi for the structured text. */
+    /* gdvirtual */ _shaped_text_set_bidi_override(
+      shaped: RID,
+      override: GArray,
+    ): void;
+
+    /** Sets custom punctuation character list, used for word breaking. If set to empty string, server defaults are used. */
+    /* gdvirtual */ _shaped_text_set_custom_punctuation(
+      shaped: RID,
+      punct: string,
+    ): void;
+
+    /** Returns custom punctuation character list, used for word breaking. If set to empty string, server defaults are used. */
+    /* gdvirtual */ _shaped_text_get_custom_punctuation(shaped: RID): string;
+
+    /** Sets ellipsis character used for text clipping. */
+    /* gdvirtual */ _shaped_text_set_custom_ellipsis(
+      shaped: RID,
+      char: int64,
+    ): void;
+
+    /** Returns ellipsis character used for text clipping. */
+    /* gdvirtual */ _shaped_text_get_custom_ellipsis(shaped: RID): int64;
+
+    /** Sets desired text orientation. */
+    /* gdvirtual */ _shaped_text_set_orientation(
+      shaped: RID,
+      orientation: TextServer.Orientation,
+    ): void;
+
+    /** Returns text orientation. */
+    /* gdvirtual */ _shaped_text_get_orientation(
+      shaped: RID,
+    ): TextServer.Orientation;
+
+    /** If set to `true` text buffer will display invalid characters as hexadecimal codes, otherwise nothing is displayed. */
+    /* gdvirtual */ _shaped_text_set_preserve_invalid(
+      shaped: RID,
+      enabled: boolean,
+    ): void;
+
+    /** Returns `true` if text buffer is configured to display hexadecimal codes in place of invalid characters. */
+    /* gdvirtual */ _shaped_text_get_preserve_invalid(shaped: RID): boolean;
+
+    /** If set to `true` text buffer will display control characters. */
+    /* gdvirtual */ _shaped_text_set_preserve_control(
+      shaped: RID,
+      enabled: boolean,
+    ): void;
+
+    /** Returns `true` if text buffer is configured to display control characters. */
+    /* gdvirtual */ _shaped_text_get_preserve_control(shaped: RID): boolean;
+
+    /** Sets extra spacing added between glyphs or lines in pixels. */
+    /* gdvirtual */ _shaped_text_set_spacing(
+      shaped: RID,
+      spacing: TextServer.SpacingType,
+      value: int64,
+    ): void;
+
+    /** Returns extra spacing added between glyphs or lines in pixels. */
+    /* gdvirtual */ _shaped_text_get_spacing(
+      shaped: RID,
+      spacing: TextServer.SpacingType,
+    ): int64;
+
+    /** Adds text span and font to draw it to the text buffer. */
+    /* gdvirtual */ _shaped_text_add_string(
+      shaped: RID,
+      text: string,
+      fonts: GArray<RID>,
+      size: int64,
+      opentype_features: GDictionary,
+      language: string,
+      meta: any,
+    ): boolean;
+
+    /** Adds inline object to the text buffer, [param key] must be unique. In the text, object is represented as [param length] object replacement characters. */
+    /* gdvirtual */ _shaped_text_add_object(
+      shaped: RID,
+      key: any,
+      size: Vector2,
+      inline_align: InlineAlignment,
+      length: int64,
+      baseline: float64,
+    ): boolean;
+
+    /** Sets new size and alignment of embedded object. */
+    /* gdvirtual */ _shaped_text_resize_object(
+      shaped: RID,
+      key: any,
+      size: Vector2,
+      inline_align: InlineAlignment,
+      baseline: float64,
+    ): boolean;
+
+    /** Returns the text buffer source text, including object replacement characters. */
+    /* gdvirtual */ _shaped_get_text(shaped: RID): string;
+
+    /** Returns number of text spans added using [method _shaped_text_add_string] or [method _shaped_text_add_object]. */
+    /* gdvirtual */ _shaped_get_span_count(shaped: RID): int64;
+
+    /** Returns text span metadata. */
+    /* gdvirtual */ _shaped_get_span_meta(shaped: RID, index: int64): any;
+
+    /** Returns text embedded object key. */
+    /* gdvirtual */ _shaped_get_span_embedded_object(
+      shaped: RID,
+      index: int64,
+    ): any;
+
+    /** Returns the text span source text. */
+    /* gdvirtual */ _shaped_get_span_text(shaped: RID, index: int64): string;
+
+    /** Returns the text span embedded object key. */
+    /* gdvirtual */ _shaped_get_span_object(shaped: RID, index: int64): any;
+
+    /** Changes text span font, font size, and OpenType features, without changing the text. */
+    /* gdvirtual */ _shaped_set_span_update_font(
+      shaped: RID,
+      index: int64,
+      fonts: GArray<RID>,
+      size: int64,
+      opentype_features: GDictionary,
+    ): void;
+
+    /** Returns the number of uniform text runs in the buffer. */
+    /* gdvirtual */ _shaped_get_run_count(shaped: RID): int64;
+
+    /** Returns the source text of the [param index] text run (in visual order). */
+    /* gdvirtual */ _shaped_get_run_text(shaped: RID, index: int64): string;
+
+    /** Returns the source text range of the [param index] text run (in visual order). */
+    /* gdvirtual */ _shaped_get_run_range(shaped: RID, index: int64): Vector2i;
+
+    /** Returns the font RID of the [param index] text run (in visual order). */
+    /* gdvirtual */ _shaped_get_run_font_rid(shaped: RID, index: int64): RID;
+
+    /** Returns the font size of the [param index] text run (in visual order). */
+    /* gdvirtual */ _shaped_get_run_font_size(shaped: RID, index: int64): int64;
+
+    /** Returns the language of the [param index] text run (in visual order). */
+    /* gdvirtual */ _shaped_get_run_language(shaped: RID, index: int64): string;
+
+    /** Returns the direction of the [param index] text run (in visual order). */
+    /* gdvirtual */ _shaped_get_run_direction(
+      shaped: RID,
+      index: int64,
+    ): TextServer.Direction;
+
+    /** Returns the embedded object of the [param index] text run (in visual order). */
+    /* gdvirtual */ _shaped_get_run_object(shaped: RID, index: int64): any;
+
+    /** Returns text buffer for the substring of the text in the [param shaped] text buffer (including inline objects). */
+    /* gdvirtual */ _shaped_text_substr(
+      shaped: RID,
+      start: int64,
+      length: int64,
+    ): RID;
+
+    /** Returns the parent buffer from which the substring originates. */
+    /* gdvirtual */ _shaped_text_get_parent(shaped: RID): RID;
+
+    /** Adjusts text width to fit to specified width, returns new text width. */
+    /* gdvirtual */ _shaped_text_fit_to_width(
+      shaped: RID,
+      width: float64,
+      justification_flags: TextServer.JustificationFlag,
+    ): float64;
+
+    /** Aligns shaped text to the given tab-stops. */
+    /* gdvirtual */ _shaped_text_tab_align(
+      shaped: RID,
+      tab_stops: PackedFloat32Array | float32[],
+    ): float64;
+
+    /** Shapes buffer if it's not shaped. Returns `true` if the string is shaped successfully. */
+    /* gdvirtual */ _shaped_text_shape(shaped: RID): boolean;
+
+    /** Updates break points in the shaped text. This method is called by default implementation of text breaking functions. */
+    /* gdvirtual */ _shaped_text_update_breaks(shaped: RID): boolean;
+
+    /** Updates justification points in the shaped text. This method is called by default implementation of text justification functions. */
+    /* gdvirtual */ _shaped_text_update_justification_ops(shaped: RID): boolean;
+
+    /** Returns `true` if buffer is successfully shaped. */
+    /* gdvirtual */ _shaped_text_is_ready(shaped: RID): boolean;
+
+    /** Returns an array of glyphs in the visual order. */
+    /* gdvirtual */ _shaped_text_get_glyphs(shaped: RID): int64;
+
+    /** Returns text glyphs in the logical order. */
+    /* gdvirtual */ _shaped_text_sort_logical(shaped: RID): int64;
+
+    /** Returns number of glyphs in the buffer. */
+    /* gdvirtual */ _shaped_text_get_glyph_count(shaped: RID): int64;
+
+    /** Returns substring buffer character range in the parent buffer. */
+    /* gdvirtual */ _shaped_text_get_range(shaped: RID): Vector2i;
+
+    /** Breaks text to the lines and columns. Returns character ranges for each segment. */
+    /* gdvirtual */ _shaped_text_get_line_breaks_adv(
+      shaped: RID,
+      width: PackedFloat32Array | float32[],
+      start: int64,
+      once: boolean,
+      break_flags: TextServer.LineBreakFlag,
+    ): PackedInt32Array;
+
+    /** Breaks text to the lines and returns character ranges for each line. */
+    /* gdvirtual */ _shaped_text_get_line_breaks(
+      shaped: RID,
+      width: float64,
+      start: int64,
+      break_flags: TextServer.LineBreakFlag,
+    ): PackedInt32Array;
+
+    /** Breaks text into words and returns array of character ranges. Use [param grapheme_flags] to set what characters are used for breaking. */
+    /* gdvirtual */ _shaped_text_get_word_breaks(
+      shaped: RID,
+      grapheme_flags: TextServer.GraphemeFlag,
+      skip_grapheme_flags: TextServer.GraphemeFlag,
+    ): PackedInt32Array;
+
+    /** Returns the position of the overrun trim. */
+    /* gdvirtual */ _shaped_text_get_trim_pos(shaped: RID): int64;
+
+    /** Returns position of the ellipsis. */
+    /* gdvirtual */ _shaped_text_get_ellipsis_pos(shaped: RID): int64;
+
+    /** Returns number of glyphs in the ellipsis. */
+    /* gdvirtual */ _shaped_text_get_ellipsis_glyph_count(shaped: RID): int64;
+
+    /** Returns array of the glyphs in the ellipsis. */
+    /* gdvirtual */ _shaped_text_get_ellipsis_glyphs(shaped: RID): int64;
+
+    /** Trims text if it exceeds the given width. */
+    /* gdvirtual */ _shaped_text_overrun_trim_to_width(
+      shaped: RID,
+      width: float64,
+      trim_flags: TextServer.TextOverrunFlag,
+    ): void;
+
+    /** Returns array of inline objects. */
+    /* gdvirtual */ _shaped_text_get_objects(shaped: RID): GArray;
+
+    /** Returns bounding rectangle of the inline object. */
+    /* gdvirtual */ _shaped_text_get_object_rect(shaped: RID, key: any): Rect2;
+
+    /** Returns the character range of the inline object. */
+    /* gdvirtual */ _shaped_text_get_object_range(
+      shaped: RID,
+      key: any,
+    ): Vector2i;
+
+    /** Returns the glyph index of the inline object. */
+    /* gdvirtual */ _shaped_text_get_object_glyph(shaped: RID, key: any): int64;
+
+    /** Returns size of the text. */
+    /* gdvirtual */ _shaped_text_get_size(shaped: RID): Vector2;
+
+    /** Returns the text ascent (number of pixels above the baseline for horizontal layout or to the left of baseline for vertical). */
+    /* gdvirtual */ _shaped_text_get_ascent(shaped: RID): float64;
+
+    /** Returns the text descent (number of pixels below the baseline for horizontal layout or to the right of baseline for vertical). */
+    /* gdvirtual */ _shaped_text_get_descent(shaped: RID): float64;
+
+    /** Returns width (for horizontal layout) or height (for vertical) of the text. */
+    /* gdvirtual */ _shaped_text_get_width(shaped: RID): float64;
+
+    /** Returns pixel offset of the underline below the baseline. */
+    /* gdvirtual */ _shaped_text_get_underline_position(shaped: RID): float64;
+
+    /** Returns thickness of the underline. */
+    /* gdvirtual */ _shaped_text_get_underline_thickness(shaped: RID): float64;
+
+    /** Returns dominant direction of in the range of text. */
+    /* gdvirtual */ _shaped_text_get_dominant_direction_in_range(
+      shaped: RID,
+      start: int64,
+      end: int64,
+    ): int64;
+
+    /** Returns shapes of the carets corresponding to the character offset [param position] in the text. Returned caret shape is 1 pixel wide rectangle. */
+    /* gdvirtual */ _shaped_text_get_carets(
+      shaped: RID,
+      position: int64,
+      caret: int64,
+    ): void;
+
+    /** Returns selection rectangles for the specified character range. */
+    /* gdvirtual */ _shaped_text_get_selection(
+      shaped: RID,
+      start: int64,
+      end: int64,
+    ): PackedVector2Array;
+
+    /** Returns grapheme index at the specified pixel offset at the baseline, or `-1` if none is found. */
+    /* gdvirtual */ _shaped_text_hit_test_grapheme(
+      shaped: RID,
+      coord: float64,
+    ): int64;
+
+    /** Returns caret character offset at the specified pixel offset at the baseline. This function always returns a valid position. */
+    /* gdvirtual */ _shaped_text_hit_test_position(
+      shaped: RID,
+      coord: float64,
+    ): int64;
+
+    /** Draw shaped text into a canvas item at a given position, with [param color]. [param pos] specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the baseline (for vertical layout). If [param oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used. */
+    /* gdvirtual */ _shaped_text_draw(
+      shaped: RID,
+      canvas: RID,
+      pos: Vector2,
+      clip_l: float64,
+      clip_r: float64,
+      color: Color,
+      oversampling: float64,
+    ): void;
+
+    /** Draw the outline of the shaped text into a canvas item at a given position, with [param color]. [param pos] specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the baseline (for vertical layout). If [param oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used. */
+    /* gdvirtual */ _shaped_text_draw_outline(
+      shaped: RID,
+      canvas: RID,
+      pos: Vector2,
+      clip_l: float64,
+      clip_r: float64,
+      outline_size: int64,
+      color: Color,
+      oversampling: float64,
+    ): void;
+
+    /** Returns composite character's bounds as offsets from the start of the line. */
+    /* gdvirtual */ _shaped_text_get_grapheme_bounds(
+      shaped: RID,
+      pos: int64,
+    ): Vector2;
+
+    /** Returns grapheme end position closest to the [param pos]. */
+    /* gdvirtual */ _shaped_text_next_grapheme_pos(
+      shaped: RID,
+      pos: int64,
+    ): int64;
+
+    /** Returns grapheme start position closest to the [param pos]. */
+    /* gdvirtual */ _shaped_text_prev_grapheme_pos(
+      shaped: RID,
+      pos: int64,
+    ): int64;
+
+    /** Returns array of the composite character boundaries. */
+    /* gdvirtual */ _shaped_text_get_character_breaks(
+      shaped: RID,
+    ): PackedInt32Array;
+
+    /** Returns composite character end position closest to the [param pos]. */
+    /* gdvirtual */ _shaped_text_next_character_pos(
+      shaped: RID,
+      pos: int64,
+    ): int64;
+
+    /** Returns composite character start position closest to the [param pos]. */
+    /* gdvirtual */ _shaped_text_prev_character_pos(
+      shaped: RID,
+      pos: int64,
+    ): int64;
+
+    /** Returns composite character position closest to the [param pos]. */
+    /* gdvirtual */ _shaped_text_closest_character_pos(
+      shaped: RID,
+      pos: int64,
+    ): int64;
+
+    /** Converts a number from the Western Arabic (0..9) to the numeral systems used in [param language]. */
+    /* gdvirtual */ _format_number(number: string, language: string): string;
+
+    /** Converts [param number] from the numeral systems used in [param language] to Western Arabic (0..9). */
+    /* gdvirtual */ _parse_number(number: string, language: string): string;
+
+    /** Returns percent sign used in the [param language]. */
+    /* gdvirtual */ _percent_sign(language: string): string;
+
+    /** Strips diacritics from the string. */
+    /* gdvirtual */ _strip_diacritics(string_: string): string;
+
+    /** Returns `true` if [param string] is a valid identifier. */
+    /* gdvirtual */ _is_valid_identifier(string_: string): boolean;
+    /* gdvirtual */ _is_valid_letter(unicode: int64): boolean;
+
+    /** Returns an array of the word break boundaries. Elements in the returned array are the offsets of the start and end of words. Therefore the length of the array is always even. */
+    /* gdvirtual */ _string_get_word_breaks(
+      string_: string,
+      language: string,
+      chars_per_line: int64,
+    ): PackedInt32Array;
+
+    /** Returns array of the composite character boundaries. */
+    /* gdvirtual */ _string_get_character_breaks(
+      string_: string,
+      language: string,
+    ): PackedInt32Array;
+
+    /** Returns index of the first string in [param dict] which is visually confusable with the [param string], or `-1` if none is found. */
+    /* gdvirtual */ _is_confusable(
+      string_: string,
+      dict: PackedStringArray | string[],
+    ): int64;
+
+    /** Returns `true` if [param string] is likely to be an attempt at confusing the reader. */
+    /* gdvirtual */ _spoof_check(string_: string): boolean;
+
+    /** Returns the string converted to uppercase. */
+    /* gdvirtual */ _string_to_upper(string_: string, language: string): string;
+
+    /** Returns the string converted to lowercase. */
+    /* gdvirtual */ _string_to_lower(string_: string, language: string): string;
+
+    /** Returns the string converted to title case. */
+    /* gdvirtual */ _string_to_title(string_: string, language: string): string;
+
+    /** Default implementation of the BiDi algorithm override function. */
+    /* gdvirtual */ _parse_structured_text(
+      parser_type: TextServer.StructuredTextParser,
+      args: GArray,
+      text: string,
+    ): GArray<Vector3i>;
+
+    /** This method is called before text server is unregistered. */
+    /* gdvirtual */ _cleanup(): void;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTextServerExtension;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTexture extends __NameMapResource {}
+  /** Base class for all texture types.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_texture.html
+   */
+  class Texture extends Resource {
+    constructor(identifier?: any);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTexture;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTexture2D extends __NameMapTexture {}
+  /** Texture for 2D and 3D.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_texture2d.html
+   */
+  class Texture2D extends Texture {
+    constructor(identifier?: any);
+    /** Called when the [Texture2D]'s width is queried. */
+    /* gdvirtual */ _get_width(): int64;
+
+    /** Called when the [Texture2D]'s height is queried. */
+    /* gdvirtual */ _get_height(): int64;
+
+    /** Called when a pixel's opaque state in the [Texture2D] is queried at the specified `(x, y)` position. */
+    /* gdvirtual */ _is_pixel_opaque(x: int64, y: int64): boolean;
+
+    /** Called when the presence of an alpha channel in the [Texture2D] is queried. */
+    /* gdvirtual */ _has_alpha(): boolean;
+
+    /** Called when the entire [Texture2D] is requested to be drawn over a [CanvasItem], with the top-left offset specified in [param pos]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).
+     *
+     *  **Note:** This is only used in 2D rendering, not 3D.
+     */
+    /* gdvirtual */ _draw(
+      to_canvas_item: RID,
+      pos: Vector2,
+      modulate: Color,
+      transpose: boolean,
+    ): void;
+
+    /** Called when the [Texture2D] is requested to be drawn onto [CanvasItem]'s specified [param rect]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).
+     *
+     *  **Note:** This is only used in 2D rendering, not 3D.
+     */
+    /* gdvirtual */ _draw_rect(
+      to_canvas_item: RID,
+      rect: Rect2,
+      tile: boolean,
+      modulate: Color,
+      transpose: boolean,
+    ): void;
+
+    /** Called when a part of the [Texture2D] specified by [param src_rect]'s coordinates is requested to be drawn onto [CanvasItem]'s specified [param rect]. [param modulate] specifies a multiplier for the colors being drawn, while [param transpose] specifies whether drawing should be performed in column-major order instead of row-major order (resulting in 90-degree clockwise rotation).
+     *
+     *  **Note:** This is only used in 2D rendering, not 3D.
+     */
+    /* gdvirtual */ _draw_rect_region(
+      to_canvas_item: RID,
+      rect: Rect2,
+      src_rect: Rect2,
+      modulate: Color,
+      transpose: boolean,
+      clip_uv: boolean,
+    ): void;
+
+    /** Returns the texture width in pixels. */
+    get_width(): int64;
+
+    /** Returns the texture height in pixels. */
+    get_height(): int64;
+
+    /** Returns the texture size in pixels. */
+    get_size(): Vector2;
+
+    /** Returns `true` if this [Texture2D] has an alpha channel. */
+    has_alpha(): boolean;
+
+    /** Draws the texture using a [CanvasItem] with the [RenderingServer] API at the specified [param position]. */
+    draw(
+      canvas_item: RID,
+      position: Vector2,
+      modulate?: Color /* = new Color(1, 1, 1, 1) */,
+      transpose?: boolean /* = false */,
+    ): void;
+
+    /** Draws the texture using a [CanvasItem] with the [RenderingServer] API. */
+    draw_rect(
+      canvas_item: RID,
+      rect: Rect2,
+      tile: boolean,
+      modulate?: Color /* = new Color(1, 1, 1, 1) */,
+      transpose?: boolean /* = false */,
+    ): void;
+
+    /** Draws a part of the texture using a [CanvasItem] with the [RenderingServer] API. */
+    draw_rect_region(
+      canvas_item: RID,
+      rect: Rect2,
+      src_rect: Rect2,
+      modulate?: Color /* = new Color(1, 1, 1, 1) */,
+      transpose?: boolean /* = false */,
+      clip_uv?: boolean /* = true */,
+    ): void;
+
+    /** Returns an [Image] that is a copy of data from this [Texture2D] (a new [Image] is created each time). [Image]s can be accessed and manipulated directly.
+     *
+     *  **Note:** This will return `null` if this [Texture2D] is invalid.
+     *
+     *  **Note:** This will fetch the texture data from the GPU, which might cause performance problems when overused. Avoid calling [method get_image] every frame, especially on large textures.
+     */
+    get_image(): null | Image;
+
+    /** Creates a placeholder version of this resource ([PlaceholderTexture2D]). */
+    create_placeholder(): Resource;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTexture2D;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTexture2DArray extends __NameMapImageTextureLayered {}
+  /** A single texture resource which consists of multiple, separate images. Each image has the same dimensions and number of mipmap levels.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_texture2darray.html
+   */
+  class Texture2DArray extends ImageTextureLayered {
+    constructor(identifier?: any);
+    /** Creates a placeholder version of this resource ([PlaceholderTexture2DArray]). */
+    create_placeholder(): Resource;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTexture2DArray;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTexture2DArrayRD extends __NameMapTextureLayeredRD {}
+  /** Texture Array for 2D that is bound to a texture created on the [RenderingDevice].
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_texture2darrayrd.html
+   */
+  class Texture2DArrayRD extends TextureLayeredRD {
+    constructor(identifier?: any);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTexture2DArrayRD;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTexture2DRD extends __NameMapTexture2D {}
+  /** Texture for 2D that is bound to a texture created on the [RenderingDevice].
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_texture2drd.html
+   */
+  class Texture2DRD extends Texture2D {
+    constructor(identifier?: any);
+    /** The RID of the texture object created on the [RenderingDevice]. */
+    get texture_rd_rid(): RID;
+    set texture_rd_rid(value: RID);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTexture2DRD;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTexture3D extends __NameMapTexture {}
+  /** Base class for 3-dimensional textures.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_texture3d.html
+   */
+  class Texture3D extends Texture {
+    constructor(identifier?: any);
+    /** Called when the [Texture3D]'s format is queried. */
+    /* gdvirtual */ _get_format(): Image.Format;
+
+    /** Called when the [Texture3D]'s width is queried. */
+    /* gdvirtual */ _get_width(): int64;
+
+    /** Called when the [Texture3D]'s height is queried. */
+    /* gdvirtual */ _get_height(): int64;
+
+    /** Called when the [Texture3D]'s depth is queried. */
+    /* gdvirtual */ _get_depth(): int64;
+
+    /** Called when the presence of mipmaps in the [Texture3D] is queried. */
+    /* gdvirtual */ _has_mipmaps(): boolean;
+
+    /** Called when the [Texture3D]'s data is queried. */
+    /* gdvirtual */ _get_data(): GArray<Image>;
+
+    /** Returns the current format being used by this texture. */
+    get_format(): Image.Format;
+
+    /** Returns the [Texture3D]'s width in pixels. Width is typically represented by the X axis. */
+    get_width(): int64;
+
+    /** Returns the [Texture3D]'s height in pixels. Width is typically represented by the Y axis. */
+    get_height(): int64;
+
+    /** Returns the [Texture3D]'s depth in pixels. Depth is typically represented by the Z axis (a dimension not present in [Texture2D]). */
+    get_depth(): int64;
+
+    /** Returns `true` if the [Texture3D] has generated mipmaps. */
+    has_mipmaps(): boolean;
+
+    /** Returns the [Texture3D]'s data as an array of [Image]s. Each [Image] represents a  *slice*  of the [Texture3D], with different slices mapping to different depth (Z axis) levels. */
+    get_data(): GArray<Image>;
+
+    /** Creates a placeholder version of this resource ([PlaceholderTexture3D]). */
+    create_placeholder(): Resource;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTexture3D;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTexture3DRD extends __NameMapTexture3D {}
+  /** Texture for 3D that is bound to a texture created on the [RenderingDevice].
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_texture3drd.html
+   */
+  class Texture3DRD extends Texture3D {
+    constructor(identifier?: any);
+    /** The RID of the texture object created on the [RenderingDevice]. */
+    get texture_rd_rid(): RID;
+    set texture_rd_rid(value: RID);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTexture3DRD;
+  }
+  namespace TextureButton {
+    enum StretchMode {
+      /** Scale to fit the node's bounding rectangle. */
+      STRETCH_SCALE = 0,
+
+      /** Tile inside the node's bounding rectangle. */
+      STRETCH_TILE = 1,
+
+      /** The texture keeps its original size and stays in the bounding rectangle's top-left corner. */
+      STRETCH_KEEP = 2,
+
+      /** The texture keeps its original size and stays centered in the node's bounding rectangle. */
+      STRETCH_KEEP_CENTERED = 3,
+
+      /** Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect ratio. */
+      STRETCH_KEEP_ASPECT = 4,
+
+      /** Scale the texture to fit the node's bounding rectangle, center it, and maintain its aspect ratio. */
+      STRETCH_KEEP_ASPECT_CENTERED = 5,
+
+      /** Scale the texture so that the shorter side fits the bounding rectangle. The other side clips to the node's limits. */
+      STRETCH_KEEP_ASPECT_COVERED = 6,
     }
-    enum MethodFlags {
-        /** Flag for a normal method. */
-        METHOD_FLAG_NORMAL = 1,
-        
-        /** Flag for an editor method. */
-        METHOD_FLAG_EDITOR = 2,
-        
-        /** Flag for a constant method. */
-        METHOD_FLAG_CONST = 4,
-        
-        /** Flag for a virtual method. */
-        METHOD_FLAG_VIRTUAL = 8,
-        
-        /** Flag for a method with a variable number of arguments. */
-        METHOD_FLAG_VARARG = 16,
-        
-        /** Flag for a static method. */
-        METHOD_FLAG_STATIC = 32,
-        
-        /** Used internally. Allows to not dump core virtual methods (such as [method Object._notification]) to the JSON API. */
-        METHOD_FLAG_OBJECT_CORE = 64,
-        
-        /** Default method flags (normal). */
-        METHOD_FLAGS_DEFAULT = 1,
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTextureButton extends __NameMapBaseButton {}
+  /** Texture-based button. Supports Pressed, Hover, Disabled and Focused states.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_texturebutton.html
+   */
+  class TextureButton<Map extends NodePathMap = any> extends BaseButton<Map> {
+    constructor(identifier?: any);
+    /** Texture to display by default, when the node is **not** in the disabled, hover or pressed state. This texture is still displayed in the focused state, with [member texture_focused] drawn on top. */
+    get texture_normal(): null | Texture2D;
+    set texture_normal(value: null | Texture2D);
+
+    /** Texture to display on mouse down over the node, if the node has keyboard focus and the player presses the Enter key or if the player presses the [member BaseButton.shortcut] key. If not assigned, the [TextureButton] displays [member texture_hover] instead when pressed. */
+    get texture_pressed(): null | Texture2D;
+    set texture_pressed(value: null | Texture2D);
+
+    /** Texture to display when the mouse hovers over the node. If not assigned, the [TextureButton] displays [member texture_normal] instead when hovered over. */
+    get texture_hover(): null | Texture2D;
+    set texture_hover(value: null | Texture2D);
+
+    /** Texture to display when the node is disabled. See [member BaseButton.disabled]. If not assigned, the [TextureButton] displays [member texture_normal] instead. */
+    get texture_disabled(): null | Texture2D;
+    set texture_disabled(value: null | Texture2D);
+
+    /** Texture to  *overlay on the base texture*  when the node has mouse or keyboard focus. Because [member texture_focused] is displayed on top of the base texture, a partially transparent texture should be used to ensure the base texture remains visible. A texture that represents an outline or an underline works well for this purpose. To disable the focus visual effect, assign a fully transparent texture of any size. Note that disabling the focus visual effect will harm keyboard/controller navigation usability, so this is not recommended for accessibility reasons. */
+    get texture_focused(): null | Texture2D;
+    set texture_focused(value: null | Texture2D);
+
+    /** Pure black and white [BitMap] image to use for click detection. On the mask, white pixels represent the button's clickable area. Use it to create buttons with curved shapes. */
+    get texture_click_mask(): null | BitMap;
+    set texture_click_mask(value: null | BitMap);
+
+    /** If `true`, the size of the texture won't be considered for minimum size calculation, so the [TextureButton] can be shrunk down past the texture size. */
+    get ignore_texture_size(): boolean;
+    set ignore_texture_size(value: boolean);
+
+    /** Controls the texture's behavior when you resize the node's bounding rectangle. See the [enum StretchMode] constants for available options. */
+    get stretch_mode(): int64;
+    set stretch_mode(value: int64);
+
+    /** If `true`, texture is flipped horizontally. */
+    get flip_h(): boolean;
+    set flip_h(value: boolean);
+
+    /** If `true`, texture is flipped vertically. */
+    get flip_v(): boolean;
+    set flip_v(value: boolean);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTextureButton;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTextureCubemapArrayRD extends __NameMapTextureLayeredRD {}
+  /** Texture Array for Cubemaps that is bound to a texture created on the [RenderingDevice].
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_texturecubemaparrayrd.html
+   */
+  class TextureCubemapArrayRD extends TextureLayeredRD {
+    constructor(identifier?: any);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTextureCubemapArrayRD;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTextureCubemapRD extends __NameMapTextureLayeredRD {}
+  /** Texture for Cubemap that is bound to a texture created on the [RenderingDevice].
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_texturecubemaprd.html
+   */
+  class TextureCubemapRD extends TextureLayeredRD {
+    constructor(identifier?: any);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTextureCubemapRD;
+  }
+  namespace TextureLayered {
+    enum LayeredType {
+      /** Texture is a generic [Texture2DArray]. */
+      LAYERED_TYPE_2D_ARRAY = 0,
+
+      /** Texture is a [Cubemap], with each side in its own layer (6 in total). */
+      LAYERED_TYPE_CUBEMAP = 1,
+
+      /** Texture is a [CubemapArray], with each cubemap being made of 6 layers. */
+      LAYERED_TYPE_CUBEMAP_ARRAY = 2,
     }
-    namespace Variant {
-        enum Type {
-            /** Variable is `null`. */
-            TYPE_NIL = 0,
-            
-            /** Variable is of type [bool]. */
-            TYPE_BOOL = 1,
-            
-            /** Variable is of type [int]. */
-            TYPE_INT = 2,
-            
-            /** Variable is of type [float]. */
-            TYPE_FLOAT = 3,
-            
-            /** Variable is of type [String]. */
-            TYPE_STRING = 4,
-            
-            /** Variable is of type [Vector2]. */
-            TYPE_VECTOR2 = 5,
-            
-            /** Variable is of type [Vector2i]. */
-            TYPE_VECTOR2I = 6,
-            
-            /** Variable is of type [Rect2]. */
-            TYPE_RECT2 = 7,
-            
-            /** Variable is of type [Rect2i]. */
-            TYPE_RECT2I = 8,
-            
-            /** Variable is of type [Vector3]. */
-            TYPE_VECTOR3 = 9,
-            
-            /** Variable is of type [Vector3i]. */
-            TYPE_VECTOR3I = 10,
-            
-            /** Variable is of type [Transform2D]. */
-            TYPE_TRANSFORM2D = 11,
-            
-            /** Variable is of type [Vector4]. */
-            TYPE_VECTOR4 = 12,
-            
-            /** Variable is of type [Vector4i]. */
-            TYPE_VECTOR4I = 13,
-            
-            /** Variable is of type [Plane]. */
-            TYPE_PLANE = 14,
-            
-            /** Variable is of type [Quaternion]. */
-            TYPE_QUATERNION = 15,
-            
-            /** Variable is of type [AABB]. */
-            TYPE_AABB = 16,
-            
-            /** Variable is of type [Basis]. */
-            TYPE_BASIS = 17,
-            
-            /** Variable is of type [Transform3D]. */
-            TYPE_TRANSFORM3D = 18,
-            
-            /** Variable is of type [Projection]. */
-            TYPE_PROJECTION = 19,
-            
-            /** Variable is of type [Color]. */
-            TYPE_COLOR = 20,
-            
-            /** Variable is of type [StringName]. */
-            TYPE_STRING_NAME = 21,
-            
-            /** Variable is of type [NodePath]. */
-            TYPE_NODE_PATH = 22,
-            
-            /** Variable is of type [RID]. */
-            TYPE_RID = 23,
-            
-            /** Variable is of type [Object]. */
-            TYPE_OBJECT = 24,
-            
-            /** Variable is of type [Callable]. */
-            TYPE_CALLABLE = 25,
-            
-            /** Variable is of type [Signal]. */
-            TYPE_SIGNAL = 26,
-            
-            /** Variable is of type [Dictionary]. */
-            TYPE_DICTIONARY = 27,
-            
-            /** Variable is of type [Array]. */
-            TYPE_ARRAY = 28,
-            
-            /** Variable is of type [PackedByteArray]. */
-            TYPE_PACKED_BYTE_ARRAY = 29,
-            
-            /** Variable is of type [PackedInt32Array]. */
-            TYPE_PACKED_INT32_ARRAY = 30,
-            
-            /** Variable is of type [PackedInt64Array]. */
-            TYPE_PACKED_INT64_ARRAY = 31,
-            
-            /** Variable is of type [PackedFloat32Array]. */
-            TYPE_PACKED_FLOAT32_ARRAY = 32,
-            
-            /** Variable is of type [PackedFloat64Array]. */
-            TYPE_PACKED_FLOAT64_ARRAY = 33,
-            
-            /** Variable is of type [PackedStringArray]. */
-            TYPE_PACKED_STRING_ARRAY = 34,
-            
-            /** Variable is of type [PackedVector2Array]. */
-            TYPE_PACKED_VECTOR2_ARRAY = 35,
-            
-            /** Variable is of type [PackedVector3Array]. */
-            TYPE_PACKED_VECTOR3_ARRAY = 36,
-            
-            /** Variable is of type [PackedColorArray]. */
-            TYPE_PACKED_COLOR_ARRAY = 37,
-            
-            /** Variable is of type [PackedVector4Array]. */
-            TYPE_PACKED_VECTOR4_ARRAY = 38,
-            
-            /** Represents the size of the [enum Variant.Type] enum. */
-            TYPE_MAX = 39,
-        }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTextureLayered extends __NameMapTexture {}
+  /** Base class for texture types which contain the data of multiple [Image]s. Each image is of the same size and format.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_texturelayered.html
+   */
+  class TextureLayered extends Texture {
+    constructor(identifier?: any);
+    /** Called when the [TextureLayered]'s format is queried. */
+    /* gdvirtual */ _get_format(): Image.Format;
+
+    /** Called when the layers' type in the [TextureLayered] is queried. */
+    /* gdvirtual */ _get_layered_type(): int64;
+
+    /** Called when the [TextureLayered]'s width queried. */
+    /* gdvirtual */ _get_width(): int64;
+
+    /** Called when the [TextureLayered]'s height is queried. */
+    /* gdvirtual */ _get_height(): int64;
+
+    /** Called when the number of layers in the [TextureLayered] is queried. */
+    /* gdvirtual */ _get_layers(): int64;
+
+    /** Called when the presence of mipmaps in the [TextureLayered] is queried. */
+    /* gdvirtual */ _has_mipmaps(): boolean;
+
+    /** Called when the data for a layer in the [TextureLayered] is queried. */
+    /* gdvirtual */ _get_layer_data(layer_index: int64): null | Image;
+
+    /** Returns the current format being used by this texture. */
+    get_format(): Image.Format;
+
+    /** Returns the [TextureLayered]'s type. The type determines how the data is accessed, with cubemaps having special types. */
+    get_layered_type(): TextureLayered.LayeredType;
+
+    /** Returns the width of the texture in pixels. Width is typically represented by the X axis. */
+    get_width(): int64;
+
+    /** Returns the height of the texture in pixels. Height is typically represented by the Y axis. */
+    get_height(): int64;
+
+    /** Returns the number of referenced [Image]s. */
+    get_layers(): int64;
+
+    /** Returns `true` if the layers have generated mipmaps. */
+    has_mipmaps(): boolean;
+
+    /** Returns an [Image] resource with the data from specified [param layer]. */
+    get_layer_data(layer: int64): null | Image;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTextureLayered;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTextureLayeredRD extends __NameMapTextureLayered {}
+  /** Abstract base class for layered texture RD types.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_texturelayeredrd.html
+   */
+  class TextureLayeredRD extends TextureLayered {
+    constructor(identifier?: any);
+    /** The RID of the texture object created on the [RenderingDevice]. */
+    get texture_rd_rid(): RID;
+    set texture_rd_rid(value: RID);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTextureLayeredRD;
+  }
+  namespace TextureProgressBar {
+    enum FillMode {
+      /** The [member texture_progress] fills from left to right. */
+      FILL_LEFT_TO_RIGHT = 0,
+
+      /** The [member texture_progress] fills from right to left. */
+      FILL_RIGHT_TO_LEFT = 1,
+
+      /** The [member texture_progress] fills from top to bottom. */
+      FILL_TOP_TO_BOTTOM = 2,
+
+      /** The [member texture_progress] fills from bottom to top. */
+      FILL_BOTTOM_TO_TOP = 3,
+
+      /** Turns the node into a radial bar. The [member texture_progress] fills clockwise. See [member radial_center_offset], [member radial_initial_angle] and [member radial_fill_degrees] to control the way the bar fills up. */
+      FILL_CLOCKWISE = 4,
+
+      /** Turns the node into a radial bar. The [member texture_progress] fills counterclockwise. See [member radial_center_offset], [member radial_initial_angle] and [member radial_fill_degrees] to control the way the bar fills up. */
+      FILL_COUNTER_CLOCKWISE = 5,
+
+      /** The [member texture_progress] fills from the center, expanding both towards the left and the right. */
+      FILL_BILINEAR_LEFT_AND_RIGHT = 6,
+
+      /** The [member texture_progress] fills from the center, expanding both towards the top and the bottom. */
+      FILL_BILINEAR_TOP_AND_BOTTOM = 7,
+
+      /** Turns the node into a radial bar. The [member texture_progress] fills radially from the center, expanding both clockwise and counterclockwise. See [member radial_center_offset], [member radial_initial_angle] and [member radial_fill_degrees] to control the way the bar fills up. */
+      FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE = 8,
     }
-    namespace Variant {
-        enum Operator {
-            /** Equality operator (`==`). */
-            OP_EQUAL = 0,
-            
-            /** Inequality operator (`!=`). */
-            OP_NOT_EQUAL = 1,
-            
-            /** Less than operator (`<`). */
-            OP_LESS = 2,
-            
-            /** Less than or equal operator (`<=`). */
-            OP_LESS_EQUAL = 3,
-            
-            /** Greater than operator (`>`). */
-            OP_GREATER = 4,
-            
-            /** Greater than or equal operator (`>=`). */
-            OP_GREATER_EQUAL = 5,
-            
-            /** Addition operator (`+`). */
-            OP_ADD = 6,
-            
-            /** Subtraction operator (`-`). */
-            OP_SUBTRACT = 7,
-            
-            /** Multiplication operator (`*`). */
-            OP_MULTIPLY = 8,
-            
-            /** Division operator (`/`). */
-            OP_DIVIDE = 9,
-            
-            /** Unary negation operator (`-`). */
-            OP_NEGATE = 10,
-            
-            /** Unary plus operator (`+`). */
-            OP_POSITIVE = 11,
-            
-            /** Remainder/modulo operator (`%`). */
-            OP_MODULE = 12,
-            
-            /** Power operator (`**`). */
-            OP_POWER = 13,
-            
-            /** Left shift operator (`<<`). */
-            OP_SHIFT_LEFT = 14,
-            
-            /** Right shift operator (`>>`). */
-            OP_SHIFT_RIGHT = 15,
-            
-            /** Bitwise AND operator (`&`). */
-            OP_BIT_AND = 16,
-            
-            /** Bitwise OR operator (`|`). */
-            OP_BIT_OR = 17,
-            
-            /** Bitwise XOR operator (`^`). */
-            OP_BIT_XOR = 18,
-            
-            /** Bitwise NOT operator (`~`). */
-            OP_BIT_NEGATE = 19,
-            
-            /** Logical AND operator (`and` or `&&`). */
-            OP_AND = 20,
-            
-            /** Logical OR operator (`or` or `||`). */
-            OP_OR = 21,
-            
-            /** Logical XOR operator (not implemented in GDScript). */
-            OP_XOR = 22,
-            
-            /** Logical NOT operator (`not` or `!`). */
-            OP_NOT = 23,
-            
-            /** Logical IN operator (`in`). */
-            OP_IN = 24,
-            
-            /** Represents the size of the [enum Variant.Operator] enum. */
-            OP_MAX = 25,
-        }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTextureProgressBar extends __NameMapRange {}
+  /** Texture-based progress bar. Useful for loading screens and life or stamina bars.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_textureprogressbar.html
+   */
+  class TextureProgressBar<Map extends NodePathMap = any> extends Range<Map> {
+    constructor(identifier?: any);
+    /** Sets the stretch margin with the specified index. See [member stretch_margin_bottom] and related properties. */
+    set_stretch_margin(margin: Side, value: int64): void;
+
+    /** Returns the stretch margin with the specified index. See [member stretch_margin_bottom] and related properties. */
+    get_stretch_margin(margin: Side): int64;
+
+    /** The fill direction. See [enum FillMode] for possible values. */
+    get fill_mode(): int64;
+    set fill_mode(value: int64);
+
+    /** Starting angle for the fill of [member texture_progress] if [member fill_mode] is [constant FILL_CLOCKWISE], [constant FILL_COUNTER_CLOCKWISE], or [constant FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `min_value`, the texture doesn't show up at all. When the `value` increases, the texture fills and tends towards [member radial_fill_degrees].
+     *
+     *  **Note:** [member radial_initial_angle] is wrapped between `0` and `360` degrees (inclusive).
+     */
+    get radial_initial_angle(): float64;
+    set radial_initial_angle(value: float64);
+
+    /** Upper limit for the fill of [member texture_progress] if [member fill_mode] is [constant FILL_CLOCKWISE], [constant FILL_COUNTER_CLOCKWISE], or [constant FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE]. When the node's `value` is equal to its `max_value`, the texture fills up to this angle.
+     *  See [member Range.value], [member Range.max_value].
+     */
+    get radial_fill_degrees(): float64;
+    set radial_fill_degrees(value: float64);
+
+    /** Offsets [member texture_progress] if [member fill_mode] is [constant FILL_CLOCKWISE], [constant FILL_COUNTER_CLOCKWISE], or [constant FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE].
+     *
+     *  **Note:** The effective radial center always stays within the [member texture_progress] bounds. If you need to move it outside the texture's bounds, modify the [member texture_progress] to contain additional empty space where needed.
+     */
+    get radial_center_offset(): Vector2;
+    set radial_center_offset(value: Vector2);
+
+    /** If `true`, Godot treats the bar's textures like in [NinePatchRect]. Use the `stretch_margin_*` properties like [member stretch_margin_bottom] to set up the nine patch's 3×3 grid. When using a radial [member fill_mode], this setting will only enable stretching for [member texture_progress], while [member texture_under] and [member texture_over] will be treated like in [NinePatchRect]. */
+    get nine_patch_stretch(): boolean;
+    set nine_patch_stretch(value: boolean);
+
+    /** The width of the 9-patch's left column. Only effective if [member nine_patch_stretch] is `true`. */
+    get stretch_margin_left(): int64;
+    set stretch_margin_left(value: int64);
+
+    /** The height of the 9-patch's top row. Only effective if [member nine_patch_stretch] is `true`. */
+    get stretch_margin_top(): int64;
+    set stretch_margin_top(value: int64);
+
+    /** The width of the 9-patch's right column. Only effective if [member nine_patch_stretch] is `true`. */
+    get stretch_margin_right(): int64;
+    set stretch_margin_right(value: int64);
+
+    /** The height of the 9-patch's bottom row. A margin of 16 means the 9-slice's bottom corners and side will have a height of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders. Only effective if [member nine_patch_stretch] is `true`. */
+    get stretch_margin_bottom(): int64;
+    set stretch_margin_bottom(value: int64);
+
+    /** [Texture2D] that draws under the progress bar. The bar's background. */
+    get texture_under(): null | Texture2D;
+    set texture_under(value: null | Texture2D);
+
+    /** [Texture2D] that draws over the progress bar. Use it to add highlights or an upper-frame that hides part of [member texture_progress]. */
+    get texture_over(): null | Texture2D;
+    set texture_over(value: null | Texture2D);
+
+    /** [Texture2D] that clips based on the node's `value` and [member fill_mode]. As `value` increased, the texture fills up. It shows entirely when `value` reaches `max_value`. It doesn't show at all if `value` is equal to `min_value`.
+     *  The `value` property comes from [Range]. See [member Range.value], [member Range.min_value], [member Range.max_value].
+     */
+    get texture_progress(): null | Texture2D;
+    set texture_progress(value: null | Texture2D);
+
+    /** The offset of [member texture_progress]. Useful for [member texture_over] and [member texture_under] with fancy borders, to avoid transparent margins in your progress texture. */
+    get texture_progress_offset(): Vector2;
+    set texture_progress_offset(value: Vector2);
+
+    /** Multiplies the color of the bar's [member texture_under] texture. */
+    get tint_under(): Color;
+    set tint_under(value: Color);
+
+    /** Multiplies the color of the bar's [member texture_over] texture. The effect is similar to [member CanvasItem.modulate], except it only affects this specific texture instead of the entire node. */
+    get tint_over(): Color;
+    set tint_over(value: Color);
+
+    /** Multiplies the color of the bar's [member texture_progress] texture. */
+    get tint_progress(): Color;
+    set tint_progress(value: Color);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTextureProgressBar;
+  }
+  namespace TextureRect {
+    enum ExpandMode {
+      /** The minimum size will be equal to texture size, i.e. [TextureRect] can't be smaller than the texture. */
+      EXPAND_KEEP_SIZE = 0,
+
+      /** The size of the texture won't be considered for minimum size calculation, so the [TextureRect] can be shrunk down past the texture size. */
+      EXPAND_IGNORE_SIZE = 1,
+
+      /** The height of the texture will be ignored. Minimum width will be equal to the current height. Useful for horizontal layouts, e.g. inside [HBoxContainer]. */
+      EXPAND_FIT_WIDTH = 2,
+
+      /** Same as [constant EXPAND_FIT_WIDTH], but keeps texture's aspect ratio. */
+      EXPAND_FIT_WIDTH_PROPORTIONAL = 3,
+
+      /** The width of the texture will be ignored. Minimum height will be equal to the current width. Useful for vertical layouts, e.g. inside [VBoxContainer]. */
+      EXPAND_FIT_HEIGHT = 4,
+
+      /** Same as [constant EXPAND_FIT_HEIGHT], but keeps texture's aspect ratio. */
+      EXPAND_FIT_HEIGHT_PROPORTIONAL = 5,
     }
-    
-    /** Returns the sine of angle [param angle_rad] in radians.  
-     *    
-     */
-    static function sin(angle_rad: float64): float64
-    
-    /** Returns the cosine of angle [param angle_rad] in radians.  
-     *    
-     */
-    static function cos(angle_rad: float64): float64
-    
-    /** Returns the tangent of angle [param angle_rad] in radians.  
-     *    
-     */
-    static function tan(angle_rad: float64): float64
-    
-    /** Returns the hyperbolic sine of [param x].  
-     *    
-     */
-    static function sinh(x: float64): float64
-    
-    /** Returns the hyperbolic cosine of [param x] in radians.  
-     *    
-     */
-    static function cosh(x: float64): float64
-    
-    /** Returns the hyperbolic tangent of [param x].  
-     *    
-     */
-    static function tanh(x: float64): float64
-    
-    /** Returns the arc sine of [param x] in radians. Use to get the angle of sine [param x]. [param x] will be clamped between `-1.0` and `1.0` (inclusive), in order to prevent [method asin] from returning [constant @GDScript.NAN].  
-     *    
-     */
-    static function asin(x: float64): float64
-    
-    /** Returns the arc cosine of [param x] in radians. Use to get the angle of cosine [param x]. [param x] will be clamped between `-1.0` and `1.0` (inclusive), in order to prevent [method acos] from returning [constant @GDScript.NAN].  
-     *    
-     */
-    static function acos(x: float64): float64
-    
-    /** Returns the arc tangent of [param x] in radians. Use it to get the angle from an angle's tangent in trigonometry.  
-     *  The method cannot know in which quadrant the angle should fall. See [method atan2] if you have both `y` and [code skip-lint]x`.  
-     *    
-     *  If [param x] is between `-PI / 2` and `PI / 2` (inclusive), `atan(tan(x))` is equal to [param x].  
-     */
-    static function atan(x: float64): float64
-    
-    /** Returns the arc tangent of `y/x` in radians. Use to get the angle of tangent `y/x`. To compute the value, the method takes into account the sign of both arguments in order to determine the quadrant.  
-     *  Important note: The Y coordinate comes first, by convention.  
-     *    
-     */
-    static function atan2(y: float64, x: float64): float64
-    
-    /** Returns the hyperbolic arc (also called inverse) sine of [param x], returning a value in radians. Use it to get the angle from an angle's sine in hyperbolic space.  
-     *    
-     */
-    static function asinh(x: float64): float64
-    
-    /** Returns the hyperbolic arc (also called inverse) cosine of [param x], returning a value in radians. Use it to get the angle from an angle's cosine in hyperbolic space if [param x] is larger or equal to 1. For values of [param x] lower than 1, it will return 0, in order to prevent [method acosh] from returning [constant @GDScript.NAN].  
-     *    
-     */
-    static function acosh(x: float64): float64
-    
-    /** Returns the hyperbolic arc (also called inverse) tangent of [param x], returning a value in radians. Use it to get the angle from an angle's tangent in hyperbolic space if [param x] is between -1 and 1 (non-inclusive).  
-     *  In mathematics, the inverse hyperbolic tangent is only defined for -1 < [param x] < 1 in the real set, so values equal or lower to -1 for [param x] return negative [constant @GDScript.INF] and values equal or higher than 1 return positive [constant @GDScript.INF] in order to prevent [method atanh] from returning [constant @GDScript.NAN].  
-     *    
-     */
-    static function atanh(x: float64): float64
-    
-    /** Returns the square root of [param x], where [param x] is a non-negative number.  
-     *    
-     *      
-     *  **Note:** Negative values of [param x] return NaN ("Not a Number"). in C#, if you need negative inputs, use `System.Numerics.Complex`.  
-     */
-    static function sqrt(x: float64): float64
-    
-    /** Returns the floating-point remainder of [param x] divided by [param y], keeping the sign of [param x].  
-     *    
-     *  For the integer remainder operation, use the `%` operator.  
-     */
-    static function fmod(x: float64, y: float64): float64
-    
-    /** Returns the floating-point modulus of [param x] divided by [param y], wrapping equally in positive and negative.  
-     *    
-     *  Prints:  
-     *  [codeblock lang=text]  
-     *   (x)  (fmod(x, 1.5))   (fposmod(x, 1.5))  
-     *  -1.5           -0.0  |  0.0  
-     *  -1.0           -1.0  |  0.5  
-     *  -0.5           -0.5  |  1.0  
-     *   0.0            0.0  |  0.0  
-     *   0.5            0.5  |  0.5  
-     *   1.0            1.0  |  1.0  
-     *   1.5            0.0  |  0.0  
-     *  [/codeblock]  
-     */
-    static function fposmod(x: float64, y: float64): float64
-    
-    /** Returns the integer modulus of [param x] divided by [param y] that wraps equally in positive and negative.  
-     *    
-     *  Prints:  
-     *  [codeblock lang=text]  
-     *  (i)  (i % 3)   (posmod(i, 3))  
-     *  -3        0  |  0  
-     *  -2       -2  |  1  
-     *  -1       -1  |  2  
-     *   0        0  |  0  
-     *   1        1  |  1  
-     *   2        2  |  2  
-     *   3        0  |  0  
-     *  [/codeblock]  
-     */
-    static function posmod(x: int64, y: int64): int64
-    
-    /** Rounds [param x] downward (towards negative infinity), returning the largest whole number that is not more than [param x]. Supported types: [int], [float], [Vector2], [Vector2i], [Vector3], [Vector3i], [Vector4], [Vector4i].  
-     *    
-     *  See also [method ceil], [method round], and [method snapped].  
-     *      
-     *  **Note:** For better type safety, use [method floorf], [method floori], [method Vector2.floor], [method Vector3.floor], or [method Vector4.floor].  
-     */
-    static function floor(x: any): any
-    
-    /** Rounds [param x] downward (towards negative infinity), returning the largest whole number that is not more than [param x].  
-     *  A type-safe version of [method floor], returning a [float].  
-     */
-    static function floorf(x: float64): float64
-    
-    /** Rounds [param x] downward (towards negative infinity), returning the largest whole number that is not more than [param x].  
-     *  A type-safe version of [method floor], returning an [int].  
-     *      
-     *  **Note:** This function is  *not*  the same as `int(x)`, which rounds towards 0.  
-     */
-    static function floori(x: float64): int64
-    
-    /** Rounds [param x] upward (towards positive infinity), returning the smallest whole number that is not less than [param x]. Supported types: [int], [float], [Vector2], [Vector2i], [Vector3], [Vector3i], [Vector4], [Vector4i].  
-     *    
-     *  See also [method floor], [method round], and [method snapped].  
-     *      
-     *  **Note:** For better type safety, use [method ceilf], [method ceili], [method Vector2.ceil], [method Vector3.ceil], or [method Vector4.ceil].  
-     */
-    static function ceil(x: any): any
-    
-    /** Rounds [param x] upward (towards positive infinity), returning the smallest whole number that is not less than [param x].  
-     *  A type-safe version of [method ceil], returning a [float].  
-     */
-    static function ceilf(x: float64): float64
-    
-    /** Rounds [param x] upward (towards positive infinity), returning the smallest whole number that is not less than [param x].  
-     *  A type-safe version of [method ceil], returning an [int].  
-     */
-    static function ceili(x: float64): int64
-    
-    /** Rounds [param x] to the nearest whole number, with halfway cases rounded away from 0. Supported types: [int], [float], [Vector2], [Vector2i], [Vector3], [Vector3i], [Vector4], [Vector4i].  
-     *    
-     *  See also [method floor], [method ceil], and [method snapped].  
-     *      
-     *  **Note:** For better type safety, use [method roundf], [method roundi], [method Vector2.round], [method Vector3.round], or [method Vector4.round].  
-     */
-    static function round(x: any): any
-    
-    /** Rounds [param x] to the nearest whole number, with halfway cases rounded away from 0.  
-     *  A type-safe version of [method round], returning a [float].  
-     */
-    static function roundf(x: float64): float64
-    
-    /** Rounds [param x] to the nearest whole number, with halfway cases rounded away from 0.  
-     *  A type-safe version of [method round], returning an [int].  
-     */
-    static function roundi(x: float64): int64
-    
-    /** Returns the absolute value of a [Variant] parameter [param x] (i.e. non-negative value). Supported types: [int], [float], [Vector2], [Vector2i], [Vector3], [Vector3i], [Vector4], [Vector4i].  
-     *    
-     *      
-     *  **Note:** For better type safety, use [method absf], [method absi], [method Vector2.abs], [method Vector2i.abs], [method Vector3.abs], [method Vector3i.abs], [method Vector4.abs], or [method Vector4i.abs].  
-     */
-    static function abs(x: any): any
-    
-    /** Returns the absolute value of float parameter [param x] (i.e. positive value).  
-     *    
-     */
-    static function absf(x: float64): float64
-    
-    /** Returns the absolute value of int parameter [param x] (i.e. positive value).  
-     *    
-     */
-    static function absi(x: int64): int64
-    
-    /** Returns the same type of [Variant] as [param x], with `-1` for negative values, `1` for positive values, and `0` for zeros. For `nan` values it returns 0.  
-     *  Supported types: [int], [float], [Vector2], [Vector2i], [Vector3], [Vector3i], [Vector4], [Vector4i].  
-     *    
-     *      
-     *  **Note:** For better type safety, use [method signf], [method signi], [method Vector2.sign], [method Vector2i.sign], [method Vector3.sign], [method Vector3i.sign], [method Vector4.sign], or [method Vector4i.sign].  
-     */
-    static function sign(x: any): any
-    
-    /** Returns `-1.0` if [param x] is negative, `1.0` if [param x] is positive, and `0.0` if [param x] is zero. For `nan` values of [param x] it returns 0.0.  
-     *    
-     */
-    static function signf(x: float64): float64
-    
-    /** Returns `-1` if [param x] is negative, `1` if [param x] is positive, and `0` if if [param x] is zero.  
-     *    
-     */
-    static function signi(x: int64): int64
-    
-    /** Returns the multiple of [param step] that is the closest to [param x]. This can also be used to round a floating-point number to an arbitrary number of decimals.  
-     *  The returned value is the same type of [Variant] as [param step]. Supported types: [int], [float], [Vector2], [Vector2i], [Vector3], [Vector3i], [Vector4], [Vector4i].  
-     *    
-     *  See also [method ceil], [method floor], and [method round].  
-     *      
-     *  **Note:** For better type safety, use [method snappedf], [method snappedi], [method Vector2.snapped], [method Vector2i.snapped], [method Vector3.snapped], [method Vector3i.snapped], [method Vector4.snapped], or [method Vector4i.snapped].  
-     */
-    static function snapped(x: any, step: any): any
-    
-    /** Returns the multiple of [param step] that is the closest to [param x]. This can also be used to round a floating-point number to an arbitrary number of decimals.  
-     *  A type-safe version of [method snapped], returning a [float].  
-     *    
-     */
-    static function snappedf(x: float64, step: float64): float64
-    
-    /** Returns the multiple of [param step] that is the closest to [param x].  
-     *  A type-safe version of [method snapped], returning an [int].  
-     *    
-     */
-    static function snappedi(x: float64, step: int64): int64
-    
-    /** Returns the result of [param base] raised to the power of [param exp].  
-     *  In GDScript, this is the equivalent of the `**` operator.  
-     *    
-     */
-    static function pow(base: float64, exp: float64): float64
-    
-    /** Returns the [url=https://en.wikipedia.org/wiki/Natural_logarithm]natural logarithm[/url] of [param x] (base [url=https://en.wikipedia.org/wiki/E_(mathematical_constant)] *e* [/url], with  *e*  being approximately 2.71828). This is the amount of time needed to reach a certain level of continuous growth.  
-     *      
-     *  **Note:** This is not the same as the "log" function on most calculators, which uses a base 10 logarithm. To use base 10 logarithm, use `log(x) / log(10)`.  
-     *    
-     *      
-     *  **Note:** The logarithm of `0` returns `-inf`, while negative values return `-nan`.  
-     */
-    static function log(x: float64): float64
-    
-    /** The natural exponential function. It raises the mathematical constant  *e*  to the power of [param x] and returns it.  
-     *   *e*  has an approximate value of 2.71828, and can be obtained with `exp(1)`.  
-     *  For exponents to other bases use the method [method pow].  
-     *    
-     */
-    static function exp(x: float64): float64
-    
-    /** Returns `true` if [param x] is a NaN ("Not a Number" or invalid) value. */
-    static function is_nan(x: float64): boolean
-    
-    /** Returns `true` if [param x] is either positive infinity or negative infinity. */
-    static function is_inf(x: float64): boolean
-    
-    /** Returns `true` if [param a] and [param b] are approximately equal to each other.  
-     *  Here, "approximately equal" means that [param a] and [param b] are within a small internal epsilon of each other, which scales with the magnitude of the numbers.  
-     *  Infinity values of the same sign are considered equal.  
-     */
-    static function is_equal_approx(a: float64, b: float64): boolean
-    
-    /** Returns `true` if [param x] is zero or almost zero. The comparison is done using a tolerance calculation with a small internal epsilon.  
-     *  This function is faster than using [method is_equal_approx] with one value as zero.  
-     */
-    static function is_zero_approx(x: float64): boolean
-    
-    /** Returns whether [param x] is a finite value, i.e. it is not [constant @GDScript.NAN], positive infinity, or negative infinity. */
-    static function is_finite(x: float64): boolean
-    
-    /** Returns an "eased" value of [param x] based on an easing function defined with [param curve]. This easing function is based on an exponent. The [param curve] can be any floating-point number, with specific values leading to the following behaviors:  
-     *  [codeblock lang=text]  
-     *  - Lower than -1.0 (exclusive): Ease in-out  
-     *  - 1.0: Linear  
-     *  - Between -1.0 and 0.0 (exclusive): Ease out-in  
-     *  - 0.0: Constant  
-     *  - Between 0.0 to 1.0 (exclusive): Ease out  
-     *  - 1.0: Linear  
-     *  - Greater than 1.0 (exclusive): Ease in  
-     *  [/codeblock]  
-     *  [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/ease_cheatsheet.png]ease() curve values cheatsheet[/url]  
-     *  See also [method smoothstep]. If you need to perform more advanced transitions, use [method Tween.interpolate_value].  
-     */
-    static function ease(x: float64, curve: float64): float64
-    
-    /** Returns the position of the first non-zero digit, after the decimal point. Note that the maximum return value is 10, which is a design decision in the implementation.  
-     *    
-     */
-    static function step_decimals(x: float64): int64
-    
-    /** Linearly interpolates between two values by the factor defined in [param weight]. To perform interpolation, [param weight] should be between `0.0` and `1.0` (inclusive). However, values outside this range are allowed and can be used to perform  *extrapolation* . If this is not desired, use [method clamp] on the result of this function.  
-     *  Both [param from] and [param to] must be the same type. Supported types: [int], [float], [Vector2], [Vector3], [Vector4], [Color], [Quaternion], [Basis].  
-     *    
-     *  See also [method inverse_lerp] which performs the reverse of this operation. To perform eased interpolation with [method lerp], combine it with [method ease] or [method smoothstep]. See also [method remap] to map a continuous series of values to another.  
-     *      
-     *  **Note:** For better type safety, use [method lerpf], [method Vector2.lerp], [method Vector3.lerp], [method Vector4.lerp], [method Color.lerp], [method Quaternion.slerp] or [method Basis.slerp].  
-     */
-    static function lerp(from: any, to: any, weight: any): any
-    
-    /** Linearly interpolates between two values by the factor defined in [param weight]. To perform interpolation, [param weight] should be between `0.0` and `1.0` (inclusive). However, values outside this range are allowed and can be used to perform  *extrapolation* . If this is not desired, use [method clampf] on the result of this function.  
-     *    
-     *  See also [method inverse_lerp] which performs the reverse of this operation. To perform eased interpolation with [method lerp], combine it with [method ease] or [method smoothstep].  
-     */
-    static function lerpf(from: float64, to: float64, weight: float64): float64
-    
-    /** Cubic interpolates between two values by the factor defined in [param weight] with [param pre] and [param post] values. */
-    static function cubic_interpolate(from: float64, to: float64, pre: float64, post: float64, weight: float64): float64
-    
-    /** Cubic interpolates between two rotation values with shortest path by the factor defined in [param weight] with [param pre] and [param post] values. See also [method lerp_angle]. */
-    static function cubic_interpolate_angle(from: float64, to: float64, pre: float64, post: float64, weight: float64): float64
-    
-    /** Cubic interpolates between two values by the factor defined in [param weight] with [param pre] and [param post] values.  
-     *  It can perform smoother interpolation than [method cubic_interpolate] by the time values.  
-     */
-    static function cubic_interpolate_in_time(from: float64, to: float64, pre: float64, post: float64, weight: float64, to_t: float64, pre_t: float64, post_t: float64): float64
-    
-    /** Cubic interpolates between two rotation values with shortest path by the factor defined in [param weight] with [param pre] and [param post] values. See also [method lerp_angle].  
-     *  It can perform smoother interpolation than [method cubic_interpolate] by the time values.  
-     */
-    static function cubic_interpolate_angle_in_time(from: float64, to: float64, pre: float64, post: float64, weight: float64, to_t: float64, pre_t: float64, post_t: float64): float64
-    
-    /** Returns the point at the given [param t] on a one-dimensional [url=https://en.wikipedia.org/wiki/B%C3%A9zier_curve]Bézier curve[/url] defined by the given [param control_1], [param control_2], and [param end] points. */
-    static function bezier_interpolate(start: float64, control_1: float64, control_2: float64, end: float64, t: float64): float64
-    
-    /** Returns the derivative at the given [param t] on a one-dimensional [url=https://en.wikipedia.org/wiki/B%C3%A9zier_curve]Bézier curve[/url] defined by the given [param control_1], [param control_2], and [param end] points. */
-    static function bezier_derivative(start: float64, control_1: float64, control_2: float64, end: float64, t: float64): float64
-    
-    /** Returns the difference between the two angles, in the range of `[-PI, +PI]`. When [param from] and [param to] are opposite, returns `-PI` if [param from] is smaller than [param to], or `PI` otherwise. */
-    static function angle_difference(from: float64, to: float64): float64
-    
-    /** Linearly interpolates between two angles (in radians) by a [param weight] value between 0.0 and 1.0.  
-     *  Similar to [method lerp], but interpolates correctly when the angles wrap around [constant @GDScript.TAU]. To perform eased interpolation with [method lerp_angle], combine it with [method ease] or [method smoothstep].  
-     *    
-     *      
-     *  **Note:** This function lerps through the shortest path between [param from] and [param to]. However, when these two angles are approximately `PI + k * TAU` apart for any integer `k`, it's not obvious which way they lerp due to floating-point precision errors. For example, `lerp_angle(0, PI, weight)` lerps counter-clockwise, while `lerp_angle(0, PI + 5 * TAU, weight)` lerps clockwise.  
-     */
-    static function lerp_angle(from: float64, to: float64, weight: float64): float64
-    
-    /** Returns an interpolation or extrapolation factor considering the range specified in [param from] and [param to], and the interpolated value specified in [param weight]. The returned value will be between `0.0` and `1.0` if [param weight] is between [param from] and [param to] (inclusive). If [param weight] is located outside this range, then an extrapolation factor will be returned (return value lower than `0.0` or greater than `1.0`). Use [method clamp] on the result of [method inverse_lerp] if this is not desired.  
-     *    
-     *  See also [method lerp], which performs the reverse of this operation, and [method remap] to map a continuous series of values to another.  
-     */
-    static function inverse_lerp(from: float64, to: float64, weight: float64): float64
-    
-    /** Maps a [param value] from range `[istart, istop]` to `[ostart, ostop]`. See also [method lerp] and [method inverse_lerp]. If [param value] is outside `[istart, istop]`, then the resulting value will also be outside `[ostart, ostop]`. If this is not desired, use [method clamp] on the result of this function.  
-     *    
-     *  For complex use cases where multiple ranges are needed, consider using [Curve] or [Gradient] instead.  
-     *      
-     *  **Note:** If `istart == istop`, the return value is undefined (most likely NaN, INF, or -INF).  
-     */
-    static function remap(value: float64, istart: float64, istop: float64, ostart: float64, ostop: float64): float64
-    
-    /** Returns the result of smoothly interpolating the value of [param x] between `0` and `1`, based on the where [param x] lies with respect to the edges [param from] and [param to].  
-     *  The return value is `0` if `x <= from`, and `1` if `x >= to`. If [param x] lies between [param from] and [param to], the returned value follows an S-shaped curve that maps [param x] between `0` and `1`.  
-     *  This S-shaped curve is the cubic Hermite interpolator, given by `f(y) = 3*y^2 - 2*y^3` where `y = (x-from) / (to-from)`.  
-     *    
-     *  Compared to [method ease] with a curve value of `-1.6521`, [method smoothstep] returns the smoothest possible curve with no sudden changes in the derivative. If you need to perform more advanced transitions, use [Tween] or [AnimationPlayer].  
-     *  [url=https://raw.githubusercontent.com/godotengine/godot-docs/4.1/img/smoothstep_ease_comparison.png]Comparison between smoothstep() and ease(x, -1.6521) return values[/url]  
-     */
-    static function smoothstep(from: float64, to: float64, x: float64): float64
-    
-    /** Moves [param from] toward [param to] by the [param delta] amount. Will not go past [param to].  
-     *  Use a negative [param delta] value to move away.  
-     *    
-     */
-    static function move_toward(from: float64, to: float64, delta: float64): float64
-    
-    /** Rotates [param from] toward [param to] by the [param delta] amount. Will not go past [param to].  
-     *  Similar to [method move_toward], but interpolates correctly when the angles wrap around [constant @GDScript.TAU].  
-     *  If [param delta] is negative, this function will rotate away from [param to], toward the opposite angle, and will not go past the opposite angle.  
-     */
-    static function rotate_toward(from: float64, to: float64, delta: float64): float64
-    
-    /** Converts an angle expressed in degrees to radians.  
-     *    
-     */
-    static function deg_to_rad(deg: float64): float64
-    
-    /** Converts an angle expressed in radians to degrees.  
-     *    
-     */
-    static function rad_to_deg(rad: float64): float64
-    
-    /** Converts from linear energy to decibels (audio). This can be used to implement volume sliders that behave as expected (since volume isn't linear).  
-     *  **Example:**  
-     *    
-     */
-    static function linear_to_db(lin: float64): float64
-    
-    /** Converts from decibels to linear energy (audio). */
-    static function db_to_linear(db: float64): float64
-    
-    /** Wraps the [Variant] [param value] between [param min] and [param max]. Can be used for creating loop-alike behavior or infinite surfaces.  
-     *  Variant types [int] and [float] are supported. If any of the arguments is [float] this function returns a [float], otherwise it returns an [int].  
-     *    
-     */
-    static function wrap(value: any, min: any, max: any): any
-    
-    /** Wraps the integer [param value] between [param min] and [param max]. Can be used for creating loop-alike behavior or infinite surfaces.  
-     *    
-     *    
-     */
-    static function wrapi(value: int64, min: int64, max: int64): int64
-    
-    /** Wraps the float [param value] between [param min] and [param max]. Can be used for creating loop-alike behavior or infinite surfaces.  
-     *    
-     *    
-     *    
-     *      
-     *  **Note:** If [param min] is `0`, this is equivalent to [method fposmod], so prefer using that instead.  
-     *  [method wrapf] is more flexible than using the [method fposmod] approach by giving the user control over the minimum value.  
-     */
-    static function wrapf(value: float64, min: float64, max: float64): float64
-    
-    /** Returns the maximum of the given numeric values. This function can take any number of arguments.  
-     *    
-     *      
-     *  **Note:** When using this on vectors it will  *not*  perform component-wise maximum, and will pick the largest value when compared using `x < y`. To perform component-wise maximum, use [method Vector2.max], [method Vector2i.max], [method Vector3.max], [method Vector3i.max], [method Vector4.max], and [method Vector4i.max].  
-     */
-    static function max(...vargargs: any[]): any
-    
-    /** Returns the maximum of two [int] values.  
-     *    
-     */
-    static function maxi(a: int64, b: int64): int64
-    
-    /** Returns the maximum of two [float] values.  
-     *    
-     */
-    static function maxf(a: float64, b: float64): float64
-    
-    /** Returns the minimum of the given numeric values. This function can take any number of arguments.  
-     *    
-     *      
-     *  **Note:** When using this on vectors it will  *not*  perform component-wise minimum, and will pick the smallest value when compared using `x < y`. To perform component-wise minimum, use [method Vector2.min], [method Vector2i.min], [method Vector3.min], [method Vector3i.min], [method Vector4.min], and [method Vector4i.min].  
-     */
-    static function min(...vargargs: any[]): any
-    
-    /** Returns the minimum of two [int] values.  
-     *    
-     */
-    static function mini(a: int64, b: int64): int64
-    
-    /** Returns the minimum of two [float] values.  
-     *    
-     */
-    static function minf(a: float64, b: float64): float64
-    
-    /** Clamps the [param value], returning a [Variant] not less than [param min] and not more than [param max]. Any values that can be compared with the less than and greater than operators will work.  
-     *    
-     *      
-     *  **Note:** For better type safety, use [method clampf], [method clampi], [method Vector2.clamp], [method Vector2i.clamp], [method Vector3.clamp], [method Vector3i.clamp], [method Vector4.clamp], [method Vector4i.clamp], or [method Color.clamp] (not currently supported by this method).  
-     *      
-     *  **Note:** When using this on vectors it will  *not*  perform component-wise clamping, and will pick [param min] if `value < min` or [param max] if `value > max`. To perform component-wise clamping use the methods listed above.  
-     */
-    static function clamp(value: any, min: any, max: any): any
-    
-    /** Clamps the [param value], returning an [int] not less than [param min] and not more than [param max].  
-     *    
-     */
-    static function clampi(value: int64, min: int64, max: int64): int64
-    
-    /** Clamps the [param value], returning a [float] not less than [param min] and not more than [param max].  
-     *    
-     */
-    static function clampf(value: float64, min: float64, max: float64): float64
-    
-    /** Returns the smallest integer power of 2 that is greater than or equal to [param value].  
-     *    
-     *  **Warning:** Due to its implementation, this method returns `0` rather than `1` for values less than or equal to `0`, with an exception for [param value] being the smallest negative 64-bit integer (`-9223372036854775808`) in which case the [param value] is returned unchanged.  
-     */
-    static function nearest_po2(value: int64): int64
-    
-    /** Wraps [param value] between `0` and the [param length]. If the limit is reached, the next value the function returns is decreased to the `0` side or increased to the [param length] side (like a triangle wave). If [param length] is less than zero, it becomes positive.  
-     *    
-     */
-    static function pingpong(value: float64, length: float64): float64
-    
-    /** Randomizes the seed (or the internal state) of the random number generator. The current implementation uses a number based on the device's time.  
-     *      
-     *  **Note:** This function is called automatically when the project is run. If you need to fix the seed to have consistent, reproducible results, use [method seed] to initialize the random number generator.  
-     */
-    static function randomize(): void
-    
-    /** Returns a random unsigned 32-bit integer. Use remainder to obtain a random value in the interval `[0, N - 1]` (where N is smaller than 2^32).  
-     *    
-     */
-    static function randi(): int64
-    
-    /** Returns a random floating-point value between `0.0` and `1.0` (inclusive).  
-     *    
-     */
-    static function randf(): float64
-    
-    /** Returns a random signed 32-bit integer between [param from] and [param to] (inclusive). If [param to] is lesser than [param from], they are swapped.  
-     *    
-     */
-    static function randi_range(from: int64, to: int64): int64
-    
-    /** Returns a random floating-point value between [param from] and [param to] (inclusive).  
-     *    
-     */
-    static function randf_range(from: float64, to: float64): float64
-    
-    /** Returns a [url=https://en.wikipedia.org/wiki/Normal_distribution]normally-distributed[/url], pseudo-random floating-point value from the specified [param mean] and a standard [param deviation]. This is also known as a Gaussian distribution.  
-     *      
-     *  **Note:** This method uses the [url=https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform]Box-Muller transform[/url] algorithm.  
-     */
-    static function randfn(mean: float64, deviation: float64): float64
-    
-    /** Sets the seed for the random number generator to [param base]. Setting the seed manually can ensure consistent, repeatable results for most random functions.  
-     *    
-     */
-    static function seed(base: int64): void
-    
-    /** Given a [param seed], returns a [PackedInt64Array] of size `2`, where its first element is the randomized [int] value, and the second element is the same as [param seed]. Passing the same [param seed] consistently returns the same array.  
-     *      
-     *  **Note:** "Seed" here refers to the internal state of the pseudo random number generator, currently implemented as a 64 bit integer.  
-     *    
-     */
-    static function rand_from_seed(seed: int64): PackedInt64Array
-    
-    /** Returns a [WeakRef] instance holding a weak reference to [param obj]. Returns an empty [WeakRef] instance if [param obj] is `null`. Prints an error and returns `null` if [param obj] is neither [Object]-derived nor `null`.  
-     *  A weak reference to an object is not enough to keep the object alive: when the only remaining references to a referent are weak references, garbage collection is free to destroy the referent and reuse its memory for something else. However, until the object is actually destroyed the weak reference may return the object even if there are no strong references to it.  
-     */
-    static function weakref(obj: any): any
-    
-    /** Returns the internal type of the given [param variable], using the [enum Variant.Type] values.  
-     *    
-     *  See also [method type_string].  
-     */
-    // [INVALID_NAME]: static function typeof(variable: any): int64
-    
-    /** Converts the given [param variant] to the given [param type], using the [enum Variant.Type] values. This method is generous with how it handles types, it can automatically convert between array types, convert numeric [String]s to [int], and converting most things to [String].  
-     *  If the type conversion cannot be done, this method will return the default value for that type, for example converting [Rect2] to [Vector2] will always return [constant Vector2.ZERO]. This method will never show error messages as long as [param type] is a valid Variant type.  
-     *  The returned value is a [Variant], but the data inside and its type will be the same as the requested type.  
-     *    
-     */
-    static function type_convert(variant: any, type: int64): any
-    
-    /** Converts one or more arguments of any [Variant] type to a [String] in the best way possible.  
-     *    
-     */
-    static function str(...vargargs: any[]): string
-    
-    /** Returns a human-readable name for the given [enum Error] code.  
-     *    
-     */
-    static function error_string(error: int64): string
-    
-    /** Returns a human-readable name of the given [param type], using the [enum Variant.Type] values.  
-     *    
-     *  See also [method typeof].  
-     */
-    static function type_string(type: int64): string
-    
-    /** Converts one or more arguments of any type to string in the best way possible and prints them to the console.  
-     *    
-     *      
-     *  **Note:** Consider using [method push_error] and [method push_warning] to print error and warning messages instead of [method print] or [method print_rich]. This distinguishes them from print messages used for debugging purposes, while also displaying a stack trace when an error or warning is printed.  
-     */
-    static function print(...vargargs: any[]): void
-    
-    /** Converts one or more arguments of any type to string in the best way possible and prints them to the console.  
-     *  The following BBCode tags are supported: `b`, `i`, `u`, `s`, `indent`, `code`, `url`, `center`, `right`, `color`, `bgcolor`, `fgcolor`.  
-     *  Color tags only support the following named colors: `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `pink`, `purple`, `cyan`, `white`, `orange`, `gray`. Hexadecimal color codes are not supported.  
-     *  URL tags only support URLs wrapped by a URL tag, not URLs with a different title.  
-     *  When printing to standard output, the supported subset of BBCode is converted to ANSI escape codes for the terminal emulator to display. Support for ANSI escape codes varies across terminal emulators, especially for italic and strikethrough. In standard output, `code` is represented with faint text but without any font change. Unsupported tags are left as-is in standard output.  
-     *    
-     *      
-     *  **Note:** Consider using [method push_error] and [method push_warning] to print error and warning messages instead of [method print] or [method print_rich]. This distinguishes them from print messages used for debugging purposes, while also displaying a stack trace when an error or warning is printed.  
-     *      
-     *  **Note:** On Windows, only Windows 10 and later correctly displays ANSI escape codes in standard output.  
-     *      
-     *  **Note:** Output displayed in the editor supports clickable [code skip-lint][url=address]text[/url]` tags. The [code skip-lint][url]` tag's `address` value is handled by [method OS.shell_open] when clicked.  
-     */
-    static function print_rich(...vargargs: any[]): void
-    
-    /** Prints one or more arguments to strings in the best way possible to standard error line.  
-     *    
-     */
-    static function printerr(...vargargs: any[]): void
-    
-    /** Prints one or more arguments to the console with a tab between each argument.  
-     *    
-     */
-    static function printt(...vargargs: any[]): void
-    
-    /** Prints one or more arguments to the console with a space between each argument.  
-     *    
-     */
-    static function prints(...vargargs: any[]): void
-    
-    /** Prints one or more arguments to strings in the best way possible to the OS terminal. Unlike [method print], no newline is automatically added at the end.  
-     *      
-     *  **Note:** The OS terminal is  *not*  the same as the editor's Output dock. The output sent to the OS terminal can be seen when running Godot from a terminal. On Windows, this requires using the `console.exe` executable.  
-     *    
-     */
-    static function printraw(...vargargs: any[]): void
-    
-    /** If verbose mode is enabled ([method OS.is_stdout_verbose] returning `true`), converts one or more arguments of any type to string in the best way possible and prints them to the console. */
-    static function print_verbose(...vargargs: any[]): void
-    
-    /** Pushes an error message to Godot's built-in debugger and to the OS terminal.  
-     *    
-     *      
-     *  **Note:** This function does not pause project execution. To print an error message and pause project execution in debug builds, use `assert(false, "test error")` instead.  
-     */
-    static function push_error(...vargargs: any[]): void
-    
-    /** Pushes a warning message to Godot's built-in debugger and to the OS terminal.  
-     *    
-     */
-    static function push_warning(...vargargs: any[]): void
-    
-    /** Converts a [Variant] [param variable] to a formatted [String] that can then be parsed using [method str_to_var].  
-     *    
-     *  Prints:  
-     *  [codeblock lang=text]  
-     *  {  
-     *      "a": 1,  
-     *      "b": 2  
-     *  }  
-     *  [/codeblock]  
-     *      
-     *  **Note:** Converting [Signal] or [Callable] is not supported and will result in an empty value for these types, regardless of their data.  
-     */
-    static function var_to_str(variable: any): string
-    
-    /** Converts a formatted [param string] that was returned by [method var_to_str] to the original [Variant].  
-     *    
-     */
-    static function str_to_var(string_: string): any
-    
-    /** Encodes a [Variant] value to a byte array, without encoding objects. Deserialization can be done with [method bytes_to_var].  
-     *      
-     *  **Note:** If you need object serialization, see [method var_to_bytes_with_objects].  
-     *      
-     *  **Note:** Encoding [Callable] is not supported and will result in an empty value, regardless of the data.  
-     */
-    static function var_to_bytes(variable: any): PackedByteArray
-    
-    /** Decodes a byte array back to a [Variant] value, without decoding objects.  
-     *      
-     *  **Note:** If you need object deserialization, see [method bytes_to_var_with_objects].  
-     */
-    static function bytes_to_var(bytes: PackedByteArray | byte[] | ArrayBuffer): any
-    
-    /** Encodes a [Variant] value to a byte array. Encoding objects is allowed (and can potentially include executable code). Deserialization can be done with [method bytes_to_var_with_objects].  
-     *      
-     *  **Note:** Encoding [Callable] is not supported and will result in an empty value, regardless of the data.  
-     */
-    static function var_to_bytes_with_objects(variable: any): PackedByteArray
-    
-    /** Decodes a byte array back to a [Variant] value. Decoding objects is allowed.  
-     *  **Warning:** Deserialized object can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats (remote code execution).  
-     */
-    static function bytes_to_var_with_objects(bytes: PackedByteArray | byte[] | ArrayBuffer): any
-    
-    /** Returns the integer hash of the passed [param variable].  
-     *    
-     */
-    static function hash(variable: any): int64
-    
-    /** Returns the [Object] that corresponds to [param instance_id]. All Objects have a unique instance ID. See also [method Object.get_instance_id].  
-     *    
-     */
-    static function instance_from_id(instance_id: int64): Object
-    
-    /** Returns `true` if the Object that corresponds to [param id] is a valid object (e.g. has not been deleted from memory). All Objects have a unique instance ID. */
-    static function is_instance_id_valid(id: int64): boolean
-    
-    /** Returns `true` if [param instance] is a valid Object (e.g. has not been deleted from memory). */
-    static function is_instance_valid(instance: any): boolean
-    
-    /** Allocates a unique ID which can be used by the implementation to construct an RID. This is used mainly from native extensions to implement servers. */
-    static function rid_allocate_id(): int64
-    
-    /** Creates an RID from a [param base]. This is used mainly from native extensions to build servers. */
-    static function rid_from_int64(base: int64): RID
-    
-    /** Returns `true`, for value types, if [param a] and [param b] share the same value. Returns `true`, for reference types, if the references of [param a] and [param b] are the same.  
-     *    
-     *  These are [Variant] value types: `null`, [bool], [int], [float], [String], [StringName], [Vector2], [Vector2i], [Vector3], [Vector3i], [Vector4], [Vector4i], [Rect2], [Rect2i], [Transform2D], [Transform3D], [Plane], [Quaternion], [AABB], [Basis], [Projection], [Color], [NodePath], [RID], [Callable] and [Signal].  
-     *  These are [Variant] reference types: [Object], [Dictionary], [Array], [PackedByteArray], [PackedInt32Array], [PackedInt64Array], [PackedFloat32Array], [PackedFloat64Array], [PackedStringArray], [PackedVector2Array], [PackedVector3Array], [PackedVector4Array], and [PackedColorArray].  
-     */
-    static function is_same(a: any, b: any): boolean
-    
-    /** shorthand for getting project settings */
-    function GLOBAL_GET(entry_path: StringName): any
-    
-    /** shorthand for getting editor settings  
-     *  NOTE: calling before EditorSettings created will cause null reference exception.  
-     */
-    function EDITOR_GET(entry_path: StringName): any
+    enum StretchMode {
+      /** Scale to fit the node's bounding rectangle. */
+      STRETCH_SCALE = 0,
+
+      /** Tile inside the node's bounding rectangle. */
+      STRETCH_TILE = 1,
+
+      /** The texture keeps its original size and stays in the bounding rectangle's top-left corner. */
+      STRETCH_KEEP = 2,
+
+      /** The texture keeps its original size and stays centered in the node's bounding rectangle. */
+      STRETCH_KEEP_CENTERED = 3,
+
+      /** Scale the texture to fit the node's bounding rectangle, but maintain the texture's aspect ratio. */
+      STRETCH_KEEP_ASPECT = 4,
+
+      /** Scale the texture to fit the node's bounding rectangle, center it and maintain its aspect ratio. */
+      STRETCH_KEEP_ASPECT_CENTERED = 5,
+
+      /** Scale the texture so that the shorter side fits the bounding rectangle. The other side clips to the node's limits. */
+      STRETCH_KEEP_ASPECT_COVERED = 6,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTextureRect extends __NameMapControl {}
+  /** A control that displays a texture.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_texturerect.html
+   */
+  class TextureRect<Map extends NodePathMap = any> extends Control<Map> {
+    constructor(identifier?: any);
+    /** The node's [Texture2D] resource. */
+    get texture(): null | Texture2D;
+    set texture(value: null | Texture2D);
+
+    /** Defines how minimum size is determined based on the texture's size. */
+    get expand_mode(): int64;
+    set expand_mode(value: int64);
+
+    /** Controls the texture's behavior when resizing the node's bounding rectangle. */
+    get stretch_mode(): int64;
+    set stretch_mode(value: int64);
+
+    /** If `true`, texture is flipped horizontally. */
+    get flip_h(): boolean;
+    set flip_h(value: boolean);
+
+    /** If `true`, texture is flipped vertically. */
+    get flip_v(): boolean;
+    set flip_v(value: boolean);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTextureRect;
+  }
+  namespace Theme {
+    enum DataType {
+      /** Theme's [Color] item type. */
+      DATA_TYPE_COLOR = 0,
+
+      /** Theme's constant item type. */
+      DATA_TYPE_CONSTANT = 1,
+
+      /** Theme's [Font] item type. */
+      DATA_TYPE_FONT = 2,
+
+      /** Theme's font size item type. */
+      DATA_TYPE_FONT_SIZE = 3,
+
+      /** Theme's icon [Texture2D] item type. */
+      DATA_TYPE_ICON = 4,
+
+      /** Theme's [StyleBox] item type. */
+      DATA_TYPE_STYLEBOX = 5,
+
+      /** Maximum value for the DataType enum. */
+      DATA_TYPE_MAX = 6,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTheme extends __NameMapResource {}
+  /** A resource used for styling/skinning [Control]s and [Window]s.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_theme.html
+   */
+  class Theme extends Resource {
+    constructor(identifier?: any);
+    /** Creates or changes the value of the icon property defined by [param name] and [param theme_type]. Use [method clear_icon] to remove the property. */
+    set_icon(
+      name: StringName,
+      theme_type: StringName,
+      texture: Texture2D,
+    ): void;
+
+    /** Returns the icon property defined by [param name] and [param theme_type], if it exists.
+     *  Returns the engine fallback icon value if the property doesn't exist (see [member ThemeDB.fallback_icon]). Use [method has_icon] to check for existence.
+     */
+    get_icon(name: StringName, theme_type: StringName): null | Texture2D;
+
+    /** Returns `true` if the icon property defined by [param name] and [param theme_type] exists.
+     *  Returns `false` if it doesn't exist. Use [method set_icon] to define it.
+     */
+    has_icon(name: StringName, theme_type: StringName): boolean;
+
+    /** Renames the icon property defined by [param old_name] and [param theme_type] to [param name], if it exists.
+     *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_icon] to check for existence, and [method clear_icon] to remove the existing property.
+     */
+    rename_icon(
+      old_name: StringName,
+      name: StringName,
+      theme_type: StringName,
+    ): void;
+
+    /** Removes the icon property defined by [param name] and [param theme_type], if it exists.
+     *  Fails if it doesn't exist. Use [method has_icon] to check for existence.
+     */
+    clear_icon(name: StringName, theme_type: StringName): void;
+
+    /** Returns a list of names for icon properties defined with [param theme_type]. Use [method get_icon_type_list] to get a list of possible theme type names. */
+    get_icon_list(theme_type: string): PackedStringArray;
+
+    /** Returns a list of all unique theme type names for icon properties. Use [method get_type_list] to get a list of all unique theme types. */
+    get_icon_type_list(): PackedStringArray;
+
+    /** Creates or changes the value of the [StyleBox] property defined by [param name] and [param theme_type]. Use [method clear_stylebox] to remove the property. */
+    set_stylebox(
+      name: StringName,
+      theme_type: StringName,
+      texture: StyleBox,
+    ): void;
+
+    /** Returns the [StyleBox] property defined by [param name] and [param theme_type], if it exists.
+     *  Returns the engine fallback stylebox value if the property doesn't exist (see [member ThemeDB.fallback_stylebox]). Use [method has_stylebox] to check for existence.
+     */
+    get_stylebox(name: StringName, theme_type: StringName): null | StyleBox;
+
+    /** Returns `true` if the [StyleBox] property defined by [param name] and [param theme_type] exists.
+     *  Returns `false` if it doesn't exist. Use [method set_stylebox] to define it.
+     */
+    has_stylebox(name: StringName, theme_type: StringName): boolean;
+
+    /** Renames the [StyleBox] property defined by [param old_name] and [param theme_type] to [param name], if it exists.
+     *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_stylebox] to check for existence, and [method clear_stylebox] to remove the existing property.
+     */
+    rename_stylebox(
+      old_name: StringName,
+      name: StringName,
+      theme_type: StringName,
+    ): void;
+
+    /** Removes the [StyleBox] property defined by [param name] and [param theme_type], if it exists.
+     *  Fails if it doesn't exist. Use [method has_stylebox] to check for existence.
+     */
+    clear_stylebox(name: StringName, theme_type: StringName): void;
+
+    /** Returns a list of names for [StyleBox] properties defined with [param theme_type]. Use [method get_stylebox_type_list] to get a list of possible theme type names. */
+    get_stylebox_list(theme_type: string): PackedStringArray;
+
+    /** Returns a list of all unique theme type names for [StyleBox] properties. Use [method get_type_list] to get a list of all unique theme types. */
+    get_stylebox_type_list(): PackedStringArray;
+
+    /** Creates or changes the value of the [Font] property defined by [param name] and [param theme_type]. Use [method clear_font] to remove the property. */
+    set_font(name: StringName, theme_type: StringName, font: Font): void;
+
+    /** Returns the [Font] property defined by [param name] and [param theme_type], if it exists.
+     *  Returns the default theme font if the property doesn't exist and the default theme font is set up (see [member default_font]). Use [method has_font] to check for existence of the property and [method has_default_font] to check for existence of the default theme font.
+     *  Returns the engine fallback font value, if neither exist (see [member ThemeDB.fallback_font]).
+     */
+    get_font(name: StringName, theme_type: StringName): null | Font;
+
+    /** Returns `true` if the [Font] property defined by [param name] and [param theme_type] exists, or if the default theme font is set up (see [method has_default_font]).
+     *  Returns `false` if neither exist. Use [method set_font] to define the property.
+     */
+    has_font(name: StringName, theme_type: StringName): boolean;
+
+    /** Renames the [Font] property defined by [param old_name] and [param theme_type] to [param name], if it exists.
+     *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_font] to check for existence, and [method clear_font] to remove the existing property.
+     */
+    rename_font(
+      old_name: StringName,
+      name: StringName,
+      theme_type: StringName,
+    ): void;
+
+    /** Removes the [Font] property defined by [param name] and [param theme_type], if it exists.
+     *  Fails if it doesn't exist. Use [method has_font] to check for existence.
+     */
+    clear_font(name: StringName, theme_type: StringName): void;
+
+    /** Returns a list of names for [Font] properties defined with [param theme_type]. Use [method get_font_type_list] to get a list of possible theme type names. */
+    get_font_list(theme_type: string): PackedStringArray;
+
+    /** Returns a list of all unique theme type names for [Font] properties. Use [method get_type_list] to get a list of all unique theme types. */
+    get_font_type_list(): PackedStringArray;
+
+    /** Creates or changes the value of the font size property defined by [param name] and [param theme_type]. Use [method clear_font_size] to remove the property. */
+    set_font_size(
+      name: StringName,
+      theme_type: StringName,
+      font_size: int64,
+    ): void;
+
+    /** Returns the font size property defined by [param name] and [param theme_type], if it exists.
+     *  Returns the default theme font size if the property doesn't exist and the default theme font size is set up (see [member default_font_size]). Use [method has_font_size] to check for existence of the property and [method has_default_font_size] to check for existence of the default theme font.
+     *  Returns the engine fallback font size value, if neither exist (see [member ThemeDB.fallback_font_size]).
+     */
+    get_font_size(name: StringName, theme_type: StringName): int64;
+
+    /** Returns `true` if the font size property defined by [param name] and [param theme_type] exists, or if the default theme font size is set up (see [method has_default_font_size]).
+     *  Returns `false` if neither exist. Use [method set_font_size] to define the property.
+     */
+    has_font_size(name: StringName, theme_type: StringName): boolean;
+
+    /** Renames the font size property defined by [param old_name] and [param theme_type] to [param name], if it exists.
+     *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_font_size] to check for existence, and [method clear_font_size] to remove the existing property.
+     */
+    rename_font_size(
+      old_name: StringName,
+      name: StringName,
+      theme_type: StringName,
+    ): void;
+
+    /** Removes the font size property defined by [param name] and [param theme_type], if it exists.
+     *  Fails if it doesn't exist. Use [method has_font_size] to check for existence.
+     */
+    clear_font_size(name: StringName, theme_type: StringName): void;
+
+    /** Returns a list of names for font size properties defined with [param theme_type]. Use [method get_font_size_type_list] to get a list of possible theme type names. */
+    get_font_size_list(theme_type: string): PackedStringArray;
+
+    /** Returns a list of all unique theme type names for font size properties. Use [method get_type_list] to get a list of all unique theme types. */
+    get_font_size_type_list(): PackedStringArray;
+
+    /** Creates or changes the value of the [Color] property defined by [param name] and [param theme_type]. Use [method clear_color] to remove the property. */
+    set_color(name: StringName, theme_type: StringName, color: Color): void;
+
+    /** Returns the [Color] property defined by [param name] and [param theme_type], if it exists.
+     *  Returns the default color value if the property doesn't exist. Use [method has_color] to check for existence.
+     */
+    get_color(name: StringName, theme_type: StringName): Color;
+
+    /** Returns `true` if the [Color] property defined by [param name] and [param theme_type] exists.
+     *  Returns `false` if it doesn't exist. Use [method set_color] to define it.
+     */
+    has_color(name: StringName, theme_type: StringName): boolean;
+
+    /** Renames the [Color] property defined by [param old_name] and [param theme_type] to [param name], if it exists.
+     *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_color] to check for existence, and [method clear_color] to remove the existing property.
+     */
+    rename_color(
+      old_name: StringName,
+      name: StringName,
+      theme_type: StringName,
+    ): void;
+
+    /** Removes the [Color] property defined by [param name] and [param theme_type], if it exists.
+     *  Fails if it doesn't exist. Use [method has_color] to check for existence.
+     */
+    clear_color(name: StringName, theme_type: StringName): void;
+
+    /** Returns a list of names for [Color] properties defined with [param theme_type]. Use [method get_color_type_list] to get a list of possible theme type names. */
+    get_color_list(theme_type: string): PackedStringArray;
+
+    /** Returns a list of all unique theme type names for [Color] properties. Use [method get_type_list] to get a list of all unique theme types. */
+    get_color_type_list(): PackedStringArray;
+
+    /** Creates or changes the value of the constant property defined by [param name] and [param theme_type]. Use [method clear_constant] to remove the property. */
+    set_constant(
+      name: StringName,
+      theme_type: StringName,
+      constant: int64,
+    ): void;
+
+    /** Returns the constant property defined by [param name] and [param theme_type], if it exists.
+     *  Returns `0` if the property doesn't exist. Use [method has_constant] to check for existence.
+     */
+    get_constant(name: StringName, theme_type: StringName): int64;
+
+    /** Returns `true` if the constant property defined by [param name] and [param theme_type] exists.
+     *  Returns `false` if it doesn't exist. Use [method set_constant] to define it.
+     */
+    has_constant(name: StringName, theme_type: StringName): boolean;
+
+    /** Renames the constant property defined by [param old_name] and [param theme_type] to [param name], if it exists.
+     *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_constant] to check for existence, and [method clear_constant] to remove the existing property.
+     */
+    rename_constant(
+      old_name: StringName,
+      name: StringName,
+      theme_type: StringName,
+    ): void;
+
+    /** Removes the constant property defined by [param name] and [param theme_type], if it exists.
+     *  Fails if it doesn't exist. Use [method has_constant] to check for existence.
+     */
+    clear_constant(name: StringName, theme_type: StringName): void;
+
+    /** Returns a list of names for constant properties defined with [param theme_type]. Use [method get_constant_type_list] to get a list of possible theme type names. */
+    get_constant_list(theme_type: string): PackedStringArray;
+
+    /** Returns a list of all unique theme type names for constant properties. Use [method get_type_list] to get a list of all unique theme types. */
+    get_constant_type_list(): PackedStringArray;
+
+    /** Returns `true` if [member default_base_scale] has a valid value.
+     *  Returns `false` if it doesn't. The value must be greater than `0.0` to be considered valid.
+     */
+    has_default_base_scale(): boolean;
+
+    /** Returns `true` if [member default_font] has a valid value.
+     *  Returns `false` if it doesn't.
+     */
+    has_default_font(): boolean;
+
+    /** Returns `true` if [member default_font_size] has a valid value.
+     *  Returns `false` if it doesn't. The value must be greater than `0` to be considered valid.
+     */
+    has_default_font_size(): boolean;
+
+    /** Creates or changes the value of the theme property of [param data_type] defined by [param name] and [param theme_type]. Use [method clear_theme_item] to remove the property.
+     *  Fails if the [param value] type is not accepted by [param data_type].
+     *
+     *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
+     */
+    set_theme_item(
+      data_type: Theme.DataType,
+      name: StringName,
+      theme_type: StringName,
+      value: any,
+    ): void;
+
+    /** Returns the theme property of [param data_type] defined by [param name] and [param theme_type], if it exists.
+     *  Returns the engine fallback value if the property doesn't exist (see [ThemeDB]). Use [method has_theme_item] to check for existence.
+     *
+     *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
+     */
+    get_theme_item(
+      data_type: Theme.DataType,
+      name: StringName,
+      theme_type: StringName,
+    ): any;
+
+    /** Returns `true` if the theme property of [param data_type] defined by [param name] and [param theme_type] exists.
+     *  Returns `false` if it doesn't exist. Use [method set_theme_item] to define it.
+     *
+     *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
+     */
+    has_theme_item(
+      data_type: Theme.DataType,
+      name: StringName,
+      theme_type: StringName,
+    ): boolean;
+
+    /** Renames the theme property of [param data_type] defined by [param old_name] and [param theme_type] to [param name], if it exists.
+     *  Fails if it doesn't exist, or if a similar property with the new name already exists. Use [method has_theme_item] to check for existence, and [method clear_theme_item] to remove the existing property.
+     *
+     *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
+     */
+    rename_theme_item(
+      data_type: Theme.DataType,
+      old_name: StringName,
+      name: StringName,
+      theme_type: StringName,
+    ): void;
+
+    /** Removes the theme property of [param data_type] defined by [param name] and [param theme_type], if it exists.
+     *  Fails if it doesn't exist. Use [method has_theme_item] to check for existence.
+     *
+     *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
+     */
+    clear_theme_item(
+      data_type: Theme.DataType,
+      name: StringName,
+      theme_type: StringName,
+    ): void;
+
+    /** Returns a list of names for properties of [param data_type] defined with [param theme_type]. Use [method get_theme_item_type_list] to get a list of possible theme type names.
+     *
+     *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
+     */
+    get_theme_item_list(
+      data_type: Theme.DataType,
+      theme_type: string,
+    ): PackedStringArray;
+
+    /** Returns a list of all unique theme type names for [param data_type] properties. Use [method get_type_list] to get a list of all unique theme types.
+     *
+     *  **Note:** This method is analogous to calling the corresponding data type specific method, but can be used for more generalized logic.
+     */
+    get_theme_item_type_list(data_type: Theme.DataType): PackedStringArray;
+
+    /** Marks [param theme_type] as a variation of [param base_type].
+     *  This adds [param theme_type] as a suggested option for [member Control.theme_type_variation] on a [Control] that is of the [param base_type] class.
+     *  Variations can also be nested, i.e. [param base_type] can be another variation. If a chain of variations ends with a [param base_type] matching the class of the [Control], the whole chain is going to be suggested as options.
+     *
+     *  **Note:** Suggestions only show up if this theme resource is set as the project default theme. See [member ProjectSettings.gui/theme/custom].
+     */
+    set_type_variation(theme_type: StringName, base_type: StringName): void;
+
+    /** Returns `true` if [param theme_type] is marked as a variation of [param base_type]. */
+    is_type_variation(theme_type: StringName, base_type: StringName): boolean;
+
+    /** Unmarks [param theme_type] as being a variation of another theme type. See [method set_type_variation]. */
+    clear_type_variation(theme_type: StringName): void;
+
+    /** Returns the name of the base theme type if [param theme_type] is a valid variation type. Returns an empty string otherwise. */
+    get_type_variation_base(theme_type: StringName): StringName;
+
+    /** Returns a list of all type variations for the given [param base_type]. */
+    get_type_variation_list(base_type: StringName): PackedStringArray;
+
+    /** Adds an empty theme type for every valid data type.
+     *
+     *  **Note:** Empty types are not saved with the theme. This method only exists to perform in-memory changes to the resource. Use available `set_*` methods to add theme items.
+     */
+    add_type(theme_type: StringName): void;
+
+    /** Removes the theme type, gracefully discarding defined theme items. If the type is a variation, this information is also erased. If the type is a base for type variations, those variations lose their base. */
+    remove_type(theme_type: StringName): void;
+
+    /** Renames the theme type [param old_theme_type] to [param theme_type], if the old type exists and the new one doesn't exist.
+     *
+     *  **Note:** Renaming a theme type to an empty name or a variation to a type associated with a built-in class removes type variation connections in a way that cannot be undone by reversing the rename alone.
+     */
+    rename_type(old_theme_type: StringName, theme_type: StringName): void;
+
+    /** Returns a list of all unique theme type names. Use the appropriate `get_*_type_list` method to get a list of unique theme types for a single data type. */
+    get_type_list(): PackedStringArray;
+
+    /** Adds missing and overrides existing definitions with values from the [param other] theme resource.
+     *
+     *  **Note:** This modifies the current theme. If you want to merge two themes together without modifying either one, create a new empty theme and merge the other two into it one after another.
+     */
+    merge_with(other: Theme): void;
+
+    /** Removes all the theme properties defined on the theme resource. */
+    clear(): void;
+
+    /** The default base scale factor of this theme resource. Used by some controls to scale their visual properties based on the global scale factor. If this value is set to `0.0`, the global scale factor is used (see [member ThemeDB.fallback_base_scale]).
+     *  Use [method has_default_base_scale] to check if this value is valid.
+     */
+    get default_base_scale(): float64;
+    set default_base_scale(value: float64);
+
+    /** The default font of this theme resource. Used as the default value when trying to fetch a font resource that doesn't exist in this theme or is in invalid state. If the default font is also missing or invalid, the engine fallback value is used (see [member ThemeDB.fallback_font]).
+     *  Use [method has_default_font] to check if this value is valid.
+     */
+    get default_font(): null | Font;
+    set default_font(value: null | Font);
+
+    /** The default font size of this theme resource. Used as the default value when trying to fetch a font size value that doesn't exist in this theme or is in invalid state. If the default font size is also missing or invalid, the engine fallback value is used (see [member ThemeDB.fallback_font_size]).
+     *  Values below `1` are invalid and can be used to unset the property. Use [method has_default_font_size] to check if this value is valid.
+     */
+    get default_font_size(): int64;
+    set default_font_size(value: int64);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTheme;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTileData extends __NameMapObject {}
+  /** Settings for a single tile in a [TileSet].
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_tiledata.html
+   */
+  class TileData extends Object {
+    constructor(identifier?: any);
+    /** Sets the occluder polygon count in the TileSet occlusion layer with index [param layer_id]. */
+    set_occluder_polygons_count(layer_id: int64, polygons_count: int64): void;
+
+    /** Returns the number of occluder polygons of the tile in the TileSet occlusion layer with index [param layer_id]. */
+    get_occluder_polygons_count(layer_id: int64): int64;
+
+    /** Adds an occlusion polygon to the tile on the TileSet occlusion layer with index [param layer_id]. */
+    add_occluder_polygon(layer_id: int64): void;
+
+    /** Removes the polygon at index [param polygon_index] for TileSet occlusion layer with index [param layer_id]. */
+    remove_occluder_polygon(layer_id: int64, polygon_index: int64): void;
+
+    /** Sets the occluder for polygon with index [param polygon_index] in the TileSet occlusion layer with index [param layer_id]. */
+    set_occluder_polygon(
+      layer_id: int64,
+      polygon_index: int64,
+      polygon: OccluderPolygon2D,
+    ): void;
+
+    /** Returns the occluder polygon at index [param polygon_index] from the TileSet occlusion layer with index [param layer_id].
+     *  The [param flip_h], [param flip_v], and [param transpose] parameters can be `true` to transform the returned polygon.
+     */
+    get_occluder_polygon(
+      layer_id: int64,
+      polygon_index: int64,
+      flip_h?: boolean /* = false */,
+      flip_v?: boolean /* = false */,
+      transpose?: boolean /* = false */,
+    ): null | OccluderPolygon2D;
+
+    /** Sets the occluder for the TileSet occlusion layer with index [param layer_id]. */
+    set_occluder(layer_id: int64, occluder_polygon: OccluderPolygon2D): void;
+
+    /** Returns the occluder polygon of the tile for the TileSet occlusion layer with index [param layer_id].
+     *  [param flip_h], [param flip_v], and [param transpose] allow transforming the returned polygon.
+     */
+    get_occluder(
+      layer_id: int64,
+      flip_h?: boolean /* = false */,
+      flip_v?: boolean /* = false */,
+      transpose?: boolean /* = false */,
+    ): null | OccluderPolygon2D;
+
+    /** Sets the constant linear velocity. This does not move the tile. This linear velocity is applied to objects colliding with this tile. This is useful to create conveyor belts. */
+    set_constant_linear_velocity(layer_id: int64, velocity: Vector2): void;
+
+    /** Returns the constant linear velocity applied to objects colliding with this tile. */
+    get_constant_linear_velocity(layer_id: int64): Vector2;
+
+    /** Sets the constant angular velocity. This does not rotate the tile. This angular velocity is applied to objects colliding with this tile. */
+    set_constant_angular_velocity(layer_id: int64, velocity: float64): void;
+
+    /** Returns the constant angular velocity applied to objects colliding with this tile. */
+    get_constant_angular_velocity(layer_id: int64): float64;
+
+    /** Sets the polygons count for TileSet physics layer with index [param layer_id]. */
+    set_collision_polygons_count(layer_id: int64, polygons_count: int64): void;
+
+    /** Returns how many polygons the tile has for TileSet physics layer with index [param layer_id]. */
+    get_collision_polygons_count(layer_id: int64): int64;
+
+    /** Adds a collision polygon to the tile on the given TileSet physics layer. */
+    add_collision_polygon(layer_id: int64): void;
+
+    /** Removes the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
+    remove_collision_polygon(layer_id: int64, polygon_index: int64): void;
+
+    /** Sets the points of the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
+    set_collision_polygon_points(
+      layer_id: int64,
+      polygon_index: int64,
+      polygon: PackedVector2Array | Vector2[],
+    ): void;
+
+    /** Returns the points of the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
+    get_collision_polygon_points(
+      layer_id: int64,
+      polygon_index: int64,
+    ): PackedVector2Array;
+
+    /** Enables/disables one-way collisions on the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
+    set_collision_polygon_one_way(
+      layer_id: int64,
+      polygon_index: int64,
+      one_way: boolean,
+    ): void;
+
+    /** Returns whether one-way collisions are enabled for the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
+    is_collision_polygon_one_way(
+      layer_id: int64,
+      polygon_index: int64,
+    ): boolean;
+
+    /** Sets the one-way margin (for one-way platforms) of the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
+    set_collision_polygon_one_way_margin(
+      layer_id: int64,
+      polygon_index: int64,
+      one_way_margin: float64,
+    ): void;
+
+    /** Returns the one-way margin (for one-way platforms) of the polygon at index [param polygon_index] for TileSet physics layer with index [param layer_id]. */
+    get_collision_polygon_one_way_margin(
+      layer_id: int64,
+      polygon_index: int64,
+    ): float64;
+
+    /** Sets the tile's terrain bit for the given [param peering_bit] direction. To check that a direction is valid, use [method is_valid_terrain_peering_bit]. */
+    set_terrain_peering_bit(
+      peering_bit: TileSet.CellNeighbor,
+      terrain: int64,
+    ): void;
+
+    /** Returns the tile's terrain bit for the given [param peering_bit] direction. To check that a direction is valid, use [method is_valid_terrain_peering_bit]. */
+    get_terrain_peering_bit(peering_bit: TileSet.CellNeighbor): int64;
+
+    /** Returns whether the given [param peering_bit] direction is valid for this tile. */
+    is_valid_terrain_peering_bit(peering_bit: TileSet.CellNeighbor): boolean;
+
+    /** Sets the navigation polygon for the TileSet navigation layer with index [param layer_id]. */
+    set_navigation_polygon(
+      layer_id: int64,
+      navigation_polygon: NavigationPolygon,
+    ): void;
+
+    /** Returns the navigation polygon of the tile for the TileSet navigation layer with index [param layer_id].
+     *  [param flip_h], [param flip_v], and [param transpose] allow transforming the returned polygon.
+     */
+    get_navigation_polygon(
+      layer_id: int64,
+      flip_h?: boolean /* = false */,
+      flip_v?: boolean /* = false */,
+      transpose?: boolean /* = false */,
+    ): null | NavigationPolygon;
+
+    /** Sets the tile's custom data value for the TileSet custom data layer with name [param layer_name]. */
+    set_custom_data(layer_name: string, value: any): void;
+
+    /** Returns the custom data value for custom data layer named [param layer_name]. To check if a custom data layer exists, use [method has_custom_data]. */
+    get_custom_data(layer_name: string): any;
+
+    /** Returns whether there exists a custom data layer named [param layer_name]. */
+    has_custom_data(layer_name: string): boolean;
+
+    /** Sets the tile's custom data value for the TileSet custom data layer with index [param layer_id]. */
+    set_custom_data_by_layer_id(layer_id: int64, value: any): void;
+
+    /** Returns the custom data value for custom data layer with index [param layer_id]. */
+    get_custom_data_by_layer_id(layer_id: int64): any;
+
+    /** If `true`, the tile will have its texture flipped horizontally. */
+    get flip_h(): boolean;
+    set flip_h(value: boolean);
+
+    /** If `true`, the tile will have its texture flipped vertically. */
+    get flip_v(): boolean;
+    set flip_v(value: boolean);
+
+    /** If `true`, the tile will display transposed, i.e. with horizontal and vertical texture UVs swapped. */
+    get transpose(): boolean;
+    set transpose(value: boolean);
+
+    /** Offsets the position of where the tile is drawn. */
+    get texture_origin(): Vector2i;
+    set texture_origin(value: Vector2i);
+
+    /** Color modulation of the tile. */
+    get modulate(): Color;
+    set modulate(value: Color);
+
+    /** The [Material] to use for this [TileData]. This can be a [CanvasItemMaterial] to use the default shader, or a [ShaderMaterial] to use a custom shader. */
+    get material(): null | CanvasItemMaterial | ShaderMaterial;
+    set material(value: null | CanvasItemMaterial | ShaderMaterial);
+
+    /** Ordering index of this tile, relative to [TileMapLayer]. */
+    get z_index(): int64;
+    set z_index(value: int64);
+
+    /** Vertical point of the tile used for determining y-sorted order. */
+    get y_sort_origin(): int64;
+    set y_sort_origin(value: int64);
+
+    /** ID of the terrain set that the tile uses. */
+    get terrain_set(): int64;
+    set terrain_set(value: int64);
+
+    /** ID of the terrain from the terrain set that the tile uses. */
+    get terrain(): int64;
+    set terrain(value: int64);
+
+    /** Relative probability of this tile being selected when drawing a pattern of random tiles. */
+    get probability(): float64;
+    set probability(value: float64);
+
+    /** Emitted when any of the properties are changed. */
+    readonly changed: Signal<() => void>;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTileData;
+  }
+  namespace TileMap {
+    enum VisibilityMode {
+      /** Use the debug settings to determine visibility. */
+      VISIBILITY_MODE_DEFAULT = 0,
+
+      /** Always hide. */
+      VISIBILITY_MODE_FORCE_HIDE = 2,
+
+      /** Always show. */
+      VISIBILITY_MODE_FORCE_SHOW = 1,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTileMap extends __NameMapNode2D {}
+  /** Node for 2D tile-based maps.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_tilemap.html
+   */
+  class TileMap<Map extends NodePathMap = any> extends Node2D<Map> {
+    constructor(identifier?: any);
+    /** Should return `true` if the tile at coordinates [param coords] on layer [param layer] requires a runtime update.
+     *  **Warning:** Make sure this function only return `true` when needed. Any tile processed at runtime without a need for it will imply a significant performance penalty.
+     *
+     *  **Note:** If the result of this function should changed, use [method notify_runtime_tile_data_update] to notify the TileMap it needs an update.
+     */
+    /* gdvirtual */ _use_tile_data_runtime_update(
+      layer: int64,
+      coords: Vector2i,
+    ): boolean;
+
+    /** Called with a TileData object about to be used internally by the TileMap, allowing its modification at runtime.
+     *  This method is only called if [method _use_tile_data_runtime_update] is implemented and returns `true` for the given tile [param coords] and [param layer].
+     *  **Warning:** The [param tile_data] object's sub-resources are the same as the one in the TileSet. Modifying them might impact the whole TileSet. Instead, make sure to duplicate those resources.
+     *
+     *  **Note:** If the properties of [param tile_data] object should change over time, use [method notify_runtime_tile_data_update] to notify the TileMap it needs an update.
+     */
+    /* gdvirtual */ _tile_data_runtime_update(
+      layer: int64,
+      coords: Vector2i,
+      tile_data: TileData,
+    ): void;
+
+    /** Assigns [param map] as a [NavigationServer2D] navigation map for the specified TileMap layer [param layer]. */
+    set_navigation_map(layer: int64, map: RID): void;
+
+    /** Returns the [RID] of the [NavigationServer2D] navigation map assigned to the specified TileMap layer [param layer]. */
+    get_navigation_map(layer: int64): RID;
+
+    /** Forces the TileMap and the layer [param layer] to update. */
+    force_update(layer?: int64 /* = -1 */): void;
+
+    /** Returns the number of layers in the TileMap. */
+    get_layers_count(): int64;
+
+    /** Adds a layer at the given position [param to_position] in the array. If [param to_position] is negative, the position is counted from the end, with `-1` adding the layer at the end of the array. */
+    add_layer(to_position: int64): void;
+
+    /** Moves the layer at index [param layer] to the given position [param to_position] in the array. */
+    move_layer(layer: int64, to_position: int64): void;
+
+    /** Removes the layer at index [param layer]. */
+    remove_layer(layer: int64): void;
+
+    /** Sets a layer's name. This is mostly useful in the editor.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    set_layer_name(layer: int64, name: string): void;
+
+    /** Returns a TileMap layer's name.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    get_layer_name(layer: int64): string;
+
+    /** Enables or disables the layer [param layer]. A disabled layer is not processed at all (no rendering, no physics, etc.).
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    set_layer_enabled(layer: int64, enabled: boolean): void;
+
+    /** Returns if a layer is enabled.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    is_layer_enabled(layer: int64): boolean;
+
+    /** Sets a layer's color. It will be multiplied by tile's color and TileMap's modulate.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    set_layer_modulate(layer: int64, modulate: Color): void;
+
+    /** Returns a TileMap layer's modulate.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    get_layer_modulate(layer: int64): Color;
+
+    /** Enables or disables a layer's Y-sorting. If a layer is Y-sorted, the layer will behave as a CanvasItem node where each of its tile gets Y-sorted.
+     *  Y-sorted layers should usually be on different Z-index values than not Y-sorted layers, otherwise, each of those layer will be Y-sorted as whole with the Y-sorted one. This is usually an undesired behavior.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    set_layer_y_sort_enabled(layer: int64, y_sort_enabled: boolean): void;
+
+    /** Returns if a layer Y-sorts its tiles.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    is_layer_y_sort_enabled(layer: int64): boolean;
+
+    /** Sets a layer's Y-sort origin value. This Y-sort origin value is added to each tile's Y-sort origin value.
+     *  This allows, for example, to fake a different height level on each layer. This can be useful for top-down view games.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    set_layer_y_sort_origin(layer: int64, y_sort_origin: int64): void;
+
+    /** Returns a TileMap layer's Y sort origin.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    get_layer_y_sort_origin(layer: int64): int64;
+
+    /** Sets a layers Z-index value. This Z-index is added to each tile's Z-index value.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    set_layer_z_index(layer: int64, z_index: int64): void;
+
+    /** Returns a TileMap layer's Z-index value.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    get_layer_z_index(layer: int64): int64;
+
+    /** Enables or disables a layer's built-in navigation regions generation. Disable this if you need to bake navigation regions from a TileMap using a [NavigationRegion2D] node. */
+    set_layer_navigation_enabled(layer: int64, enabled: boolean): void;
+
+    /** Returns if a layer's built-in navigation regions generation is enabled. */
+    is_layer_navigation_enabled(layer: int64): boolean;
+
+    /** Assigns [param map] as a [NavigationServer2D] navigation map for the specified TileMap layer [param layer].
+     *  By default the TileMap uses the default [World2D] navigation map for the first TileMap layer. For each additional TileMap layer a new navigation map is created for the additional layer.
+     *  In order to make [NavigationAgent2D] switch between TileMap layer navigation maps use [method NavigationAgent2D.set_navigation_map] with the navigation map received from [method get_layer_navigation_map].
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    set_layer_navigation_map(layer: int64, map: RID): void;
+
+    /** Returns the [RID] of the [NavigationServer2D] navigation map assigned to the specified TileMap layer [param layer].
+     *  By default the TileMap uses the default [World2D] navigation map for the first TileMap layer. For each additional TileMap layer a new navigation map is created for the additional layer.
+     *  In order to make [NavigationAgent2D] switch between TileMap layer navigation maps use [method NavigationAgent2D.set_navigation_map] with the navigation map received from [method get_layer_navigation_map].
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    get_layer_navigation_map(layer: int64): RID;
+
+    /** Sets the tile identifiers for the cell on layer [param layer] at coordinates [param coords]. Each tile of the [TileSet] is identified using three parts:
+     *  - The source identifier [param source_id] identifies a [TileSetSource] identifier. See [method TileSet.set_source_id],
+     *  - The atlas coordinates identifier [param atlas_coords] identifies a tile coordinates in the atlas (if the source is a [TileSetAtlasSource]). For [TileSetScenesCollectionSource] it should always be `Vector2i(0, 0)`),
+     *  - The alternative tile identifier [param alternative_tile] identifies a tile alternative in the atlas (if the source is a [TileSetAtlasSource]), and the scene for a [TileSetScenesCollectionSource].
+     *  If [param source_id] is set to `-1`, [param atlas_coords] to `Vector2i(-1, -1)` or [param alternative_tile] to `-1`, the cell will be erased. An erased cell gets **all** its identifiers automatically set to their respective invalid values, namely `-1`, `Vector2i(-1, -1)` and `-1`.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    set_cell(
+      layer: int64,
+      coords: Vector2i,
+      source_id?: int64 /* = -1 */,
+      atlas_coords?: Vector2i /* = new Vector2i(-1, -1) */,
+      alternative_tile?: int64 /* = 0 */,
+    ): void;
+
+    /** Erases the cell on layer [param layer] at coordinates [param coords].
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    erase_cell(layer: int64, coords: Vector2i): void;
+
+    /** Returns the tile source ID of the cell on layer [param layer] at coordinates [param coords]. Returns `-1` if the cell does not exist.
+     *  If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw source identifier. See [method TileSet.map_tile_proxy].
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    get_cell_source_id(
+      layer: int64,
+      coords: Vector2i,
+      use_proxies?: boolean /* = false */,
+    ): int64;
+
+    /** Returns the tile atlas coordinates ID of the cell on layer [param layer] at coordinates [param coords]. Returns `Vector2i(-1, -1)` if the cell does not exist.
+     *  If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw atlas coordinate identifier. See [method TileSet.map_tile_proxy].
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    get_cell_atlas_coords(
+      layer: int64,
+      coords: Vector2i,
+      use_proxies?: boolean /* = false */,
+    ): Vector2i;
+
+    /** Returns the tile alternative ID of the cell on layer [param layer] at [param coords].
+     *  If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies, returning the raw alternative identifier. See [method TileSet.map_tile_proxy].
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    get_cell_alternative_tile(
+      layer: int64,
+      coords: Vector2i,
+      use_proxies?: boolean /* = false */,
+    ): int64;
+
+    /** Returns the [TileData] object associated with the given cell, or `null` if the cell does not exist or is not a [TileSetAtlasSource].
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     *
+     *  If [param use_proxies] is `false`, ignores the [TileSet]'s tile proxies. See [method TileSet.map_tile_proxy].
+     */
+    get_cell_tile_data(
+      layer: int64,
+      coords: Vector2i,
+      use_proxies?: boolean /* = false */,
+    ): null | TileData;
+
+    /** Returns `true` if the cell on layer [param layer] at coordinates [param coords] is flipped horizontally. The result is valid only for atlas sources. */
+    is_cell_flipped_h(
+      layer: int64,
+      coords: Vector2i,
+      use_proxies?: boolean /* = false */,
+    ): boolean;
+
+    /** Returns `true` if the cell on layer [param layer] at coordinates [param coords] is flipped vertically. The result is valid only for atlas sources. */
+    is_cell_flipped_v(
+      layer: int64,
+      coords: Vector2i,
+      use_proxies?: boolean /* = false */,
+    ): boolean;
+
+    /** Returns `true` if the cell on layer [param layer] at coordinates [param coords] is transposed. The result is valid only for atlas sources. */
+    is_cell_transposed(
+      layer: int64,
+      coords: Vector2i,
+      use_proxies?: boolean /* = false */,
+    ): boolean;
+
+    /** Returns the coordinates of the tile for given physics body RID. Such RID can be retrieved from [method KinematicCollision2D.get_collider_rid], when colliding with a tile. */
+    get_coords_for_body_rid(body: RID): Vector2i;
+
+    /** Returns the tilemap layer of the tile for given physics body RID. Such RID can be retrieved from [method KinematicCollision2D.get_collider_rid], when colliding with a tile. */
+    get_layer_for_body_rid(body: RID): int64;
+
+    /** Creates a new [TileMapPattern] from the given layer and set of cells.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    get_pattern(
+      layer: int64,
+      coords_array: GArray<Vector2i>,
+    ): null | TileMapPattern;
+
+    /** Returns for the given coordinate [param coords_in_pattern] in a [TileMapPattern] the corresponding cell coordinates if the pattern was pasted at the [param position_in_tilemap] coordinates (see [method set_pattern]). This mapping is required as in half-offset tile shapes, the mapping might not work by calculating `position_in_tile_map + coords_in_pattern`. */
+    map_pattern(
+      position_in_tilemap: Vector2i,
+      coords_in_pattern: Vector2i,
+      pattern: TileMapPattern,
+    ): Vector2i;
+
+    /** Paste the given [TileMapPattern] at the given [param position] and [param layer] in the tile map.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    set_pattern(
+      layer: int64,
+      position: Vector2i,
+      pattern: TileMapPattern,
+    ): void;
+
+    /** Update all the cells in the [param cells] coordinates array so that they use the given [param terrain] for the given [param terrain_set]. If an updated cell has the same terrain as one of its neighboring cells, this function tries to join the two. This function might update neighboring tiles if needed to create correct terrain transitions.
+     *  If [param ignore_empty_terrains] is `true`, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     *
+     *  **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
+     */
+    set_cells_terrain_connect(
+      layer: int64,
+      cells: GArray<Vector2i>,
+      terrain_set: int64,
+      terrain: int64,
+      ignore_empty_terrains?: boolean /* = true */,
+    ): void;
+
+    /** Update all the cells in the [param path] coordinates array so that they use the given [param terrain] for the given [param terrain_set]. The function will also connect two successive cell in the path with the same terrain. This function might update neighboring tiles if needed to create correct terrain transitions.
+     *  If [param ignore_empty_terrains] is `true`, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     *
+     *  **Note:** To work correctly, this method requires the TileMap's TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
+     */
+    set_cells_terrain_path(
+      layer: int64,
+      path: GArray<Vector2i>,
+      terrain_set: int64,
+      terrain: int64,
+      ignore_empty_terrains?: boolean /* = true */,
+    ): void;
+
+    /** Clears cells that do not exist in the tileset. */
+    fix_invalid_tiles(): void;
+
+    /** Clears all cells on the given layer.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    clear_layer(layer: int64): void;
+
+    /** Clears all cells. */
+    clear(): void;
+
+    /** Triggers a direct update of the TileMap. Usually, calling this function is not needed, as TileMap node updates automatically when one of its properties or cells is modified.
+     *  However, for performance reasons, those updates are batched and delayed to the end of the frame. Calling this function will force the TileMap to update right away instead.
+     *  **Warning:** Updating the TileMap is computationally expensive and may impact performance. Try to limit the number of updates and how many tiles they impact.
+     */
+    update_internals(): void;
+
+    /** Notifies the TileMap node that calls to [method _use_tile_data_runtime_update] or [method _tile_data_runtime_update] will lead to different results. This will thus trigger a TileMap update.
+     *  If [param layer] is provided, only notifies changes for the given layer. Providing the [param layer] argument (when applicable) is usually preferred for performance reasons.
+     *  **Warning:** Updating the TileMap is computationally expensive and may impact performance. Try to limit the number of calls to this function to avoid unnecessary update.
+     *
+     *  **Note:** This does not trigger a direct update of the TileMap, the update will be done at the end of the frame as usual (unless you call [method update_internals]).
+     */
+    notify_runtime_tile_data_update(layer?: int64 /* = -1 */): void;
+
+    /** Returns the list of all neighbourings cells to the one at [param coords]. */
+    get_surrounding_cells(coords: Vector2i): GArray<Vector2i>;
+
+    /** Returns a [Vector2i] array with the positions of all cells containing a tile in the given layer. A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    get_used_cells(layer: int64): GArray<Vector2i>;
+
+    /** Returns a [Vector2i] array with the positions of all cells containing a tile in the given layer. Tiles may be filtered according to their source ([param source_id]), their atlas coordinates ([param atlas_coords]) or alternative id ([param alternative_tile]).
+     *  If a parameter has its value set to the default one, this parameter is not used to filter a cell. Thus, if all parameters have their respective default value, this method returns the same result as [method get_used_cells].
+     *  A cell is considered empty if its source identifier equals -1, its atlas coordinates identifiers is `Vector2(-1, -1)` and its alternative identifier is -1.
+     *  If [param layer] is negative, the layers are accessed from the last one.
+     */
+    get_used_cells_by_id(
+      layer: int64,
+      source_id?: int64 /* = -1 */,
+      atlas_coords?: Vector2i /* = new Vector2i(-1, -1) */,
+      alternative_tile?: int64 /* = -1 */,
+    ): GArray<Vector2i>;
+
+    /** Returns a rectangle enclosing the used (non-empty) tiles of the map, including all layers. */
+    get_used_rect(): Rect2i;
+
+    /** Returns the centered position of a cell in the TileMap's local coordinate space. To convert the returned value into global coordinates, use [method Node2D.to_global]. See also [method local_to_map].
+     *
+     *  **Note:** This may not correspond to the visual position of the tile, i.e. it ignores the [member TileData.texture_origin] property of individual tiles.
+     */
+    map_to_local(map_position: Vector2i): Vector2;
+
+    /** Returns the map coordinates of the cell containing the given [param local_position]. If [param local_position] is in global coordinates, consider using [method Node2D.to_local] before passing it to this method. See also [method map_to_local]. */
+    local_to_map(local_position: Vector2): Vector2i;
+
+    /** Returns the neighboring cell to the one at coordinates [param coords], identified by the [param neighbor] direction. This method takes into account the different layouts a TileMap can take. */
+    get_neighbor_cell(
+      coords: Vector2i,
+      neighbor: TileSet.CellNeighbor,
+    ): Vector2i;
+
+    /** The [TileSet] used by this [TileMap]. The textures, collisions, and additional behavior of all available tiles are stored here. */
+    get tile_set(): null | TileSet;
+    set tile_set(value: null | TileSet);
+
+    /** The TileMap's quadrant size. A quadrant is a group of tiles to be drawn together on a single canvas item, for optimization purposes. [member rendering_quadrant_size] defines the length of a square's side, in the map's coordinate system, that forms the quadrant. Thus, the default quadrant size groups together `16 * 16 = 256` tiles.
+     *  The quadrant size does not apply on Y-sorted layers, as tiles are grouped by Y position instead in that case.
+     *
+     *  **Note:** As quadrants are created according to the map's coordinate system, the quadrant's "square shape" might not look like square in the TileMap's local coordinate system.
+     */
+    get rendering_quadrant_size(): int64;
+    set rendering_quadrant_size(value: int64);
+
+    /** If enabled, the TileMap will see its collisions synced to the physics tick and change its collision type from static to kinematic. This is required to create TileMap-based moving platform.
+     *
+     *  **Note:** Enabling [member collision_animatable] may have a small performance impact, only do it if the TileMap is moving and has colliding tiles.
+     */
+    get collision_animatable(): boolean;
+    set collision_animatable(value: boolean);
+
+    /** Show or hide the TileMap's collision shapes. If set to [constant VISIBILITY_MODE_DEFAULT], this depends on the show collision debug settings. */
+    get collision_visibility_mode(): int64;
+    set collision_visibility_mode(value: int64);
+
+    /** Show or hide the TileMap's navigation meshes. If set to [constant VISIBILITY_MODE_DEFAULT], this depends on the show navigation debug settings. */
+    get navigation_visibility_mode(): int64;
+    set navigation_visibility_mode(value: int64);
+
+    /** Emitted when the [TileSet] of this TileMap changes. */
+    readonly changed: Signal<() => void>;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTileMap;
+  }
+  namespace TileMapLayer {
+    enum DebugVisibilityMode {
+      /** Hide the collisions or navigation debug shapes in the editor, and use the debug settings to determine their visibility in game (i.e. [member SceneTree.debug_collisions_hint] or [member SceneTree.debug_navigation_hint]). */
+      DEBUG_VISIBILITY_MODE_DEFAULT = 0,
+
+      /** Always hide the collisions or navigation debug shapes. */
+      DEBUG_VISIBILITY_MODE_FORCE_HIDE = 2,
+
+      /** Always show the collisions or navigation debug shapes. */
+      DEBUG_VISIBILITY_MODE_FORCE_SHOW = 1,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTileMapLayer extends __NameMapNode2D {}
+  /** Node for 2D tile-based maps.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_tilemaplayer.html
+   */
+  class TileMapLayer<Map extends NodePathMap = any> extends Node2D<Map> {
+    constructor(identifier?: any);
+    /** Should return `true` if the tile at coordinates [param coords] requires a runtime update.
+     *  **Warning:** Make sure this function only returns `true` when needed. Any tile processed at runtime without a need for it will imply a significant performance penalty.
+     *
+     *  **Note:** If the result of this function should change, use [method notify_runtime_tile_data_update] to notify the [TileMapLayer] it needs an update.
+     */
+    /* gdvirtual */ _use_tile_data_runtime_update(coords: Vector2i): boolean;
+
+    /** Called with a [TileData] object about to be used internally by the [TileMapLayer], allowing its modification at runtime.
+     *  This method is only called if [method _use_tile_data_runtime_update] is implemented and returns `true` for the given tile [param coords].
+     *  **Warning:** The [param tile_data] object's sub-resources are the same as the one in the TileSet. Modifying them might impact the whole TileSet. Instead, make sure to duplicate those resources.
+     *
+     *  **Note:** If the properties of [param tile_data] object should change over time, use [method notify_runtime_tile_data_update] to notify the [TileMapLayer] it needs an update.
+     */
+    /* gdvirtual */ _tile_data_runtime_update(
+      coords: Vector2i,
+      tile_data: TileData,
+    ): void;
+
+    /** Called when this [TileMapLayer]'s cells need an internal update. This update may be caused from individual cells being modified or by a change in the [member tile_set] (causing all cells to be queued for an update). The first call to this function is always for initializing all the [TileMapLayer]'s cells. [param coords] contains the coordinates of all modified cells, roughly in the order they were modified. [param forced_cleanup] is `true` when the [TileMapLayer]'s internals should be fully cleaned up. This is the case when:
+     *  - The layer is disabled;
+     *  - The layer is not visible;
+     *  - [member tile_set] is set to `null`;
+     *  - The node is removed from the tree;
+     *  - The node is freed.
+     *  Note that any internal update happening while one of these conditions is verified is considered to be a "cleanup". See also [method update_internals].
+     *  **Warning:** Implementing this method may degrade the [TileMapLayer]'s performance.
+     */
+    /* gdvirtual */ _update_cells(
+      coords: GArray<Vector2i>,
+      forced_cleanup: boolean,
+    ): void;
+
+    /** Sets the tile identifiers for the cell at coordinates [param coords]. Each tile of the [TileSet] is identified using three parts:
+     *  - The source identifier [param source_id] identifies a [TileSetSource] identifier. See [method TileSet.set_source_id],
+     *  - The atlas coordinate identifier [param atlas_coords] identifies a tile coordinates in the atlas (if the source is a [TileSetAtlasSource]). For [TileSetScenesCollectionSource] it should always be `Vector2i(0, 0)`,
+     *  - The alternative tile identifier [param alternative_tile] identifies a tile alternative in the atlas (if the source is a [TileSetAtlasSource]), and the scene for a [TileSetScenesCollectionSource].
+     *  If [param source_id] is set to `-1`, [param atlas_coords] to `Vector2i(-1, -1)`, or [param alternative_tile] to `-1`, the cell will be erased. An erased cell gets **all** its identifiers automatically set to their respective invalid values, namely `-1`, `Vector2i(-1, -1)` and `-1`.
+     */
+    set_cell(
+      coords: Vector2i,
+      source_id?: int64 /* = -1 */,
+      atlas_coords?: Vector2i /* = new Vector2i(-1, -1) */,
+      alternative_tile?: int64 /* = 0 */,
+    ): void;
+
+    /** Erases the cell at coordinates [param coords]. */
+    erase_cell(coords: Vector2i): void;
+
+    /** Clears cells containing tiles that do not exist in the [member tile_set]. */
+    fix_invalid_tiles(): void;
+
+    /** Clears all cells. */
+    clear(): void;
+
+    /** Returns the tile source ID of the cell at coordinates [param coords]. Returns `-1` if the cell does not exist. */
+    get_cell_source_id(coords: Vector2i): int64;
+
+    /** Returns the tile atlas coordinates ID of the cell at coordinates [param coords]. Returns `Vector2i(-1, -1)` if the cell does not exist. */
+    get_cell_atlas_coords(coords: Vector2i): Vector2i;
+
+    /** Returns the tile alternative ID of the cell at coordinates [param coords]. */
+    get_cell_alternative_tile(coords: Vector2i): int64;
+
+    /** Returns the [TileData] object associated with the given cell, or `null` if the cell does not exist or is not a [TileSetAtlasSource].
+     *
+     */
+    get_cell_tile_data(coords: Vector2i): null | TileData;
+
+    /** Returns `true` if the cell at coordinates [param coords] is flipped horizontally. The result is valid only for atlas sources. */
+    is_cell_flipped_h(coords: Vector2i): boolean;
+
+    /** Returns `true` if the cell at coordinates [param coords] is flipped vertically. The result is valid only for atlas sources. */
+    is_cell_flipped_v(coords: Vector2i): boolean;
+
+    /** Returns `true` if the cell at coordinates [param coords] is transposed. The result is valid only for atlas sources. */
+    is_cell_transposed(coords: Vector2i): boolean;
+
+    /** Returns a [Vector2i] array with the positions of all cells containing a tile. A cell is considered empty if its source identifier equals `-1`, its atlas coordinate identifier is `Vector2(-1, -1)` and its alternative identifier is `-1`. */
+    get_used_cells(): GArray<Vector2i>;
+
+    /** Returns a [Vector2i] array with the positions of all cells containing a tile. Tiles may be filtered according to their source ([param source_id]), their atlas coordinates ([param atlas_coords]), or alternative id ([param alternative_tile]).
+     *  If a parameter has its value set to the default one, this parameter is not used to filter a cell. Thus, if all parameters have their respective default values, this method returns the same result as [method get_used_cells].
+     *  A cell is considered empty if its source identifier equals `-1`, its atlas coordinate identifier is `Vector2(-1, -1)` and its alternative identifier is `-1`.
+     */
+    get_used_cells_by_id(
+      source_id?: int64 /* = -1 */,
+      atlas_coords?: Vector2i /* = new Vector2i(-1, -1) */,
+      alternative_tile?: int64 /* = -1 */,
+    ): GArray<Vector2i>;
+
+    /** Returns a rectangle enclosing the used (non-empty) tiles of the map. */
+    get_used_rect(): Rect2i;
+
+    /** Creates and returns a new [TileMapPattern] from the given array of cells. See also [method set_pattern]. */
+    get_pattern(coords_array: GArray<Vector2i>): null | TileMapPattern;
+
+    /** Pastes the [TileMapPattern] at the given [param position] in the tile map. See also [method get_pattern]. */
+    set_pattern(position: Vector2i, pattern: TileMapPattern): void;
+
+    /** Update all the cells in the [param cells] coordinates array so that they use the given [param terrain] for the given [param terrain_set]. If an updated cell has the same terrain as one of its neighboring cells, this function tries to join the two. This function might update neighboring tiles if needed to create correct terrain transitions.
+     *  If [param ignore_empty_terrains] is `true`, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.
+     *
+     *  **Note:** To work correctly, this method requires the [TileMapLayer]'s TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
+     */
+    set_cells_terrain_connect(
+      cells: GArray<Vector2i>,
+      terrain_set: int64,
+      terrain: int64,
+      ignore_empty_terrains?: boolean /* = true */,
+    ): void;
+
+    /** Update all the cells in the [param path] coordinates array so that they use the given [param terrain] for the given [param terrain_set]. The function will also connect two successive cell in the path with the same terrain. This function might update neighboring tiles if needed to create correct terrain transitions.
+     *  If [param ignore_empty_terrains] is `true`, empty terrains will be ignored when trying to find the best fitting tile for the given terrain constraints.
+     *
+     *  **Note:** To work correctly, this method requires the [TileMapLayer]'s TileSet to have terrains set up with all required terrain combinations. Otherwise, it may produce unexpected results.
+     */
+    set_cells_terrain_path(
+      path: GArray<Vector2i>,
+      terrain_set: int64,
+      terrain: int64,
+      ignore_empty_terrains?: boolean /* = true */,
+    ): void;
+
+    /** Returns whether the provided [param body] [RID] belongs to one of this [TileMapLayer]'s cells. */
+    has_body_rid(body: RID): boolean;
+
+    /** Returns the coordinates of the physics quadrant (see [member physics_quadrant_size]) for given physics body [RID]. Such an [RID] can be retrieved from [method KinematicCollision2D.get_collider_rid], when colliding with a tile. */
+    get_coords_for_body_rid(body: RID): Vector2i;
+
+    /** Triggers a direct update of the [TileMapLayer]. Usually, calling this function is not needed, as [TileMapLayer] node updates automatically when one of its properties or cells is modified.
+     *  However, for performance reasons, those updates are batched and delayed to the end of the frame. Calling this function will force the [TileMapLayer] to update right away instead.
+     *  **Warning:** Updating the [TileMapLayer] is computationally expensive and may impact performance. Try to limit the number of updates and how many tiles they impact.
+     */
+    update_internals(): void;
+
+    /** Notifies the [TileMapLayer] node that calls to [method _use_tile_data_runtime_update] or [method _tile_data_runtime_update] will lead to different results. This will thus trigger a [TileMapLayer] update.
+     *  **Warning:** Updating the [TileMapLayer] is computationally expensive and may impact performance. Try to limit the number of calls to this function to avoid unnecessary update.
+     *
+     *  **Note:** This does not trigger a direct update of the [TileMapLayer], the update will be done at the end of the frame as usual (unless you call [method update_internals]).
+     */
+    notify_runtime_tile_data_update(): void;
+
+    /** Returns for the given coordinates [param coords_in_pattern] in a [TileMapPattern] the corresponding cell coordinates if the pattern was pasted at the [param position_in_tilemap] coordinates (see [method set_pattern]). This mapping is required as in half-offset tile shapes, the mapping might not work by calculating `position_in_tile_map + coords_in_pattern`. */
+    map_pattern(
+      position_in_tilemap: Vector2i,
+      coords_in_pattern: Vector2i,
+      pattern: TileMapPattern,
+    ): Vector2i;
+
+    /** Returns the list of all neighboring cells to the one at [param coords]. Any neighboring cell is one that is touching edges, so for a square cell 4 cells would be returned, for a hexagon 6 cells are returned. */
+    get_surrounding_cells(coords: Vector2i): GArray<Vector2i>;
+
+    /** Returns the neighboring cell to the one at coordinates [param coords], identified by the [param neighbor] direction. This method takes into account the different layouts a TileMap can take. */
+    get_neighbor_cell(
+      coords: Vector2i,
+      neighbor: TileSet.CellNeighbor,
+    ): Vector2i;
+
+    /** Returns the centered position of a cell in the [TileMapLayer]'s local coordinate space. To convert the returned value into global coordinates, use [method Node2D.to_global]. See also [method local_to_map].
+     *
+     *  **Note:** This may not correspond to the visual position of the tile, i.e. it ignores the [member TileData.texture_origin] property of individual tiles.
+     */
+    map_to_local(map_position: Vector2i): Vector2;
+
+    /** Returns the map coordinates of the cell containing the given [param local_position]. If [param local_position] is in global coordinates, consider using [method Node2D.to_local] before passing it to this method. See also [method map_to_local]. */
+    local_to_map(local_position: Vector2): Vector2i;
+
+    /** Sets a custom [param map] as a [NavigationServer2D] navigation map. If not set, uses the default [World2D] navigation map instead. */
+    set_navigation_map(map: RID): void;
+
+    /** Returns the [RID] of the [NavigationServer2D] navigation used by this [TileMapLayer].
+     *  By default this returns the default [World2D] navigation map, unless a custom map was provided using [method set_navigation_map].
+     */
+    get_navigation_map(): RID;
+
+    /** The raw tile map data as a byte array. */
+    get tile_map_data(): PackedByteArray;
+    set tile_map_data(value: PackedByteArray | byte[] | ArrayBuffer);
+
+    /** If `false`, disables this [TileMapLayer] completely (rendering, collision, navigation, scene tiles, etc.) */
+    get enabled(): boolean;
+    set enabled(value: boolean);
+
+    /** The [TileSet] used by this layer. The textures, collisions, and additional behavior of all available tiles are stored here. */
+    get tile_set(): null | TileSet;
+    set tile_set(value: null | TileSet);
+
+    /** Enable or disable light occlusion. */
+    get occlusion_enabled(): boolean;
+    set occlusion_enabled(value: boolean);
+
+    /** This Y-sort origin value is added to each tile's Y-sort origin value. This allows, for example, to fake a different height level. This can be useful for top-down view games. */
+    get y_sort_origin(): int64;
+    set y_sort_origin(value: int64);
+
+    /** If [member CanvasItem.y_sort_enabled] is enabled, setting this to `true` will reverse the order the tiles are drawn on the X-axis. */
+    get x_draw_order_reversed(): boolean;
+    set x_draw_order_reversed(value: boolean);
+
+    /** The [TileMapLayer]'s rendering quadrant size. A quadrant is a group of tiles to be drawn together on a single canvas item, for optimization purposes. [member rendering_quadrant_size] defines the length of a square's side, in the map's coordinate system, that forms the quadrant. Thus, the default quadrant size groups together `16 * 16 = 256` tiles.
+     *  The quadrant size does not apply on a Y-sorted [TileMapLayer], as tiles are grouped by Y position instead in that case.
+     *
+     *  **Note:** As quadrants are created according to the map's coordinate system, the quadrant's "square shape" might not look like square in the [TileMapLayer]'s local coordinate system.
+     */
+    get rendering_quadrant_size(): int64;
+    set rendering_quadrant_size(value: int64);
+
+    /** Enable or disable collisions. */
+    get collision_enabled(): boolean;
+    set collision_enabled(value: boolean);
+
+    /** If `true`, this [TileMapLayer] collision shapes will be instantiated as kinematic bodies. This can be needed for moving [TileMapLayer] nodes (i.e. moving platforms). */
+    get use_kinematic_bodies(): boolean;
+    set use_kinematic_bodies(value: boolean);
+
+    /** Show or hide the [TileMapLayer]'s collision shapes. If set to [constant DEBUG_VISIBILITY_MODE_DEFAULT], this depends on the show collision debug settings. */
+    get collision_visibility_mode(): int64;
+    set collision_visibility_mode(value: int64);
+
+    /** The [TileMapLayer]'s physics quadrant size. Within a physics quadrant, cells with similar physics properties are grouped together and their collision shapes get merged. [member physics_quadrant_size] defines the length of a square's side, in the map's coordinate system, that forms the quadrant. Thus, the default quadrant size groups together `16 * 16 = 256` tiles.
+     *
+     *  **Note:** As quadrants are created according to the map's coordinate system, the quadrant's "square shape" might not look like square in the [TileMapLayer]'s local coordinate system.
+     *
+     *  **Note:** This impacts the value returned by [method get_coords_for_body_rid].
+     */
+    get physics_quadrant_size(): int64;
+    set physics_quadrant_size(value: int64);
+
+    /** If `true`, navigation regions are enabled. */
+    get navigation_enabled(): boolean;
+    set navigation_enabled(value: boolean);
+
+    /** Show or hide the [TileMapLayer]'s navigation meshes. If set to [constant DEBUG_VISIBILITY_MODE_DEFAULT], this depends on the show navigation debug settings. */
+    get navigation_visibility_mode(): int64;
+    set navigation_visibility_mode(value: int64);
+
+    /** Emitted when this [TileMapLayer]'s properties changes. This includes modified cells, properties, or changes made to its assigned [TileSet].
+     *
+     *  **Note:** This signal may be emitted very often when batch-modifying a [TileMapLayer]. Avoid executing complex processing in a connected function, and consider delaying it to the end of the frame instead (i.e. calling [method Object.call_deferred]).
+     */
+    readonly changed: Signal<() => void>;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTileMapLayer;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTileMapPattern extends __NameMapResource {}
+  /** Holds a pattern to be copied from or pasted into [TileMap]s.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_tilemappattern.html
+   */
+  class TileMapPattern extends Resource {
+    constructor(identifier?: any);
+    /** Sets the tile identifiers for the cell at coordinates [param coords]. See [method TileMap.set_cell]. */
+    set_cell(
+      coords: Vector2i,
+      source_id?: int64 /* = -1 */,
+      atlas_coords?: Vector2i /* = new Vector2i(-1, -1) */,
+      alternative_tile?: int64 /* = -1 */,
+    ): void;
+
+    /** Returns whether the pattern has a tile at the given coordinates. */
+    has_cell(coords: Vector2i): boolean;
+
+    /** Remove the cell at the given coordinates. */
+    remove_cell(coords: Vector2i, update_size: boolean): void;
+
+    /** Returns the tile source ID of the cell at [param coords]. */
+    get_cell_source_id(coords: Vector2i): int64;
+
+    /** Returns the tile atlas coordinates ID of the cell at [param coords]. */
+    get_cell_atlas_coords(coords: Vector2i): Vector2i;
+
+    /** Returns the tile alternative ID of the cell at [param coords]. */
+    get_cell_alternative_tile(coords: Vector2i): int64;
+
+    /** Returns the list of used cell coordinates in the pattern. */
+    get_used_cells(): GArray<Vector2i>;
+
+    /** Returns the size, in cells, of the pattern. */
+    get_size(): Vector2i;
+
+    /** Sets the size of the pattern. */
+    set_size(size: Vector2i): void;
+
+    /** Returns whether the pattern is empty or not. */
+    is_empty(): boolean;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTileMapPattern;
+  }
+  namespace TileSet {
+    enum TileShape {
+      /** Rectangular tile shape. */
+      TILE_SHAPE_SQUARE = 0,
+
+      /** Diamond tile shape (for isometric look).
+       *
+       *  **Note:** Isometric [TileSet] works best if all sibling [TileMapLayer]s and their parent inheriting from [Node2D] have Y-sort enabled.
+       */
+      TILE_SHAPE_ISOMETRIC = 1,
+
+      /** Rectangular tile shape with one row/column out of two offset by half a tile. */
+      TILE_SHAPE_HALF_OFFSET_SQUARE = 2,
+
+      /** Hexagonal tile shape. */
+      TILE_SHAPE_HEXAGON = 3,
+    }
+    enum TileLayout {
+      /** Tile coordinates layout where both axis stay consistent with their respective local horizontal and vertical axis. */
+      TILE_LAYOUT_STACKED = 0,
+
+      /** Same as [constant TILE_LAYOUT_STACKED], but the first half-offset is negative instead of positive. */
+      TILE_LAYOUT_STACKED_OFFSET = 1,
+
+      /** Tile coordinates layout where the horizontal axis stay horizontal, and the vertical one goes down-right. */
+      TILE_LAYOUT_STAIRS_RIGHT = 2,
+
+      /** Tile coordinates layout where the vertical axis stay vertical, and the horizontal one goes down-right. */
+      TILE_LAYOUT_STAIRS_DOWN = 3,
+
+      /** Tile coordinates layout where the horizontal axis goes up-right, and the vertical one goes down-right. */
+      TILE_LAYOUT_DIAMOND_RIGHT = 4,
+
+      /** Tile coordinates layout where the horizontal axis goes down-right, and the vertical one goes down-left. */
+      TILE_LAYOUT_DIAMOND_DOWN = 5,
+    }
+    enum TileOffsetAxis {
+      /** Horizontal half-offset. */
+      TILE_OFFSET_AXIS_HORIZONTAL = 0,
+
+      /** Vertical half-offset. */
+      TILE_OFFSET_AXIS_VERTICAL = 1,
+    }
+    enum CellNeighbor {
+      /** Neighbor on the right side. */
+      CELL_NEIGHBOR_RIGHT_SIDE = 0,
+
+      /** Neighbor in the right corner. */
+      CELL_NEIGHBOR_RIGHT_CORNER = 1,
+
+      /** Neighbor on the bottom right side. */
+      CELL_NEIGHBOR_BOTTOM_RIGHT_SIDE = 2,
+
+      /** Neighbor in the bottom right corner. */
+      CELL_NEIGHBOR_BOTTOM_RIGHT_CORNER = 3,
+
+      /** Neighbor on the bottom side. */
+      CELL_NEIGHBOR_BOTTOM_SIDE = 4,
+
+      /** Neighbor in the bottom corner. */
+      CELL_NEIGHBOR_BOTTOM_CORNER = 5,
+
+      /** Neighbor on the bottom left side. */
+      CELL_NEIGHBOR_BOTTOM_LEFT_SIDE = 6,
+
+      /** Neighbor in the bottom left corner. */
+      CELL_NEIGHBOR_BOTTOM_LEFT_CORNER = 7,
+
+      /** Neighbor on the left side. */
+      CELL_NEIGHBOR_LEFT_SIDE = 8,
+
+      /** Neighbor in the left corner. */
+      CELL_NEIGHBOR_LEFT_CORNER = 9,
+
+      /** Neighbor on the top left side. */
+      CELL_NEIGHBOR_TOP_LEFT_SIDE = 10,
+
+      /** Neighbor in the top left corner. */
+      CELL_NEIGHBOR_TOP_LEFT_CORNER = 11,
+
+      /** Neighbor on the top side. */
+      CELL_NEIGHBOR_TOP_SIDE = 12,
+
+      /** Neighbor in the top corner. */
+      CELL_NEIGHBOR_TOP_CORNER = 13,
+
+      /** Neighbor on the top right side. */
+      CELL_NEIGHBOR_TOP_RIGHT_SIDE = 14,
+
+      /** Neighbor in the top right corner. */
+      CELL_NEIGHBOR_TOP_RIGHT_CORNER = 15,
+    }
+    enum TerrainMode {
+      /** Requires both corners and side to match with neighboring tiles' terrains. */
+      TERRAIN_MODE_MATCH_CORNERS_AND_SIDES = 0,
+
+      /** Requires corners to match with neighboring tiles' terrains. */
+      TERRAIN_MODE_MATCH_CORNERS = 1,
+
+      /** Requires sides to match with neighboring tiles' terrains. */
+      TERRAIN_MODE_MATCH_SIDES = 2,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTileSet extends __NameMapResource {}
+  /** Tile library for tilemaps.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_tileset.html
+   */
+  class TileSet extends Resource {
+    constructor(identifier?: any);
+    /** Returns a new unused source ID. This generated ID is the same that a call to [method add_source] would return. */
+    get_next_source_id(): int64;
+
+    /** Adds a [TileSetSource] to the TileSet. If [param atlas_source_id_override] is not -1, also set its source ID. Otherwise, a unique identifier is automatically generated.
+     *  The function returns the added source ID or -1 if the source could not be added.
+     *  **Warning:** A source cannot belong to two TileSets at the same time. If the added source was attached to another [TileSet], it will be removed from that one.
+     */
+    add_source(
+      source: TileSetSource,
+      atlas_source_id_override?: int64 /* = -1 */,
+    ): int64;
+
+    /** Removes the source with the given source ID. */
+    remove_source(source_id: int64): void;
+
+    /** Changes a source's ID. */
+    set_source_id(source_id: int64, new_source_id: int64): void;
+
+    /** Returns the number of [TileSetSource] in this TileSet. */
+    get_source_count(): int64;
+
+    /** Returns the source ID for source with index [param index]. */
+    get_source_id(index: int64): int64;
+
+    /** Returns if this TileSet has a source for the given source ID. */
+    has_source(source_id: int64): boolean;
+
+    /** Returns the [TileSetSource] with ID [param source_id]. */
+    get_source(source_id: int64): null | TileSetSource;
+
+    /** Returns the occlusion layers count. */
+    get_occlusion_layers_count(): int64;
+
+    /** Adds an occlusion layer to the TileSet at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array.
+     *  Occlusion layers allow assigning occlusion polygons to atlas tiles.
+     */
+    add_occlusion_layer(to_position?: int64 /* = -1 */): void;
+
+    /** Moves the occlusion layer at index [param layer_index] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
+    move_occlusion_layer(layer_index: int64, to_position: int64): void;
+
+    /** Removes the occlusion layer at index [param layer_index]. Also updates the atlas tiles accordingly. */
+    remove_occlusion_layer(layer_index: int64): void;
+
+    /** Sets the occlusion layer (as in the rendering server) for occluders in the given TileSet occlusion layer. */
+    set_occlusion_layer_light_mask(layer_index: int64, light_mask: int64): void;
+
+    /** Returns the light mask of the occlusion layer. */
+    get_occlusion_layer_light_mask(layer_index: int64): int64;
+
+    /** Enables or disables SDF collision for occluders in the given TileSet occlusion layer. */
+    set_occlusion_layer_sdf_collision(
+      layer_index: int64,
+      sdf_collision: boolean,
+    ): void;
+
+    /** Returns if the occluders from this layer use `sdf_collision`. */
+    get_occlusion_layer_sdf_collision(layer_index: int64): boolean;
+
+    /** Returns the physics layers count. */
+    get_physics_layers_count(): int64;
+
+    /** Adds a physics layer to the TileSet at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array.
+     *  Physics layers allow assigning collision polygons to atlas tiles.
+     */
+    add_physics_layer(to_position?: int64 /* = -1 */): void;
+
+    /** Moves the physics layer at index [param layer_index] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
+    move_physics_layer(layer_index: int64, to_position: int64): void;
+
+    /** Removes the physics layer at index [param layer_index]. Also updates the atlas tiles accordingly. */
+    remove_physics_layer(layer_index: int64): void;
+
+    /** Sets the collision layer (as in the physics server) for bodies in the given TileSet physics layer. */
+    set_physics_layer_collision_layer(layer_index: int64, layer: int64): void;
+
+    /** Returns the collision layer (as in the physics server) bodies on the given TileSet's physics layer are in. */
+    get_physics_layer_collision_layer(layer_index: int64): int64;
+
+    /** Sets the collision mask for bodies in the given TileSet physics layer. */
+    set_physics_layer_collision_mask(layer_index: int64, mask: int64): void;
+
+    /** Returns the collision mask of bodies on the given TileSet's physics layer. */
+    get_physics_layer_collision_mask(layer_index: int64): int64;
+
+    /** Sets the collision priority for bodies in the given TileSet physics layer. */
+    set_physics_layer_collision_priority(
+      layer_index: int64,
+      priority: float64,
+    ): void;
+
+    /** Returns the collision priority of bodies on the given TileSet's physics layer. */
+    get_physics_layer_collision_priority(layer_index: int64): float64;
+
+    /** Sets the physics material for bodies in the given TileSet physics layer. */
+    set_physics_layer_physics_material(
+      layer_index: int64,
+      physics_material: PhysicsMaterial,
+    ): void;
+
+    /** Returns the physics material of bodies on the given TileSet's physics layer. */
+    get_physics_layer_physics_material(
+      layer_index: int64,
+    ): null | PhysicsMaterial;
+
+    /** Returns the terrain sets count. */
+    get_terrain_sets_count(): int64;
+
+    /** Adds a new terrain set at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array. */
+    add_terrain_set(to_position?: int64 /* = -1 */): void;
+
+    /** Moves the terrain set at index [param terrain_set] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
+    move_terrain_set(terrain_set: int64, to_position: int64): void;
+
+    /** Removes the terrain set at index [param terrain_set]. Also updates the atlas tiles accordingly. */
+    remove_terrain_set(terrain_set: int64): void;
+
+    /** Sets a terrain mode. Each mode determines which bits of a tile shape is used to match the neighboring tiles' terrains. */
+    set_terrain_set_mode(terrain_set: int64, mode: TileSet.TerrainMode): void;
+
+    /** Returns a terrain set mode. */
+    get_terrain_set_mode(terrain_set: int64): TileSet.TerrainMode;
+
+    /** Returns the number of terrains in the given terrain set. */
+    get_terrains_count(terrain_set: int64): int64;
+
+    /** Adds a new terrain to the given terrain set [param terrain_set] at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array. */
+    add_terrain(terrain_set: int64, to_position?: int64 /* = -1 */): void;
+
+    /** Moves the terrain at index [param terrain_index] for terrain set [param terrain_set] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
+    move_terrain(
+      terrain_set: int64,
+      terrain_index: int64,
+      to_position: int64,
+    ): void;
+
+    /** Removes the terrain at index [param terrain_index] in the given terrain set [param terrain_set]. Also updates the atlas tiles accordingly. */
+    remove_terrain(terrain_set: int64, terrain_index: int64): void;
+
+    /** Sets a terrain's name. */
+    set_terrain_name(
+      terrain_set: int64,
+      terrain_index: int64,
+      name: string,
+    ): void;
+
+    /** Returns a terrain's name. */
+    get_terrain_name(terrain_set: int64, terrain_index: int64): string;
+
+    /** Sets a terrain's color. This color is used for identifying the different terrains in the TileSet editor. */
+    set_terrain_color(
+      terrain_set: int64,
+      terrain_index: int64,
+      color: Color,
+    ): void;
+
+    /** Returns a terrain's color. */
+    get_terrain_color(terrain_set: int64, terrain_index: int64): Color;
+
+    /** Returns the navigation layers count. */
+    get_navigation_layers_count(): int64;
+
+    /** Adds a navigation layer to the TileSet at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array.
+     *  Navigation layers allow assigning a navigable area to atlas tiles.
+     */
+    add_navigation_layer(to_position?: int64 /* = -1 */): void;
+
+    /** Moves the navigation layer at index [param layer_index] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
+    move_navigation_layer(layer_index: int64, to_position: int64): void;
+
+    /** Removes the navigation layer at index [param layer_index]. Also updates the atlas tiles accordingly. */
+    remove_navigation_layer(layer_index: int64): void;
+
+    /** Sets the navigation layers (as in the navigation server) for navigation regions in the given TileSet navigation layer. */
+    set_navigation_layer_layers(layer_index: int64, layers: int64): void;
+
+    /** Returns the navigation layers (as in the Navigation server) of the given TileSet navigation layer. */
+    get_navigation_layer_layers(layer_index: int64): int64;
+
+    /** Based on [param value], enables or disables the specified navigation layer of the TileSet navigation data layer identified by the given [param layer_index], given a navigation_layers [param layer_number] between 1 and 32. */
+    set_navigation_layer_layer_value(
+      layer_index: int64,
+      layer_number: int64,
+      value: boolean,
+    ): void;
+
+    /** Returns whether or not the specified navigation layer of the TileSet navigation data layer identified by the given [param layer_index] is enabled, given a navigation_layers [param layer_number] between 1 and 32. */
+    get_navigation_layer_layer_value(
+      layer_index: int64,
+      layer_number: int64,
+    ): boolean;
+
+    /** Returns the custom data layers count. */
+    get_custom_data_layers_count(): int64;
+
+    /** Adds a custom data layer to the TileSet at the given position [param to_position] in the array. If [param to_position] is -1, adds it at the end of the array.
+     *  Custom data layers allow assigning custom properties to atlas tiles.
+     */
+    add_custom_data_layer(to_position?: int64 /* = -1 */): void;
+
+    /** Moves the custom data layer at index [param layer_index] to the given position [param to_position] in the array. Also updates the atlas tiles accordingly. */
+    move_custom_data_layer(layer_index: int64, to_position: int64): void;
+
+    /** Removes the custom data layer at index [param layer_index]. Also updates the atlas tiles accordingly. */
+    remove_custom_data_layer(layer_index: int64): void;
+
+    /** Returns the index of the custom data layer identified by the given name. */
+    get_custom_data_layer_by_name(layer_name: string): int64;
+
+    /** Sets the name of the custom data layer identified by the given index. Names are identifiers of the layer therefore if the name is already taken it will fail and raise an error. */
+    set_custom_data_layer_name(layer_index: int64, layer_name: string): void;
+
+    /** Returns if there is a custom data layer named [param layer_name]. */
+    has_custom_data_layer_by_name(layer_name: string): boolean;
+
+    /** Returns the name of the custom data layer identified by the given index. */
+    get_custom_data_layer_name(layer_index: int64): string;
+
+    /** Sets the type of the custom data layer identified by the given index. */
+    set_custom_data_layer_type(
+      layer_index: int64,
+      layer_type: Variant.Type,
+    ): void;
+
+    /** Returns the type of the custom data layer identified by the given index. */
+    get_custom_data_layer_type(layer_index: int64): Variant.Type;
+
+    /** Creates a source-level proxy for the given source ID. A proxy will map set of tile identifiers to another set of identifiers. Both the atlas coordinates ID and the alternative tile ID are kept the same when using source-level proxies.
+     *  Proxied tiles can be automatically replaced in TileMapLayer nodes using the editor.
+     */
+    set_source_level_tile_proxy(source_from: int64, source_to: int64): void;
+
+    /** Returns the source-level proxy for the given source identifier.
+     *  If the TileSet has no proxy for the given identifier, returns -1.
+     */
+    get_source_level_tile_proxy(source_from: int64): int64;
+
+    /** Returns if there is a source-level proxy for the given source ID. */
+    has_source_level_tile_proxy(source_from: int64): boolean;
+
+    /** Removes a source-level tile proxy. */
+    remove_source_level_tile_proxy(source_from: int64): void;
+
+    /** Creates a coordinates-level proxy for the given identifiers. A proxy will map set of tile identifiers to another set of identifiers. The alternative tile ID is kept the same when using coordinates-level proxies.
+     *  Proxied tiles can be automatically replaced in TileMapLayer nodes using the editor.
+     */
+    set_coords_level_tile_proxy(
+      p_source_from: int64,
+      coords_from: Vector2i,
+      source_to: int64,
+      coords_to: Vector2i,
+    ): void;
+
+    /** Returns the coordinate-level proxy for the given identifiers. The returned array contains the two target identifiers of the proxy (source ID and atlas coordinates ID).
+     *  If the TileSet has no proxy for the given identifiers, returns an empty Array.
+     */
+    get_coords_level_tile_proxy(
+      source_from: int64,
+      coords_from: Vector2i,
+    ): GArray;
+
+    /** Returns if there is a coodinates-level proxy for the given identifiers. */
+    has_coords_level_tile_proxy(
+      source_from: int64,
+      coords_from: Vector2i,
+    ): boolean;
+
+    /** Removes a coordinates-level proxy for the given identifiers. */
+    remove_coords_level_tile_proxy(
+      source_from: int64,
+      coords_from: Vector2i,
+    ): void;
+
+    /** Create an alternative-level proxy for the given identifiers. A proxy will map set of tile identifiers to another set of identifiers.
+     *  Proxied tiles can be automatically replaced in TileMapLayer nodes using the editor.
+     */
+    set_alternative_level_tile_proxy(
+      source_from: int64,
+      coords_from: Vector2i,
+      alternative_from: int64,
+      source_to: int64,
+      coords_to: Vector2i,
+      alternative_to: int64,
+    ): void;
+
+    /** Returns the alternative-level proxy for the given identifiers. The returned array contains the three proxie's target identifiers (source ID, atlas coords ID and alternative tile ID).
+     *  If the TileSet has no proxy for the given identifiers, returns an empty Array.
+     */
+    get_alternative_level_tile_proxy(
+      source_from: int64,
+      coords_from: Vector2i,
+      alternative_from: int64,
+    ): GArray;
+
+    /** Returns if there is an alternative-level proxy for the given identifiers. */
+    has_alternative_level_tile_proxy(
+      source_from: int64,
+      coords_from: Vector2i,
+      alternative_from: int64,
+    ): boolean;
+
+    /** Removes an alternative-level proxy for the given identifiers. */
+    remove_alternative_level_tile_proxy(
+      source_from: int64,
+      coords_from: Vector2i,
+      alternative_from: int64,
+    ): void;
+
+    /** According to the configured proxies, maps the provided identifiers to a new set of identifiers. The source ID, atlas coordinates ID and alternative tile ID are returned as a 3 elements Array.
+     *  This function first look for matching alternative-level proxies, then coordinates-level proxies, then source-level proxies.
+     *  If no proxy corresponding to provided identifiers are found, returns the same values the ones used as arguments.
+     */
+    map_tile_proxy(
+      source_from: int64,
+      coords_from: Vector2i,
+      alternative_from: int64,
+    ): GArray;
+
+    /** Clears tile proxies pointing to invalid tiles. */
+    cleanup_invalid_tile_proxies(): void;
+
+    /** Clears all tile proxies. */
+    clear_tile_proxies(): void;
+
+    /** Adds a [TileMapPattern] to be stored in the TileSet resource. If provided, insert it at the given [param index]. */
+    add_pattern(pattern: TileMapPattern, index?: int64 /* = -1 */): int64;
+
+    /** Returns the [TileMapPattern] at the given [param index]. */
+    get_pattern(index?: int64 /* = -1 */): null | TileMapPattern;
+
+    /** Remove the [TileMapPattern] at the given index. */
+    remove_pattern(index: int64): void;
+
+    /** Returns the number of [TileMapPattern] this tile set handles. */
+    get_patterns_count(): int64;
+
+    /** The tile shape. */
+    get tile_shape(): int64;
+    set tile_shape(value: int64);
+
+    /** For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), changes the way tiles are indexed in the [TileMapLayer] grid. */
+    get tile_layout(): int64;
+    set tile_layout(value: int64);
+
+    /** For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), determines the offset axis. */
+    get tile_offset_axis(): int64;
+    set tile_offset_axis(value: int64);
+
+    /** The tile size, in pixels. For all tile shapes, this size corresponds to the encompassing rectangle of the tile shape. This is thus the minimal cell size required in an atlas. */
+    get tile_size(): Vector2i;
+    set tile_size(value: Vector2i);
+
+    /** Enables/Disable uv clipping when rendering the tiles. */
+    get uv_clipping(): boolean;
+    set uv_clipping(value: boolean);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTileSet;
+  }
+  namespace TileSetAtlasSource {
+    enum TileAnimationMode {
+      /** Tile animations start at same time, looking identical. */
+      TILE_ANIMATION_MODE_DEFAULT = 0,
+
+      /** Tile animations start at random times, looking varied. */
+      TILE_ANIMATION_MODE_RANDOM_START_TIMES = 1,
+
+      /** Represents the size of the [enum TileAnimationMode] enum. */
+      TILE_ANIMATION_MODE_MAX = 2,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTileSetAtlasSource extends __NameMapTileSetSource {}
+  /** Exposes a 2D atlas texture as a set of tiles for a [TileSet] resource.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_tilesetatlassource.html
+   */
+  class TileSetAtlasSource extends TileSetSource {
+    /** Represents cell's horizontal flip flag. Should be used directly with [TileMapLayer] to flip placed tiles by altering their alternative IDs.
+     *
+     *
+     *  **Note:** These transformations can be combined to do the equivalent of 0, 90, 180, and 270 degree rotations, as shown below:
+     *
+     */
+    static readonly TRANSFORM_FLIP_H = 4096;
+
+    /** Represents cell's vertical flip flag. See [constant TRANSFORM_FLIP_H] for usage. */
+    static readonly TRANSFORM_FLIP_V = 8192;
+
+    /** Represents cell's transposed flag. See [constant TRANSFORM_FLIP_H] for usage. */
+    static readonly TRANSFORM_TRANSPOSE = 16384;
+    constructor(identifier?: any);
+
+    /** Creates a new tile at coordinates [param atlas_coords] with the given [param size]. */
+    create_tile(
+      atlas_coords: Vector2i,
+      size?: Vector2i /* = Vector2i.ONE */,
+    ): void;
+
+    /** Remove a tile and its alternative at coordinates [param atlas_coords]. */
+    remove_tile(atlas_coords: Vector2i): void;
+
+    /** Move the tile and its alternatives at the [param atlas_coords] coordinates to the [param new_atlas_coords] coordinates with the [param new_size] size. This functions will fail if a tile is already present in the given area.
+     *  If [param new_atlas_coords] is `Vector2i(-1, -1)`, keeps the tile's coordinates. If [param new_size] is `Vector2i(-1, -1)`, keeps the tile's size.
+     *  To avoid an error, first check if a move is possible using [method has_room_for_tile].
+     */
+    move_tile_in_atlas(
+      atlas_coords: Vector2i,
+      new_atlas_coords?: Vector2i /* = new Vector2i(-1, -1) */,
+      new_size?: Vector2i /* = new Vector2i(-1, -1) */,
+    ): void;
+
+    /** Returns the size of the tile (in the grid coordinates system) at coordinates [param atlas_coords]. */
+    get_tile_size_in_atlas(atlas_coords: Vector2i): Vector2i;
+
+    /** Returns whether there is enough room in an atlas to create/modify a tile with the given properties. If [param ignored_tile] is provided, act as is the given tile was not present in the atlas. This may be used when you want to modify a tile's properties. */
+    has_room_for_tile(
+      atlas_coords: Vector2i,
+      size: Vector2i,
+      animation_columns: int64,
+      animation_separation: Vector2i,
+      frames_count: int64,
+      ignored_tile?: Vector2i /* = new Vector2i(-1, -1) */,
+    ): boolean;
+
+    /** Returns an array of tiles coordinates ID that will be automatically removed when modifying one or several of those properties: [param texture], [param margins], [param separation] or [param texture_region_size]. This can be used to undo changes that would have caused tiles data loss. */
+    get_tiles_to_be_removed_on_change(
+      texture: Texture2D,
+      margins: Vector2i,
+      separation: Vector2i,
+      texture_region_size: Vector2i,
+    ): PackedVector2Array;
+
+    /** If there is a tile covering the [param atlas_coords] coordinates, returns the top-left coordinates of the tile (thus its coordinate ID). Returns `Vector2i(-1, -1)` otherwise. */
+    get_tile_at_coords(atlas_coords: Vector2i): Vector2i;
+
+    /** Checks if the source has any tiles that don't fit the texture area (either partially or completely). */
+    has_tiles_outside_texture(): boolean;
+
+    /** Removes all tiles that don't fit the available texture area. This method iterates over all the source's tiles, so it's advised to use [method has_tiles_outside_texture] beforehand. */
+    clear_tiles_outside_texture(): void;
+
+    /** Sets the number of columns in the animation layout of the tile at coordinates [param atlas_coords]. If set to 0, then the different frames of the animation are laid out as a single horizontal line in the atlas. */
+    set_tile_animation_columns(
+      atlas_coords: Vector2i,
+      frame_columns: int64,
+    ): void;
+
+    /** Returns how many columns the tile at [param atlas_coords] has in its animation layout. */
+    get_tile_animation_columns(atlas_coords: Vector2i): int64;
+
+    /** Sets the margin (in grid tiles) between each tile in the animation layout of the tile at coordinates [param atlas_coords] has. */
+    set_tile_animation_separation(
+      atlas_coords: Vector2i,
+      separation: Vector2i,
+    ): void;
+
+    /** Returns the separation (as in the atlas grid) between each frame of an animated tile at coordinates [param atlas_coords]. */
+    get_tile_animation_separation(atlas_coords: Vector2i): Vector2i;
+
+    /** Sets the animation speed of the tile at coordinates [param atlas_coords] has. */
+    set_tile_animation_speed(atlas_coords: Vector2i, speed: float64): void;
+
+    /** Returns the animation speed of the tile at coordinates [param atlas_coords]. */
+    get_tile_animation_speed(atlas_coords: Vector2i): float64;
+
+    /** Sets the tile animation mode of the tile at [param atlas_coords] to [param mode]. See also [method get_tile_animation_mode]. */
+    set_tile_animation_mode(
+      atlas_coords: Vector2i,
+      mode: TileSetAtlasSource.TileAnimationMode,
+    ): void;
+
+    /** Returns the tile animation mode of the tile at [param atlas_coords]. See also [method set_tile_animation_mode]. */
+    get_tile_animation_mode(
+      atlas_coords: Vector2i,
+    ): TileSetAtlasSource.TileAnimationMode;
+
+    /** Sets how many animation frames the tile at coordinates [param atlas_coords] has. */
+    set_tile_animation_frames_count(
+      atlas_coords: Vector2i,
+      frames_count: int64,
+    ): void;
+
+    /** Returns how many animation frames has the tile at coordinates [param atlas_coords]. */
+    get_tile_animation_frames_count(atlas_coords: Vector2i): int64;
+
+    /** Sets the animation frame [param duration] of frame [param frame_index] for the tile at coordinates [param atlas_coords]. */
+    set_tile_animation_frame_duration(
+      atlas_coords: Vector2i,
+      frame_index: int64,
+      duration: float64,
+    ): void;
+
+    /** Returns the animation frame duration of frame [param frame_index] for the tile at coordinates [param atlas_coords]. */
+    get_tile_animation_frame_duration(
+      atlas_coords: Vector2i,
+      frame_index: int64,
+    ): float64;
+
+    /** Returns the sum of the sum of the frame durations of the tile at coordinates [param atlas_coords]. This value needs to be divided by the animation speed to get the actual animation loop duration. */
+    get_tile_animation_total_duration(atlas_coords: Vector2i): float64;
+
+    /** Creates an alternative tile for the tile at coordinates [param atlas_coords]. If [param alternative_id_override] is -1, give it an automatically generated unique ID, or assigns it the given ID otherwise.
+     *  Returns the new alternative identifier, or -1 if the alternative could not be created with a provided [param alternative_id_override].
+     */
+    create_alternative_tile(
+      atlas_coords: Vector2i,
+      alternative_id_override?: int64 /* = -1 */,
+    ): int64;
+
+    /** Remove a tile's alternative with alternative ID [param alternative_tile].
+     *  Calling this function with [param alternative_tile] equals to 0 will fail, as the base tile alternative cannot be removed.
+     */
+    remove_alternative_tile(
+      atlas_coords: Vector2i,
+      alternative_tile: int64,
+    ): void;
+
+    /** Change a tile's alternative ID from [param alternative_tile] to [param new_id].
+     *  Calling this function with [param new_id] of 0 will fail, as the base tile alternative cannot be moved.
+     */
+    set_alternative_tile_id(
+      atlas_coords: Vector2i,
+      alternative_tile: int64,
+      new_id: int64,
+    ): void;
+
+    /** Returns the alternative ID a following call to [method create_alternative_tile] would return. */
+    get_next_alternative_tile_id(atlas_coords: Vector2i): int64;
+
+    /** Returns the [TileData] object for the given atlas coordinates and alternative ID. */
+    get_tile_data(
+      atlas_coords: Vector2i,
+      alternative_tile: int64,
+    ): null | TileData;
+
+    /** Returns the atlas grid size, which depends on how many tiles can fit in the texture. It thus depends on the [member texture]'s size, the atlas [member margins], and the tiles' [member texture_region_size]. */
+    get_atlas_grid_size(): Vector2i;
+
+    /** Returns a tile's texture region in the atlas texture. For animated tiles, a [param frame] argument might be provided for the different frames of the animation. */
+    get_tile_texture_region(
+      atlas_coords: Vector2i,
+      frame?: int64 /* = 0 */,
+    ): Rect2i;
+
+    /** If [member use_texture_padding] is `false`, returns [member texture]. Otherwise, returns and internal [ImageTexture] created that includes the padding. */
+    get_runtime_texture(): null | Texture2D;
+
+    /** Returns the region of the tile at coordinates [param atlas_coords] for the given [param frame] inside the texture returned by [method get_runtime_texture].
+     *
+     *  **Note:** If [member use_texture_padding] is `false`, returns the same as [method get_tile_texture_region].
+     */
+    get_runtime_tile_texture_region(
+      atlas_coords: Vector2i,
+      frame: int64,
+    ): Rect2i;
+
+    /** The atlas texture. */
+    get texture(): null | Texture2D;
+    set texture(value: null | Texture2D);
+
+    /** Margins, in pixels, to offset the origin of the grid in the texture. */
+    get margins(): Vector2i;
+    set margins(value: Vector2i);
+
+    /** Separation, in pixels, between each tile texture region of the grid. */
+    get separation(): Vector2i;
+    set separation(value: Vector2i);
+
+    /** The base tile size in the texture (in pixel). This size must be bigger than or equal to the TileSet's `tile_size` value. */
+    get texture_region_size(): Vector2i;
+    set texture_region_size(value: Vector2i);
+
+    /** If `true`, generates an internal texture with an additional one pixel padding around each tile. Texture padding avoids a common artifact where lines appear between tiles.
+     *  Disabling this setting might lead a small performance improvement, as generating the internal texture requires both memory and processing time when the TileSetAtlasSource resource is modified.
+     */
+    get use_texture_padding(): boolean;
+    set use_texture_padding(value: boolean);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTileSetAtlasSource;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTileSetScenesCollectionSource
+    extends __NameMapTileSetSource {}
+  /** Exposes a set of scenes as tiles for a [TileSet] resource.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_tilesetscenescollectionsource.html
+   */
+  class TileSetScenesCollectionSource extends TileSetSource {
+    constructor(identifier?: any);
+    /** Returns the number or scene tiles this TileSet source has. */
+    get_scene_tiles_count(): int64;
+
+    /** Returns the scene tile ID of the scene tile at [param index]. */
+    get_scene_tile_id(index: int64): int64;
+
+    /** Returns whether this TileSet source has a scene tile with [param id]. */
+    has_scene_tile_id(id: int64): boolean;
+
+    /** Creates a scene-based tile out of the given scene.
+     *  Returns a newly generated unique ID.
+     */
+    create_scene_tile(
+      packed_scene: PackedScene,
+      id_override?: int64 /* = -1 */,
+    ): int64;
+
+    /** Changes a scene tile's ID from [param id] to [param new_id]. This will fail if there is already a tile with an ID equal to [param new_id]. */
+    set_scene_tile_id(id: int64, new_id: int64): void;
+
+    /** Assigns a [PackedScene] resource to the scene tile with [param id]. This will fail if the scene does not extend [CanvasItem], as positioning properties are needed to place the scene on the [TileMapLayer]. */
+    set_scene_tile_scene(id: int64, packed_scene: PackedScene): void;
+
+    /** Returns the [PackedScene] resource of scene tile with [param id]. */
+    get_scene_tile_scene(id: int64): null | PackedScene;
+
+    /** Sets whether or not the scene tile with [param id] should display a placeholder in the editor. This might be useful for scenes that are not visible. */
+    set_scene_tile_display_placeholder(
+      id: int64,
+      display_placeholder: boolean,
+    ): void;
+
+    /** Returns whether the scene tile with [param id] displays a placeholder in the editor. */
+    get_scene_tile_display_placeholder(id: int64): boolean;
+
+    /** Remove the scene tile with [param id]. */
+    remove_scene_tile(id: int64): void;
+
+    /** Returns the scene ID a following call to [method create_scene_tile] would return. */
+    get_next_scene_tile_id(): int64;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTileSetScenesCollectionSource;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTileSetSource extends __NameMapResource {}
+  /** Exposes a set of tiles for a [TileSet] resource.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_tilesetsource.html
+   */
+  class TileSetSource extends Resource {
+    constructor(identifier?: any);
+    /** Returns how many tiles this atlas source defines (not including alternative tiles). */
+    get_tiles_count(): int64;
+
+    /** Returns the tile coordinates ID of the tile with index [param index]. */
+    get_tile_id(index: int64): Vector2i;
+
+    /** Returns if this atlas has a tile with coordinates ID [param atlas_coords]. */
+    has_tile(atlas_coords: Vector2i): boolean;
+
+    /** Returns the number of alternatives tiles for the coordinates ID [param atlas_coords].
+     *  For [TileSetAtlasSource], this always return at least 1, as the base tile with ID 0 is always part of the alternatives list.
+     *  Returns -1 if there is not tile at the given coords.
+     */
+    get_alternative_tiles_count(atlas_coords: Vector2i): int64;
+
+    /** Returns the alternative ID for the tile with coordinates ID [param atlas_coords] at index [param index]. */
+    get_alternative_tile_id(atlas_coords: Vector2i, index: int64): int64;
+
+    /** Returns if the base tile at coordinates [param atlas_coords] has an alternative with ID [param alternative_tile]. */
+    has_alternative_tile(
+      atlas_coords: Vector2i,
+      alternative_tile: int64,
+    ): boolean;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTileSetSource;
+  }
+  namespace Timer {
+    enum TimerProcessCallback {
+      /** Update the timer every physics process frame (see [constant Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]). */
+      TIMER_PROCESS_PHYSICS = 0,
+
+      /** Update the timer every process (rendered) frame (see [constant Node.NOTIFICATION_INTERNAL_PROCESS]). */
+      TIMER_PROCESS_IDLE = 1,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTimer extends __NameMapNode {}
+  /** A countdown timer.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_timer.html
+   */
+  class Timer<Map extends NodePathMap = any> extends Node<Map> {
+    constructor(identifier?: any);
+    /** Starts the timer, or resets the timer if it was started already. Fails if the timer is not inside the scene tree. If [param time_sec] is greater than `0`, this value is used for the [member wait_time].
+     *
+     *  **Note:** This method does not resume a paused timer. See [member paused].
+     */
+    start(time_sec?: float64 /* = -1 */): void;
+
+    /** Stops the timer. See also [member paused]. Unlike [method start], this can safely be called if the timer is not inside the scene tree.
+     *
+     *  **Note:** Calling [method stop] does not emit the [signal timeout] signal, as the timer is not considered to have timed out. If this is desired, use `$Timer.timeout.emit()` after calling [method stop] to manually emit the signal.
+     */
+    stop(): void;
+
+    /** Returns `true` if the timer is stopped or has not started. */
+    is_stopped(): boolean;
+
+    /** Specifies when the timer is updated during the main loop. */
+    get process_callback(): int64;
+    set process_callback(value: int64);
+
+    /** The time required for the timer to end, in seconds. This property can also be set every time [method start] is called.
+     *
+     *  **Note:** Timers can only process once per physics or process frame (depending on the [member process_callback]). An unstable framerate may cause the timer to end inconsistently, which is especially noticeable if the wait time is lower than roughly `0.05` seconds. For very short timers, it is recommended to write your own code instead of using a [Timer] node. Timers are also affected by [member Engine.time_scale].
+     */
+    get wait_time(): float64;
+    set wait_time(value: float64);
+
+    /** If `true`, the timer will stop after reaching the end. Otherwise, as by default, the timer will automatically restart. */
+    get one_shot(): boolean;
+    set one_shot(value: boolean);
+
+    /** If `true`, the timer will start immediately when it enters the scene tree.
+     *
+     *  **Note:** After the timer enters the tree, this property is automatically set to `false`.
+     *
+     *  **Note:** This property does nothing when the timer is running in the editor.
+     */
+    get autostart(): boolean;
+    set autostart(value: boolean);
+
+    /** If `true`, the timer is paused. A paused timer does not process until this property is set back to `false`, even when [method start] is called. See also [method stop]. */
+    get paused(): boolean;
+    set paused(value: boolean);
+
+    /** If `true`, the timer will ignore [member Engine.time_scale] and update with the real, elapsed time. */
+    get ignore_time_scale(): boolean;
+    set ignore_time_scale(value: boolean);
+
+    /** The timer's remaining time in seconds. This is always `0` if the timer is stopped.
+     *
+     *  **Note:** This property is read-only and cannot be modified. It is based on [member wait_time].
+     */
+    get time_left(): float64;
+
+    /** Emitted when the timer reaches the end. */
+    readonly timeout: Signal<() => void>;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTimer;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTorusMesh extends __NameMapPrimitiveMesh {}
+  /** Class representing a torus [PrimitiveMesh].
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_torusmesh.html
+   */
+  class TorusMesh extends PrimitiveMesh {
+    constructor(identifier?: any);
+    /** The inner radius of the torus. */
+    get inner_radius(): float64;
+    set inner_radius(value: float64);
+
+    /** The outer radius of the torus. */
+    get outer_radius(): float64;
+    set outer_radius(value: float64);
+
+    /** The number of slices the torus is constructed of. */
+    get rings(): int64;
+    set rings(value: int64);
+
+    /** The number of edges each ring of the torus is constructed of. */
+    get ring_segments(): int64;
+    set ring_segments(value: int64);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTorusMesh;
+  }
+  namespace TouchScreenButton {
+    enum VisibilityMode {
+      /** Always visible. */
+      VISIBILITY_ALWAYS = 0,
+
+      /** Visible on touch screens only. */
+      VISIBILITY_TOUCHSCREEN_ONLY = 1,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTouchScreenButton extends __NameMapNode2D {}
+  /** Button for touch screen devices for gameplay use.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_touchscreenbutton.html
+   */
+  class TouchScreenButton<Map extends NodePathMap = any> extends Node2D<Map> {
+    constructor(identifier?: any);
+    /** Returns `true` if this button is currently pressed. */
+    is_pressed(): boolean;
+
+    /** The button's texture for the normal state. */
+    get texture_normal(): null | Texture2D;
+    set texture_normal(value: null | Texture2D);
+
+    /** The button's texture for the pressed state. */
+    get texture_pressed(): null | Texture2D;
+    set texture_pressed(value: null | Texture2D);
+
+    /** The button's bitmask. */
+    get bitmask(): null | BitMap;
+    set bitmask(value: null | BitMap);
+
+    /** The button's shape. */
+    get shape(): null | Shape2D;
+    set shape(value: null | Shape2D);
+
+    /** If `true`, the button's shape is centered in the provided texture. If no texture is used, this property has no effect. */
+    get shape_centered(): boolean;
+    set shape_centered(value: boolean);
+
+    /** If `true`, the button's shape is visible in the editor. */
+    get shape_visible(): boolean;
+    set shape_visible(value: boolean);
+
+    /** If `true`, the [signal pressed] and [signal released] signals are emitted whenever a pressed finger goes in and out of the button, even if the pressure started outside the active area of the button.
+     *
+     *  **Note:** This is a "pass-by" (not "bypass") press mode.
+     */
+    get passby_press(): boolean;
+    set passby_press(value: boolean);
+
+    /** The button's action. Actions can be handled with [InputEventAction]. */
+    get action(): StringName;
+    set action(value: StringName);
+
+    /** The button's visibility mode. */
+    get visibility_mode(): int64;
+    set visibility_mode(value: int64);
+
+    /** Emitted when the button is pressed (down). */
+    readonly pressed: Signal<() => void>;
+
+    /** Emitted when the button is released (up). */
+    readonly released: Signal<() => void>;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTouchScreenButton;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTranslation extends __NameMapResource {}
+  /** A language translation that maps a collection of strings to their individual translations.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_translation.html
+   */
+  class Translation extends Resource {
+    constructor(identifier?: any);
+    /** Virtual method to override [method get_plural_message]. */
+    /* gdvirtual */ _get_plural_message(
+      src_message: StringName,
+      src_plural_message: StringName,
+      n: int64,
+      context: StringName,
+    ): StringName;
+
+    /** Virtual method to override [method get_message]. */
+    /* gdvirtual */ _get_message(
+      src_message: StringName,
+      context: StringName,
+    ): StringName;
+
+    /** Adds a message if nonexistent, followed by its translation.
+     *  An additional context could be used to specify the translation context or differentiate polysemic words.
+     */
+    add_message(
+      src_message: StringName,
+      xlated_message: StringName,
+      context?: StringName /* = '' */,
+    ): void;
+
+    /** Adds a message involving plural translation if nonexistent, followed by its translation.
+     *  An additional context could be used to specify the translation context or differentiate polysemic words.
+     *
+     *  **Note:** Plurals are only supported in [url=https://docs.godotengine.org/en/4.5/tutorials/i18n/localization_using_gettext.html]gettext-based translations (PO)[/url], not CSV.
+     */
+    add_plural_message(
+      src_message: StringName,
+      xlated_messages: PackedStringArray | string[],
+      context?: StringName /* = '' */,
+    ): void;
+
+    /** Returns a message's translation. */
+    get_message(
+      src_message: StringName,
+      context?: StringName /* = '' */,
+    ): StringName;
+
+    /** Returns a message's translation involving plurals.
+     *  The number [param n] is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.
+     *
+     *  **Note:** Plurals are only supported in [url=https://docs.godotengine.org/en/4.5/tutorials/i18n/localization_using_gettext.html]gettext-based translations (PO)[/url], not CSV.
+     */
+    get_plural_message(
+      src_message: StringName,
+      src_plural_message: StringName,
+      n: int64,
+      context?: StringName /* = '' */,
+    ): StringName;
+
+    /** Erases a message. */
+    erase_message(
+      src_message: StringName,
+      context?: StringName /* = '' */,
+    ): void;
+
+    /** Returns all the messages (keys). */
+    get_message_list(): PackedStringArray;
+
+    /** Returns all the messages (translated text). */
+    get_translated_message_list(): PackedStringArray;
+
+    /** Returns the number of existing messages. */
+    get_message_count(): int64;
+    get messages(): GDictionary;
+    set messages(value: GDictionary);
+
+    /** The locale of the translation. */
+    get locale(): string;
+    set locale(value: string);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTranslation;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTranslationDomain extends __NameMapRefCounted {}
+  /** A self-contained collection of [Translation] resources.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_translationdomain.html
+   */
+  class TranslationDomain extends RefCounted {
+    constructor(identifier?: any);
+    /** Returns the [Translation] instance that best matches [param locale]. Returns `null` if there are no matches. */
+    get_translation_object(locale: string): null | Translation;
+
+    /** Adds a translation. */
+    add_translation(translation: Translation): void;
+
+    /** Removes the given translation. */
+    remove_translation(translation: Translation): void;
+
+    /** Removes all translations. */
+    clear(): void;
+
+    /** Returns the current locale's translation for the given message and context. */
+    translate(message: StringName, context?: StringName /* = '' */): StringName;
+
+    /** Returns the current locale's translation for the given message, plural message and context.
+     *  The number [param n] is the number or quantity of the plural object. It will be used to guide the translation system to fetch the correct plural form for the selected language.
+     */
+    translate_plural(
+      message: StringName,
+      message_plural: StringName,
+      n: int64,
+      context?: StringName /* = '' */,
+    ): StringName;
+
+    /** Returns the locale override of the domain. Returns an empty string if locale override is disabled. */
+    get_locale_override(): string;
+
+    /** Sets the locale override of the domain.
+     *  If [param locale] is an empty string, locale override is disabled. Otherwise, [param locale] will be standardized to match known locales (e.g. `en-US` would be matched to `en_US`).
+     *
+     *  **Note:** Calling this method does not automatically update texts in the scene tree. Please propagate the [constant MainLoop.NOTIFICATION_TRANSLATION_CHANGED] signal manually.
+     */
+    set_locale_override(locale: string): void;
+
+    /** Returns the pseudolocalized string based on the [param message] passed in. */
+    pseudolocalize(message: StringName): StringName;
+
+    /** If `true`, translation is enabled. Otherwise, [method translate] and [method translate_plural] will return the input message unchanged regardless of the current locale. */
+    get enabled(): boolean;
+    set enabled(value: boolean);
+
+    /** If `true`, enables pseudolocalization for the project. This can be used to spot untranslatable strings or layout issues that may occur once the project is localized to languages that have longer strings than the source language.
+     *
+     *  **Note:** Updating this property does not automatically update texts in the scene tree. Please propagate the [constant MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have finished modifying pseudolocalization related options.
+     */
+    get pseudolocalization_enabled(): boolean;
+    set pseudolocalization_enabled(value: boolean);
+
+    /** Replace all characters with their accented variants during pseudolocalization.
+     *
+     *  **Note:** Updating this property does not automatically update texts in the scene tree. Please propagate the [constant MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have finished modifying pseudolocalization related options.
+     */
+    get pseudolocalization_accents_enabled(): boolean;
+    set pseudolocalization_accents_enabled(value: boolean);
+
+    /** Double vowels in strings during pseudolocalization to simulate the lengthening of text due to localization.
+     *
+     *  **Note:** Updating this property does not automatically update texts in the scene tree. Please propagate the [constant MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have finished modifying pseudolocalization related options.
+     */
+    get pseudolocalization_double_vowels_enabled(): boolean;
+    set pseudolocalization_double_vowels_enabled(value: boolean);
+
+    /** If `true`, emulate bidirectional (right-to-left) text when pseudolocalization is enabled. This can be used to spot issues with RTL layout and UI mirroring that will crop up if the project is localized to RTL languages such as Arabic or Hebrew.
+     *
+     *  **Note:** Updating this property does not automatically update texts in the scene tree. Please propagate the [constant MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have finished modifying pseudolocalization related options.
+     */
+    get pseudolocalization_fake_bidi_enabled(): boolean;
+    set pseudolocalization_fake_bidi_enabled(value: boolean);
+
+    /** Replace all characters in the string with `*`. Useful for finding non-localizable strings.
+     *
+     *  **Note:** Updating this property does not automatically update texts in the scene tree. Please propagate the [constant MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have finished modifying pseudolocalization related options.
+     */
+    get pseudolocalization_override_enabled(): boolean;
+    set pseudolocalization_override_enabled(value: boolean);
+
+    /** Skip placeholders for string formatting like `%s` or `%f` during pseudolocalization. Useful to identify strings which need additional control characters to display correctly.
+     *
+     *  **Note:** Updating this property does not automatically update texts in the scene tree. Please propagate the [constant MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have finished modifying pseudolocalization related options.
+     */
+    get pseudolocalization_skip_placeholders_enabled(): boolean;
+    set pseudolocalization_skip_placeholders_enabled(value: boolean);
+
+    /** The expansion ratio to use during pseudolocalization. A value of `0.3` is sufficient for most practical purposes, and will increase the length of each string by 30%.
+     *
+     *  **Note:** Updating this property does not automatically update texts in the scene tree. Please propagate the [constant MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have finished modifying pseudolocalization related options.
+     */
+    get pseudolocalization_expansion_ratio(): float64;
+    set pseudolocalization_expansion_ratio(value: float64);
+
+    /** Prefix that will be prepended to the pseudolocalized string.
+     *
+     *  **Note:** Updating this property does not automatically update texts in the scene tree. Please propagate the [constant MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have finished modifying pseudolocalization related options.
+     */
+    get pseudolocalization_prefix(): string;
+    set pseudolocalization_prefix(value: string);
+
+    /** Suffix that will be appended to the pseudolocalized string.
+     *
+     *  **Note:** Updating this property does not automatically update texts in the scene tree. Please propagate the [constant MainLoop.NOTIFICATION_TRANSLATION_CHANGED] notification manually after you have finished modifying pseudolocalization related options.
+     */
+    get pseudolocalization_suffix(): string;
+    set pseudolocalization_suffix(value: string);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTranslationDomain;
+  }
+  namespace Tree {
+    enum SelectMode {
+      /** Allows selection of a single cell at a time. From the perspective of items, only a single item is allowed to be selected. And there is only one column selected in the selected item.
+       *  The focus cursor is always hidden in this mode, but it is positioned at the current selection, making the currently selected item the currently focused item.
+       */
+      SELECT_SINGLE = 0,
+
+      /** Allows selection of a single row at a time. From the perspective of items, only a single items is allowed to be selected. And all the columns are selected in the selected item.
+       *  The focus cursor is always hidden in this mode, but it is positioned at the first column of the current selection, making the currently selected item the currently focused item.
+       */
+      SELECT_ROW = 1,
+
+      /** Allows selection of multiple cells at the same time. From the perspective of items, multiple items are allowed to be selected. And there can be multiple columns selected in each selected item.
+       *  The focus cursor is visible in this mode, the item or column under the cursor is not necessarily selected.
+       */
+      SELECT_MULTI = 2,
+    }
+    enum DropModeFlags {
+      /** Disables all drop sections, but still allows to detect the "on item" drop section by [method get_drop_section_at_position].
+       *
+       *  **Note:** This is the default flag, it has no effect when combined with other flags.
+       */
+      DROP_MODE_DISABLED = 0,
+
+      /** Enables the "on item" drop section. This drop section covers the entire item.
+       *  When combined with [constant DROP_MODE_INBETWEEN], this drop section halves the height and stays centered vertically.
+       */
+      DROP_MODE_ON_ITEM = 1,
+
+      /** Enables "above item" and "below item" drop sections. The "above item" drop section covers the top half of the item, and the "below item" drop section covers the bottom half.
+       *  When combined with [constant DROP_MODE_ON_ITEM], these drop sections halves the height and stays on top / bottom accordingly.
+       */
+      DROP_MODE_INBETWEEN = 2,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTree extends __NameMapControl {}
+  /** A control used to show a set of internal [TreeItem]s in a hierarchical structure.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_tree.html
+   */
+  class Tree<Map extends NodePathMap = any> extends Control<Map> {
+    constructor(identifier?: any);
+    /** Clears the tree. This removes all items. */
+    clear(): void;
+
+    /** Creates an item in the tree and adds it as a child of [param parent], which can be either a valid [TreeItem] or `null`.
+     *  If [param parent] is `null`, the root item will be the parent, or the new item will be the root itself if the tree is empty.
+     *  The new item will be the [param index]-th child of parent, or it will be the last child if there are not enough siblings.
+     */
+    create_item(
+      parent?: TreeItem /* = undefined */,
+      index?: int64 /* = -1 */,
+    ): TreeItem;
+
+    /** Returns the tree's root item, or `null` if the tree is empty. */
+    get_root(): null | TreeItem;
+
+    /** Overrides the calculated minimum width of a column. It can be set to `0` to restore the default behavior. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to [member Control.size_flags_stretch_ratio]. */
+    set_column_custom_minimum_width(column: int64, min_width: int64): void;
+
+    /** If `true`, the column will have the "Expand" flag of [Control]. Columns that have the "Expand" flag will use their expand ratio in a similar fashion to [member Control.size_flags_stretch_ratio] (see [method set_column_expand_ratio]). */
+    set_column_expand(column: int64, expand: boolean): void;
+
+    /** Sets the relative expand ratio for a column. See [method set_column_expand]. */
+    set_column_expand_ratio(column: int64, ratio: int64): void;
+
+    /** Allows to enable clipping for column's content, making the content size ignored. */
+    set_column_clip_content(column: int64, enable: boolean): void;
+
+    /** Returns `true` if the column has enabled expanding (see [method set_column_expand]). */
+    is_column_expanding(column: int64): boolean;
+
+    /** Returns `true` if the column has enabled clipping (see [method set_column_clip_content]). */
+    is_column_clipping_content(column: int64): boolean;
+
+    /** Returns the expand ratio assigned to the column. */
+    get_column_expand_ratio(column: int64): int64;
+
+    /** Returns the column's width in pixels. */
+    get_column_width(column: int64): int64;
+
+    /** Returns the next selected [TreeItem] after the given one, or `null` if the end is reached.
+     *  If [param from] is `null`, this returns the first selected item.
+     */
+    get_next_selected(from: TreeItem): null | TreeItem;
+
+    /** Returns the currently focused item, or `null` if no item is focused.
+     *  In [constant SELECT_ROW] and [constant SELECT_SINGLE] modes, the focused item is same as the selected item. In [constant SELECT_MULTI] mode, the focused item is the item under the focus cursor, not necessarily selected.
+     *  To get the currently selected item(s), use [method get_next_selected].
+     */
+    get_selected(): null | TreeItem;
+
+    /** Selects the specified [TreeItem] and column. */
+    set_selected(item: TreeItem, column: int64): void;
+
+    /** Returns the currently focused column, or -1 if no column is focused.
+     *  In [constant SELECT_SINGLE] mode, the focused column is the selected column. In [constant SELECT_ROW] mode, the focused column is always 0 if any item is selected. In [constant SELECT_MULTI] mode, the focused column is the column under the focus cursor, and there are not necessarily any column selected.
+     *  To tell whether a column of an item is selected, use [method TreeItem.is_selected].
+     */
+    get_selected_column(): int64;
+
+    /** Returns the last pressed button's index. */
+    get_pressed_button(): int64;
+
+    /** Deselects all tree items (rows and columns). In [constant SELECT_MULTI] mode also removes selection cursor. */
+    deselect_all(): void;
+
+    /** Returns the currently edited item. Can be used with [signal item_edited] to get the item that was modified.
+     *
+     */
+    get_edited(): null | TreeItem;
+
+    /** Returns the column for the currently edited item. */
+    get_edited_column(): int64;
+
+    /** Edits the selected tree item as if it was clicked.
+     *  Either the item must be set editable with [method TreeItem.set_editable] or [param force_edit] must be `true`.
+     *  Returns `true` if the item could be edited. Fails if no item is selected.
+     */
+    edit_selected(force_edit?: boolean /* = false */): boolean;
+
+    /** Returns the rectangle for custom popups. Helper to create custom cell controls that display a popup. See [method TreeItem.set_cell_mode]. */
+    get_custom_popup_rect(): Rect2;
+
+    /** Returns the rectangle area for the specified [TreeItem]. If [param column] is specified, only get the position and size of that column, otherwise get the rectangle containing all columns. If a button index is specified, the rectangle of that button will be returned. */
+    get_item_area_rect(
+      item: TreeItem,
+      column?: int64 /* = -1 */,
+      button_index?: int64 /* = -1 */,
+    ): Rect2;
+
+    /** Returns the tree item at the specified position (relative to the tree origin position). */
+    get_item_at_position(position: Vector2): null | TreeItem;
+
+    /** Returns the column index at [param position], or -1 if no item is there. */
+    get_column_at_position(position: Vector2): int64;
+
+    /** Returns the drop section at [param position], or -100 if no item is there.
+     *  Values -1, 0, or 1 will be returned for the "above item", "on item", and "below item" drop sections, respectively. See [enum DropModeFlags] for a description of each drop section.
+     *  To get the item which the returned drop section is relative to, use [method get_item_at_position].
+     */
+    get_drop_section_at_position(position: Vector2): int64;
+
+    /** Returns the button ID at [param position], or -1 if no button is there. */
+    get_button_id_at_position(position: Vector2): int64;
+
+    /** Makes the currently focused cell visible.
+     *  This will scroll the tree if necessary. In [constant SELECT_ROW] mode, this will not do horizontal scrolling, as all the cells in the selected row is focused logically.
+     *
+     *  **Note:** Despite the name of this method, the focus cursor itself is only visible in [constant SELECT_MULTI] mode.
+     */
+    ensure_cursor_is_visible(): void;
+
+    /** Sets the title of a column. */
+    set_column_title(column: int64, title: string): void;
+
+    /** Returns the column's title. */
+    get_column_title(column: int64): string;
+
+    /** Sets the column title alignment. Note that [constant @GlobalScope.HORIZONTAL_ALIGNMENT_FILL] is not supported for column titles. */
+    set_column_title_alignment(
+      column: int64,
+      title_alignment: HorizontalAlignment,
+    ): void;
+
+    /** Returns the column title alignment. */
+    get_column_title_alignment(column: int64): HorizontalAlignment;
+
+    /** Sets column title base writing direction. */
+    set_column_title_direction(
+      column: int64,
+      direction: Control.TextDirection,
+    ): void;
+
+    /** Returns column title base writing direction. */
+    get_column_title_direction(column: int64): Control.TextDirection;
+
+    /** Sets language code of column title used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
+    set_column_title_language(column: int64, language: string): void;
+
+    /** Returns column title language code. */
+    get_column_title_language(column: int64): string;
+
+    /** Returns the current scrolling position. */
+    get_scroll(): Vector2;
+
+    /** Causes the [Tree] to jump to the specified [TreeItem]. */
+    scroll_to_item(
+      item: TreeItem,
+      center_on_item?: boolean /* = false */,
+    ): void;
+
+    /** The number of columns. */
+    get columns(): int64;
+    set columns(value: int64);
+
+    /** If `true`, column titles are visible. */
+    get column_titles_visible(): boolean;
+    set column_titles_visible(value: boolean);
+
+    /** If `true`, the currently selected cell may be selected again. */
+    get allow_reselect(): boolean;
+    set allow_reselect(value: boolean);
+
+    /** If `true`, a right mouse button click can select items. */
+    get allow_rmb_select(): boolean;
+    set allow_rmb_select(value: boolean);
+
+    /** If `true`, allows navigating the [Tree] with letter keys through incremental search. */
+    get allow_search(): boolean;
+    set allow_search(value: boolean);
+
+    /** If `true`, the folding arrow is hidden. */
+    get hide_folding(): boolean;
+    set hide_folding(value: boolean);
+
+    /** If `true`, recursive folding is enabled for this [Tree]. Holding down [kbd]Shift[/kbd] while clicking the fold arrow or using `ui_right`/`ui_left` shortcuts collapses or uncollapses the [TreeItem] and all its descendants. */
+    get enable_recursive_folding(): boolean;
+    set enable_recursive_folding(value: boolean);
+
+    /** If `true`, the tree's root is hidden. */
+    get hide_root(): boolean;
+    set hide_root(value: boolean);
+
+    /** The drop mode as an OR combination of flags. See [enum DropModeFlags] constants. Once dropping is done, reverts to [constant DROP_MODE_DISABLED]. Setting this during [method Control._can_drop_data] is recommended.
+     *  This controls the drop sections, i.e. the decision and drawing of possible drop locations based on the mouse position.
+     */
+    get drop_mode_flags(): int64;
+    set drop_mode_flags(value: int64);
+
+    /** Allows single or multiple selection. See the [enum SelectMode] constants. */
+    get select_mode(): int64;
+    set select_mode(value: int64);
+
+    /** If `true`, enables horizontal scrolling. */
+    get scroll_horizontal_enabled(): boolean;
+    set scroll_horizontal_enabled(value: boolean);
+
+    /** If `true`, enables vertical scrolling. */
+    get scroll_vertical_enabled(): boolean;
+    set scroll_vertical_enabled(value: boolean);
+
+    /** If `true`, tree items with no tooltip assigned display their text as their tooltip. See also [method TreeItem.get_tooltip_text] and [method TreeItem.get_button_tooltip_text]. */
+    get auto_tooltip(): boolean;
+    set auto_tooltip(value: boolean);
+
+    /** Emitted when an item is selected. */
+    readonly item_selected: Signal<() => void>;
+
+    /** Emitted when a cell is selected. */
+    readonly cell_selected: Signal<() => void>;
+
+    /** Emitted instead of [signal item_selected] if [member select_mode] is set to [constant SELECT_MULTI]. */
+    readonly multi_selected: Signal<
+      (item: TreeItem, column: int64, selected: boolean) => void
+    >;
+
+    /** Emitted when an item is selected with a mouse button. */
+    readonly item_mouse_selected: Signal<
+      (mouse_position: Vector2, mouse_button_index: int64) => void
+    >;
+
+    /** Emitted when a mouse button is clicked in the empty space of the tree. */
+    readonly empty_clicked: Signal<
+      (click_position: Vector2, mouse_button_index: int64) => void
+    >;
+
+    /** Emitted when an item is edited. */
+    readonly item_edited: Signal<() => void>;
+
+    /** Emitted when an item with [constant TreeItem.CELL_MODE_CUSTOM] is clicked with a mouse button. */
+    readonly custom_item_clicked: Signal<(mouse_button_index: int64) => void>;
+
+    /** Emitted when an item's icon is double-clicked. For a signal that emits when any part of the item is double-clicked, see [signal item_activated]. */
+    readonly item_icon_double_clicked: Signal<() => void>;
+
+    /** Emitted when an item is expanded or collapsed by clicking on the folding arrow or through code.
+     *
+     *  **Note:** Despite its name, this signal is also emitted when an item is expanded.
+     */
+    readonly item_collapsed: Signal<(item: TreeItem) => void>;
+
+    /** Emitted when [method TreeItem.propagate_check] is called. Connect to this signal to process the items that are affected when [method TreeItem.propagate_check] is invoked. The order that the items affected will be processed is as follows: the item that invoked the method, children of that item, and finally parents of that item. */
+    readonly check_propagated_to_item: Signal<
+      (item: TreeItem, column: int64) => void
+    >;
+
+    /** Emitted when a button on the tree was pressed (see [method TreeItem.add_button]). */
+    readonly button_clicked: Signal<
+      (
+        item: TreeItem,
+        column: int64,
+        id: int64,
+        mouse_button_index: int64,
+      ) => void
+    >;
+
+    /** Emitted when a cell with the [constant TreeItem.CELL_MODE_CUSTOM] is clicked to be edited. */
+    readonly custom_popup_edited: Signal<(arrow_clicked: boolean) => void>;
+
+    /** Emitted when an item is double-clicked, or selected with a `ui_accept` input event (e.g. using [kbd]Enter[/kbd] or [kbd]Space[/kbd] on the keyboard). */
+    readonly item_activated: Signal<() => void>;
+
+    /** Emitted when a column's title is clicked with either [constant MOUSE_BUTTON_LEFT] or [constant MOUSE_BUTTON_RIGHT]. */
+    readonly column_title_clicked: Signal<
+      (column: int64, mouse_button_index: int64) => void
+    >;
+
+    /** Emitted when a left mouse button click does not select any item. */
+    readonly nothing_selected: Signal<() => void>;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTree;
+  }
+  namespace TreeItem {
+    enum TreeCellMode {
+      /** Cell shows a string label, optionally with an icon. When editable, the text can be edited using a [LineEdit], or a [TextEdit] popup if [method set_edit_multiline] is used. */
+      CELL_MODE_STRING = 0,
+
+      /** Cell shows a checkbox, optionally with text and an icon. The checkbox can be pressed, released, or indeterminate (via [method set_indeterminate]). The checkbox can't be clicked unless the cell is editable. */
+      CELL_MODE_CHECK = 1,
+
+      /** Cell shows a numeric range. When editable, it can be edited using a range slider. Use [method set_range] to set the value and [method set_range_config] to configure the range.
+       *  This cell can also be used in a text dropdown mode when you assign a text with [method set_text]. Separate options with a comma, e.g. `"Option1,Option2,Option3"`.
+       */
+      CELL_MODE_RANGE = 2,
+
+      /** Cell shows an icon. It can't be edited nor display text. The icon is always centered within the cell. */
+      CELL_MODE_ICON = 3,
+
+      /** Cell shows as a clickable button. It will display an arrow similar to [OptionButton], but doesn't feature a dropdown (for that you can use [constant CELL_MODE_RANGE]). Clicking the button emits the [signal Tree.item_edited] signal. The button is flat by default, you can use [method set_custom_as_button] to display it with a [StyleBox].
+       *  This mode also supports custom drawing using [method set_custom_draw_callback].
+       */
+      CELL_MODE_CUSTOM = 4,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTreeItem extends __NameMapObject {}
+  /** An internal control for a single item inside [Tree].
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_treeitem.html
+   */
+  class TreeItem extends Object {
+    constructor(identifier?: any);
+    /** Sets the given column's cell mode to [param mode]. This determines how the cell is displayed and edited. */
+    set_cell_mode(column: int64, mode: TreeItem.TreeCellMode): void;
+
+    /** Returns the column's cell mode. */
+    get_cell_mode(column: int64): TreeItem.TreeCellMode;
+
+    /** Sets the given column's auto translate mode to [param mode].
+     *  All columns use [constant Node.AUTO_TRANSLATE_MODE_INHERIT] by default, which uses the same auto translate mode as the [Tree] itself.
+     */
+    set_auto_translate_mode(column: int64, mode: Node.AutoTranslateMode): void;
+
+    /** Returns the column's auto translate mode. */
+    get_auto_translate_mode(column: int64): Node.AutoTranslateMode;
+
+    /** If [param multiline] is `true`, the given [param column] is multiline editable.
+     *
+     *  **Note:** This option only affects the type of control ([LineEdit] or [TextEdit]) that appears when editing the column. You can set multiline values with [method set_text] even if the column is not multiline editable.
+     */
+    set_edit_multiline(column: int64, multiline: boolean): void;
+
+    /** Returns `true` if the given [param column] is multiline editable. */
+    is_edit_multiline(column: int64): boolean;
+
+    /** If [param checked] is `true`, the given [param column] is checked. Clears column's indeterminate status. */
+    set_checked(column: int64, checked: boolean): void;
+
+    /** If [param indeterminate] is `true`, the given [param column] is marked indeterminate.
+     *
+     *  **Note:** If set `true` from `false`, then column is cleared of checked status.
+     */
+    set_indeterminate(column: int64, indeterminate: boolean): void;
+
+    /** Returns `true` if the given [param column] is checked. */
+    is_checked(column: int64): boolean;
+
+    /** Returns `true` if the given [param column] is indeterminate. */
+    is_indeterminate(column: int64): boolean;
+
+    /** Propagates this item's checked status to its children and parents for the given [param column]. It is possible to process the items affected by this method call by connecting to [signal Tree.check_propagated_to_item]. The order that the items affected will be processed is as follows: the item invoking this method, children of that item, and finally parents of that item. If [param emit_signal] is `false`, then [signal Tree.check_propagated_to_item] will not be emitted. */
+    propagate_check(column: int64, emit_signal?: boolean /* = true */): void;
+
+    /** Sets the given column's text value. */
+    set_text(column: int64, text: string): void;
+
+    /** Returns the given column's text. */
+    get_text(column: int64): string;
+
+    /** Sets the given column's description for assistive apps. */
+    set_description(column: int64, description: string): void;
+
+    /** Returns the given column's description for assistive apps. */
+    get_description(column: int64): string;
+
+    /** Sets item's text base writing direction. */
+    set_text_direction(column: int64, direction: Control.TextDirection): void;
+
+    /** Returns item's text base writing direction. */
+    get_text_direction(column: int64): Control.TextDirection;
+
+    /** Sets the autowrap mode in the given [param column]. If set to something other than [constant TextServer.AUTOWRAP_OFF], the text gets wrapped inside the cell's bounding rectangle. */
+    set_autowrap_mode(
+      column: int64,
+      autowrap_mode: TextServer.AutowrapMode,
+    ): void;
+
+    /** Returns the text autowrap mode in the given [param column]. By default it is [constant TextServer.AUTOWRAP_OFF]. */
+    get_autowrap_mode(column: int64): TextServer.AutowrapMode;
+
+    /** Sets the clipping behavior when the text exceeds the item's bounding rectangle in the given [param column]. */
+    set_text_overrun_behavior(
+      column: int64,
+      overrun_behavior: TextServer.OverrunBehavior,
+    ): void;
+
+    /** Returns the clipping behavior when the text exceeds the item's bounding rectangle in the given [param column]. By default it is [constant TextServer.OVERRUN_TRIM_ELLIPSIS]. */
+    get_text_overrun_behavior(column: int64): TextServer.OverrunBehavior;
+
+    /** Set BiDi algorithm override for the structured text. Has effect for cells that display text. */
+    set_structured_text_bidi_override(
+      column: int64,
+      parser: TextServer.StructuredTextParser,
+    ): void;
+
+    /** Returns the BiDi algorithm override set for this cell. */
+    get_structured_text_bidi_override(
+      column: int64,
+    ): TextServer.StructuredTextParser;
+
+    /** Set additional options for BiDi override. Has effect for cells that display text. */
+    set_structured_text_bidi_override_options(
+      column: int64,
+      args: GArray,
+    ): void;
+
+    /** Returns the additional BiDi options set for this cell. */
+    get_structured_text_bidi_override_options(column: int64): GArray;
+
+    /** Sets language code of item's text used for line-breaking and text shaping algorithms, if left empty current locale is used instead. */
+    set_language(column: int64, language: string): void;
+
+    /** Returns item's text language code. */
+    get_language(column: int64): string;
+
+    /** Sets a string to be shown after a column's value (for example, a unit abbreviation). */
+    set_suffix(column: int64, text: string): void;
+
+    /** Gets the suffix string shown after the column value. */
+    get_suffix(column: int64): string;
+
+    /** Sets the given cell's icon [Texture2D]. If the cell is in [constant CELL_MODE_ICON] mode, the icon is displayed in the center of the cell. Otherwise, the icon is displayed before the cell's text. [constant CELL_MODE_RANGE] does not display an icon. */
+    set_icon(column: int64, texture: Texture2D): void;
+
+    /** Returns the given column's icon [Texture2D]. Error if no icon is set. */
+    get_icon(column: int64): null | Texture2D;
+
+    /** Sets the given cell's icon overlay [Texture2D]. The cell has to be in [constant CELL_MODE_ICON] mode, and icon has to be set. Overlay is drawn on top of icon, in the bottom left corner. */
+    set_icon_overlay(column: int64, texture: Texture2D): void;
+
+    /** Returns the given column's icon overlay [Texture2D]. */
+    get_icon_overlay(column: int64): null | Texture2D;
+
+    /** Sets the given column's icon's texture region. */
+    set_icon_region(column: int64, region: Rect2): void;
+
+    /** Returns the icon [Texture2D] region as [Rect2]. */
+    get_icon_region(column: int64): Rect2;
+
+    /** Sets the maximum allowed width of the icon in the given [param column]. This limit is applied on top of the default size of the icon and on top of [theme_item Tree.icon_max_width]. The height is adjusted according to the icon's ratio. */
+    set_icon_max_width(column: int64, width: int64): void;
+
+    /** Returns the maximum allowed width of the icon in the given [param column]. */
+    get_icon_max_width(column: int64): int64;
+
+    /** Modulates the given column's icon with [param modulate]. */
+    set_icon_modulate(column: int64, modulate: Color): void;
+
+    /** Returns the [Color] modulating the column's icon. */
+    get_icon_modulate(column: int64): Color;
+
+    /** Sets the value of a [constant CELL_MODE_RANGE] column. */
+    set_range(column: int64, value: float64): void;
+
+    /** Returns the value of a [constant CELL_MODE_RANGE] column. */
+    get_range(column: int64): float64;
+
+    /** Sets the range of accepted values for a column. The column must be in the [constant CELL_MODE_RANGE] mode.
+     *  If [param expr] is `true`, the edit mode slider will use an exponential scale as with [member Range.exp_edit].
+     */
+    set_range_config(
+      column: int64,
+      min: float64,
+      max: float64,
+      step: float64,
+      expr?: boolean /* = false */,
+    ): void;
+
+    /** Returns a dictionary containing the range parameters for a given column. The keys are "min", "max", "step", and "expr". */
+    get_range_config(column: int64): GDictionary;
+
+    /** Sets the metadata value for the given column, which can be retrieved later using [method get_metadata]. This can be used, for example, to store a reference to the original data. */
+    set_metadata(column: int64, meta: any): void;
+
+    /** Returns the metadata value that was set for the given column using [method set_metadata]. */
+    get_metadata(column: int64): any;
+
+    /** Sets the given column's custom draw callback to the [param callback] method on [param object].
+     *  The method named [param callback] should accept two arguments: the [TreeItem] that is drawn and its position and size as a [Rect2].
+     */
+    set_custom_draw(column: int64, object: Object, callback: StringName): void;
+
+    /** Sets the given column's custom draw callback. Use an empty [Callable] ([code skip-lint]Callable()`) to clear the custom callback. The cell has to be in [constant CELL_MODE_CUSTOM] to use this feature.
+     *  The [param callback] should accept two arguments: the [TreeItem] that is drawn and its position and size as a [Rect2].
+     */
+    set_custom_draw_callback(column: int64, callback: Callable): void;
+
+    /** Returns the custom callback of column [param column]. */
+    get_custom_draw_callback(column: int64): Callable;
+
+    /** Collapses or uncollapses this [TreeItem] and all the descendants of this item. */
+    set_collapsed_recursive(enable: boolean): void;
+
+    /** Returns `true` if this [TreeItem], or any of its descendants, is collapsed.
+     *  If [param only_visible] is `true` it ignores non-visible [TreeItem]s.
+     */
+    is_any_collapsed(only_visible?: boolean /* = false */): boolean;
+
+    /** Returns `true` if [member visible] is `true` and all its ancestors are also visible. */
+    is_visible_in_tree(): boolean;
+
+    /** Uncollapses all [TreeItem]s necessary to reveal this [TreeItem], i.e. all ancestor [TreeItem]s. */
+    uncollapse_tree(): void;
+
+    /** If [param selectable] is `true`, the given [param column] is selectable. */
+    set_selectable(column: int64, selectable: boolean): void;
+
+    /** Returns `true` if the given [param column] is selectable. */
+    is_selectable(column: int64): boolean;
+
+    /** Returns `true` if the given [param column] is selected. */
+    is_selected(column: int64): boolean;
+
+    /** Selects the given [param column]. */
+    select(column: int64): void;
+
+    /** Deselects the given column. */
+    deselect(column: int64): void;
+
+    /** If [param enabled] is `true`, the given [param column] is editable. */
+    set_editable(column: int64, enabled: boolean): void;
+
+    /** Returns `true` if the given [param column] is editable. */
+    is_editable(column: int64): boolean;
+
+    /** Sets the given column's custom color. */
+    set_custom_color(column: int64, color: Color): void;
+
+    /** Returns the custom color of column [param column]. */
+    get_custom_color(column: int64): Color;
+
+    /** Resets the color for the given column to default. */
+    clear_custom_color(column: int64): void;
+
+    /** Sets custom font used to draw text in the given [param column]. */
+    set_custom_font(column: int64, font: Font): void;
+
+    /** Returns custom font used to draw text in the column [param column]. */
+    get_custom_font(column: int64): null | Font;
+
+    /** Sets custom font size used to draw text in the given [param column]. */
+    set_custom_font_size(column: int64, font_size: int64): void;
+
+    /** Returns custom font size used to draw text in the column [param column]. */
+    get_custom_font_size(column: int64): int64;
+
+    /** Sets the given column's custom background color and whether to just use it as an outline. */
+    set_custom_bg_color(
+      column: int64,
+      color: Color,
+      just_outline?: boolean /* = false */,
+    ): void;
+
+    /** Resets the background color for the given column to default. */
+    clear_custom_bg_color(column: int64): void;
+
+    /** Returns the custom background color of column [param column]. */
+    get_custom_bg_color(column: int64): Color;
+
+    /** Makes a cell with [constant CELL_MODE_CUSTOM] display as a non-flat button with a [StyleBox]. */
+    set_custom_as_button(column: int64, enable: boolean): void;
+
+    /** Returns `true` if the cell was made into a button with [method set_custom_as_button]. */
+    is_custom_set_as_button(column: int64): boolean;
+
+    /** Removes all buttons from all columns of this item. */
+    clear_buttons(): void;
+
+    /** Adds a button with [Texture2D] [param button] to the end of the cell at column [param column]. The [param id] is used to identify the button in the according [signal Tree.button_clicked] signal and can be different from the buttons index. If not specified, the next available index is used, which may be retrieved by calling [method get_button_count] immediately before this method. Optionally, the button can be [param disabled] and have a [param tooltip_text]. [param description] is used as the button description for assistive apps. */
+    add_button(
+      column: int64,
+      button: Texture2D,
+      id?: int64 /* = -1 */,
+      disabled?: boolean /* = false */,
+      tooltip_text?: string /* = '' */,
+      description?: string /* = '' */,
+    ): void;
+
+    /** Returns the number of buttons in column [param column]. */
+    get_button_count(column: int64): int64;
+
+    /** Returns the tooltip text for the button at index [param button_index] in column [param column]. */
+    get_button_tooltip_text(column: int64, button_index: int64): string;
+
+    /** Returns the ID for the button at index [param button_index] in column [param column]. */
+    get_button_id(column: int64, button_index: int64): int64;
+
+    /** Returns the button index if there is a button with ID [param id] in column [param column], otherwise returns -1. */
+    get_button_by_id(column: int64, id: int64): int64;
+
+    /** Returns the color of the button with ID [param id] in column [param column]. If the specified button does not exist, returns [constant Color.BLACK]. */
+    get_button_color(column: int64, id: int64): Color;
+
+    /** Returns the [Texture2D] of the button at index [param button_index] in column [param column]. */
+    get_button(column: int64, button_index: int64): null | Texture2D;
+
+    /** Sets the tooltip text for the button at index [param button_index] in the given [param column]. */
+    set_button_tooltip_text(
+      column: int64,
+      button_index: int64,
+      tooltip: string,
+    ): void;
+
+    /** Sets the given column's button [Texture2D] at index [param button_index] to [param button]. */
+    set_button(column: int64, button_index: int64, button: Texture2D): void;
+
+    /** Removes the button at index [param button_index] in column [param column]. */
+    erase_button(column: int64, button_index: int64): void;
+
+    /** Sets the given column's button description at index [param button_index] for assistive apps. */
+    set_button_description(
+      column: int64,
+      button_index: int64,
+      description: string,
+    ): void;
+
+    /** If `true`, disables the button at index [param button_index] in the given [param column]. */
+    set_button_disabled(
+      column: int64,
+      button_index: int64,
+      disabled: boolean,
+    ): void;
+
+    /** Sets the given column's button color at index [param button_index] to [param color]. */
+    set_button_color(column: int64, button_index: int64, color: Color): void;
+
+    /** Returns `true` if the button at index [param button_index] for the given [param column] is disabled. */
+    is_button_disabled(column: int64, button_index: int64): boolean;
+
+    /** Sets the given column's tooltip text. */
+    set_tooltip_text(column: int64, tooltip: string): void;
+
+    /** Returns the given column's tooltip text. */
+    get_tooltip_text(column: int64): string;
+
+    /** Sets the given column's text alignment to [param text_alignment]. */
+    set_text_alignment(
+      column: int64,
+      text_alignment: HorizontalAlignment,
+    ): void;
+
+    /** Returns the given column's text alignment. */
+    get_text_alignment(column: int64): HorizontalAlignment;
+
+    /** If [param enable] is `true`, the given [param column] is expanded to the right. */
+    set_expand_right(column: int64, enable: boolean): void;
+
+    /** Returns `true` if `expand_right` is set. */
+    get_expand_right(column: int64): boolean;
+
+    /** Creates an item and adds it as a child.
+     *  The new item will be inserted as position [param index] (the default value `-1` means the last position), or it will be the last child if [param index] is higher than the child count.
+     */
+    create_child(index?: int64 /* = -1 */): TreeItem;
+
+    /** Adds a previously unparented [TreeItem] as a direct child of this one. The [param child] item must not be a part of any [Tree] or parented to any [TreeItem]. See also [method remove_child]. */
+    add_child(child: TreeItem): void;
+
+    /** Removes the given child [TreeItem] and all its children from the [Tree]. Note that it doesn't free the item from memory, so it can be reused later (see [method add_child]). To completely remove a [TreeItem] use [method Object.free].
+     *
+     *  **Note:** If you want to move a child from one [Tree] to another, then instead of removing and adding it manually you can use [method move_before] or [method move_after].
+     */
+    remove_child(child: TreeItem): void;
+
+    /** Returns the [Tree] that owns this TreeItem. */
+    get_tree(): null | Tree;
+
+    /** Returns the next sibling TreeItem in the tree or a `null` object if there is none. */
+    get_next(): null | TreeItem;
+
+    /** Returns the previous sibling TreeItem in the tree or a `null` object if there is none. */
+    get_prev(): null | TreeItem;
+
+    /** Returns the parent TreeItem or a `null` object if there is none. */
+    get_parent(): null | TreeItem;
+
+    /** Returns the TreeItem's first child. */
+    get_first_child(): null | TreeItem;
+
+    /** Returns the next TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
+     *  If [param wrap] is enabled, the method will wrap around to the first element in the tree when called on the last element, otherwise it returns `null`.
+     */
+    get_next_in_tree(wrap?: boolean /* = false */): null | TreeItem;
+
+    /** Returns the previous TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
+     *  If [param wrap] is enabled, the method will wrap around to the last element in the tree when called on the first visible element, otherwise it returns `null`.
+     */
+    get_prev_in_tree(wrap?: boolean /* = false */): null | TreeItem;
+
+    /** Returns the next visible TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
+     *  If [param wrap] is enabled, the method will wrap around to the first visible element in the tree when called on the last visible element, otherwise it returns `null`.
+     */
+    get_next_visible(wrap?: boolean /* = false */): null | TreeItem;
+
+    /** Returns the previous visible sibling TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
+     *  If [param wrap] is enabled, the method will wrap around to the last visible element in the tree when called on the first visible element, otherwise it returns `null`.
+     */
+    get_prev_visible(wrap?: boolean /* = false */): null | TreeItem;
+
+    /** Returns a child item by its [param index] (see [method get_child_count]). This method is often used for iterating all children of an item.
+     *  Negative indices access the children from the last one.
+     */
+    get_child(index: int64): null | TreeItem;
+
+    /** Returns the number of child items. */
+    get_child_count(): int64;
+
+    /** Returns an array of references to the item's children. */
+    get_children(): GArray<TreeItem>;
+
+    /** Returns the node's order in the tree. For example, if called on the first child item the position is `0`. */
+    get_index(): int64;
+
+    /** Moves this TreeItem right before the given [param item].
+     *
+     *  **Note:** You can't move to the root or move the root.
+     */
+    move_before(item: TreeItem): void;
+
+    /** Moves this TreeItem right after the given [param item].
+     *
+     *  **Note:** You can't move to the root or move the root.
+     */
+    move_after(item: TreeItem): void;
+
+    /** Calls the [param method] on the actual TreeItem and its children recursively. Pass parameters as a comma separated list. */
+    call_recursive(method: StringName, ...varargs: any[]): void;
+
+    /** If `true`, the TreeItem is collapsed. */
+    get collapsed(): boolean;
+    set collapsed(value: boolean);
+
+    /** If `true`, the [TreeItem] is visible (default).
+     *  Note that if a [TreeItem] is set to not be visible, none of its children will be visible either.
+     */
+    get visible(): boolean;
+    set visible(value: boolean);
+
+    /** If `true`, folding is disabled for this TreeItem. */
+    get disable_folding(): boolean;
+    set disable_folding(value: boolean);
+
+    /** The custom minimum height. */
+    get custom_minimum_height(): int64;
+    set custom_minimum_height(value: int64);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTreeItem;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTriangleMesh extends __NameMapRefCounted {}
+  /** Triangle geometry for efficient, physicsless intersection queries.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_trianglemesh.html
+   */
+  class TriangleMesh extends RefCounted {
+    constructor(identifier?: any);
+    /** Creates the BVH tree from an array of faces. Each 3 vertices of the input [param faces] array represent one triangle (face).
+     *  Returns `true` if the tree is successfully built, `false` otherwise.
+     */
+    create_from_faces(faces: PackedVector3Array | Vector3[]): boolean;
+
+    /** Returns a copy of the geometry faces. Each 3 vertices of the array represent one triangle (face). */
+    get_faces(): PackedVector3Array;
+
+    /** Tests for intersection with a segment going from [param begin] to [param end].
+     *  If an intersection with a triangle happens returns a [Dictionary] with the following fields:
+     *  `position`: The position on the intersected triangle.
+     *  `normal`: The normal of the intersected triangle.
+     *  `face_index`: The index of the intersected triangle.
+     *  Returns an empty [Dictionary] if no intersection happens.
+     *  See also [method intersect_ray], which is similar but uses an infinite-length ray.
+     */
+    intersect_segment(begin: Vector3, end: Vector3): GDictionary;
+
+    /** Tests for intersection with a ray starting at [param begin] and facing [param dir] and extending toward infinity.
+     *  If an intersection with a triangle happens, returns a [Dictionary] with the following fields:
+     *  `position`: The position on the intersected triangle.
+     *  `normal`: The normal of the intersected triangle.
+     *  `face_index`: The index of the intersected triangle.
+     *  Returns an empty [Dictionary] if no intersection happens.
+     *  See also [method intersect_segment], which is similar but uses a finite-length segment.
+     */
+    intersect_ray(begin: Vector3, dir: Vector3): GDictionary;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTriangleMesh;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTubeTrailMesh extends __NameMapPrimitiveMesh {}
+  /** Represents a straight tube-shaped [PrimitiveMesh] with variable width.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_tubetrailmesh.html
+   */
+  class TubeTrailMesh extends PrimitiveMesh {
+    constructor(identifier?: any);
+    /** The baseline radius of the tube. The radius of a particular section ring is obtained by multiplying this radius by the value of the [member curve] at the given distance. */
+    get radius(): float64;
+    set radius(value: float64);
+
+    /** The number of sides on the tube. For example, a value of `5` means the tube will be pentagonal. Higher values result in a more detailed tube at the cost of performance. */
+    get radial_steps(): int64;
+    set radial_steps(value: int64);
+
+    /** The total number of sections on the tube. */
+    get sections(): int64;
+    set sections(value: int64);
+
+    /** The length of a section of the tube. */
+    get section_length(): float64;
+    set section_length(value: float64);
+
+    /** The number of rings in a section. The [member curve] is sampled on each ring to determine its radius. Higher values result in a more detailed tube at the cost of performance. */
+    get section_rings(): int64;
+    set section_rings(value: int64);
+
+    /** If `true`, generates a cap at the top of the tube. This can be set to `false` to speed up generation and rendering when the cap is never seen by the camera. */
+    get cap_top(): boolean;
+    set cap_top(value: boolean);
+
+    /** If `true`, generates a cap at the bottom of the tube. This can be set to `false` to speed up generation and rendering when the cap is never seen by the camera. */
+    get cap_bottom(): boolean;
+    set cap_bottom(value: boolean);
+
+    /** Determines the radius of the tube along its length. The radius of a particular section ring is obtained by multiplying the baseline [member radius] by the value of this curve at the given distance. For values smaller than `0`, the faces will be inverted. Should be a unit [Curve]. */
+    get curve(): null | Curve;
+    set curve(value: null | Curve);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTubeTrailMesh;
+  }
+  namespace Tween {
+    enum TweenProcessMode {
+      /** The [Tween] updates after each physics frame (see [method Node._physics_process]). */
+      TWEEN_PROCESS_PHYSICS = 0,
+
+      /** The [Tween] updates after each process frame (see [method Node._process]). */
+      TWEEN_PROCESS_IDLE = 1,
+    }
+    enum TweenPauseMode {
+      /** If the [Tween] has a bound node, it will process when that node can process (see [member Node.process_mode]). Otherwise it's the same as [constant TWEEN_PAUSE_STOP]. */
+      TWEEN_PAUSE_BOUND = 0,
+
+      /** If [SceneTree] is paused, the [Tween] will also pause. */
+      TWEEN_PAUSE_STOP = 1,
+
+      /** The [Tween] will process regardless of whether [SceneTree] is paused. */
+      TWEEN_PAUSE_PROCESS = 2,
+    }
+    enum TransitionType {
+      /** The animation is interpolated linearly. */
+      TRANS_LINEAR = 0,
+
+      /** The animation is interpolated using a sine function. */
+      TRANS_SINE = 1,
+
+      /** The animation is interpolated with a quintic (to the power of 5) function. */
+      TRANS_QUINT = 2,
+
+      /** The animation is interpolated with a quartic (to the power of 4) function. */
+      TRANS_QUART = 3,
+
+      /** The animation is interpolated with a quadratic (to the power of 2) function. */
+      TRANS_QUAD = 4,
+
+      /** The animation is interpolated with an exponential (to the power of x) function. */
+      TRANS_EXPO = 5,
+
+      /** The animation is interpolated with elasticity, wiggling around the edges. */
+      TRANS_ELASTIC = 6,
+
+      /** The animation is interpolated with a cubic (to the power of 3) function. */
+      TRANS_CUBIC = 7,
+
+      /** The animation is interpolated with a function using square roots. */
+      TRANS_CIRC = 8,
+
+      /** The animation is interpolated by bouncing at the end. */
+      TRANS_BOUNCE = 9,
+
+      /** The animation is interpolated backing out at ends. */
+      TRANS_BACK = 10,
+
+      /** The animation is interpolated like a spring towards the end. */
+      TRANS_SPRING = 11,
+    }
+    enum EaseType {
+      /** The interpolation starts slowly and speeds up towards the end. */
+      EASE_IN = 0,
+
+      /** The interpolation starts quickly and slows down towards the end. */
+      EASE_OUT = 1,
+
+      /** A combination of [constant EASE_IN] and [constant EASE_OUT]. The interpolation is slowest at both ends. */
+      EASE_IN_OUT = 2,
+
+      /** A combination of [constant EASE_IN] and [constant EASE_OUT]. The interpolation is fastest at both ends. */
+      EASE_OUT_IN = 3,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTween extends __NameMapRefCounted {}
+  /** Lightweight object used for general-purpose animation via script, using [Tweener]s.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_tween.html
+   */
+  class Tween extends RefCounted {
+    constructor(identifier?: any);
+    /** Creates and appends a [PropertyTweener]. This method tweens a [param property] of an [param object] between an initial value and [param final_val] in a span of time equal to [param duration], in seconds. The initial value by default is the property's value at the time the tweening of the [PropertyTweener] starts.
+     *
+     *  will move the sprite to position (100, 200) and then to (200, 300). If you use [method PropertyTweener.from] or [method PropertyTweener.from_current], the starting position will be overwritten by the given value instead. See other methods in [PropertyTweener] to see how the tweening can be tweaked further.
+     *
+     *  **Note:** You can find the correct property name by hovering over the property in the Inspector. You can also provide the components of a property directly by using `"property:component"` (eg. `position:x`), where it would only apply to that particular component.
+     *  **Example:** Moving an object twice from the same position, with different transition types:
+     *
+     */
+    tween_property(
+      object: Object,
+      property: NodePath | string,
+      final_val: any,
+      duration: float64,
+    ): null | PropertyTweener;
+
+    /** Creates and appends an [IntervalTweener]. This method can be used to create delays in the tween animation, as an alternative to using the delay in other [Tweener]s, or when there's no animation (in which case the [Tween] acts as a timer). [param time] is the length of the interval, in seconds.
+     *  **Example:** Creating an interval in code execution:
+     *
+     *  **Example:** Creating an object that moves back and forth and jumps every few seconds:
+     *
+     */
+    tween_interval(time: float64): null | IntervalTweener;
+
+    /** Creates and appends a [CallbackTweener]. This method can be used to call an arbitrary method in any object. Use [method Callable.bind] to bind additional arguments for the call.
+     *  **Example:** Object that keeps shooting every 1 second:
+     *
+     *  **Example:** Turning a sprite red and then blue, with 2 second delay:
+     *
+     */
+    tween_callback(callback: Callable): null | CallbackTweener;
+
+    /** Creates and appends a [MethodTweener]. This method is similar to a combination of [method tween_callback] and [method tween_property]. It calls a method over time with a tweened value provided as an argument. The value is tweened between [param from] and [param to] over the time specified by [param duration], in seconds. Use [method Callable.bind] to bind additional arguments for the call. You can use [method MethodTweener.set_ease] and [method MethodTweener.set_trans] to tweak the easing and transition of the value or [method MethodTweener.set_delay] to delay the tweening.
+     *  **Example:** Making a 3D object look from one point to another point:
+     *
+     *  **Example:** Setting the text of a [Label], using an intermediate method and after a delay:
+     *
+     */
+    tween_method(
+      method: Callable,
+      from: any,
+      to: any,
+      duration: float64,
+    ): null | MethodTweener;
+
+    /** Creates and appends a [SubtweenTweener]. This method can be used to nest [param subtween] within this [Tween], allowing for the creation of more complex and composable sequences.
+     *
+     *
+     *  **Note:** The methods [method pause], [method stop], and [method set_loops] can cause the parent [Tween] to get stuck on the subtween step; see the documentation for those methods for more information.
+     *
+     *  **Note:** The pause and process modes set by [method set_pause_mode] and [method set_process_mode] on [param subtween] will be overridden by the parent [Tween]'s settings.
+     */
+    tween_subtween(subtween: Tween): null | SubtweenTweener;
+
+    /** Processes the [Tween] by the given [param delta] value, in seconds. This is mostly useful for manual control when the [Tween] is paused. It can also be used to end the [Tween] animation immediately, by setting [param delta] longer than the whole duration of the [Tween] animation.
+     *  Returns `true` if the [Tween] still has [Tweener]s that haven't finished.
+     */
+    custom_step(delta: float64): boolean;
+
+    /** Stops the tweening and resets the [Tween] to its initial state. This will not remove any appended [Tweener]s.
+     *
+     *  **Note:** This does  *not*  reset targets of [PropertyTweener]s to their values when the [Tween] first started.
+     *
+     *
+     *  **Note:** If a Tween is stopped and not bound to any node, it will exist indefinitely until manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using [method SceneTree.get_processed_tweens].
+     */
+    stop(): void;
+
+    /** Pauses the tweening. The animation can be resumed by using [method play].
+     *
+     *  **Note:** If a Tween is paused and not bound to any node, it will exist indefinitely until manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using [method SceneTree.get_processed_tweens].
+     */
+    pause(): void;
+
+    /** Resumes a paused or stopped [Tween]. */
+    play(): void;
+
+    /** Aborts all tweening operations and invalidates the [Tween]. */
+    kill(): void;
+
+    /** Returns the total time in seconds the [Tween] has been animating (i.e. the time since it started, not counting pauses etc.). The time is affected by [method set_speed_scale], and [method stop] will reset it to `0`.
+     *
+     *  **Note:** As it results from accumulating frame deltas, the time returned after the [Tween] has finished animating will be slightly greater than the actual [Tween] duration.
+     */
+    get_total_elapsed_time(): float64;
+
+    /** Returns whether the [Tween] is currently running, i.e. it wasn't paused and it's not finished. */
+    is_running(): boolean;
+
+    /** Returns whether the [Tween] is valid. A valid [Tween] is a [Tween] contained by the scene tree (i.e. the array from [method SceneTree.get_processed_tweens] will contain this [Tween]). A [Tween] might become invalid when it has finished tweening, is killed, or when created with `Tween.new()`. Invalid [Tween]s can't have [Tweener]s appended. */
+    is_valid(): boolean;
+
+    /** Binds this [Tween] with the given [param node]. [Tween]s are processed directly by the [SceneTree], so they run independently of the animated nodes. When you bind a [Node] with the [Tween], the [Tween] will halt the animation when the object is not inside tree and the [Tween] will be automatically killed when the bound object is freed. Also [constant TWEEN_PAUSE_BOUND] will make the pausing behavior dependent on the bound node.
+     *  For a shorter way to create and bind a [Tween], you can use [method Node.create_tween].
+     */
+    bind_node(node: Node): null | Tween;
+
+    /** Determines whether the [Tween] should run after process frames (see [method Node._process]) or physics frames (see [method Node._physics_process]).
+     *  Default value is [constant TWEEN_PROCESS_IDLE].
+     */
+    set_process_mode(mode: Tween.TweenProcessMode): null | Tween;
+
+    /** Determines the behavior of the [Tween] when the [SceneTree] is paused.
+     *  Default value is [constant TWEEN_PAUSE_BOUND].
+     */
+    set_pause_mode(mode: Tween.TweenPauseMode): null | Tween;
+
+    /** If [param ignore] is `true`, the tween will ignore [member Engine.time_scale] and update with the real, elapsed time. This affects all [Tweener]s and their delays. Default value is `false`. */
+    set_ignore_time_scale(ignore?: boolean /* = true */): null | Tween;
+
+    /** If [param parallel] is `true`, the [Tweener]s appended after this method will by default run simultaneously, as opposed to sequentially.
+     *
+     *  **Note:** Just like with [method parallel], the tweener added right before this method will also be part of the parallel step.
+     *
+     */
+    set_parallel(parallel?: boolean /* = true */): null | Tween;
+
+    /** Sets the number of times the tweening sequence will be repeated, i.e. `set_loops(2)` will run the animation twice.
+     *  Calling this method without arguments will make the [Tween] run infinitely, until either it is killed with [method kill], the [Tween]'s bound node is freed, or all the animated objects have been freed (which makes further animation impossible).
+     *  **Warning:** Make sure to always add some duration/delay when using infinite loops. To prevent the game freezing, 0-duration looped animations (e.g. a single [CallbackTweener] with no delay) are stopped after a small number of loops, which may produce unexpected results. If a [Tween]'s lifetime depends on some node, always use [method bind_node].
+     */
+    set_loops(loops?: int64 /* = 0 */): null | Tween;
+
+    /** Returns the number of remaining loops for this [Tween] (see [method set_loops]). A return value of `-1` indicates an infinitely looping [Tween], and a return value of `0` indicates that the [Tween] has already finished. */
+    get_loops_left(): int64;
+
+    /** Scales the speed of tweening. This affects all [Tweener]s and their delays. */
+    set_speed_scale(speed: float64): null | Tween;
+
+    /** Sets the default transition type for [PropertyTweener]s and [MethodTweener]s appended after this method.
+     *  Before this method is called, the default transition type is [constant TRANS_LINEAR].
+     *
+     */
+    set_trans(trans: Tween.TransitionType): null | Tween;
+
+    /** Sets the default ease type for [PropertyTweener]s and [MethodTweener]s appended after this method.
+     *  Before this method is called, the default ease type is [constant EASE_IN_OUT].
+     *
+     */
+    set_ease(ease: Tween.EaseType): null | Tween;
+
+    /** Makes the next [Tweener] run parallelly to the previous one.
+     *
+     *  All [Tweener]s in the example will run at the same time.
+     *  You can make the [Tween] parallel by default by using [method set_parallel].
+     */
+    parallel(): null | Tween;
+
+    /** Used to chain two [Tweener]s after [method set_parallel] is called with `true`.
+     *
+     */
+    chain(): null | Tween;
+
+    /** This method can be used for manual interpolation of a value, when you don't want [Tween] to do animating for you. It's similar to [method @GlobalScope.lerp], but with support for custom transition and easing.
+     *  [param initial_value] is the starting value of the interpolation.
+     *  [param delta_value] is the change of the value in the interpolation, i.e. it's equal to `final_value - initial_value`.
+     *  [param elapsed_time] is the time in seconds that passed after the interpolation started and it's used to control the position of the interpolation. E.g. when it's equal to half of the [param duration], the interpolated value will be halfway between initial and final values. This value can also be greater than [param duration] or lower than 0, which will extrapolate the value.
+     *  [param duration] is the total time of the interpolation.
+     *
+     *  **Note:** If [param duration] is equal to `0`, the method will always return the final value, regardless of [param elapsed_time] provided.
+     */
+    static interpolate_value(
+      initial_value: any,
+      delta_value: any,
+      elapsed_time: float64,
+      duration: float64,
+      trans_type: Tween.TransitionType,
+      ease_type: Tween.EaseType,
+    ): any;
+
+    /** Emitted when one step of the [Tween] is complete, providing the step index. One step is either a single [Tweener] or a group of [Tweener]s running in parallel. */
+    readonly step_finished: Signal<(idx: int64) => void>;
+
+    /** Emitted when a full loop is complete (see [method set_loops]), providing the loop index. This signal is not emitted after the final loop, use [signal finished] instead for this case. */
+    readonly loop_finished: Signal<(loop_count: int64) => void>;
+
+    /** Emitted when the [Tween] has finished all tweening. Never emitted when the [Tween] is set to infinite looping (see [method set_loops]). */
+    readonly finished: Signal<() => void>;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTween;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapTweener extends __NameMapRefCounted {}
+  /** Abstract class for all Tweeners used by [Tween].
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_tweener.html
+   */
+  class Tweener extends RefCounted {
+    constructor(identifier?: any);
+    /** Emitted when the [Tweener] has just finished its job or became invalid (e.g. due to a freed object). */
+    readonly finished: Signal<() => void>;
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapTweener;
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapUDPServer extends __NameMapRefCounted {}
+  /** Helper class to implement a UDP server.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_udpserver.html
+   */
+  class UDPServer extends RefCounted {
+    constructor(identifier?: any);
+    /** Starts the server by opening a UDP socket listening on the given [param port]. You can optionally specify a [param bind_address] to only listen for packets sent to that address. See also [method PacketPeerUDP.bind]. */
+    listen(port: int64, bind_address?: string /* = '*' */): Error;
+
+    /** Call this method at regular intervals (e.g. inside [method Node._process]) to process new packets. Any packet from a known address/port pair will be delivered to the appropriate [PacketPeerUDP], while any packet received from an unknown address/port pair will be added as a pending connection (see [method is_connection_available] and [method take_connection]). The maximum number of pending connections is defined via [member max_pending_connections]. */
+    poll(): Error;
+
+    /** Returns `true` if a packet with a new address/port combination was received on the socket. */
+    is_connection_available(): boolean;
+
+    /** Returns the local port this server is listening to. */
+    get_local_port(): int64;
+
+    /** Returns `true` if the socket is open and listening on a port. */
+    is_listening(): boolean;
+
+    /** Returns the first pending connection (connected to the appropriate address/port). Will return `null` if no new connection is available. See also [method is_connection_available], [method PacketPeerUDP.connect_to_host]. */
+    take_connection(): null | PacketPeerUDP;
+
+    /** Stops the server, closing the UDP socket if open. Will close all connected [PacketPeerUDP] accepted via [method take_connection] (remote peers will not be notified). */
+    stop(): void;
+
+    /** Define the maximum number of pending connections, during [method poll], any new pending connection exceeding that value will be automatically dropped. Setting this value to `0` effectively prevents any new pending connection to be accepted (e.g. when all your players have connected). */
+    get max_pending_connections(): int64;
+    set max_pending_connections(value: int64);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapUDPServer;
+  }
+  namespace UPNP {
+    enum UPNPResult {
+      /** UPNP command or discovery was successful. */
+      UPNP_RESULT_SUCCESS = 0,
+
+      /** Not authorized to use the command on the [UPNPDevice]. May be returned when the user disabled UPNP on their router. */
+      UPNP_RESULT_NOT_AUTHORIZED = 1,
+
+      /** No port mapping was found for the given port, protocol combination on the given [UPNPDevice]. */
+      UPNP_RESULT_PORT_MAPPING_NOT_FOUND = 2,
+
+      /** Inconsistent parameters. */
+      UPNP_RESULT_INCONSISTENT_PARAMETERS = 3,
+
+      /** No such entry in array. May be returned if a given port, protocol combination is not found on a [UPNPDevice]. */
+      UPNP_RESULT_NO_SUCH_ENTRY_IN_ARRAY = 4,
+
+      /** The action failed. */
+      UPNP_RESULT_ACTION_FAILED = 5,
+
+      /** The [UPNPDevice] does not allow wildcard values for the source IP address. */
+      UPNP_RESULT_SRC_IP_WILDCARD_NOT_PERMITTED = 6,
+
+      /** The [UPNPDevice] does not allow wildcard values for the external port. */
+      UPNP_RESULT_EXT_PORT_WILDCARD_NOT_PERMITTED = 7,
+
+      /** The [UPNPDevice] does not allow wildcard values for the internal port. */
+      UPNP_RESULT_INT_PORT_WILDCARD_NOT_PERMITTED = 8,
+
+      /** The remote host value must be a wildcard. */
+      UPNP_RESULT_REMOTE_HOST_MUST_BE_WILDCARD = 9,
+
+      /** The external port value must be a wildcard. */
+      UPNP_RESULT_EXT_PORT_MUST_BE_WILDCARD = 10,
+
+      /** No port maps are available. May also be returned if port mapping functionality is not available. */
+      UPNP_RESULT_NO_PORT_MAPS_AVAILABLE = 11,
+
+      /** Conflict with other mechanism. May be returned instead of [constant UPNP_RESULT_CONFLICT_WITH_OTHER_MAPPING] if a port mapping conflicts with an existing one. */
+      UPNP_RESULT_CONFLICT_WITH_OTHER_MECHANISM = 12,
+
+      /** Conflict with an existing port mapping. */
+      UPNP_RESULT_CONFLICT_WITH_OTHER_MAPPING = 13,
+
+      /** External and internal port values must be the same. */
+      UPNP_RESULT_SAME_PORT_VALUES_REQUIRED = 14,
+
+      /** Only permanent leases are supported. Do not use the `duration` parameter when adding port mappings. */
+      UPNP_RESULT_ONLY_PERMANENT_LEASE_SUPPORTED = 15,
+
+      /** Invalid gateway. */
+      UPNP_RESULT_INVALID_GATEWAY = 16,
+
+      /** Invalid port. */
+      UPNP_RESULT_INVALID_PORT = 17,
+
+      /** Invalid protocol. */
+      UPNP_RESULT_INVALID_PROTOCOL = 18,
+
+      /** Invalid duration. */
+      UPNP_RESULT_INVALID_DURATION = 19,
+
+      /** Invalid arguments. */
+      UPNP_RESULT_INVALID_ARGS = 20,
+
+      /** Invalid response. */
+      UPNP_RESULT_INVALID_RESPONSE = 21,
+
+      /** Invalid parameter. */
+      UPNP_RESULT_INVALID_PARAM = 22,
+
+      /** HTTP error. */
+      UPNP_RESULT_HTTP_ERROR = 23,
+
+      /** Socket error. */
+      UPNP_RESULT_SOCKET_ERROR = 24,
+
+      /** Error allocating memory. */
+      UPNP_RESULT_MEM_ALLOC_ERROR = 25,
+
+      /** No gateway available. You may need to call [method discover] first, or discovery didn't detect any valid IGDs (InternetGatewayDevices). */
+      UPNP_RESULT_NO_GATEWAY = 26,
+
+      /** No devices available. You may need to call [method discover] first, or discovery didn't detect any valid [UPNPDevice]s. */
+      UPNP_RESULT_NO_DEVICES = 27,
+
+      /** Unknown error. */
+      UPNP_RESULT_UNKNOWN_ERROR = 28,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapUPNP extends __NameMapRefCounted {}
+  /** Universal Plug and Play (UPnP) functions for network device discovery, querying and port forwarding.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_upnp.html
+   */
+  class UPNP extends RefCounted {
+    constructor(identifier?: any);
+    /** Returns the number of discovered [UPNPDevice]s. */
+    get_device_count(): int64;
+
+    /** Returns the [UPNPDevice] at the given [param index]. */
+    get_device(index: int64): null | UPNPDevice;
+
+    /** Adds the given [UPNPDevice] to the list of discovered devices. */
+    add_device(device: UPNPDevice): void;
+
+    /** Sets the device at [param index] from the list of discovered devices to [param device]. */
+    set_device(index: int64, device: UPNPDevice): void;
+
+    /** Removes the device at [param index] from the list of discovered devices. */
+    remove_device(index: int64): void;
+
+    /** Clears the list of discovered devices. */
+    clear_devices(): void;
+
+    /** Returns the default gateway. That is the first discovered [UPNPDevice] that is also a valid IGD (InternetGatewayDevice). */
+    get_gateway(): null | UPNPDevice;
+
+    /** Discovers local [UPNPDevice]s. Clears the list of previously discovered devices.
+     *  Filters for IGD (InternetGatewayDevice) type devices by default, as those manage port forwarding. [param timeout] is the time to wait for responses in milliseconds. [param ttl] is the time-to-live; only touch this if you know what you're doing.
+     *  See [enum UPNPResult] for possible return values.
+     */
+    discover(
+      timeout?: int64 /* = 2000 */,
+      ttl?: int64 /* = 2 */,
+      device_filter?: string /* = 'InternetGatewayDevice' */,
+    ): int64;
+
+    /** Returns the external [IP] address of the default gateway (see [method get_gateway]) as string. Returns an empty string on error. */
+    query_external_address(): string;
+
+    /** Adds a mapping to forward the external [param port] (between 1 and 65535, although recommended to use port 1024 or above) on the default gateway (see [method get_gateway]) to the [param port_internal] on the local machine for the given protocol [param proto] (either `"TCP"` or `"UDP"`, with UDP being the default). If a port mapping for the given port and protocol combination already exists on that gateway device, this method tries to overwrite it. If that is not desired, you can retrieve the gateway manually with [method get_gateway] and call [method add_port_mapping] on it, if any. Note that forwarding a well-known port (below 1024) with UPnP may fail depending on the device.
+     *  Depending on the gateway device, if a mapping for that port already exists, it will either be updated or it will refuse this command due to that conflict, especially if the existing mapping for that port wasn't created via UPnP or points to a different network address (or device) than this one.
+     *  If [param port_internal] is `0` (the default), the same port number is used for both the external and the internal port (the [param port] value).
+     *  The description ([param desc]) is shown in some routers management UIs and can be used to point out which application added the mapping.
+     *  The mapping's lease [param duration] can be limited by specifying a duration in seconds. The default of `0` means no duration, i.e. a permanent lease and notably some devices only support these permanent leases. Note that whether permanent or not, this is only a request and the gateway may still decide at any point to remove the mapping (which usually happens on a reboot of the gateway, when its external IP address changes, or on some models when it detects a port mapping has become inactive, i.e. had no traffic for multiple minutes). If not `0` (permanent), the allowed range according to spec is between `120` (2 minutes) and `86400` seconds (24 hours).
+     *  See [enum UPNPResult] for possible return values.
+     */
+    add_port_mapping(
+      port: int64,
+      port_internal?: int64 /* = 0 */,
+      desc?: string /* = '' */,
+      proto?: string /* = 'UDP' */,
+      duration?: int64 /* = 0 */,
+    ): int64;
+
+    /** Deletes the port mapping for the given port and protocol combination on the default gateway (see [method get_gateway]) if one exists. [param port] must be a valid port between 1 and 65535, [param proto] can be either `"TCP"` or `"UDP"`. May be refused for mappings pointing to addresses other than this one, for well-known ports (below 1024), or for mappings not added via UPnP. See [enum UPNPResult] for possible return values. */
+    delete_port_mapping(port: int64, proto?: string /* = 'UDP' */): int64;
+
+    /** Multicast interface to use for discovery. Uses the default multicast interface if empty. */
+    get discover_multicast_if(): string;
+    set discover_multicast_if(value: string);
+
+    /** If `0`, the local port to use for discovery is chosen automatically by the system. If `1`, discovery will be done from the source port 1900 (same as destination port). Otherwise, the value will be used as the port. */
+    get discover_local_port(): int64;
+    set discover_local_port(value: int64);
+
+    /** If `true`, IPv6 is used for [UPNPDevice] discovery. */
+    get discover_ipv6(): boolean;
+    set discover_ipv6(value: boolean);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapUPNP;
+  }
+  namespace UPNPDevice {
+    enum IGDStatus {
+      /** OK. */
+      IGD_STATUS_OK = 0,
+
+      /** HTTP error. */
+      IGD_STATUS_HTTP_ERROR = 1,
+
+      /** Empty HTTP response. */
+      IGD_STATUS_HTTP_EMPTY = 2,
+
+      /** Returned response contained no URLs. */
+      IGD_STATUS_NO_URLS = 3,
+
+      /** Not a valid IGD. */
+      IGD_STATUS_NO_IGD = 4,
+
+      /** Disconnected. */
+      IGD_STATUS_DISCONNECTED = 5,
+
+      /** Unknown device. */
+      IGD_STATUS_UNKNOWN_DEVICE = 6,
+
+      /** Invalid control. */
+      IGD_STATUS_INVALID_CONTROL = 7,
+
+      /** Memory allocation error. */
+      IGD_STATUS_MALLOC_ERROR = 8,
+
+      /** Unknown error. */
+      IGD_STATUS_UNKNOWN_ERROR = 9,
+    }
+  }
+  /** @deprecated Internal use. Does not exist at runtime. */
+  interface __NameMapUPNPDevice extends __NameMapRefCounted {}
+  /** Universal Plug and Play (UPnP) device.
+   *
+   *  @link https://docs.godotengine.org/en/4.5/classes/class_upnpdevice.html
+   */
+  class UPNPDevice extends RefCounted {
+    constructor(identifier?: any);
+    /** Returns `true` if this is a valid IGD (InternetGatewayDevice) which potentially supports port forwarding. */
+    is_valid_gateway(): boolean;
+
+    /** Returns the external IP address of this [UPNPDevice] or an empty string. */
+    query_external_address(): string;
+
+    /** Adds a port mapping to forward the given external port on this [UPNPDevice] for the given protocol to the local machine. See [method UPNP.add_port_mapping]. */
+    add_port_mapping(
+      port: int64,
+      port_internal?: int64 /* = 0 */,
+      desc?: string /* = '' */,
+      proto?: string /* = 'UDP' */,
+      duration?: int64 /* = 0 */,
+    ): int64;
+
+    /** Deletes the port mapping identified by the given port and protocol combination on this device. See [method UPNP.delete_port_mapping]. */
+    delete_port_mapping(port: int64, proto?: string /* = 'UDP' */): int64;
+
+    /** URL to the device description. */
+    get description_url(): string;
+    set description_url(value: string);
+
+    /** Service type. */
+    get service_type(): string;
+    set service_type(value: string);
+
+    /** IDG control URL. */
+    get igd_control_url(): string;
+    set igd_control_url(value: string);
+
+    /** IGD service type. */
+    get igd_service_type(): string;
+    set igd_service_type(value: string);
+
+    /** Address of the local machine in the network connecting it to this [UPNPDevice]. */
+    get igd_our_addr(): string;
+    set igd_our_addr(value: string);
+
+    /** IGD status. */
+    get igd_status(): int64;
+    set igd_status(value: int64);
+    /** @deprecated Internal use. Does not exist at runtime. */
+    __godotNameMap: __NameMapUPNPDevice;
+  }
 }
